@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="login">
+<form action="login.do">
 	<table class="table table-bordered">
 		<tr>
 			<td>아이디</td>

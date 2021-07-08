@@ -1,12 +1,13 @@
 package com.ch.tiger.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.ch.tiger.service.ApplyService;
+
 @Controller
 public class ApplyController {
-	@RequestMapping("/main/main.do")
-	public String main() {
-		return "main/main";
-	}
+	@Autowired
+	private ApplyService as;
 }

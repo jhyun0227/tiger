@@ -18,4 +18,5 @@ public class Member {
 	private String MB_del;
     private Date MB_regDate;
     private String MB_tel;
+    private String MB_img;
 }

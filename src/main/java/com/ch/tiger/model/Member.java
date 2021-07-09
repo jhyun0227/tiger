@@ -1,9 +1,6 @@
 package com.ch.tiger.model;
-
 import java.sql.Date;
-
 import lombok.Data;
-
 @Data
 public class Member {
 	private int MB_num;

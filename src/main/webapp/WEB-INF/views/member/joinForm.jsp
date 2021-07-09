@@ -41,6 +41,7 @@
 				}
 			}); */
 		
+			
 		// 아이디 중복 체크 로직
 		$.post('idChk.do', 'MB_id='+frm.MB_id.value, function(data) {
 			$('#idChk').html(data);

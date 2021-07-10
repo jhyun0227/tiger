@@ -24,13 +24,13 @@
 		frm.MB_id.focus();
 		frm.MB_id.value="";
 		return false;
-	}else{
+	} else {
 		if(!reg_id.test(frm.MB_id.value)){
 			alert("올바른 이메일 형식이 아닙니다.");
-			frm.id.focus();
+			frm.MB_id.focus();
 			return false;
-		}else{
-			/* 인증메일 전송
+		} /* else {
+			인증메일 전송
 			$.post("mailResult.na", "id="+frm.id.value, function(data){
 				인증메일 전송시 인증번호 입력창 보이기
 				var str = data.split(";");
@@ -39,16 +39,49 @@
 				if (str[0]=="send mail success"){
 					$('#chkIdDIV').css("display","block")
 				}
-			}); */
+			});
 		
-			
+		} */
 		// 아이디 중복 체크 로직
-		$.post('idChk.do', 'MB_id='+frm.MB_id.value, function(data) {
-			$('#idChk').html(data);
-		});
+			$.post('idChk.do', 'MB_id='+frm.MB_id.value, function(data) {
+				$('#idChk').html(data);
+			});
+		}
 	}
 	
+	// 비밀번호 일치 불일치 ajax
+	$(function() {
+		$("#alert-success").hide();
+		$("#alert-danger").hide();
+		$("#pw_confirm").keyup(function() {
+			var MB_pw = $("#pw").val();
+			var MB_pw_confirm = $("#pw_confirm").val();
+			if (MB_pw != "" || MB_pw_confirm != "") {
+				if (MB_pw == MB_pw_confirm) {
+					$("#alert-success").show();
+					$("#alert-danger").hide();
+				} else {
+					$("#alert-success").hide();
+					$("#alert-danger").show();
+				}
+			}
+		});
+	});
 	
+	// 닉네임 중복체크
+	function nickChk() {
+		if(!frm.MB_nickName.value) {
+			alert("닉네임을 입력하세요")
+			frm.MB_nickName.focus();
+			frm.MB_nickName.value="";
+			return false;
+		} else {
+			// 닉네임 중복 체크 로직
+			$.post('nickChk.do', 'MB_nickName='+frm.MB_nickName.value, function(data) {
+				$('#nickChk').html(data);
+			});
+		}
+	}
 	
 	function chk() {
 		// 비밀번호와 비밀번호 확인 체크
@@ -65,10 +98,10 @@
 		var year = parseInt(today.getFullYear()); // 생성된 객체에서 연도 데이터만 가져와 숫자로 변환
 		
 		var regNum = frm.MB_regNum.value; // 입력한 주민등록번호의 값을 가져와 변수에 담음
-		var regNum_back = regNum.charAt(7); // 가져온 주민등록번호 뒷자리 첫번째 자리 수만 가져와서 변수에 담음
+		var gender = frm.MB_gender.value // 주민등록번호 뒷자리를 가져와서 연대를 구분
 		var age = 0; // 임시 나이 변수;
 		
-		if (regNum_back <= 2) { // 주민등록번호 뒷자리 첫번째 값이 1과 2인 경우
+		if (gender <= 2) { // 주민등록번호 뒷자리 첫번째 값이 1과 2인 경우
 			age = year - (1900 + parseInt(regNum.substring(0,2)));
 		} else { // 3과 4인 경우
 			age = year - (2000 + parseInt(regNum.substring(0,2)));
@@ -101,7 +134,12 @@
 			</tr>
 			<tr>
 				<td><label for="pw_confirm">비밀번호 확인</label></td>
-				<td><input type="password" name="MB_pw_confirm" id="pw_confirm" required="required"></td>
+				<td>
+					<input type="password" name="MB_pw_confirm" id="pw_confirm" required="required">
+					<br>
+					<div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div>
+					<div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
+				</td>
 			</tr>
 			<tr>
 				<td><label for="name">이름</label></td>
@@ -112,13 +150,20 @@
 				<td>
 					<input type="text" name="MB_regNum" id="regNum" required="required" maxlength="6" style="width:11%;">
 					<span>―</span>
-					<input type="text" name="MB_gender" required="required" maxlength="1" style="width:25px;">
+					<!-- 1, 3일 경우 남자 / 2, 4일 경우 여자 -->
+					<input type="text" name="MB_gender" id="gender" required="required" maxlength="1" style="width:25px;">
 					<span>******</span>
+					<!-- 주민등록번호 유효성 검사 -->
+					<div class="alert alert-danger" id="regNumChk">올바르지 않은 주민등록번호 입니다.</div>
 				</td>
 			</tr>
 			<tr>
 				<td><label for="nickName">닉네임</label></td>
-				<td><input type="text" name="MB_nickName" id="nickName" required="required"></td>
+				<td>
+					<input type="text" name="MB_nickName" id="nickName" required="required">
+					<input type="button" onclick="nickChk()" class="btn btn-info btn-sm" value="중복체크">
+					<div id="nickChk" class="err"></div>
+				</td>
 			</tr>
 			<tr>
 				<td><label for="tel">연락처</label></td>

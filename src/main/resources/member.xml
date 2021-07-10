@@ -3,6 +3,23 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="memberns">
 	<select id="select" parameterType="string" resultType="member">
-		select * from member where mb_id=#{mb_id}
+		select * from member where MB_id=#{MB_id}
+	</select>
+	
+	<select id="selectNick" parameterType="string" resultType="member">
+		select * from member where MB_nickName=#{MB_nickName}
+	</select>
+	
+	<insert id="insert" parameterType="member">
+		insert into member(MB_num, MB_id, MB_pw, MB_name, MB_regNum, MB_gender, MB_nickName, MB_tel, MB_regDate)
+					values((select nvl(max(MB_num), 0)+1 from member), #{MB_id}, #{MB_pw}, #{MB_name}, #{MB_regNum}, #{MB_gender}, #{MB_nickName}, #{MB_tel}, sysdate)
+	</insert>
+	
+	<select id="selectFindId" parameterType="member" resultType="member">
+		select * from member where MB_name=#{MB_name} and MB_tel=#{MB_tel}
+	</select>
+	
+	<select id="selectFindPw" parameterType="member" resultType="member">
+		select * from member where MB_name=#{MB_name} and MB_id=#{MB_id}
 	</select>
 </mapper>

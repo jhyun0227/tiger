@@ -15,5 +15,25 @@ public class MemberDaoImpl implements MemberDao{
 	public Member select(String mb_id) {
 		return sst.selectOne("memberns.select", mb_id); // 로그인할 때 사용하는 로직
 	}
+
+	@Override
+	public Member selectNick(String mb_nickName) {
+		return sst.selectOne("memberns.selectNick", mb_nickName); // 닉네임 중복 체크
+	}
+
+	@Override
+	public int insert(Member member) {
+		return sst.insert("memberns.insert", member); // 회원가입
+	}
+
+	@Override
+	public Member selectFindId(Member member) {
+		return sst.selectOne("memberns.selectFindId", member);
+	}
+
+	@Override
+	public Member selectFindPw(Member member) {
+		return sst.selectOne("memberns.selectFindPw", member);
+	}
 	
 }

@@ -5,7 +5,6 @@
 <html>
 <head>
 <title>Insert title here</title>
-<c:set var="path" value="${pageContext.request.contextPath }"></c:set>
 <style type="text/css">
 .header {
 	position: relative;
@@ -29,14 +28,27 @@
 	padding-left: 15px;
 }
 </style>
+<c:set var="path" value="${pageContext.request.contextPath }"></c:set>
 </head>
 <body>
 	<div class="header">
 		<span class="left"> <img alt=""
 			src="${path }/resources/main/logo.png" class="logo">
 		</span>
-		<span class="right"> 
-			<a href="joinForm.do">회원가입</a> <a href="loginForm.do">로그인</a>
+		<span class="right">
+		<c:if test="${sessionScope.MB_id == null }">
+				<a href="joinForm.do">회원가입</a>
+				<a href="loginForm.do">로그인</a>
+		</c:if>
+		<c:if test="${sessionScope.MB_id != null }">
+			<c:if test="${sessionScope.MB_id == 'admin'}">
+				관리자 페이지
+			</c:if>
+			<c:if test="${sessionScope.MB_id != 'admin'}">
+				${sessionScope.MB_id }님 환영합니다
+			</c:if>
+				<a href="logout.do">로그아웃</a>
+			</c:if>
 		</span>
 	</div>
 </body>

@@ -10,5 +10,9 @@ public class Notice {
     private String NT_title;
     private Date NT_regDate;
     private String NT_content;
+    private String NT_del;
     private int MB_num;
+    // paging용
+    private int startRow;
+    private int endRow;
 }

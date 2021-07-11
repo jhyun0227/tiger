@@ -2,5 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="noticens">
-
+	<select id="getNtTotal" parameterType="notice" resultType="integer">
+		select count(*) from notice
+	</select>
+	<select id="noticeList" parameterType="notice" resultType="notice">
+		select * from (select a.*, rowNum rn from 
+			(select * from notice order by NT_num desc) a)
+		where rn between #{startRow} and #{endRow}
+	</select>
+	<select id="getMaxNum" resultType="integer">
+		select nvl(max(NT_num), 0) + 1 from notice
+	</select>
+	<insert id="noticeWrite" parameterType="notice">
+		insert into notice values(#{NT_num}, #{NT_title}, sysdate, #{NT_content}, 'N', #{MB_num})
+	</insert>
 </mapper>

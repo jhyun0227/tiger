@@ -34,16 +34,16 @@
 		<img alt="" src="${path }/resources/main/logo.png" class="logo">
 	</span>
 	<span class="right">
-		<c:if test="${member.MB_id == null }">
+		<c:if test="${sessionScope.MB_id == null }">
 			<a>회원가입</a>
 			<a href="loginForm.do">로그인</a>
 		</c:if>
-		<c:if test="${member.MB_id != null }">
-			<c:if test="${member.MB_id == 'admin'}">
+		<c:if test="${sessionScope.MB_id != null }">
+			<c:if test="${sessionScope.MB_id == 'admin'}">
 				관리자 페이지
 			</c:if>
-			<c:if test="${member.MB_id != 'admin'}">
-				${member.MB_id }님 환영합니다
+			<c:if test="${sessionScope.MB_id != 'admin'}">
+				${sessionScope.MB_id }님 환영합니다
 			</c:if>
 			<a href="logout.do">로그아웃</a>
 		</c:if>

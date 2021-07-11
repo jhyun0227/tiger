@@ -34,4 +34,5 @@ public class MemberController {
 		session.invalidate();
 		return "login/logout";
 	}
+	
 }

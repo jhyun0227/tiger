@@ -2,7 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="memberns">
-	<select id="select" parameterType="string" resultType="member">
+	<select id="select" parameterType="string" resultType="member"> <!-- 회원1명 정보 -->
 		select * from member where MB_id=#{MB_id}
+	</select>
+	<select id="getMbTotal" parameterType="member" resultType="integer">
+		select count(*) from member	<!-- member 행 갯수 -->
+		<!-- 회원 검색 기능 추가 -->
+	</select>
+	<select id="list" parameterType="member" resultType="member">
+		select * from (select a.*, rowNum rn from
+			(select * from member order by MB_num desc) a)
+			where rn between #{startRow} and #{endRow}
 	</select>
 </mapper>

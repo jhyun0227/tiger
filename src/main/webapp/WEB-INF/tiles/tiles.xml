@@ -15,7 +15,7 @@
 		<!-- 레이아웃 적용하지 않음 -->
 		<put-attribute name="header" value="" />
 		<put-attribute name="menu" value="" />
-		<put-attribute name="footer" value="" />
+		<put-attribute name="body" value="" />
 	</definition>
 	
 		<!-- (1) nolay 폴더 안에 {1}에 jsp이름 -->

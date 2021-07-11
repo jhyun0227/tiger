@@ -13,5 +13,6 @@ public class QnA {
     private int QA_ref;
     private int QA_refStep;
     private int QA_refLevel;
+    private String QA_del;
     private int MB_num;
 }

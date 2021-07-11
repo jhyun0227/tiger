@@ -17,8 +17,13 @@ public class HomeController {
 		Member member = null;
 		if(MB_id != null && !MB_id.equals("")) {
 			member = mbs.select(MB_id);
+			model.addAttribute("member", member);
+			if(MB_id.equals("admin")) {
+				
+				return "admin/adminMain";
+			}
 		}
-		model.addAttribute("member", member);
+//		model.addAttribute("member", member);
 		return "main/main";
 	}
 }

@@ -1,5 +1,11 @@
 package com.ch.tiger.service;
+import java.util.List;
 
+import com.ch.tiger.model.Notice;
 public interface NoticeService {
+	int getNtTotal(Notice notice);
+	List<Notice> noticeList(Notice notice);
+	int getMaxNum();
+	int noticeWrite(Notice notice);	
 
 }

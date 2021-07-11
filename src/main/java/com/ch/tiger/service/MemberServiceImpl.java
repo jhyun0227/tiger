@@ -35,4 +35,9 @@ public class MemberServiceImpl implements MemberService {
 	public Member selectFindPw(Member member) { // 비밀번호 찾기
 		return mbd.selectFindPw(member);
 	}
+
+	@Override
+	public int update(Member member) { // 회원정보 수정
+		return mbd.update(member);
+	}
 }

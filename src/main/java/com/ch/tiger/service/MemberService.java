@@ -3,7 +3,7 @@ package com.ch.tiger.service;
 import com.ch.tiger.model.Member;
 
 public interface MemberService {
-	Member select(String mb_id); // 로그인 할때 사용하는 로직
+	Member select(String mb_id); // 아이디로 정보를 가져오는 로직
 
 	Member selectNick(String mb_nickName); // 닉네임 중복 체크
 
@@ -12,5 +12,7 @@ public interface MemberService {
 	Member selectFindId(Member member); // 아이디 찾기
 
 	Member selectFindPw(Member member); // 비밀번호 찾기
+
+	int update(Member member);
 
 }

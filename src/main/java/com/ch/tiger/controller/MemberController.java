@@ -138,4 +138,29 @@ public class MemberController {
 		return "member/findPwResult";
 	}
 	
+	// 마이페이지 메인으로 이동
+	@RequestMapping("myMain")
+	public String myMain(Model model, HttpSession session) {
+		String MB_id = (String)session.getAttribute("MB_id");
+		Member member = mbs.select(MB_id);
+		model.addAttribute("member", member);
+		return "mypage/myMain";
+	}
+	 
+	// 마이페이지 회원정보 수정폼으로 이동
+	@RequestMapping("updateForm")
+	public String updateForm(Model model, HttpSession session) {
+		String MB_id = (String)session.getAttribute("MB_id");
+		Member member = mbs.select(MB_id);
+		model.addAttribute("member", member);
+		return "mypage/updateForm";
+	}
+	
+	// 마이페이지 회원정보 수정
+	@RequestMapping("updateResult")
+	public String updateResult(Member member, Model model) {
+		int result = mbs.update(member);
+		model.addAttribute("result", result);
+		return "mypage/updateResult";
+	}
 }

@@ -11,7 +11,7 @@
 <a href="">타세요</a>
 <a href="">이용내역</a>
 <a href="">쪽지함</a>
-<a href="">마이페이지</a>
+<a href="myMain.do">마이페이지</a>
 <a href="">고객센터</a>
 
 </body>

@@ -2,24 +2,33 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="memberns">
+ 	<!-- 아이디로 검색 -->
 	<select id="select" parameterType="string" resultType="member">
 		select * from member where MB_id=#{MB_id}
 	</select>
 	
+	<!-- 닉네임 중복체크 -->
 	<select id="selectNick" parameterType="string" resultType="member">
 		select * from member where MB_nickName=#{MB_nickName}
 	</select>
 	
+	<!-- 회원가입 -->
 	<insert id="insert" parameterType="member">
 		insert into member(MB_num, MB_id, MB_pw, MB_name, MB_regNum, MB_gender, MB_nickName, MB_tel, MB_regDate)
 					values((select nvl(max(MB_num), 0)+1 from member), #{MB_id}, #{MB_pw}, #{MB_name}, #{MB_regNum}, #{MB_gender}, #{MB_nickName}, #{MB_tel}, sysdate)
 	</insert>
 	
+	<!-- 아이디 찾기 -->
 	<select id="selectFindId" parameterType="member" resultType="member">
 		select * from member where MB_name=#{MB_name} and MB_tel=#{MB_tel}
 	</select>
 	
+	<!-- 비밀번호 찾기 -->
 	<select id="selectFindPw" parameterType="member" resultType="member">
 		select * from member where MB_name=#{MB_name} and MB_id=#{MB_id}
 	</select>
+	
+	<update id="update" parameterType="member">
+		update member set MB_name=#{MB_name}, MB_nickName=#{MB_nickName}, MB_tel=#{MB_tel} where MB_id=#{MB_id}
+	</update>
 </mapper>

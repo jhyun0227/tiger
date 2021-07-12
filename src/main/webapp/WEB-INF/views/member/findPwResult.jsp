@@ -17,6 +17,15 @@
 	</table>
 	<a href="findIdForm.do?">아이디 찾기</a>
 </c:if>
+<c:if test="${result == 0 }">
+	<h2>비밀번호 찾기</h2>
+	<table class="table table-bordered">
+		<tr>
+			<th>${msg }</th>
+		</tr>
+	</table>
+	<a href="findIdForm.do?">아이디 찾기</a>
+</c:if>
 <c:if test="${result == -1 }">
 	<script type="text/javascript">
 		alert("찾을 수 없는 계정입니다. 정보를 확인해주세요.");

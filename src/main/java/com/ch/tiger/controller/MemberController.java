@@ -1,13 +1,19 @@
 package com.ch.tiger.controller;
 
+import java.util.Random;
+
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ch.tiger.model.Email;
 import com.ch.tiger.model.Member;
 import com.ch.tiger.service.MemberService;
 
@@ -15,13 +21,15 @@ import com.ch.tiger.service.MemberService;
 public class MemberController {
 	@Autowired
 	private MemberService mbs;
+	@Autowired
+	private JavaMailSender jMailSender;
 
 	// 회원가입 폼으로 이동
 	@RequestMapping("joinForm")
 	public String joinForm() {
 		return "member/joinForm";
 	}
-
+	
 	// 아이디 중복체크 할때 사용
 	@RequestMapping(value = "idChk", produces = "text/html;charset=utf-8")
 	@ResponseBody // jsp로 가지말고 바로 본문으로 전달
@@ -35,6 +43,44 @@ public class MemberController {
 		}
 		return msg;
 	}
+
+//	이메일 인증
+//	@RequestMapping(value = "emailChk", produces = "text/html;charset=utf-8")
+//	@ResponseBody
+//	public String emailChk(String MB_id, Email email, Model model) {
+//		String msg = ""; // 내용에 들어갈 메세지
+//		Member member = mbs.select(MB_id);
+//		// 중복이 없는 이메일
+//		if (member == null) {
+//			String code=""; // 인증코드
+//			// 난수 생성
+//			Random random = new Random();
+//			for(int i=0; i<3; i++) {
+//				int index = random.nextInt(25)+65; //A~Z까지 랜덤 알파벳 생성
+//				code += (char)index;
+//			}
+//			int numIndex = random.nextInt(9999)+1000; //4자리 랜덤 정수 생성
+//			code += numIndex;		
+//			msg = (String)code;  //메시지 내용 함수입력
+//					
+//			MimeMessage mm = jMailSender.createMimeMessage();
+//			try {
+//				MimeMessageHelper mmh = new MimeMessageHelper(mm, true, "utf-8");
+//				mmh.setSubject("타이거 인증번호 입니다.");
+//				mmh.setText("인증번호 : " + msg);
+//				mmh.setTo(MB_id);
+//				mmh.setFrom("jhyun0227@naver.com");
+//				jMailSender.send(mm);
+//				model.addAttribute("msg", "인증번호를 입력해주세요.");
+//				model.addAttribute("key", msg);
+//			} catch (Exception e) {
+//				model.addAttribute("msg", e.getMessage());
+//			}		
+//		} else {
+//			msg = "이미 사용중인 이메일 입니다.";
+//		}
+//		return msg;
+//	}
 
 	// 닉네임 중복체크
 	@RequestMapping(value = "nickChk", produces = "text/html;charset=utf-8")
@@ -129,8 +175,34 @@ public class MemberController {
 		int result = 0;
 		Member member2 = mbs.selectFindPw(member);
 		if (member2 != null) {
+			// 아이디가 존재 할 때 결과 값 1을 반영
 			result = 1;
 			model.addAttribute("member", member2);
+			
+			// 난수 생성
+			String msg = "";
+			String code = "";
+			Random random = new Random();
+			for(int i=0; i<3; i++) {
+				int index = random.nextInt(25)+65; //A~Z까지 랜덤 알파벳 생성
+				code += (char)index;
+			}
+			int numIndex = random.nextInt(9999)+1000; //4자리 랜덤 정수 생성
+			code += numIndex;		
+			msg = (String)code;  //메시지 내용 함수입력
+					
+			MimeMessage mm = jMailSender.createMimeMessage();
+			try {
+				MimeMessageHelper mmh = new MimeMessageHelper(mm, true, "utf-8");
+				mmh.setSubject("타이거 임시비밀번호 입니다.");
+				mmh.setText("임시비밀번호 : " + msg);
+				mmh.setTo(member.getMB_id());
+				mmh.setFrom("jhyun0227@naver.com");
+				jMailSender.send(mm);
+			} catch (Exception e) {
+				result = 0;
+				model.addAttribute("msg", e.getMessage());
+			}		
 		} else {
 			result = -1;
 		}

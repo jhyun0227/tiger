@@ -15,7 +15,7 @@
 </style>
 <script type="text/javascript" src="${path }/resources/bootstrap/js/jquery.js"></script>
 <script type="text/javascript">
-	// 이메일 유효성 검사 및 중복 체크
+	//이메일 유효성 검사 및 중복 체크
 	function idChk() {
 	/* 이메일 유효성 검사 */
 	var reg_id = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
@@ -48,6 +48,37 @@
 			});
 		}
 	}
+     
+    /* 이메일 유효성 검사 및 중복 체크
+	function emailChk() {
+		이메일 유효성 검사
+		var reg_id = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+		if(!frm.MB_id.value) {
+			alert("이메일을 입력하세요")
+			frm.MB_id.focus();
+			frm.MB_id.value="";
+			return false;
+		} else {
+			if(!reg_id.test(frm.MB_id.value)){
+				alert("올바른 이메일 형식이 아닙니다.");
+				frm.MB_id.focus();
+				return false;
+			} else {
+				$.post('emailChk.do', 'MB_id='+frm.MB_id.value, function(data) {
+					if (data == "인증번호를 입력해주세요.") {
+						$('#emailChkSuccess').html(data);
+						var str = data.split(";");
+						alert(str[0]);
+						frm.certify.value=str[1];
+						$('#chkIdDIV').css("display","block")
+						
+					} else (data == "이미 사용중인 이메일 입니다.") {
+						$('#emailChkFalse').html(data);
+					}
+				});
+			}
+		}
+	} */
 	
 	// 비밀번호 일치 불일치 ajax
 	$(function() {
@@ -124,8 +155,23 @@
 				<td><label for="email">이메일</label></td>
 				<td>
 					<input type="email" name="MB_id" id="email" required="required" autofocus="autofocus">
-					<input type="button" onclick="idChk()" class="btn btn-info btn-sm" value="중복체크">
+					<input type="button" onclick="idChk()" class="btn btn-info btn-sm" value="이메일 인증">
 					<div id="idChk" class="err"></div>
+					
+					<!-- 이메일이 중복이 아닐 경우
+					<div id="emailChkSuccess" class="err"></div>
+					이메일 인증 
+					<div class="check" id="chkIdDIV">
+						<input type="text" name="mail_chk" class="inputBox-left" placeholder="인증번호 입력">
+						<a class="chk-btn"  id="mailConfirm_btn" onclick="chkMail();">인증 확인</a> 
+						인증버튼 눌렀는지 체크
+						<input type="hidden" name="checked_id" value="">
+						인증키 비교값
+						<input type="hidden" name="certify">
+					</div> -->
+					
+					<!-- 이메일이 이미 중복일 경우 -->
+					<div id="emailChkFalse" class="err"></div>
 				</td>
 			</tr>
 			<tr>
@@ -153,8 +199,6 @@
 					<!-- 1, 3일 경우 남자 / 2, 4일 경우 여자 -->
 					<input type="text" name="MB_gender" id="gender" required="required" maxlength="1" style="width:25px;">
 					<span>******</span>
-					<!-- 주민등록번호 유효성 검사 -->
-					<div class="alert alert-danger" id="regNumChk">올바르지 않은 주민등록번호 입니다.</div>
 				</td>
 			</tr>
 			<tr>

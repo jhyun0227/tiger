@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ch.tiger.model.Carpool;
-import com.ch.tiger.service.CarpoolService;
 
 @Controller
 public class CarpoolController {

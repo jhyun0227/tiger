@@ -12,7 +12,7 @@ import com.ch.tiger.service.CarpoolService;
 @Controller
 public class CarpoolController {
 	@Autowired
-	private Carpool cs;
+	private CarpoolDao cs;
 	
 	@RequestMapping(value="cpWriteForm", method=RequestMethod.POST)
 	public String create(Carpool dto, Model model){

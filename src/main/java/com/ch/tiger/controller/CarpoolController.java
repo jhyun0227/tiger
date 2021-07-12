@@ -11,9 +11,7 @@ import com.ch.tiger.service.CarpoolService;
 
 @Controller
 public class CarpoolController {
-	@Autowired
-	private CarpoolDao cs;
-	
+
 	@RequestMapping(value="cpWriteForm", method=RequestMethod.POST)
 	public String create(Carpool dto, Model model){
 		model.addAttribute("carpool",dto);

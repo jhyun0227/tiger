@@ -3,16 +3,16 @@ package com.ch.tiger.dao;
 import com.ch.tiger.model.Member;
 
 public interface MemberDao {
-	Member select(String mb_id); // È¸¿ø°¡ÀÔ ¾ÆÀÌµğ Áßº¹Ã¼Å©, ·Î±×ÀÎÇÒ¶§ »ç¿ëÇÏ´Â ·ÎÁ÷
+	Member select(String mb_id); // íšŒì›ê°€ì… ì•„ì´ë”” ì¤‘ë³µì²´í¬, ë¡œê·¸ì¸í• ë•Œ ì‚¬ìš©í•˜ëŠ” ë¡œì§
 
-	Member selectNick(String mb_nickName); // ´Ğ³×ÀÓ Áßº¹Ã¼Å©
+	Member selectNick(String mb_nickName); // ë‹‰ë„¤ì„ ì¤‘ë³µì²´í¬
 
-	int insert(Member member); // È¸¿øÁ¤º¸ ÀÔ·Â
+	int insert(Member member); // íšŒì›ì •ë³´ ì…ë ¥
 
-	Member selectFindId(Member member); // ¾ÆÀÌµğ Ã£±â
+	Member selectFindId(Member member); // ì•„ì´ë”” ì°¾ê¸°
 
-	Member selectFindPw(Member member); // ºñ¹Ğ¹øÈ£ Ã£±â
+	Member selectFindPw(Member member); // ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°
 
-	int update(Member member); // È¸¿øÁ¤º¸ ¼öÁ¤
+	int update(Member member); // íšŒì›ì •ë³´ ìˆ˜ì •
 
 }

@@ -3,16 +3,16 @@ package com.ch.tiger.service;
 import com.ch.tiger.model.Member;
 
 public interface MemberService {
-	Member select(String mb_id); // ¾ÆÀÌµğ·Î Á¤º¸¸¦ °¡Á®¿À´Â ·ÎÁ÷
+	Member select(String mb_id); // ì•„ì´ë””ë¡œ ì •ë³´ë¥¼ ê°€ì ¸ì˜¤ëŠ” ë¡œì§
 
-	Member selectNick(String mb_nickName); // ´Ğ³×ÀÓ Áßº¹ Ã¼Å©
+	Member selectNick(String mb_nickName); // ë‹‰ë„¤ì„ ì¤‘ë³µ ì²´í¬
 
-	int insert(Member member); // È¸¿ø°¡ÀÔ
+	int insert(Member member); // íšŒì›ê°€ì…
 
-	Member selectFindId(Member member); // ¾ÆÀÌµğ Ã£±â
+	Member selectFindId(Member member); // ì•„ì´ë”” ì°¾ê¸°
 
-	Member selectFindPw(Member member); // ºñ¹Ğ¹øÈ£ Ã£±â
+	Member selectFindPw(Member member); // ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°
 
-	int update(Member member);
+	int update(Member member); // íšŒì›ì •ë³´ ìˆ˜ì •
 
 }

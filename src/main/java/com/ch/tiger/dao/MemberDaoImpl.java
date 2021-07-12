@@ -13,32 +13,32 @@ public class MemberDaoImpl implements MemberDao{
 
 	@Override
 	public Member select(String mb_id) {
-		return sst.selectOne("memberns.select", mb_id); // ·Î±×ÀÎÇÒ ¶§ »ç¿ëÇÏ´Â ·ÎÁ÷
+		return sst.selectOne("memberns.select", mb_id); // ë¡œê·¸ì¸í•  ë•Œ ì‚¬ìš©í•˜ëŠ” ë¡œì§
 	}
 
 	@Override
 	public Member selectNick(String mb_nickName) {
-		return sst.selectOne("memberns.selectNick", mb_nickName); // ´Ğ³×ÀÓ Áßº¹ Ã¼Å©
+		return sst.selectOne("memberns.selectNick", mb_nickName); // ë‹‰ë„¤ì„ ì¤‘ë³µ ì²´í¬
 	}
 
 	@Override
 	public int insert(Member member) {
-		return sst.insert("memberns.insert", member); // È¸¿ø°¡ÀÔ
+		return sst.insert("memberns.insert", member); // íšŒì›ê°€ì…
 	}
 
 	@Override
 	public Member selectFindId(Member member) {
-		return sst.selectOne("memberns.selectFindId", member);
+		return sst.selectOne("memberns.selectFindId", member); // ì•„ì´ë”” ì°¾ê¸°
 	}
 
 	@Override
 	public Member selectFindPw(Member member) {
-		return sst.selectOne("memberns.selectFindPw", member);
+		return sst.selectOne("memberns.selectFindPw", member); // ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°
 	}
 
 	@Override
 	public int update(Member member) {
-		return sst.update("memberns.update", member);
+		return sst.update("memberns.update", member); // íšŒì›ì •ë³´ ìˆ˜ì •
 	}
 	
 }

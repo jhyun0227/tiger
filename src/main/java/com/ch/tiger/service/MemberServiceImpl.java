@@ -12,32 +12,32 @@ public class MemberServiceImpl implements MemberService {
 	private MemberDao mbd;
 
 	@Override
-	public Member select(String mb_id) { // È¸¿ø°¡ÀÔ ¾ÆÀÌµğ Áßº¹Ã¼Å©, ·Î±×ÀÎÇÒ¶§ »ç¿ëÇÏ´Â ·ÎÁ÷
+	public Member select(String mb_id) { // íšŒì›ê°€ì… ì•„ì´ë”” ì¤‘ë³µì²´í¬, ë¡œê·¸ì¸í• ë•Œ ì‚¬ìš©í•˜ëŠ” ë¡œì§
 		return mbd.select(mb_id);
 	}
 
 	@Override
-	public Member selectNick(String mb_nickName) { // ´Ğ³×ÀÓ Áßº¹Ã¼Å©
+	public Member selectNick(String mb_nickName) { // ë‹‰ë„¤ì„ ì¤‘ë³µì²´í¬
 		return mbd.selectNick(mb_nickName);
 	}
 
 	@Override
-	public int insert(Member member) { // È¸¿ø°¡ÀÔ
+	public int insert(Member member) { // íšŒì›ê°€ì…
 		return mbd.insert(member);
 	}
 
 	@Override
-	public Member selectFindId(Member member) { // ¾ÆÀÌµğ  Ã£±â
+	public Member selectFindId(Member member) { // ì•„ì´ë””  ì°¾ê¸°
 		return mbd.selectFindId(member);
 	}
 
 	@Override
-	public Member selectFindPw(Member member) { // ºñ¹Ğ¹øÈ£ Ã£±â
+	public Member selectFindPw(Member member) { // ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°
 		return mbd.selectFindPw(member);
 	}
 
 	@Override
-	public int update(Member member) { // È¸¿øÁ¤º¸ ¼öÁ¤
+	public int update(Member member) { // íšŒì›ì •ë³´ ìˆ˜ì •
 		return mbd.update(member);
 	}
 }

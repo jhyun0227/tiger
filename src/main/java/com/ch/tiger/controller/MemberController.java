@@ -16,45 +16,45 @@ public class MemberController {
 	@Autowired
 	private MemberService mbs;
 
-	// È¸¿ø°¡ÀÔ ÆûÀ¸·Î ÀÌµ¿
+	// íšŒì›ê°€ì… í¼ìœ¼ë¡œ ì´ë™
 	@RequestMapping("joinForm")
 	public String joinForm() {
 		return "member/joinForm";
 	}
 
-	// ¾ÆÀÌµğ Áßº¹Ã¼Å© ÇÒ¶§ »ç¿ëÇÏ´Â ·ÎÁ÷
+	// ì•„ì´ë”” ì¤‘ë³µì²´í¬ í• ë•Œ ì‚¬ìš©
 	@RequestMapping(value = "idChk", produces = "text/html;charset=utf-8")
-	@ResponseBody // jsp·Î °¡Áö¸»°í ¹Ù·Î º»¹®À¸·Î Àü´Ş
+	@ResponseBody // jspë¡œ ê°€ì§€ë§ê³  ë°”ë¡œ ë³¸ë¬¸ìœ¼ë¡œ ì „ë‹¬
 	public String idChk(String MB_id) {
 		String msg = "";
 		Member member = mbs.select(MB_id);
 		if (member == null) {
-			msg = "»ç¿ë °¡´É ÇÑ ÀÌ¸ŞÀÏ ÀÔ´Ï´Ù.";
+			msg = "ì‚¬ìš© ê°€ëŠ¥ í•œ ì´ë©”ì¼ ì…ë‹ˆë‹¤.";
 		} else {
-			msg = "ÀÌ¹Ì »ç¿ëÁßÀÎ ÀÌ¸ŞÀÏ ÀÔ´Ï´Ù.";
+			msg = "ì´ë¯¸ ì‚¬ìš©ì¤‘ì¸ ì´ë©”ì¼ ì…ë‹ˆë‹¤.";
 		}
 		return msg;
 	}
 
-	// ´Ğ³×ÀÓ Áßº¹Ã¼Å©
+	// ë‹‰ë„¤ì„ ì¤‘ë³µì²´í¬
 	@RequestMapping(value = "nickChk", produces = "text/html;charset=utf-8")
-	@ResponseBody // jsp·Î °¡Áö¸»°í ¹Ù·Î º»¹®À¸·Î Àü´Ş
+	@ResponseBody // jspë¡œ ê°€ì§€ë§ê³  ë°”ë¡œ ë³¸ë¬¸ìœ¼ë¡œ ì „ë‹¬
 	public String nickChk(String MB_nickName) {
 		String msg = "";
 		Member member = mbs.selectNick(MB_nickName);
 		if (member == null) {
-			msg = "»ç¿ë °¡´É ÇÑ ´Ğ³×ÀÓÀÔ´Ï´Ù.";
+			msg = "ì‚¬ìš©ê°€ëŠ¥í•œ ë‹‰ë„¤ì„ì…ë‹ˆë‹¤.";
 		} else {
-			msg = "ÀÌ¹Ì »ç¿ëÁßÀÎ ´Ğ³×ÀÓÀÔ´Ï´Ù.";
+			msg = "ì´ë¯¸ ì‚¬ìš©ì¤‘ì¸ ë‹‰ë„¤ì„ì…ë‹ˆë‹¤.";
 		}
 		return msg;
 	}
 
-	// È¸¿ø°¡ÀÔ ·ÎÁ÷
+	// íšŒì›ê°€ì… ë¡œì§
 	@RequestMapping("join")
 	public String join(Member member, Model model) {
 		int result = 0;
-		// form ¿¡¼­ ÀÔ·ÂÇÑ memberµ¥ÀÌÅÍ¸¦ °¡Á®¿Í¼­ member2 °´Ã¼¿¡ ´ëÀÔÇÏ¿© ¾ÆÀÌµğ°¡ Á¸ÀçÇÏ´ÂÁö È®ÀÎ
+		// form ì—ì„œ ì…ë ¥í•œ memberë°ì´í„°ë¥¼ ê°€ì ¸ì™€ì„œ member2 ê°ì²´ì— ëŒ€ì…í•˜ì—¬ ì•„ì´ë””ê°€ ì¡´ì¬í•˜ëŠ”ì§€ í™•ì¸
 		Member member2 = mbs.select(member.getMB_id());
 		if (member2 == null) {
 			result = mbs.insert(member);
@@ -65,20 +65,20 @@ public class MemberController {
 		return "member/joinResult";
 	}
 
-	// ·Î±×ÀÎ ÆûÀ¸·Î ÀÌµ¿
+	// ë¡œê·¸ì¸ í¼ìœ¼ë¡œ ì´ë™
 	@RequestMapping("loginForm")
 	public String loginForm() {
 		return "member/loginForm";
 	}
 
-	// ·Î±×ÀÎ
+	// ë¡œê·¸ì¸
 	@RequestMapping("login")
 	public String login(Member member, Model model, HttpSession session) {
-		// memberDB ; DB µ¥ÀÌÅÍ
+		// memberDB ; DB ë°ì´í„°
 		Member memberDB = mbs.select(member.getMB_id());
-		int result = 0; // ¾ÏÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê´Â °æ¿ì
+		int result = 0; // ì•”í˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠëŠ” ê²½ìš°
 		if (memberDB == null || memberDB.getMB_del().equals("Y")) {
-			result = -1; // DB¿¡ ¾ø´Â ¾ÆÀÌµğ
+			result = -1; // DBì— ì—†ëŠ” ì•„ì´ë””
 		} else if (memberDB.getMB_pw().equals(member.getMB_pw())) {
 			result = 1;
 			session.setAttribute("MB_id", member.getMB_id());
@@ -87,20 +87,20 @@ public class MemberController {
 		return "member/loginResult";
 	}
 	
-	// ·Î±× ¾Æ¿ô
+	// ë¡œê·¸ ì•„ì›ƒ
 	@RequestMapping("logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "member/logout";
 	}
 	
-	// ¾ÆÀÌµğ Ã£±â ÆûÀ¸·Î ÀÌµ¿
+	// ì•„ì´ë”” ì°¾ê¸° í¼ìœ¼ë¡œ ì´ë™
 	@RequestMapping("findIdForm")
 	public String findIdForm() {
 		return "member/findIdForm";
 	}
 	
-	// ¾ÆÀÌµğ Ã£±â
+	// ì•„ì´ë”” ì°¾ê¸°
 	@RequestMapping("findIdResult")
 	public String findIdResult(Member member, Model model) {
 		int result = 0;
@@ -115,15 +115,15 @@ public class MemberController {
 		return "member/findIdResult";
 	}
 	
-	// ºñ¹Ğ¹øÈ£ Ã£±â ÆûÀ¸·Î ÀÌµ¿
+	// ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸° í¼ìœ¼ë¡œ ì´ë™
 	@RequestMapping("findPwForm")
 	public String findPwForm(String MB_id, Model model) {
-		// ¾ÆÀÌµğ Ã£±â ÈÄ ºñ¹Ğ¹øÈ£¸¦ Ã£À¸¸é °ªÀÌ ÀÚµ¿À¸·Î ³Ñ¾î°¡°Ô ÇÏ±â À§ÇÔ
+		// ì•„ì´ë”” ì°¾ê¸° í›„ ë¹„ë°€ë²ˆí˜¸ë¥¼ ì°¾ìœ¼ë©´ ê°’ì´ ìë™ìœ¼ë¡œ ë„˜ì–´ê°€ê²Œ í•˜ê¸° ìœ„í•¨
 		model.addAttribute("MB_id", MB_id);
 		return "member/findPwForm";
 	}
 	
-	// ºñ¹Ğ¹øÈ£ Ã£±â
+	// ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°
 	@RequestMapping("findPwResult")
 	public String findPwResult(Member member, Model model) {
 		int result = 0;
@@ -138,7 +138,7 @@ public class MemberController {
 		return "member/findPwResult";
 	}
 	
-	// ¸¶ÀÌÆäÀÌÁö ¸ŞÀÎÀ¸·Î ÀÌµ¿
+	// ë§ˆì´í˜ì´ì§€ ë©”ì¸ìœ¼ë¡œ ì´ë™
 	@RequestMapping("myMain")
 	public String myMain(Model model, HttpSession session) {
 		String MB_id = (String)session.getAttribute("MB_id");
@@ -147,7 +147,7 @@ public class MemberController {
 		return "mypage/myMain";
 	}
 	 
-	// ¸¶ÀÌÆäÀÌÁö È¸¿øÁ¤º¸ ¼öÁ¤ÆûÀ¸·Î ÀÌµ¿
+	// ë§ˆì´í˜ì´ì§€ íšŒì›ì •ë³´ ìˆ˜ì •í¼ìœ¼ë¡œ ì´ë™
 	@RequestMapping("updateForm")
 	public String updateForm(Model model, HttpSession session) {
 		String MB_id = (String)session.getAttribute("MB_id");
@@ -156,7 +156,7 @@ public class MemberController {
 		return "mypage/updateForm";
 	}
 	
-	// ¸¶ÀÌÆäÀÌÁö È¸¿øÁ¤º¸ ¼öÁ¤
+	// ë§ˆì´í˜ì´ì§€ íšŒì›ì •ë³´ ìˆ˜ì •
 	@RequestMapping("updateResult")
 	public String updateResult(Member member, Model model) {
 		int result = mbs.update(member);

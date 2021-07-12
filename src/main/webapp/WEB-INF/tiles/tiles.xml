@@ -23,7 +23,7 @@
 		<put-attribute name="body" value="/WEB-INF/views/nolayout/{1}.jsp" />
 	</definition>
 	
-		<!-- (2) nolay 폴더 안에 {1}에 폴더명 {2}에 jsp이름 -->
+		<!-- (2) 폴더 안에 {1}에 폴더명 {2}에 jsp이름 -->
 	<definition name="*/*" extends="tilesbase">
 		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" />
 	</definition>

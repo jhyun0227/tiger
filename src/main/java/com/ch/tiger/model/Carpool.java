@@ -20,5 +20,7 @@ public class Carpool {
     private int CP_duration;
     private String CP_comment;
     private String CP_del;
+    
+    //회원 테이블 회원번호 
     private int MB_num;
 }

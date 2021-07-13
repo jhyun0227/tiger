@@ -11,7 +11,7 @@
 		<typeAlias alias="member" type="com.ch.tiger.model.Member"/>
 		<!-- <typeAlias alias="message" type="com.ch.tiger.model.Message"/> -->
 		<!-- <typeAlias alias="notice" type="com.ch.tiger.model.Notice"/> -->
-		<!-- <typeAlias alias="qna" type="com.ch.tiger.model.QnA"/> -->
+		<typeAlias alias="qna" type="com.ch.tiger.model.QnA"/> 
 		<!-- <typeAlias alias="report" type="com.ch.tiger.model.Report"/> -->
 		<!-- <typeAlias alias="reservation" type="com.ch.tiger.model.Reservation"/> -->
 		<!-- <typeAlias alias="review" type="com.ch.tiger.model.Review"/> -->
@@ -25,7 +25,7 @@
 		<mapper resource="member.xml" />
 		<!-- <mapper resource="message.xml" /> -->
 		<!-- <mapper resource="notice.xml" /> -->
-		<!-- <mapper resource="qna.xml" /> -->
+		<mapper resource="qna.xml" />
 		<!-- <mapper resource="report.xml" /> -->
 		<!-- <mapper resource="reservation.xml" /> -->
 		<!-- <mapper resource="review.xml" /> -->

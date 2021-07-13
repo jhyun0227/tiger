@@ -6,6 +6,9 @@ public interface NoticeService {
 	int getNtTotal(Notice notice);
 	List<Notice> noticeList(Notice notice);
 	int getMaxNum();
-	int noticeWrite(Notice notice);	
+	int noticeWrite(Notice notice);
+	Notice select(int num);
+	int noticeUpdate(Notice notice);
+	int noticeDelete(int num);	
 
 }

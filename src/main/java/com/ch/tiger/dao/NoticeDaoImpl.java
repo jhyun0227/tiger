@@ -25,5 +25,17 @@ public class NoticeDaoImpl implements NoticeDao {
 	public int getMaxNum() {
 		return sst.selectOne("noticens.getMaxNum");
 	}
+	@Override
+	public Notice select(int num) {
+		return sst.selectOne("noticens.select", num);
+	}
+	@Override
+	public int noticeUpdate(Notice notice) {
+		return sst.update("noticens.noticeUpdate", notice);
+	}
+	@Override
+	public int noticeDelete(int num) {
+		return sst.update("noticens.noticeDelete", num);
+	}
 	
 }

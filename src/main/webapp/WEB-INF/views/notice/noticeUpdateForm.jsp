@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,26 +8,27 @@
 </head>
 <body>
 	<div class="container" align="center">
-		<h2 class="text-primary">공지사항 작성</h2>
-		<form action="noticeWriteResult.do" method="post" name="frm">
-			<input type="hidden" name="NT_num" value="${NT_num }">
+		<h2 class="text-primary">공지사항 수정</h2>
+		<form action="noticeUpdateResult.do" method="post" name="frm">
+			<input type="hidden" name="NT_num" value="${notice.NT_num }">
 			<input type="hidden" name="pageNum" value="${pageNum }">
 			<table class="table table-bordered">
 				<tr>
 					<td>제목</td>
-					<td><input type="text" name="NT_title" required="required" autofocus="autofocus"></td>
+					<td><input type="text" name="NT_title" value="${notice.NT_title }" required="required"
+						autofocus="autofocus"></td>
 				</tr>
 				<tr>
 					<td>작성자</td>
-					<td>${sessionScope.MB_id }</td>
+					<td>${memberDB.MB_name }</td>
 				</tr>
 				<tr>
 					<td>내용</td>
 					<td><textarea rows="5" cols="40" name="NT_content"
-							required="required"></textarea></td>
+							required="required">${notice.NT_content }</textarea></td>
 				</tr>
 				<tr>
-					<td colspan="2" align="center"><input type="submit" value="작성"
+					<td colspan="2" align="center"><input type="submit" value="수정"
 						class="btn btn-warning"></td>
 				</tr>
 			</table>

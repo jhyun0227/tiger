@@ -6,6 +6,9 @@ public interface NoticeDao {
 	int getNtTotal(Notice notice);
 	List<Notice> noticeList(Notice notice);
 	int noticeWrite(Notice notice);
-	int getMaxNum();	
+	int getMaxNum();
+	Notice select(int num);
+	int noticeUpdate(Notice notice);
+	int noticeDelete(int num);	
 
 }

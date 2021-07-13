@@ -23,7 +23,7 @@ public class HomeController {
 				return "admin/adminMain";
 			}
 		}
-//		model.addAttribute("member", member);
+		model.addAttribute("member", member);
 		return "main/main";
 	}
 }

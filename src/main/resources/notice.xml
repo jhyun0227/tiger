@@ -5,10 +5,21 @@
 	<select id="getNtTotal" parameterType="notice" resultType="integer">
 		select count(*) from notice
 	</select>
-	<select id="noticeList" parameterType="notice" resultType="notice">
-		select * from (select a.*, rowNum rn from 
-			(select * from notice order by NT_num desc) a)
-		where rn between #{startRow} and #{endRow}
+	<select id="noticeList" resultType="notice">
+		select * from (select a.*, rowNum rn from (select * from notice
+			<where>
+				<if test="keyword!=null and keyword!=''">
+					<if test="search=='subcon'">
+						NT_title like '%' || #{keyword} || '%' or
+						NT_content like '%' || #{keyword} || '%'
+					</if>
+					<if test="search!='subcon'">
+						${search} like '%' || #{keyword} || '%'
+					</if>
+				</if>
+			</where>
+			order by NT_num desc) a)
+			where rn between #{startRow} and #{endRow}
 	</select>
 	<select id="getMaxNum" resultType="integer">
 		select nvl(max(NT_num), 0) + 1 from notice
@@ -16,4 +27,14 @@
 	<insert id="noticeWrite" parameterType="notice">
 		insert into notice values(#{NT_num}, #{NT_title}, sysdate, #{NT_content}, 'N', #{MB_num})
 	</insert>
+	<select id="select" parameterType="integer" resultType="notice">
+		select * from notice where NT_num=#{NT_num}
+	</select>
+	<update id="noticeUpdate" parameterType="notice">
+		update notice set NT_title=#{NT_title}, NT_content=#{NT_content}, NT_regDate=sysdate
+		where NT_num=#{NT_num}
+	</update>
+	<update id="noticeDelete" parameterType="integer">
+		update notice set NT_del='Y' where NT_num=#{NT_num}
+	</update>
 </mapper>

@@ -25,5 +25,17 @@ public class NoticeServiceImpl implements NoticeService {
 	public int getMaxNum() {
 		return nd.getMaxNum();
 	}
+	@Override
+	public Notice select(int num) {
+		return nd.select(num);
+	}
+	@Override
+	public int noticeUpdate(Notice notice) {
+		return nd.noticeUpdate(notice);
+	}
+	@Override
+	public int noticeDelete(int num) {
+		return nd.noticeDelete(num);
+	}
 	
 }

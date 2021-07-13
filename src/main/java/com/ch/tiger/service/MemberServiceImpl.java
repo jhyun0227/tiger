@@ -18,8 +18,20 @@ public class MemberServiceImpl implements MemberService {
 		return mbd.getMbTotal(member);
 	}
 	@Override
-	public List<Member> list(Member member) {
-		return mbd.list(member);
+	public List<Member> mbList(Member member) {
+		return mbd.mbList(member);
+	}
+	@Override
+	public int adminMbUpdate(Member member) {
+		return mbd.adminMbUpdate(member);
+	}
+	@Override
+	public int adminMbDelete(String MB_id) {
+		return mbd.adminMbDelete(MB_id);
+	}
+	@Override
+	public int adminMbRollback(String MB_id) {
+		return mbd.adminMbRollback(MB_id);
 	}
 	
 }

@@ -19,8 +19,20 @@ public class MemberDaoImpl implements MemberDao{
 		return sst.selectOne("memberns.getMbTotal", member);
 	}
 	@Override
-	public List<Member> list(Member member) {	// 회원 목록
-		return sst.selectList("memberns.list", member);
+	public List<Member> mbList(Member member) {	// 회원 목록
+		return sst.selectList("memberns.mbList", member);
+	}
+	@Override
+	public int adminMbUpdate(Member member) {
+		return sst.update("memberns.adminMbUpdate", member);
+	}
+	@Override
+	public int adminMbDelete(String MB_id) {
+		return sst.update("memberns.adminMbDelete", MB_id);
+	}
+	@Override
+	public int adminMbRollback(String MB_id) {
+		return sst.update("memberns.adminMbRollback", MB_id);
 	}
 		
 }

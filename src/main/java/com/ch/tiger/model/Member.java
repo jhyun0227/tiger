@@ -19,4 +19,7 @@ public class Member {
  // paging용
     private int startRow;
     private int endRow;
+ // 검색용
+    private String search;
+    private String keyword;
 }

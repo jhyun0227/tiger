@@ -20,21 +20,17 @@
 				<td>가입일</td>
 				<td>탈퇴 여부</td>				
 			</tr>
-			<c:if test="${empty list }">
+			<c:if test="${empty mbList }">
 				<tr>
-					<th colspan="6">회원정보가 없습니다</th>
+					<th colspan="7">회원 정보가 없습니다</th>
 				</tr>
 			</c:if>
-			<c:if test="${not empty list }">
-				<c:forEach var="member" items="${list }">
+			<c:if test="${not empty mbList }">
+				<c:forEach var="member" items="${mbList }">
 					<tr>
 						<td>${num }<c:set var="num" value="${num -1 }"></c:set></td>
 						<!-- 게시글 번호 순서 정렬 -->
-						<%-- <c:if test="${member.del == 'Y' }">
-							<th colspan="5" align="center">삭제된 회원 입니다</th>
-						</c:if> --%>
-						<%-- <c:if test="${member.del != 'Y' }"> --%>
-							<td>${member.MB_id }</td>
+							<td><a href="adminMbView.do?MB_id=${member.MB_id }&pageNum=${pb.currentPage}">${member.MB_id }</a></td>
 							<td>${member.MB_name }</td>
 							<td>${member.MB_nickName }</td>
 							<c:if test="${member.MB_gender == 1 || member.MB_gender == 3}">
@@ -44,8 +40,16 @@
 								<td>여자</td>
 							</c:if>
 							<td>${member.MB_regDate }</td>
-							<td>${member.MB_del }</td>
-						<%-- </c:if> --%>
+							<c:if test="${member.MB_del == 'N' }">
+								<td>활동중
+									<a href="adminMbDelete.do?MB_id=${member.MB_id }&pageNum=${pageNum }""
+										class="btn btn-danger">탈퇴</a></td>
+							</c:if>
+							<c:if test="${member.MB_del == 'Y' }">
+								<td>탈퇴
+									<a href="adminMbRollback.do?MB_id=${member.MB_id }&pageNum=${pageNum }"
+										class="btn btn-warning">복구</a></td>
+							</c:if>
 					</tr>
 				</c:forEach>
 			</c:if>
@@ -54,25 +58,31 @@
 			<ul class="pagination">
 				<!-- 시작페이지가 pagePerBlock(10)보다 크면 앞에 보여줄 페이지가 있다 -->
 				<c:if test="${pb.startPage > pb.pagePerBlock }">
-					<li><a href="adminMbList.do?pageNum=${pb.startPage - 1 }">
-						<span class="glyphicon glyphicon-triangle-left"></span>
+					<li>
+						<a href="adminMbList.do?pageNum=1&search=${member.search }&keyword=${member.keyword }">
+							<span class="glyphicon glyphicon-backward"></span>
+						</a>
+					</li>
+					<li><a href="adminMbList.do?pageNum=${pb.startPage - 1 }&search=${member.search }&keyword=${member.keyword }">
+							<span class="glyphicon glyphicon-triangle-left"></span>
 					</a></li>
 				</c:if>
 				<c:forEach var="i" begin="${pb.startPage }" end="${pb.endPage }">
 					<!-- 현재 머물고 있는 페이지가 몇 페이지인지 구별할 때 -->
 					<c:if test="${pb.currentPage == i }">
-						<li class="active"><a href="adminMbList.do?pageNum=${i }">${i }</a></li>
+						<li class="active"><a href="adminMbList.do?pageNum=${i }&search=${member.search }&keyword=${member.keyword }">${i }</a></li>
 					</c:if>
 					<c:if test="${pb.currentPage != i }">
-						<li><a href="adminMbList.do?pageNum=${i }">${i }</a></li>
+						<li><a href="adminMbList.do?pageNum=${i }&search=${member.search }&keyword=${member.keyword }">${i }</a></li>
 					</c:if>
 				</c:forEach>
 				<!-- 보여줄 페이지가 뒤에 남아있는 경우(다음 버튼 활성화)=> endPage < totalPage인 경우 -->
 				<c:if test="${pb.endPage < pb.totalPage }">
-					<li><a href="adminMbList.do?pageNum=${pb.endPage + 1 }">
-						<span class="glyphicon glyphicon-triangle-right"></span>
+					<li><a href="adminMbList.do?pageNum=${pb.endPage + 1 }&search=${member.search }&keyword=${member.keyword }">
+							<span class="glyphicon glyphicon-triangle-right"></span>
 					</a></li>
-					<li><a href="adminMbList.do?pageNum=${pb.totalPage }"> <!-- 끝페이지로 바로 이등(순서 생각하며 넣기) -->
+					<li><a href="adminMbList.do?pageNum=${pb.totalPage }&search=${member.search }&keyword=${member.keyword }">
+							<!-- 끝페이지로 바로 이등(순서 생각하며 넣기) -->
 						<span class="glyphicon glyphicon-forward"></span>
 					</a></li>
 				</c:if>
@@ -80,6 +90,18 @@
 		</div>
 		<form action="adminMbList.do">
 			<input type="hidden" name="pageNum" value="1">
+			<select name="search">
+				<c:forTokens var="sh" items="MB_id,MB_name,MB_nickName,MB_gender,MB_regDate" delims="," varStatus="i">
+					<c:if test="${sh == member.search }">
+						<option value="${sh}" selected="selected">${title[i.index] }</option>
+					</c:if>
+					<c:if test="${sh != member.search }">
+						<option value="${sh}">${title[i.index] }</option>
+					</c:if>
+				</c:forTokens>
+			</select>
+			<input type="text" name="keyword" value="${member.keyword }">	<!-- model에 추가해줘야한다 -->
+			<input type="submit" value="검색" class="btn btn-info">
 		</form>
 	</div>
 </body>

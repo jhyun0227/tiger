@@ -47,21 +47,54 @@ public class AdminController {
 		int total = mbs.getMbTotal(member);
 		int startRow = (currentPage -1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage - 1;
-//		Member memberDB = mbs.select(member.getMB_id());
 		member.setStartRow(startRow);
 		member.setEndRow(endRow);
-		List<Member> list = mbs.list(member);	// 회원 목록
+		List<Member> mbList = mbs.mbList(member);	// 회원 목록
 		int num = total - startRow + 1;
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
-//		String MB_id = (String)session.getAttribute("MB_id");
-//		if(MB_id.equals("admin")) {
-//			model.addAttribute("member", member);
-//		}
-		model.addAttribute("member", member);
+		String[] title = {"아이디", "이름", "닉네임", "성별", "가입일"};
+		
+		model.addAttribute("title", title);
 		model.addAttribute("pb", pb);	// paginbean pb
-		model.addAttribute("list", list);
-		model.addAttribute("num", num);
+		model.addAttribute("mbList", mbList);
+		model.addAttribute("num", num);	//목록 번호 생성 위한 num
 		return "admin/adminMbList";
+	}
+	@RequestMapping("adminMbView")
+	public String adminMbView(String MB_id, String pageNum, Model model) {
+		Member member = mbs.select(MB_id);
+		model.addAttribute("member", member);	// 아이디로 DB에 있는 회원정보 조회
+		model.addAttribute("pageNum", pageNum);
+		return "admin/adminMbView";
+	}
+	@RequestMapping("adminMbUpdateForm")
+	public String adminMbUpdateForm(String MB_id, String pageNum, Model model) {
+		Member member = mbs.select(MB_id);
+		model.addAttribute("member", member);
+		model.addAttribute("pageNum", pageNum);
+		return "admin/adminMbUpdateForm";
+	}
+	@RequestMapping("adminMbUpdateResult")
+	public String adminMbUpdateResult(Member member, String MB_id, String pageNum, Model model) {
+		int result = mbs.adminMbUpdate(member);
+		model.addAttribute("member", member);
+		model.addAttribute("result", result);
+		model.addAttribute("pageNum", pageNum);
+		return "admin/adminMbUpdateResult";
+	}
+	@RequestMapping("adminMbDelete")
+	public String adminMbDelete(String MB_id, String pageNum, Model model) {
+		int result = mbs.adminMbDelete(MB_id);
+		model.addAttribute("result", result);
+		model.addAttribute("pageNum", pageNum);
+		return "admin/adminMbDelete";
+	}
+	@RequestMapping("adminMbRollback")
+	public String adminMbRollback(String MB_id, String pageNum, Model model) {
+		int result = mbs.adminMbRollback(MB_id);
+		model.addAttribute("result", result);
+		model.addAttribute("pageNum", pageNum);
+		return "admin/adminMbRollback";
 	}
 	@RequestMapping("noticeWriteForm")
 	public String noticeWriteForm(int NT_num, String pageNum, Model model) {

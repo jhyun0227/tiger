@@ -32,7 +32,7 @@
 						</c:if>
 						<c:if test="${notice.NT_del != 'Y' }">
 							<td><a href="noticeView.do?NT_num=${notice.NT_num}&pageNum=${pb.currentPage}">${notice.NT_title }</a></td>
-							<td>${memberDB.MB_name }</td>
+							<td>관리자</td>
 							<td>${notice.NT_regDate }</td>
 						</c:if>
 					</tr>

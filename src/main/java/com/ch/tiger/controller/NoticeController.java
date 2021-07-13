@@ -17,8 +17,9 @@ public class NoticeController {
 	private NoticeService ns;
 	@Autowired
 	private MemberService mbs;	//임시 추가
-	@RequestMapping("noticeList")
+	@RequestMapping("noticeList")	// 비회원 접근 로직 구현x
 	public String noticeList(Member member, Model model, Notice notice, HttpSession session, String pageNum) {
+		// 처음 notice에는 null로 받아오고, startRow, endRow 보내주기 위한 용도
 		if(pageNum == null || pageNum.equals("")) {
 			pageNum = "1";
 		}

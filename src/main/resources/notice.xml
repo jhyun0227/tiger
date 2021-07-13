@@ -5,7 +5,7 @@
 	<select id="getNtTotal" parameterType="notice" resultType="integer">
 		select count(*) from notice
 	</select>
-	<select id="noticeList" resultType="notice">
+	<select id="noticeList" parameterType="notice" resultType="notice">
 		select * from (select a.*, rowNum rn from (select * from notice
 			<where>
 				<if test="keyword!=null and keyword!=''">

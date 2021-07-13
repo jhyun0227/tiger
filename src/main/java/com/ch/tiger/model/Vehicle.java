@@ -1,5 +1,7 @@
 package com.ch.tiger.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 
 @Data
@@ -12,5 +14,8 @@ public class Vehicle {
     private String VH_carType;
     private String VH_insu;
     private String VH_carPicture;
+    private String VH_del;
     private int MB_num;
+    // 업로드
+    private MultipartFile file;
 }

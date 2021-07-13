@@ -15,7 +15,7 @@
 		<!-- <typeAlias alias="report" type="com.ch.tiger.model.Report"/> -->
 		<!-- <typeAlias alias="reservation" type="com.ch.tiger.model.Reservation"/> -->
 		<!-- <typeAlias alias="review" type="com.ch.tiger.model.Review"/> -->
-		<!-- <typeAlias alias="vehicle" type="com.ch.tiger.model.Vehicle"/> -->
+		<typeAlias alias="vehicle" type="com.ch.tiger.model.Vehicle"/>
 	</typeAliases>
 	
 	<mappers>
@@ -29,6 +29,6 @@
 		<!-- <mapper resource="report.xml" /> -->
 		<!-- <mapper resource="reservation.xml" /> -->
 		<!-- <mapper resource="review.xml" /> -->
-		<!-- <mapper resource="vehicle.xml" /> -->
+		<mapper resource="vehicle.xml" />
 	</mappers>
 </configuration>

@@ -42,10 +42,8 @@
 			</beans:list>
 		</beans:property>
 	</beans:bean>
-
-	<context:component-scan base-package="com.ch.tiger" />
-		
-	<beans:bean id="sc" class="com.ch.tiger.service.SessionChk"></beans:bean>
+   
+   <beans:bean id="sc" class="com.ch.tiger.service.SessionChk"></beans:bean>
 	
 	<interceptors>
 		<interceptor>
@@ -54,5 +52,7 @@
 			<beans:ref bean="sc"></beans:ref>
 		</interceptor>
 	</interceptors>
-	
+
+	<context:component-scan base-package="com.ch.tiger" />
+		
 </beans:beans>

@@ -1,14 +1,10 @@
 package com.ch.tiger.controller;
 
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import com.ch.tiger.model.QnA;
 import com.ch.tiger.service.PagingBean;
 import com.ch.tiger.service.QnAService;
@@ -65,7 +61,8 @@ public class QnAController {
 		}else qna.setQA_ref(number);
 		qna.setQA_num(number);
 		int result=qas.insert(qna);
-		
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("result", result);
 		return "qna/qnaWriteResult";
 	}
 	

@@ -1,7 +1,6 @@
 package com.ch.tiger.model;
 
 import java.sql.Date;
-
 import lombok.Data;
 
 @Data
@@ -14,4 +13,10 @@ public class QnA {
     private int QA_refStep;
     private int QA_refLevel;
     private int MB_num;
+    //paging
+    private int startRow;
+    private int endRow;
+    //검색용
+    private String search;
+    private String keyword;
 }

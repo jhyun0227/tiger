@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.ch.tiger.model.Apply;
 import com.ch.tiger.model.Member;
 import com.ch.tiger.model.Notice;
 import com.ch.tiger.service.ApplyService;
@@ -177,8 +179,26 @@ public class AdminController {
 		return "admin/adminNoticeDelete";
 	}
 	@RequestMapping("adminPermitList")
-	public String adminPermitList(Member member, String pageNum, Model model) {
+	public String adminPermitList(Apply apply, String pageNum, Model model) {
+		if(pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		}
+		int currentPage = Integer.parseInt(pageNum);
+		int rowPerPage = 10;	// 한 화면에 보여주는 게시글 갯수
+		int total = as.getApplyTotal(apply);		//승인여부
+		int startRow = (currentPage -1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		apply.setStartRow(startRow);
+		apply.setEndRow(endRow);
+		List<Apply> applyList = as.applyList(apply);	// 공지사항 목록
+		int num = total - startRow + 1;		// 번호 순서대로 정렬
+		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
+		String[] title = {"아이디", "차량번호", "차량연식", "차종"};
 		
-		return "admin/adminPermitList";
+		model.addAttribute("title", title);
+		model.addAttribute("pb", pb);	// paginbean pb
+		model.addAttribute("applyList", applyList);
+		model.addAttribute("num", num);	//목록 번호 생성 위한 num
+		return "admin/adminPermitList";		// 수정 필요 테이블 조인- 여기서부터 작업
 	}
 }

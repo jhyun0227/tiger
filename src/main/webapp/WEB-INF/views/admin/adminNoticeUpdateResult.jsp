@@ -11,7 +11,7 @@
 	<c:if test="${result > 0 }">
 		<script type="text/javascript">
 			alert("공지사항이 수정되었습니다");
-			location.href="noticeList.do?pageNum=${pageNum }";
+			location.href="adminNoticeList.do?pageNum=${pageNum }";
 		</script>
 	</c:if>
 	<c:if test="${result == 0 }">

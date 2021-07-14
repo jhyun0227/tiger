@@ -11,7 +11,7 @@
 </head>
 <body>
 	<div id="dropMenu">
-		<%-- <c:if test="${sessionScope.MB_id != 'admin' }"> --%>
+		<%-- <c:if test="${sessionScope.MB_id != 'admin' }">
 			<ul class="myMenu">
 				<li class="menu1"><a href="#">타세요</a></li>
 				<li class="menu2"><a href="#">이용내역</a>
@@ -39,19 +39,20 @@
 						<li><a href="#">1:1 문의하기</a></li>
 					</ul></li>
 			</ul>
-		<%-- </c:if> --%>
-		<%-- <c:if test="${sessionScope.MB_id == 'admin' }">
+		</c:if> --%>
+		<%-- <c:if test="${sessionScope.MB_id == 'admin' }"> --%>
 			<ul class="myMenu">
 				<li class="menu1"><a href="#">타세요 관리</a></li>
 				<li class="menu2"><a href="adminMbList.do">회원관리</a></li>
 				<li class="menu3"><a href="adminPermitList.do">드라이버 승인</a></li>
 				<li class="menu4"><a href="#">고객센터</a>
 					<ul class="menu4_s submenu">
-						<li><a href="noticeList.do">공지사항</a></li>
+						<li><a href="adminNoticeList.do">공지사항</a></li>
 						<li><a href="#">문의내역</a></li>
+						<li><a href="#">신고내역</a></li>
 					</ul></li>
 			</ul>
-		</c:if> --%>
+		<%-- </c:if> --%>
 	</div>
 </body>
 </html>

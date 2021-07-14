@@ -9,7 +9,7 @@
 <body>
 	<div class="container" align="center">
 		<h2 class="text-primary">공지사항 수정</h2>
-		<form action="noticeUpdateResult.do" method="post" name="frm">
+		<form action="adminNoticeUpdateResult.do" method="post" name="frm">
 			<input type="hidden" name="NT_num" value="${notice.NT_num }">
 			<input type="hidden" name="pageNum" value="${pageNum }">
 			<table class="table table-bordered">

@@ -20,7 +20,7 @@
 </head>
 <body>
 	<div class="container" align="center">
-		<h2 class="text-primary">회원정보 상세</h2>
+		<h2 class="title">회원정보 상세</h2>
 		<table class="table table-striped table-bordered">
 			<tr>
 				<td>아이디</td>

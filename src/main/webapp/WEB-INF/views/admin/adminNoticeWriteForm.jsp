@@ -10,7 +10,7 @@
 <body>
 	<div class="container" align="center">
 		<h2 class="text-primary">공지사항 작성</h2>
-		<form action="noticeWriteResult.do" method="post" name="frm">
+		<form action="adminNoticeWriteResult.do" method="post" name="frm">
 			<input type="hidden" name="NT_num" value="${NT_num }">
 			<input type="hidden" name="pageNum" value="${pageNum }">
 			<table class="table table-bordered">

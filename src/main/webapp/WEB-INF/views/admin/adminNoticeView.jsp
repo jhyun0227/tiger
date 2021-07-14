@@ -6,21 +6,21 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!-- <script type="text/javascript">
+<script type="text/javascript">
 	function del() {
 		var cf = confirm("공지사항을 삭제하시겠습니까?");
 		if(cf) {
-			location.href="noticeDelete.do?NT_num=${notice.NT_num }&pageNum=${pageNum }";
+			location.href="adminNoticeDelete.do?NT_num=${notice.NT_num }&pageNum=${pageNum }";
 		} else {
 			alert("삭제가 취소 되었습니다");
 			return;
 		}
 	}
-</script> -->
+</script>
 </head>
 <body>
 	<div class="container" align="center">
-		<h2 class="title">공지사항 상세</h2>
+		<h2 class="text-primary">공지사항 상세</h2>
 		<table class="table table-striped table-bordered">
 			<tr>
 				<td>제목</td>
@@ -37,11 +37,16 @@
 				<td>내용</td>
 				<td colspan="3"><pre>${notice.NT_content }</pre></td>
 			</tr>
-				<tr>
-					<td colspan="4" align="center">
-						<a href="noticeList.do?pageNum=${pageNum }" class="btn btn-info">공지사항 목록</a>
-					</td>
-				</tr>
+			<%-- <c:if test="${memberDB.MB_id == 'admin' }"> --%>
+			<tr>
+				<td colspan="4" align="center">
+					<a href="adminNoticeList.do?pageNum=${pageNum }" class="btn btn-info">공지사항 목록</a>
+					<a href="adminNoticeUpdateForm.do?NT_num=${notice.NT_num }&pageNum=${pageNum }"
+						class="btn btn-warning">수정</a>
+					<a onclick="del()" class="btn btn-danger">삭제</a>
+				</td>
+			</tr>
+			<%-- </c:if> --%>
 		</table>
 	</div>
 </body>

@@ -10,13 +10,13 @@
 <body>
 	<c:if test="${result > 0 }">
 		<script type="text/javascript">
-			alert("정상적으로 작성되었습니다");
-			location.href="noticeList.do?pageNum=${pageNum}";
+			alert("정상적으로 삭제되었습니다");
+			location.href="adminNoticeList.do?pageNum=${pageNum}";
 		</script>
 	</c:if>
 	<c:if test="${result == 0 }">
 		<script type="text/javascript">
-			alert("작성에 실패하였습니다");
+			alert("삭제에 실패하였습니다");
 			history.back();
 		</script>
 	</c:if>

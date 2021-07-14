@@ -37,6 +37,43 @@ public class AdminController {
 	private ReviewService rs;
 	@Autowired
 	private VehicleService vs;
+	@RequestMapping("adminNoticeList")
+	public String adminNoticeList(Member member, Model model, Notice notice, HttpSession session, String pageNum) {
+		// 처음 notice에는 null로 받아오고, startRow, endRow 보내주기 위한 용도
+		if(pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		}
+		int currentPage = Integer.parseInt(pageNum);
+		int rowPerPage = 10;	// 한 화면에 보여주는 게시글 갯수
+		int total = ns.getNtTotal(notice);
+		int startRow = (currentPage -1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		notice.setStartRow(startRow);
+		notice.setEndRow(endRow);
+		List<Notice> noticeList = ns.noticeList(notice);	// 공지사항 목록
+		int num = total - startRow + 1;		// 번호 순서대로 정렬
+		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
+		String[] title = {"제목", "내용", "제목+내용"};	// 작성자는 관리자뿐이므로 제외
+		String MB_id = (String)session.getAttribute("MB_id");
+		Member memberDB = mbs.select(MB_id);
+		model.addAttribute("memberDB", memberDB);	// 아이디로 DB에 있는 회원정보 조회
+		model.addAttribute("title", title);	// 검색 기능
+		model.addAttribute("MB_id", MB_id);
+		model.addAttribute("pb", pb);	// paginbean pb
+		model.addAttribute("noticeList", noticeList);		// 공지사항 검색 시 공지사항번호 발생
+		model.addAttribute("num", num);	// 목록 번호 생성 위한 num
+		return "admin/adminNoticeList";
+	}
+	@RequestMapping("adminNoticeView")
+	public String noticeView(int NT_num, String pageNum, Model model, HttpSession session) {
+		Notice notice = ns.select(NT_num);
+		String MB_id = (String)session.getAttribute("MB_id");
+		Member memberDB = mbs.select(MB_id);
+		model.addAttribute("memberDB", memberDB);	// 아이디로 DB에 있는 회원정보 조회
+		model.addAttribute("notice", notice);
+		model.addAttribute("pageNum", pageNum);
+		return "admin/adminNoticeView";
+	}
 	@RequestMapping("adminMbList")
 	public String adminMbList(Member member, String pageNum, Model model, HttpSession session) {
 		if(pageNum == null || pageNum.equals("")) {
@@ -96,13 +133,13 @@ public class AdminController {
 		model.addAttribute("pageNum", pageNum);
 		return "admin/adminMbRollback";
 	}
-	@RequestMapping("noticeWriteForm")
+	@RequestMapping("adminNoticeWriteForm")
 	public String noticeWriteForm(int NT_num, String pageNum, Model model) {
 		model.addAttribute("NT_num", NT_num);
 		model.addAttribute("pageNum", pageNum);
-		return "notice/noticeWriteForm";
+		return "admin/adminNoticeWriteForm";
 	}
-	@RequestMapping("noticeWriteResult")
+	@RequestMapping("adminNoticeWriteResult")
 	public String noticeWrite(Member member, int NT_num, Notice notice, String pageNum,
 			Model model, HttpSession session) {
 		int number = ns.getMaxNum();	// 공지사항 번호 생성 용도
@@ -112,9 +149,9 @@ public class AdminController {
 		int result = ns.noticeWrite(notice);
 		model.addAttribute("result", result);
 		model.addAttribute("pageNum", pageNum);
-		return "notice/noticeWriteResult";
+		return "admin/adminNoticeWriteResult";
 	}
-	@RequestMapping("noticeUpdateForm")
+	@RequestMapping("adminNoticeUpdateForm")
 	public String noticeUpdateForm(int NT_num, String pageNum, Model model, HttpSession session) {
 		Notice notice = ns.select(NT_num);
 		String MB_id = (String)session.getAttribute("MB_id");
@@ -122,21 +159,26 @@ public class AdminController {
 		model.addAttribute("memberDB", memberDB);	// 아이디로 DB에 있는 회원정보 조회
 		model.addAttribute("notice", notice);
 		model.addAttribute("pageNum", pageNum);
-		return "notice/noticeUpdateForm";
+		return "admin/adminNoticeUpdateForm";
 	}
-	@RequestMapping("noticeUpdateResult")
+	@RequestMapping("adminNoticeUpdateResult")
 	public String noticeUpdate(Notice notice, String pageNum, Model model) {
 		int result = ns.noticeUpdate(notice);
 		model.addAttribute("notice", notice);	// 공지사항 수정 후 view로 넘어갈 때 데이터 필요
 		model.addAttribute("result", result);
 		model.addAttribute("pageNum", pageNum);
-		return "notice/noticeUpdateResult";
+		return "admin/adminNoticeUpdateResult";
 	}
-	@RequestMapping("noticeDelete")
+	@RequestMapping("adminNoticeDelete")
 	public String noticeDelete(int NT_num, String pageNum, Model model, HttpSession session) {
 		int result = ns.noticeDelete(NT_num);
 		model.addAttribute("result", result);
 		model.addAttribute("pageNum", pageNum);
-		return "notice/noticeDelete";
+		return "admin/adminNoticeDelete";
+	}
+	@RequestMapping("adminPermitList")
+	public String adminPermitList(Member member, String pageNum, Model model) {
+		
+		return "admin/adminPermitList";
 	}
 }

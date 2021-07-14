@@ -2,16 +2,41 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="carpoolns">
-	<insert id="create" parameterType="CarpoolDTO">
-		insert into carpool
-		(carpoolno,id,carpooldate,c_start,c_startv,c_end,c_endv,via,viav,
-		purpose,c_type,kind,startdate,seat,now_seat,price,smoke,c_comment)
-		values (
-		(SELECT NVL(MAX(carpoolno), 0) + 1 as carpoolno FROM carpool),
-		#{id},
-		(SELECT TO_CHAR(SYSDATE, 'YYYY-MM-DD') AS carpooldate from
-		dual),
-		#{c_start},#{c_startv},#{c_end},#{c_endv},#{via},#{viav},#{purpose},#{c_type},
-		#{kind},to_date(#{startdate},'yyyy-mm-dd hh24:mi'),#{seat},#{now_seat},#{price},#{smoke},#{c_comment})
+	
+	<insert id="insert" parameterType="carpool">
+		insert into CARPOOL
+		(CP_num,CP_regDate,CP_startPoint,CP_endPoint,CP_startDate,CP_startTime,CP_fee,
+		CP_passNum,CP_gendertype,CP_option,CP_duration,CP_comment,CP_del,MB_num)
+		values(
+		(SELECT NVL(MAX(CP_num), 0) + 1 as CP_num FROM CARPOOL),sysdate,
+		#{CP_startPoint}, #{CP_endPoint}, #{CP_startDate}, #{CP_startTime}, #{CP_fee}, #{CP_passNum},
+		#{CP_gendertype},#{CP_option},#{CP_duration},#{CP_comment},'n',#{MB_num})
 	</insert>
+	
+	<select id="carpoolList" parameterType="carpool" resultType="carpool">
+		select * from (select a.*, rowNum rn from (select * from carpool
+		<!-- 검색 기능 사용시 -->
+		<!-- keyword에 값이 있으면 where속에 like옵션 사용, 없으면 사용X -->
+		<!-- ${}는 변수, #{}는 값 -->
+		<where>
+			<!-- 검색어가 있을때 -->
+			<if test="keyword!=null and keyword!=''">
+				${search} like '%'||#{keyword}||'%'
+			</if>
+		</where>
+		order by CP_num) a) where rn between #{startRow} and #{endRow}
+	</select>
+	
+	<select id="getTotal" parameterType="carpool" resultType="integer">
+		select count(*) from carpool
+	</select>
+	
+	<select id="getMaxNum" resultType="integer">
+		select nvl(max(CP_num),0) + 1 from carpool
+	</select>
+	
+	
+	
+	
+	
 </mapper>

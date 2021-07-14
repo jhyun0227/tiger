@@ -8,7 +8,7 @@
 </head>
 <body>
 <script type="text/javascript">
-	location.href="cpWriteForm.do";
+	location.href="cpList.do";
 </script> 
 </body>
 </html>

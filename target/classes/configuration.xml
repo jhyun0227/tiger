@@ -5,7 +5,7 @@
 <configuration>
 	<typeAliases>
 					<!-- 별명                                         실제 객체 -->
-		<!-- <typeAlias alias="apply" type="com.ch.tiger.model.Apply"/>
+		<typeAlias alias="apply" type="com.ch.tiger.model.Apply"/>
 		<typeAlias alias="carpool" type="com.ch.tiger.model.Carpool"/>
 		<typeAlias alias="like" type="com.ch.tiger.model.Like"/>
 		<typeAlias alias="member" type="com.ch.tiger.model.Member"/>
@@ -15,11 +15,11 @@
 		<typeAlias alias="report" type="com.ch.tiger.model.Report"/>
 		<typeAlias alias="reservation" type="com.ch.tiger.model.Reservation"/>
 		<typeAlias alias="review" type="com.ch.tiger.model.Review"/>
-		<typeAlias alias="vehicle" type="com.ch.tiger.model.Vehicle"/> -->
+		<typeAlias alias="vehicle" type="com.ch.tiger.model.Vehicle"/>
 	</typeAliases>
 	
 	<mappers>
-		<!-- <mapper resource="apply.xml" />
+		<mapper resource="apply.xml" />
 		<mapper resource="carpool.xml" />
 		<mapper resource="like.xml" />
 		<mapper resource="member.xml" />
@@ -29,6 +29,6 @@
 		<mapper resource="report.xml" />
 		<mapper resource="reservation.xml" />
 		<mapper resource="review.xml" />
-		<mapper resource="vehicle.xml" /> -->
+		<mapper resource="vehicle.xml" />
 	</mappers>
 </configuration>

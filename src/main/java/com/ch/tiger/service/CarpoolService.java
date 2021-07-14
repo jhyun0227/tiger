@@ -1,11 +1,11 @@
-package com.ch.tiger.dao;
+package com.ch.tiger.service;
 
 import java.util.List;
 import java.util.Map;
 
 import com.ch.tiger.model.Carpool;
 
-public interface CarpoolDao{
+public interface CarpoolService {
 
 	int insert(Carpool carpool);
 
@@ -15,9 +15,4 @@ public interface CarpoolDao{
 
 	int getMaxNum();
 
-	
-	
-	
-	
-	
 }

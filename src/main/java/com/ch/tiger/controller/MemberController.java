@@ -235,4 +235,12 @@ public class MemberController {
 		model.addAttribute("result", result);
 		return "mypage/updateResult";
 	}
+	
+//	// 프로필 상세보기
+//	@RequestMapping("profileView")
+//	public String profileView(int MB_num, Model model) {
+//		Member member = mbs.selectNum(MB_num);
+//		model.addAttribute("member", member);
+//		return "member/profileView";
+//	}
 }

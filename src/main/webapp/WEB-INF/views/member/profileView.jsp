@@ -14,36 +14,10 @@
 	src="${path }/resources/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
+<h2>프로필 조회</h2>
 <table class="table table-bordered">
-	<tr align="center">
-		<th>
-			<a href="updateForm.do">회원정보 수정</a> |
-			<a href="chkPw.do">비밀번호 변경</a> |
-			<a href="driverApplyForm.do">드라이버 등록</a> |
-			<a href="vehicleList.do">차량관리</a> |
-			<a href="favoriteList.do">좋아요</a> |
-		</th>
-	</tr>
-</table>
-<table class="table table-bordered">
-	<tr>
-		<td><label for="email">이메일</label></td>
-		<td>
-			<input type="email" name="MB_id" id="email" required="required" value="${member.MB_id }" readonly="readonly">
-		</td>
-	</tr>
-	<tr>
-		<td><label for="name">이름</label></td>
-		<td><input type="text" name="MB_name" id="name" required="required" value="${member.MB_name }" readonly="readonly"></td>
-	</tr>
-	<tr>
-		<td><label for="regNum">주민등록번호</label></td>
-		<td>
-			<input type="text" name="MB_regNum" id="regNum" required="required" readonly="readonly" value="${member.MB_regNum }" style="width:11%;">
-			<span>―</span>
-			<span>*******</span>
-		</td>
-	</tr>
+
+
 	<tr>
 		<td><label for="nickName">닉네임</label></td>
 		<td>

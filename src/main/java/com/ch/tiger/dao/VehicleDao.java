@@ -11,5 +11,7 @@ public interface VehicleDao {
 	
 	int insert(Vehicle vehicle); // 차 정보 등록
 	
+	Vehicle select(int VH_num); // 차 상세보기
+	
 	int delete(int VH_num); // 차량 삭제
 }

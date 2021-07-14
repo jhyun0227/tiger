@@ -33,13 +33,13 @@
 				<th>연식</th>
 				<th>삭제</th>
 			</tr>
-			<c:if test="${empty vclist }">
+			<c:if test="${empty vcList }">
 				<tr align="center">
 					<td colspan="4">등록된 차량이 없습니다.</td>
 				</tr>		
 			</c:if>
-			<c:if test="${not empty vclist }">
-				<c:forEach var="vehicle" items="${vclist }">
+			<c:if test="${not empty vcList }">
+				<c:forEach var="vehicle" items="${vcList }">
 					<tr>
 						<c:if test="${vehicle.VH_del == 'Y' }">
 							<th colspan="4">삭제된 차량입니다.</th>

@@ -30,6 +30,12 @@ public class VehicleDaoImpl implements VehicleDao {
 	public int insert(Vehicle vehicle) {
 		return sst.insert("vehiclens.insert", vehicle);
 	}
+	
+	// 차 상세보기
+	@Override
+	public Vehicle select(int VH_num) {
+		return sst.selectOne("vehiclens.selectNum", VH_num);
+	}
 
 	// 차량 삭제
 	@Override

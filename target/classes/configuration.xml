@@ -7,7 +7,7 @@
 					<!-- 별명                                         실제 객체 -->
 		<!-- <typeAlias alias="apply" type="com.ch.tiger.model.Apply"/> -->
 		<!-- <typeAlias alias="carpool" type="com.ch.tiger.model.Carpool"/> -->
-		<!-- <typeAlias alias="like" type="com.ch.tiger.model.Like"/> -->
+		<typeAlias alias="favorite" type="com.ch.tiger.model.Favorite"/>
 		<typeAlias alias="member" type="com.ch.tiger.model.Member"/>
 		<!-- <typeAlias alias="message" type="com.ch.tiger.model.Message"/> -->
 		<!-- <typeAlias alias="notice" type="com.ch.tiger.model.Notice"/> -->
@@ -21,7 +21,7 @@
 	<mappers>
 		<!-- <mapper resource="apply.xml" /> -->
 		<!-- <mapper resource="carpool.xml" /> -->
-		<!-- <mapper resource="like.xml" /> -->
+		<mapper resource="favorite.xml" />
 		<mapper resource="member.xml" />
 		<!-- <mapper resource="message.xml" /> -->
 		<!-- <mapper resource="notice.xml" /> -->

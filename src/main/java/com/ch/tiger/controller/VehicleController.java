@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -38,8 +39,8 @@ public class VehicleController {
 		if (member.getMB_driverConfirm() == "y" || member.getMB_driverConfirm().equals("y")) { // 드라이버 신청여부가 y일 경우에 볼수 있게
 			result = 1; // y인경우 1을 리턴함
 			// 리스트를 가져오는 로직
-			List<Vehicle> vclist = vs.list(MB_num);
-			model.addAttribute("vclist", vclist);
+			List<Vehicle> vcList = vs.list(MB_num);
+			model.addAttribute("vcList", vcList);
 		} else {
 			result = -1;
 		}
@@ -58,6 +59,7 @@ public class VehicleController {
 		return "mypage/vehicleInsertForm";
 	}
 	
+	// 차량 등록 (사진 등록 안되는중 수정해야함)
 	@RequestMapping("vehicleInsertResult")
 	public String vehicleInsertResult(Vehicle vehicle, Model model, HttpSession session) throws IOException {
 		// 회원정보 등록
@@ -84,6 +86,14 @@ public class VehicleController {
 		}
 		model.addAttribute("result", result);
 		return "mypage/vehicleInsertResult";
+	}
+	
+	// 차량 상세보기
+	@RequestMapping("vehicleView")
+	public String vehicleView(int VH_num, Model model) {
+		Vehicle vehicle = vs.select(VH_num);
+		model.addAttribute("vehicle", vehicle);
+		return "mypage/vehicleView";
 	}
 	
 	// 등록 차량 삭제

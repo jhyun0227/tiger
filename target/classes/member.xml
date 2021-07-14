@@ -28,7 +28,13 @@
 		select * from member where MB_name=#{MB_name} and MB_id=#{MB_id}
 	</select>
 	
+	<!-- 회원정보 수정 -->
 	<update id="update" parameterType="member">
 		update member set MB_name=#{MB_name}, MB_nickName=#{MB_nickName}, MB_tel=#{MB_tel} where MB_id=#{MB_id}
 	</update>
+	
+	<!-- 프로필 상세 -->
+	<select id="selectNum" parameterType="integer" resultType="member">
+		select * from member where MB_num=#{MB_num}
+	</select>
 </mapper>

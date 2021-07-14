@@ -11,5 +11,7 @@ public interface VehicleService {
 	
 	int insert(Vehicle vehicle); // 차 정보 등록
 	
-	int delete(int vH_num); // 차량 삭제
+	Vehicle select(int VH_num); // 차 상세보기를 위해 검색
+	
+	int delete(int VH_num); // 차량 삭제
 }

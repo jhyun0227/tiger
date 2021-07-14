@@ -12,13 +12,13 @@ public class MemberDaoImpl implements MemberDao{
 	private SqlSessionTemplate sst;
 
 	@Override
-	public Member select(String mb_id) {
-		return sst.selectOne("memberns.select", mb_id); // 로그인할 때 사용하는 로직
+	public Member select(String MB_id) {
+		return sst.selectOne("memberns.select", MB_id); // 로그인할 때 사용하는 로직
 	}
 
 	@Override
-	public Member selectNick(String mb_nickName) {
-		return sst.selectOne("memberns.selectNick", mb_nickName); // 닉네임 중복 체크
+	public Member selectNick(String MB_nickName) {
+		return sst.selectOne("memberns.selectNick", MB_nickName); // 닉네임 중복 체크
 	}
 
 	@Override
@@ -39,6 +39,11 @@ public class MemberDaoImpl implements MemberDao{
 	@Override
 	public int update(Member member) {
 		return sst.update("memberns.update", member); // 회원정보 수정
+	}
+
+	@Override
+	public Member selectNum(int MB_num) {
+		return sst.selectOne("memberns.selectNum", MB_num); // 프로필 상세
 	}
 	
 }

@@ -31,10 +31,15 @@ public class VehicleServiceImpl implements VehicleService {
 		return vd.insert(vehicle);
 	}
 	
+	// 차 상세보기
+	@Override
+	public Vehicle select(int VH_num) {
+		return vd.select(VH_num);
+	}
+	
 	// 차량 삭제
 	@Override
 	public int delete(int VH_num) {
 		return vd.delete(VH_num);
 	}
-
 }

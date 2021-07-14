@@ -33,7 +33,7 @@ function find(){
 		<!-- 메인 컨텐츠 부분 -->
 		<section class="content container-fluid">
 			<div class="box box-danger">
-				<form role="form" action="cpWriteResult.do" method="post" class="form-horizontal">
+				<form action="cpWriteResult.do" method="post" class="form-horizontal">
 					<!-- 로그인된 회원번호 -->
 					<input type="hidden" name="MB_num" value="${member.MB_num}" />
 					<div class="box-body">
@@ -150,8 +150,9 @@ function find(){
 						</div>
 					</div>
 					<div class="form-group">
-						<button type="submit" class="btn btn-primary pull-right">등록하기</button>
-						<button class="btn btn-default pull-right" onclick="javascript:history.back()">취소</button>
+						
+						<input type="submit" class="btn btn-primary pull-right" value="등록하기">
+						<button class="btn btn-default pull-right" onclick="history.back()">취소</button>
 					</div>
 				</form>
 			</div>

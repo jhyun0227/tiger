@@ -48,7 +48,7 @@ public class CarpoolController {
 		model.addAttribute("carpool", carpool);
 		model.addAttribute("pb", pb);
 		model.addAttribute("carpoolList", carpoolList);
-		return "/carpool/cpList";
+		return "carpool/cpList";
 	}
 	
 	// 타세요 작성폼
@@ -56,17 +56,17 @@ public class CarpoolController {
 	public String cpWriteForm(Member member, String pageNum, Model model){
 		model.addAttribute("member", member);
 		model.addAttribute("pageNum", pageNum);
-		return "/carpool/cpWriteForm";
+		return "carpool/cpWriteForm";
 	}
 	
 	// 타세요 작성폼 결과 안내
 	@RequestMapping("cpWriteResult")
-	public String cpWriteResult(Carpool carpool, String pageNum, Model model) throws Exception {
+	public String cpWriteResult(Carpool carpool, String pageNum, Model model){
 		int number = cps.getMaxNum(); // 게시글 글번호 생성
 		carpool.setCP_num(number);
 		int result = cps.insert(carpool);
 		model.addAttribute("result", result);
 		model.addAttribute("pageNum", pageNum);
-		return "/carpool/cpWriteResult";
+		return "carpool/cpWriteResult";
 	}
 }

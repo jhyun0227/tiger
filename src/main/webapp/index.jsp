@@ -9,6 +9,6 @@
 <body>
 <script type="text/javascript">
 	location.href="cpList.do";
-</script> 
+</script>
 </body>
 </html>

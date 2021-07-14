@@ -5,10 +5,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<%-- ${path }를 사용하면 패키지 내의 정보가 절대 경로로 변경됨 --%>
+	<link rel="stylesheet" type="text/css" href="${path }/resources/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="${path }/resources/bootstrap/css/common.css">
+	<script type="text/javascript" src="${path }/resources/bootstrap/js/jquery.js"></script>
+	<script type="text/javascript" src="${path }/resources/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
 <form action="findIdResult.do">
-	<h2>아이디 찾기</h2>
+	<h2 class="title">아이디 찾기</h2>
 	<table class="table table-bordered">
 		<tr>
 			<td>이름</td>

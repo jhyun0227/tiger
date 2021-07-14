@@ -30,7 +30,11 @@
 	
 	<!-- 회원정보 수정 -->
 	<update id="update" parameterType="member">
-		update member set MB_name=#{MB_name}, MB_nickName=#{MB_nickName}, MB_tel=#{MB_tel} where MB_id=#{MB_id}
+		update member set MB_name=#{MB_name}, MB_nickName=#{MB_nickName}, MB_tel=#{MB_tel}
+		<if test="MB_img != null">
+			,MB_img=#{MB_img}
+		</if>
+		where MB_id=#{MB_id}
 	</update>
 	
 	<!-- 프로필 상세 -->

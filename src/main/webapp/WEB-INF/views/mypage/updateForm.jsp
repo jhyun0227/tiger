@@ -33,10 +33,17 @@
 </head>
 <body>
 <div class="container" align="center">
-	<h2 class="text-primary">회원 가입</h2>
-	<form action="updateResult.do" method="post" name="frm" onsubmit="return chk()">
+	<h2 class="title">정보 수정</h2>
+	<form action="updateResult.do" method="post" enctype="multipart/form-data" name="frm" onsubmit="return chk()">
 		<input type="hidden" name="MB_id" value="${member.MB_id }">
 		<table class="table table-bordered table-hover">
+			<tr>
+				<td>프로필 사진</td>
+				<td>
+					<img alt="" src="${path }/resources/memberImg/${member.MB_img }" width="100">
+					<input type="file" name="file">${member.MB_img }
+				</td>
+			</tr>
 			<tr>
 				<td><label for="email">이메일</label></td>
 				<td>${member.MB_id }</td>

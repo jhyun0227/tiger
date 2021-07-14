@@ -6,73 +6,75 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css"
-	href="${path }/resources/bootstrap/css/bootstrap.min.css">
-<script type="text/javascript"
-	src="${path }/resources/bootstrap/js/jquery.js"></script>
-<script type="text/javascript"
-	src="${path }/resources/bootstrap/js/bootstrap.min.js"></script>
+<c:set var="path" value="${pageContext.request.contextPath }"></c:set>
+<%-- ${path }를 사용하면 패키지 내의 정보가 절대 경로로 변경됨 --%>
+	<link rel="stylesheet" type="text/css" href="${path }/resources/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="${path }/resources/bootstrap/css/common.css">
+	<script type="text/javascript" src="${path }/resources/bootstrap/js/jquery.js"></script>
+	<script type="text/javascript" src="${path }/resources/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
+<h2 class="title">마이페이지</h2>
 <table class="table table-bordered">
 	<tr align="center">
-		<th>
-			<a href="updateForm.do">회원정보 수정</a> |
-			<a href="chkPw.do">비밀번호 변경</a> |
-			<a href="driverApplyForm.do">드라이버 등록</a> |
-			<a href="vehicleList.do">차량관리</a> |
-			<a href="favoriteList.do">좋아요</a> |
+		<th colspan="2">
+			<img alt="" src="${path }/resources/memberImg/${member.MB_img}" height="300px" width="300px">
 		</th>
 	</tr>
-</table>
-<table class="table table-bordered">
 	<tr>
-		<td><label for="email">이메일</label></td>
-		<td>
-			<input type="email" name="MB_id" id="email" required="required" value="${member.MB_id }" readonly="readonly">
-		</td>
+		<td>이메일</td>
+		<td>${member.MB_id }</td>
 	</tr>
 	<tr>
-		<td><label for="name">이름</label></td>
-		<td><input type="text" name="MB_name" id="name" required="required" value="${member.MB_name }" readonly="readonly"></td>
+		<td>이름</td>
+		<td>${member.MB_name }</td>
 	</tr>
 	<tr>
-		<td><label for="regNum">주민등록번호</label></td>
+		<td>주민등록번호</td>
 		<td>
-			<input type="text" name="MB_regNum" id="regNum" required="required" readonly="readonly" value="${member.MB_regNum }" style="width:11%;">
+			${member.MB_regNum }
 			<span>―</span>
 			<span>*******</span>
 		</td>
 	</tr>
 	<tr>
-		<td><label for="nickName">닉네임</label></td>
-		<td>
-			<input type="text" name="MB_nickName" id="nickName" required="required" value="${member.MB_nickName }" readonly="readonly">
-		</td>
+		<td>닉네임</td>
+		<td>${member.MB_nickName }</td>
 	</tr>
 	<tr>
-		<td><label for="tel">연락처</label></td>
-		<td><input type="tel" name="MB_tel" id="tel" required="required" value="${member.MB_tel }" readonly="readonly"></td>
+		<td>연락처</td>
+		<td>${member.MB_tel }</td>
 	</tr>
+	
 	<c:if test="${member.MB_gender == '1' || member.MB_gender == '3'}">
 		<tr>
-			<td><label for="gender">성별</label></td>
-			<td><input type="text" name="MB_gender" id="gender" required="required" value="남자" readonly="readonly"></td>
+			<td>성별</td>
+			<td>남자</td>
 		</tr>	
 	</c:if>
 	<c:if test="${member.MB_gender == '2' || member.MB_gender == '4'}">
 		<tr>
-			<td><label for="gender">성별</label></td>
-			<td><input type="text" name="MB_gender" id="gender" required="required" value="여자" readonly="readonly"></td>
+			<td>성별</td>
+			<td>여자</td>
 		</tr>	
 	</c:if>
+	
+	<c:if test="${member.MB_driverConfirm == 'Y'}">
 	<tr>
-		<td><label for="driver">드라이버 등록</label></td>
-		<td><input type="text" name="MB_driverConfirm" id="driver" required="required" value="${member.MB_driverConfirm }" readonly="readonly"></td>
+		<td>드라이버</td>
+		<td>O</td>
 	</tr>
+	</c:if>
+	<c:if test="${member.MB_driverConfirm == 'N'}">
 	<tr>
-		<td><label for="regDate">가입일</label></td>
-		<td><input type="text" name="MB_regDate" id="regDate" required="required" value="${member.MB_regDate }" readonly="readonly"></td>
+		<td>드라이버</td>
+		<td>X</td>
+	</tr>
+	</c:if>
+	
+	<tr>
+		<td>가입일</td>
+		<td>${member.MB_regDate }</td>
 	</tr>
 </table>
 </body>

@@ -148,7 +148,7 @@
 </head>
 <body>
 <div class="container" align="center">
-	<h2 class="text-primary">회원 가입</h2>
+	<h2 class="title">회원 가입</h2>
 	<form action="join.do" method="post" name="frm" onsubmit="return chk()">
 		<table class="table table-bordered table-hover">
 			<tr>

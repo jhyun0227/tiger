@@ -17,7 +17,7 @@
 <body>
 <div class="container" align="center">
 	<form action="vehicleInsertResult.do" method="post" enctype="multipart/form-data">
-	<h2 class="text-primary">차량 정보 등록</h2>
+	<h2 class="title">차량 정보 등록</h2>
 	<input type="hidden" name="MB_num" value="${MB_num }">
 		<table class="table table-bordered table-hover">
 			<tr>

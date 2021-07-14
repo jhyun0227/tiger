@@ -2,6 +2,8 @@ package com.ch.tiger.model;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 
 @Data
@@ -19,4 +21,6 @@ public class Member {
 	private String MB_driverConfirm;
 	private String MB_del;
     private String MB_img;
+    // 업로드
+    private MultipartFile file;
 }

@@ -1,6 +1,11 @@
 package com.ch.tiger.controller;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Random;
+import java.util.UUID;
 
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
@@ -15,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ch.tiger.model.Email;
 import com.ch.tiger.model.Member;
+import com.ch.tiger.model.Vehicle;
 import com.ch.tiger.service.MemberService;
 
 @Controller
@@ -230,17 +236,30 @@ public class MemberController {
 	
 	// 마이페이지 회원정보 수정
 	@RequestMapping("updateResult")
-	public String updateResult(Member member, Model model) {
+	public String updateResult(Member member, Model model, HttpSession session) throws IOException {
+		// 사진을 리소스 폴더에 저장하기 위한 로직
+		String fileName1 = member.getFile().getOriginalFilename();
+		UUID uuid = UUID.randomUUID(); // 파일이름이 겹치지 않게 하기 위함
+		String fileName = uuid+"_"+fileName1;
+		// 파일을 리소스 폴더에 저장
+		String real = session.getServletContext().getRealPath("/resources/memberImg");
+		FileOutputStream fos = new FileOutputStream(new File(real+"/"+fileName));
+		fos.write(member.getFile().getBytes());
+		fos.close();
+		
+		// 정보를 수정
+		member.setMB_img(fileName);
 		int result = mbs.update(member);
+		
 		model.addAttribute("result", result);
 		return "mypage/updateResult";
 	}
 	
-//	// 프로필 상세보기
-//	@RequestMapping("profileView")
-//	public String profileView(int MB_num, Model model) {
-//		Member member = mbs.selectNum(MB_num);
-//		model.addAttribute("member", member);
-//		return "member/profileView";
-//	}
+	// 좋아요 카테고리에서 프로필 상세보기
+	@RequestMapping("profileView")
+	public String profileView(int MB_num, Model model) {
+		Member member = mbs.selectNum(MB_num);
+		model.addAttribute("member", member);
+		return "member/profileView";
+	}
 }

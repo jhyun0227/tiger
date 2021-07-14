@@ -15,7 +15,7 @@
 </head>
 <body>
 	<div class="container">
-		<h2>좋아요</h2>
+		<h2 class="title">좋아요</h2>
 		<table class="table table-bordered">
 			<tr>
 				<th>번호</th>

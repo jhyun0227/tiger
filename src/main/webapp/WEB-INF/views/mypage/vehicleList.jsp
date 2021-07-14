@@ -25,7 +25,7 @@
 <!-- 드라이더 등록 했을 경우 -->
 <c:if test="${result == 1 }">
 	<div class="container">
-		<h2>차량 관리</h2>
+		<h2 class="title">차량 관리</h2>
 		<table class="table table-bordered">
 			<tr>
 				<th>차량번호</th>

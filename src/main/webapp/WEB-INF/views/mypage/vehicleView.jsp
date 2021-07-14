@@ -12,9 +12,10 @@
 	src="${path }/resources/bootstrap/js/jquery.js"></script>
 <script type="text/javascript"
 	src="${path }/resources/bootstrap/js/bootstrap.min.js"></script>
+<c:set var="path" value="${pageContext.request.contextPath }"></c:set>
 </head>
 <body>
-<h2>내 차 정보</h2>
+<h2 class="title">내 차 정보</h2>
 <table class="table table-bordered">
 	<tr>
 		<td>차량 번호</td>
@@ -64,6 +65,10 @@
 			</c:if>
 		</td>
 	</tr>
+	<tr>
+		<td>차량 앞면 사진</td>
+		<td>
+			<img alt="" src="${path}/resources/vehicleImg/${vehicle.VH_carPicture }">
 	<tr>
 		<th colspan="2">
 			<a href="vehicleList.do" class="btn btn-info">목록</a>

@@ -36,7 +36,7 @@ public class VehicleController {
 		String MB_id = (String) session.getAttribute("MB_id"); // 세션값을 가져옴
 		Member member = mbs.select(MB_id); // 세션값을 가져와서 객체에 대입
 		int MB_num = member.getMB_num(); // vehicle fk가 mb_num으로 되있기 때문에 값을 또 넣어줌
-		if (member.getMB_driverConfirm() == "y" || member.getMB_driverConfirm().equals("y")) { // 드라이버 신청여부가 y일 경우에 볼수 있게
+		if (member.getMB_driverConfirm() == "Y" || member.getMB_driverConfirm().equals("Y")) { // 드라이버 신청여부가 y일 경우에 볼수 있게
 			result = 1; // y인경우 1을 리턴함
 			// 리스트를 가져오는 로직
 			List<Vehicle> vcList = vs.list(MB_num);
@@ -59,7 +59,7 @@ public class VehicleController {
 		return "mypage/vehicleInsertForm";
 	}
 	
-	// 차량 등록 (사진 등록 안되는중 수정해야함)
+	// 차량 등록
 	@RequestMapping("vehicleInsertResult")
 	public String vehicleInsertResult(Vehicle vehicle, Model model, HttpSession session) throws IOException {
 		// 회원정보 등록

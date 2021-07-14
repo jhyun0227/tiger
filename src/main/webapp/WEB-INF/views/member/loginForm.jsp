@@ -8,6 +8,7 @@
 </head>
 <body>
 <form action="login.do">
+	<h2 class="title">로그인</h2>
 	<table class="table table-bordered">
 		<tr>
 			<td>아이디</td>

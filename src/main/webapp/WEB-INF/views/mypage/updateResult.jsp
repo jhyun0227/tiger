@@ -14,7 +14,7 @@
 			location.href="myMain.do";
 		</script>
 	</c:if>
-	<c:if test="${result == 0 }">
+	<c:if test="${result < 0 }">
 		<script type="text/javascript">
 			alert("정보 수정 실패");
 			history.back();

@@ -35,4 +35,12 @@ public class QnADaoImpl implements QnADao {
 	public int insert(QnA qna) {
 		return sst.insert("qnans.insert", qna);
 	}
+
+	public int insertFile(QnA qna) {
+		return sst.insert("qnans.insertFile", qna);
+	}
+
+	public int delete(int num) {
+		return sst.update("qnans.delete", num);
+	}
 }

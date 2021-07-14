@@ -65,6 +65,20 @@ body {
     margin-top: 60px;
 }
 
+/* a태그 버튼 */
+.btn_prev {
+    padding: 5px 16px;
+    border: 1px solid #242526;
+    line-height: 40px;
+    font-size: 14px;
+    color: #242526;
+}
+
+.btn_prev:hover {
+	color: orange;
+	text-decoration: none;
+}
+
 /* footer */
 .body_footer{
 	min-height: calc(100vh - 100px);

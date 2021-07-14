@@ -19,8 +19,8 @@
 			</li>
 			<li class="menu3"><a href="#">쪽지함</a>
 				<ul class="menu3_s submenu">
-					<li><a href="#">받은 쪽지함</a></li>
-					<li><a href="#">보낸 쪽지함</a></li>
+					<li><a href="msgRecieveList.do">받은 쪽지함</a></li>
+					<li><a href="msgSendList.do">보낸 쪽지함</a></li>
 				</ul>
 			</li>
 			<li class="menu4"><a href="#">마이페이지</a>
@@ -34,7 +34,7 @@
 			</li>
 			<li class="menu5"><a href="#">고객센터</a>
 				<ul class="menu5_s submenu">
-					<li><a href="noticeList.do">공지사항</a></li>
+					<li><a href="#">공지사항</a></li>
 					<li><a href="qnaList.do">문의내역</a></li>
 					<li><a href="qnaWriteForm.do?num=0&pageNum=1">1:1 문의하기</a></li>
 				</ul>

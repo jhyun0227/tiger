@@ -37,4 +37,12 @@ public class QnAServiceImpl implements QnAService {
 	public int insert(QnA qna) {
 		return qad.insert(qna);
 	}
+
+	public int insertFile(QnA qna) {
+		return qad.insertFile(qna);
+	}
+
+	public int delete(int num) {
+		return qad.delete(num);
+	}
 }

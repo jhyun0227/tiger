@@ -11,5 +11,7 @@ public interface QnAService {
 	int getMaxNum();
 	void updateStep(QnA qna);
 	int insert(QnA qna);
+	int insertFile(QnA qna);
+	int delete(int num);
 
 }

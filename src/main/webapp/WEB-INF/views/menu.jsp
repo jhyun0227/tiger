@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<a href="">타세요</a>
+<a href="cpList.do">타세요</a>
 <a href="">이용내역</a>
 <a href="">쪽지함</a>
 <a href="">마이페이지</a>

@@ -15,6 +15,8 @@ public interface CarpoolDao{
 
 	int getMaxNum();
 
+	Carpool select(int CP_num);
+
 	
 	
 	

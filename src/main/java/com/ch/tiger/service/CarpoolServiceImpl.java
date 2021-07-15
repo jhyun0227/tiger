@@ -34,4 +34,9 @@ public class CarpoolServiceImpl implements CarpoolService {
 		return cpd.getMaxNum();
 	}
 
+	@Override
+	public Carpool select(int CP_num) {
+		return cpd.select(CP_num);
+	}
+
 }

@@ -9,15 +9,15 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f8b456750e8b8df57944ed224806efd0"></script>
 <script>
-function find(){
-	var url = "http://map.daum.net/"
-	var start=document.getElementById('CP_startPoint').value
-	var end=document.getElementById('CP_endPoint').value
-	
-	url=url+"?sName="+start
-	url=url+"&eName="+end
-	window.open(url,"실제경로검색");
-}
+	function find(){
+		var url = "http://map.daum.net/"
+		var start=document.getElementById('CP_startPoint').value
+		var end=document.getElementById('CP_endPoint').value
+		
+		url=url+"?sName="+start
+		url=url+"&eName="+end
+		window.open(url,"실제경로검색");
+	}
 </script>
 </head>
 <body>
@@ -33,9 +33,10 @@ function find(){
 		<!-- 메인 컨텐츠 부분 -->
 		<section class="content container-fluid">
 			<div class="box box-danger">
-				<form action="cpWriteResult.do" method="post" class="form-horizontal">
+				<form action="cpWriteResult.do" class="form-horizontal" method="post">
 					<!-- 로그인된 회원번호 -->
 					<input type="hidden" name="MB_num" value="${member.MB_num}" />
+					<input type="hidden" name="CP_num" value="${CP_num}" />
 					<div class="box-body">
 						<div class="form-group">
 							<label for="CP_startPoint" class="col-sm-2 control-label">출발지</label>

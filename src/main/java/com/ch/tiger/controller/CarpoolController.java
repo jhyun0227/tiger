@@ -42,9 +42,9 @@ public class CarpoolController {
 		carpool.setStartRow(startRow);
 		carpool.setEndRow(endRow);
 		List<Carpool> carpoolList = cps.carpoolList(carpool);
-		int num = total - startRow + 1;
+		int CP_num = total - startRow + 1;
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
-		model.addAttribute("num", num);
+		model.addAttribute("CP_num", CP_num);
 		model.addAttribute("carpool", carpool);
 		model.addAttribute("pb", pb);
 		model.addAttribute("carpoolList", carpoolList);
@@ -53,7 +53,8 @@ public class CarpoolController {
 	
 	// 타세요 작성폼
 	@RequestMapping("cpWriteForm")
-	public String cpWriteForm(Member member, String pageNum, Model model){
+	public String cpWriteForm(int CP_num, Member member, String pageNum, Model model){
+		model.addAttribute("CP_num", CP_num);
 		model.addAttribute("member", member);
 		model.addAttribute("pageNum", pageNum);
 		return "carpool/cpWriteForm";
@@ -62,11 +63,20 @@ public class CarpoolController {
 	// 타세요 작성폼 결과 안내
 	@RequestMapping("cpWriteResult")
 	public String cpWriteResult(Carpool carpool, String pageNum, Model model){
-		int number = cps.getMaxNum(); // 게시글 글번호 생성
+		int number = cps.getMaxNum(); // 타세요 글번호 생성
 		carpool.setCP_num(number);
 		int result = cps.insert(carpool);
 		model.addAttribute("result", result);
 		model.addAttribute("pageNum", pageNum);
 		return "carpool/cpWriteResult";
+	}
+	
+	// 타세요 상세보기
+	@RequestMapping("cpView")
+	public String view(int CP_num, String pageNum, Model model) {
+		Carpool carpool = cps.select(CP_num);
+		model.addAttribute("carpool", carpool);
+		model.addAttribute("pageNum", pageNum);
+		return "carpool/cpView";
 	}
 }

@@ -11,7 +11,7 @@ public class Carpool {
     private String CP_startPoint;		//출발지
 	private String CP_endPoint;			//도착지
 	private Date CP_startDate;			//출발일
-    private Date CP_startTime;			//출발시간
+    private String CP_startTime;		//출발시간
     private int CP_fee;					//요금
     private int CP_passNum;				//좌석수
     private String CP_gendertype;		//성별제한

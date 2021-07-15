@@ -34,9 +34,17 @@ public class CarpoolDaoImpl implements CarpoolDao {
 		return sst.selectOne("carpoolns.getMaxNum");
 	}
 
-
-
-
+	@Override
+	public Carpool select(int CP_num) {
+		return sst.selectOne("carpoolns.select", CP_num);
+	}
+	
+	
+	
+	
+	
+	
+	
 }
 
 

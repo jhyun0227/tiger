@@ -14,8 +14,8 @@ public class MemberDaoImpl implements MemberDao{
 	private SqlSessionTemplate sst;
 
 	@Override
-	public List<Member> memberList() {
-		return sst.selectList("memberns.memberList");
+	public Member select(String MB_id) { //회원조회
+		return sst.selectOne("memberns.select", MB_id);
 	}
 	
 }

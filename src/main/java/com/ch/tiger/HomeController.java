@@ -10,8 +10,4 @@ public class HomeController {
 		return "main/main";
 	}
 	
-	@RequestMapping("cpWriteForm.do")
-	public String cpWriteForm() {
-		return "carpool/cpWriteForm";
-	}
 }

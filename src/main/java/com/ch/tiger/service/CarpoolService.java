@@ -15,4 +15,6 @@ public interface CarpoolService {
 
 	int getMaxNum();
 
+	Carpool select(int CP_num);
+
 }

@@ -6,6 +6,6 @@ import com.ch.tiger.model.Member;
 
 public interface MemberDao {
 
-	List<Member> memberList();
+	Member select(String MB_id);
 
 }

@@ -24,8 +24,8 @@
 		</form>
 		
 		<!-- 타세요 작성 버튼 -->
-		<div align="center">
-			<a href="cpWriteForm.do?pageNum=1" class="btn btn-success">타세요 작성</a>
+		<div align="right">
+			<a href="cpWriteForm.do?CP_num=0&pageNum=1" class="btn btn-success">타세요 작성</a>
 		</div>
 	    
 	    <!--Content Row
@@ -66,6 +66,7 @@
 		<table class="table table-striped">
 			<tr>
 				<th>등록 번호</th>
+				<th>상세보기</th>
 				<th>출발지</th>
 				<th>도착지</th>
 				<th>요금</th>
@@ -75,21 +76,22 @@
 			</tr>
 			<c:if test="${empty carpoolList }">
 				<tr>
-					<th colspan="7">등록된 게시글이 없습니다</th>
+					<th colspan="8">등록된 게시글이 없습니다</th>
 				</tr>
 			</c:if>
 			<c:if test="${not empty carpoolList }">
 				<c:forEach var="carpool" items="${carpoolList }">
 					<tr>
-						<td>${num}<c:set var="num" value="${num - 1}"></c:set>
+						<td>${CP_num}<c:set var="CP_num" value="${CP_num - 1}"></c:set>
 						<%-- ${carpool.CP_num } --%></td>
 						<c:if test="${carpool.CP_del == 'Y' }">
-							<th colspan="6">삭제된 글 입니다</th>
+							<th colspan="7">삭제된 글 입니다</th>
 						</c:if>
 						<c:if test="${carpool.CP_del != 'Y' }">
-							<td title="${carpool.CP_startPoint }">
-								<a href="view.do?num=${carpool.CP_num }&pageNum=${pb.currentPage}" class="btn btn-info btn-sm">${carpool.CP_startPoint }</a>
+							<td title="상세보기">
+								<a href="cpView.do?CP_num=${carpool.CP_num }&pageNum=${pageNum}" class="btn btn-info btn-sm">상세보기</a>
 							</td>
+							<td>${carpool.CP_startPoint }</td>
 							<td>${carpool.CP_endPoint }</td>
 							<td>${carpool.CP_fee }</td>
 							<td>${carpool.CP_startDate }</td>

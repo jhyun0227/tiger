@@ -40,6 +40,16 @@ public class MemberServiceImpl implements MemberService {
 	public int update(Member member) { // 회원정보 수정
 		return mbd.update(member);
 	}
+	
+	@Override
+	public int updatePw(Member member) { // 비밀번호 변경
+		return mbd.updatePw(member);
+	}
+	
+	@Override
+	public int delete(String MB_id) { // 회원 탈퇴
+		return mbd.delete(MB_id);
+	}
 
 	@Override
 	public Member selectNum(int MB_num) { // 프로필 상세

@@ -16,6 +16,26 @@
 	color: red;
 	font-weight: bold;
 }
+
+.btn_s {
+	width: 100px;
+    height: 30px;
+    border: none;
+    background: #242526;
+    color: #eee;
+
+}
+
+.inputline1{
+    border: none;
+    outline: 0;
+    width: 35%;
+}
+
+.narrowWidth1 {
+   	 width: 60%;
+}
+
 </style>
 <script type="text/javascript">
 	//이메일 유효성 검사 및 중복 체크
@@ -153,12 +173,12 @@
 <div align="center">
 	<h2 class="title">회원 가입</h2>
 	<form action="join.do" method="post" name="frm" onsubmit="return chk()">
-		<table class="table narrowWidth">
+		<table class="table narrowWidth1">
 			<tr>
 				<td class="col md-2 text-center">이메일</td>
 				<td class="col md-10">
-					<input type="email" name="MB_id" required="required" autofocus="autofocus" placeholder="이메일을 입력해주세요" class="inputLine">
-					<input type="button" onclick="idChk()" class="btn btn-info btn-sm" value="이메일 인증">
+					<input type="email" name="MB_id" required="required" autofocus="autofocus" placeholder="이메일을 입력해주세요" class="inputline1">
+					<input type="button" onclick="idChk()" class="btn_s" value="이메일 인증">
 					<div id="idChk" class="err"></div>
 					
 					<!-- 이메일이 중복이 아닐 경우
@@ -180,13 +200,13 @@
 			<tr>
 				<td class="col md-2 text-center">비밀번호</td>
 				<td class="col md-10">
-					<input type="password" name="MB_pw" id="pw" required="required" placeholder="비밀번호를 입력해주세요" class="inputLine">
+					<input type="password" name="MB_pw" id="pw" required="required" placeholder="비밀번호를 입력해주세요" class="inputline1">
 				</td>
 			</tr>
 			<tr>
 				<td class="col md-2 text-center">비밀번호 확인</td>
-				<td>
-					<input type="password" name="MB_pw_confirm" id="pw_confirm" required="required" placeholder="비밀번호를 한번 더 입력해주세요" class="inputLine">
+				<td class="col md-10">
+					<input type="password" name="MB_pw_confirm" id="pw_confirm" required="required" placeholder="비밀번호 확인" class="inputline1">
 					<br>
 					<div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div>
 					<div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
@@ -195,24 +215,24 @@
 			<tr>
 				<td class="col md-2 text-center">이름</td>
 				<td class="col md-10">
-					<input type="text" name="MB_name" id="name" required="required" placeholder="이름을 입력해주세요" class="inputLine">
+					<input type="text" name="MB_name" id="name" required="required" placeholder="이름을 입력해주세요" class="inputline1">
 				</td>
 			</tr>
 			<tr>
 				<td class="col md-2 text-center">주민등록번호</td>
 				<td class="col md-10">
-					<input type="text" name="MB_regNum" id="regNum" required="required" maxlength="6" style="width:11%;" placeholder="6자리" class="inputLine">
+					<input type="text" name="MB_regNum" id="regNum" required="required" maxlength="6" style="width:11%;" placeholder="6자리" class="inputline1">
 					<span>―</span>
 					<!-- 1, 3일 경우 남자 / 2, 4일 경우 여자 -->
-					<input type="text" name="MB_gender" id="gender" required="required" maxlength="1" style="width:15px;" placeholder="1" class="inputLine">
+					<input type="text" name="MB_gender" id="gender" required="required" maxlength="1" style="width:15px;" placeholder="1" class="inputline1">
 					<span>******</span>
 				</td>
 			</tr>
 			<tr>
 				<td class="col md-2 text-center">닉네임</td>
 				<td class="col md-10">
-					<input type="text" name="MB_nickName" id="nickName" required="required" placeholder="닉네임을 입력해주세요" class="inputLine">
-					<input type="button" onclick="nickChk()" class="btn btn-info btn-sm" value="중복체크">
+					<input type="text" name="MB_nickName" id="nickName" required="required" placeholder="닉네임을 입력해주세요" class="inputline1">
+					<input type="button" onclick="nickChk()" class="btn_s" value="중복체크">
 					<div id="nickChk" class="err"></div>
 				</td>
 			</tr>
@@ -220,7 +240,7 @@
 				<td class="col md-2 text-center">연락처</td>
 				<td class="col md-10">
 					<input type="tel" name="MB_tel" id="tel" required="required" title="전화번호 형식 3-4-4"
-						pattern="\d{3}-\d{4}-\d{4}" placeholder="000-0000-0000" class="inputLine">
+						pattern="\d{3}-\d{4}-\d{4}" placeholder="000-0000-0000" class="inputline1">
 			</td>
 			</tr>
 			<tr>

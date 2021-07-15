@@ -40,10 +40,21 @@ public class MemberDaoImpl implements MemberDao{
 	public int update(Member member) {
 		return sst.update("memberns.update", member); // 회원정보 수정
 	}
+	
+	@Override
+	public int updatePw(Member member) {
+		return sst.update("memberns.updatePw", member); // 비밀번호 변경
+	}
+	
+	@Override
+	public int delete(String MB_id) {
+		return sst.update("memberns.delete", MB_id); // 회원 탈퇴
+	}
 
 	@Override
 	public Member selectNum(int MB_num) {
 		return sst.selectOne("memberns.selectNum", MB_num); // 프로필 상세
 	}
+
 	
 }

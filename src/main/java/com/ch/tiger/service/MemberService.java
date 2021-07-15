@@ -14,7 +14,10 @@ public interface MemberService {
 	Member selectFindPw(Member member); // 비밀번호 찾기
 
 	int update(Member member); // 회원정보 수정
+	
+	int updatePw(Member member); // 비밀번호 변경
+	
+	int delete(String MB_id); // 회원 탈퇴
 
 	Member selectNum(int MB_num); // 프로필 상세
-
 }

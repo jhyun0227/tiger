@@ -4,6 +4,7 @@
 <mapper namespace="favoritens">
 	<!-- 좋아요 목록 -->
 	<select id="list" parameterType="integer" resultType="favorite">
-		select * from favorite where MB_numG=#{MB_numG} order by FV_num
+		select f.*, m.MB_id, m.MB_nickName, m.MB_gender from favorite f, member m where f.MB_numT=m.MB_num and
+		MB_numG=#{MB_numG} order by FV_num
 	</select>
 </mapper>

@@ -15,6 +15,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -239,21 +240,53 @@ public class MemberController {
 	public String updateResult(Member member, Model model, HttpSession session) throws IOException {
 		// 사진을 리소스 폴더에 저장하기 위한 로직
 		String fileName1 = member.getFile().getOriginalFilename();
-		UUID uuid = UUID.randomUUID(); // 파일이름이 겹치지 않게 하기 위함
-		String fileName = uuid+"_"+fileName1;
-		// 파일을 리소스 폴더에 저장
-		String real = session.getServletContext().getRealPath("/resources/memberImg");
-		FileOutputStream fos = new FileOutputStream(new File(real+"/"+fileName));
-		fos.write(member.getFile().getBytes());
-		fos.close();
+		if (fileName1 != null && !fileName1.equals("")) {
+			UUID uuid = UUID.randomUUID(); // 파일이름이 겹치지 않게 하기 위함
+			String fileName = uuid+"_"+fileName1;
+			// 파일을 리소스 폴더에 저장
+			String real = session.getServletContext().getRealPath("/resources/memberImg");
+			FileOutputStream fos = new FileOutputStream(new File(real+"/"+fileName));
+			fos.write(member.getFile().getBytes());
+			fos.close();
+			// 정보를 수정
+			member.setMB_img(fileName);
+		}	
 		
-		// 정보를 수정
-		member.setMB_img(fileName);
 		int result = mbs.update(member);
 		
 		model.addAttribute("result", result);
 		return "mypage/updateResult";
 	}
+	
+	// 비밀번호 변경 폼으로 이동
+	@RequestMapping("updatePw")
+	public String updatePw(Model model, HttpSession session) {
+		String MB_id = (String)session.getAttribute("MB_id");
+		Member member = mbs.select(MB_id);
+		model.addAttribute("member", member);
+		return "mypage/updatePw";
+	}
+	
+	// 비밀번호 변경
+	@RequestMapping("updatePwResult")
+	public String updatePwResult(Member member, Model model) {
+		int result = mbs.updatePw(member);
+		model.addAttribute("result", result);
+		return "mypage/updatePwResult";
+	}
+		
+	// 마이페이지 회원 탈퇴
+	@RequestMapping("delete")
+	public String delete(Model model, HttpSession session) {
+		String MB_id = (String)session.getAttribute("MB_id");
+		int result = mbs.delete(MB_id);
+		if (result == 1) {
+			session.invalidate();
+		}
+		model.addAttribute("result", result);
+		return "mypage/delete";  
+	}
+	
 	
 	// 좋아요 카테고리에서 프로필 상세보기
 	@RequestMapping("profileView")

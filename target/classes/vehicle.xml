@@ -25,6 +25,6 @@
 	
 	<!-- 차량 삭제 -->
 	<update id="delete" parameterType="integer">
-		update vehicle set VH_del='y' where VH_num=#{VH_num}
+		update vehicle set VH_del='Y' where VH_num=#{VH_num}
 	</update>
 </mapper>

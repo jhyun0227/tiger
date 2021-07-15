@@ -12,11 +12,63 @@
 	<script type="text/javascript" src="${path }/resources/bootstrap/js/jquery.js"></script>
 	<script type="text/javascript" src="${path }/resources/bootstrap/js/bootstrap.min.js"></script>
 <style type="text/css">
-.err {
-	color: red;
-	font-weight: bold;
-}
+	.filebox input[type="file"] {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		border: 0;
+	}
+	.filebox label {
+	    display: inline-block;
+	    width: 80px;
+	    height: 30px;
+	    border: none;
+	    background: #242526;
+	    color: #eee;
+	    font-size: 16px;
+	    text-align: center;
+	    cursor: pointer;
+	    line-height: 30px;
+	} 
+	/* named upload */
+	.filebox .upload-name {
+		display: inline-block;
+		background-color: white;
+		cursor: pointer;
+		border: none;
+		-webkit-appearance: none; /* 네이티브 외형 감추기 */
+		-moz-appearance: none;
+		appearance: none;
+	}
+	
+	.inputKm{
+		border: none;
+	    outline: 0;
+		width: 90px;
+	}
 </style>
+
+<script type="text/javascript">
+	$(document).ready( function(){ 
+		var fileTarget = $('.filebox .upload-hidden'); 
+		
+		fileTarget.on('change', function(){ // 값이 변경되면 
+			if(window.FileReader){ // modern browser 
+				var filename = $(this)[0].files[0].name;
+			} 
+			else { // old IE 
+				var filename = $(this).val().split('/').pop().split('\\').pop(); // 파일명만 추출 
+			} 
+		// 추출한 파일명 삽입 
+		$(this).siblings('.upload-name').val(filename);
+		}); 
+	});
+</script>
+
 </head>
 <body>
 <div align="center">
@@ -62,7 +114,7 @@
 			<tr>
 				<td class="col md-2 text-center">주행거리</td>
 				<td class="col md-10">
-					<input type="text" name="VH_km" required="required" placeholder="주행거리를 입력해주세요" class="inputLine">km
+					<input type="text" name="VH_km" required="required" placeholder="ex)100,000" class="inputKm">km
 				</td>
 			</tr>
 			<tr>
@@ -78,7 +130,11 @@
 			<tr>
 				<td class="col md-2 text-center">차량 앞면 사진</td>
 				<td>
-					<input type="file" name="file" id="cp" required="required">
+					<div class="filebox"> 
+						<label for="ex_filename">업로드</label> 
+						<input class="upload-name" disabled="disabled"> 
+						<input type="file" name="file" id="ex_filename" required="required" class="upload-hidden"> 	
+					</div>
 				</td>
 			</tr>
 			<tr>

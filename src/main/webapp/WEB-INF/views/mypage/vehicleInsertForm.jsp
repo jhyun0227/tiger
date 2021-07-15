@@ -7,6 +7,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
+	<link rel="stylesheet" type="text/css" href="${path }/resources/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="${path }/resources/bootstrap/css/common.css">
+	<script type="text/javascript" src="${path }/resources/bootstrap/js/jquery.js"></script>
+	<script type="text/javascript" src="${path }/resources/bootstrap/js/bootstrap.min.js"></script>
 <style type="text/css">
 .err {
 	color: red;
@@ -15,27 +19,33 @@
 </style>
 </head>
 <body>
-<div class="container" align="center">
-	<form action="vehicleInsertResult.do" method="post" enctype="multipart/form-data">
+<div align="center">
 	<h2 class="title">차량 정보 등록</h2>
+	<form action="vehicleInsertResult.do" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="MB_num" value="${MB_num }">
-		<table class="table table-bordered table-hover">
+		<table class="table narrowWidth">
 			<tr>
-				<td><label for="carNum">차량번호</label></td>
-				<td><input type="text" name="VH_carNum" id="carNum" required="required" autofocus="autofocus" 
-					 placeholder="ex)000가 0000"></td>
+				<td class="col md-2 text-center">차량번호</td>
+				<td class="col md-10">
+					<input type="text" name="VH_carNum" required="required" autofocus="autofocus" 
+					 placeholder="ex)000가 0000" class="inputLine">
+				</td>
 			</tr>
 			<tr>
-				<td><label for="carName">차량명</label></td>
-				<td><input type="text" name="VH_carName" id="carName" required="required" placeholder="ex)아반떼AD"></td>
+				<td class="col md-2 text-center">차량명</td>
+				<td class="col md-10">
+					<input type="text" name="VH_carName" required="required" placeholder="ex)아반떼AD" class="inputLine">
+				</td>
 			</tr>
 			<tr>
-				<td><label for="carYear">연식</label></td>
-				<td><input type="number" name="VH_carYear" id="carYear" required="required" value="2010"></td>
+				<td class="col md-2 text-center">연식</td>
+				<td class="col md-10">
+					<input type="number" name="VH_carYear" required="required" value="2010" class="inputLine">
+				</td>
 			</tr>
 			<tr>
-				<td><label for="carType">차종</label></td>
-				<td>
+				<td class="col md-2 text-center">차종</td>
+				<td class="col md-10">
 					<input type="radio" name="VH_carType" id="small" value="1" checked="checked">
 					<label for="small">소형</label>
 					&nbsp;
@@ -50,12 +60,14 @@
 				</td>
 			</tr>
 			<tr>
-				<td><label for="km">주행거리</label></td>
-				<td><input type="text" name="VH_km" id="km" required="required">km</td>
+				<td class="col md-2 text-center">주행거리</td>
+				<td class="col md-10">
+					<input type="text" name="VH_km" required="required" placeholder="주행거리를 입력해주세요" class="inputLine">km
+				</td>
 			</tr>
 			<tr>
-				<td><label for="insu">보험</label></td>
-				<td>
+				<td class="col md-2 text-center">보험</td>
+				<td class="col md-10">
 					<input type="radio" name="VH_insu" id="y" value="Y" checked="checked">
 					<label for="y">있음</label>
 					&nbsp;
@@ -64,12 +76,14 @@
 				</td>
 			</tr>
 			<tr>
-				<td><label for="cp">차량 앞면 사진</label></td>
-				<td><input type="file" name="file" id="cp" required="required"></td>
+				<td class="col md-2 text-center">차량 앞면 사진</td>
+				<td>
+					<input type="file" name="file" id="cp" required="required">
+				</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<input type="submit" value="차량 등록" class="btn btn-success">
+					<input type="submit" value="차량 등록" class="btn_small">
 				</td>
 			</tr>
 		</table>

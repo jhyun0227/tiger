@@ -8,15 +8,20 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div align="center">
+<h2 class="title">아이디 찾기</h2>
 <c:if test="${result == 1 }">
-	<h2>아이디 찾기</h2>
-	<table class="table table-bordered">
+	<table class="table narrowWidth">
 		<tr>
-			<th>회원님의 아이디는 '${member.MB_id }' 입니다.</th>
+			<th class="text-center">회원님의 아이디는 '${member.MB_id }' 입니다.</th>
+		</tr>
+		<tr>
+			<td class="text-center">
+				<!-- 아이디 찾기 후 비밀번호를 찾으면 값이 자동으로 넘어가게 하기 위함 -->
+				<button onclick="location.href='findPwForm.do?MB_id=${member.MB_id }'" class="btn_small">비밀번호 찾기</button>
+			</td>
 		</tr>
 	</table>
-	<!-- 아이디 찾기 후 비밀번호를 찾으면 값이 자동으로 넘어가게 하기 위함 -->
-	<a href="findPwForm.do?MB_id=${member.MB_id }">비밀번호 찾기</a>
 </c:if>
 <c:if test="${result == -1 }">
 	<script type="text/javascript">
@@ -24,5 +29,6 @@
 		history.go(-1);
 	</script>
 </c:if>
+</div>
 </body>
 </html>

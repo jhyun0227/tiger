@@ -14,7 +14,7 @@ ul, ol, li {
 ul.myMenu {
 	background: #242526;
 	text-align: center;
-} 
+}
 
 ul.myMenu>li {
 	display : inline-block;

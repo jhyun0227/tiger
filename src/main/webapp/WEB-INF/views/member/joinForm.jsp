@@ -7,13 +7,16 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
+<link rel="stylesheet" type="text/css" href="${path }/resources/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="${path }/resources/bootstrap/css/common.css">
+<script type="text/javascript" src="${path }/resources/bootstrap/js/jquery.js"></script>
+<script type="text/javascript" src="${path }/resources/bootstrap/js/bootstrap.min.js"></script>
 <style type="text/css">
 .err {
 	color: red;
 	font-weight: bold;
 }
 </style>
-<script type="text/javascript" src="${path }/resources/bootstrap/js/jquery.js"></script>
 <script type="text/javascript">
 	//이메일 유효성 검사 및 중복 체크
 	function idChk() {
@@ -147,14 +150,14 @@
 </script>
 </head>
 <body>
-<div class="container" align="center">
+<div align="center">
 	<h2 class="title">회원 가입</h2>
 	<form action="join.do" method="post" name="frm" onsubmit="return chk()">
-		<table class="table table-bordered table-hover">
+		<table class="table narrowWidth">
 			<tr>
-				<td><label for="email">이메일</label></td>
-				<td>
-					<input type="email" name="MB_id" id="email" required="required" autofocus="autofocus">
+				<td class="col md-2 text-center">이메일</td>
+				<td class="col md-10">
+					<input type="email" name="MB_id" required="required" autofocus="autofocus" placeholder="이메일을 입력해주세요" class="inputLine">
 					<input type="button" onclick="idChk()" class="btn btn-info btn-sm" value="이메일 인증">
 					<div id="idChk" class="err"></div>
 					
@@ -175,49 +178,54 @@
 				</td>
 			</tr>
 			<tr>
-				<td><label for="pw">비밀번호</label></td>
-				<td><input type="password" name="MB_pw" id="pw" required="required"></td>
+				<td class="col md-2 text-center">비밀번호</td>
+				<td class="col md-10">
+					<input type="password" name="MB_pw" id="pw" required="required" placeholder="비밀번호를 입력해주세요" class="inputLine">
+				</td>
 			</tr>
 			<tr>
-				<td><label for="pw_confirm">비밀번호 확인</label></td>
+				<td class="col md-2 text-center">비밀번호 확인</td>
 				<td>
-					<input type="password" name="MB_pw_confirm" id="pw_confirm" required="required">
+					<input type="password" name="MB_pw_confirm" id="pw_confirm" required="required" placeholder="비밀번호를 한번 더 입력해주세요" class="inputLine">
 					<br>
 					<div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div>
 					<div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
 				</td>
 			</tr>
 			<tr>
-				<td><label for="name">이름</label></td>
-				<td><input type="text" name="MB_name" id="name" required="required"></td>
+				<td class="col md-2 text-center">이름</td>
+				<td class="col md-10">
+					<input type="text" name="MB_name" id="name" required="required" placeholder="이름을 입력해주세요" class="inputLine">
+				</td>
 			</tr>
 			<tr>
-				<td><label for="regNum">주민등록번호</label></td>
-				<td>
-					<input type="text" name="MB_regNum" id="regNum" required="required" maxlength="6" style="width:11%;">
+				<td class="col md-2 text-center">주민등록번호</td>
+				<td class="col md-10">
+					<input type="text" name="MB_regNum" id="regNum" required="required" maxlength="6" style="width:11%;" placeholder="6자리" class="inputLine">
 					<span>―</span>
 					<!-- 1, 3일 경우 남자 / 2, 4일 경우 여자 -->
-					<input type="text" name="MB_gender" id="gender" required="required" maxlength="1" style="width:25px;">
+					<input type="text" name="MB_gender" id="gender" required="required" maxlength="1" style="width:15px;" placeholder="1" class="inputLine">
 					<span>******</span>
 				</td>
 			</tr>
 			<tr>
-				<td><label for="nickName">닉네임</label></td>
-				<td>
-					<input type="text" name="MB_nickName" id="nickName" required="required">
+				<td class="col md-2 text-center">닉네임</td>
+				<td class="col md-10">
+					<input type="text" name="MB_nickName" id="nickName" required="required" placeholder="닉네임을 입력해주세요" class="inputLine">
 					<input type="button" onclick="nickChk()" class="btn btn-info btn-sm" value="중복체크">
 					<div id="nickChk" class="err"></div>
 				</td>
 			</tr>
 			<tr>
-				<td><label for="tel">연락처</label></td>
-				<td><input type="tel" name="MB_tel" id="tel" required="required" title="전화번호 형식 3-4-4"
-							pattern="\d{3}-\d{4}-\d{4}" placeholder="000-0000-0000"></td>
+				<td class="col md-2 text-center">연락처</td>
+				<td class="col md-10">
+					<input type="tel" name="MB_tel" id="tel" required="required" title="전화번호 형식 3-4-4"
+						pattern="\d{3}-\d{4}-\d{4}" placeholder="000-0000-0000" class="inputLine">
+			</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<input type="submit" value="회원가입" class="btn btn-success">
-					<input type="reset" value="다시 작성" class="btn btn-danger">
+					<input type="submit" value="회원가입" class="btn_small">
 				</td>
 			</tr>
 		</table>

@@ -22,7 +22,7 @@
 				${search} like '%'||#{keyword}||'%'
 			</if>
 		</where>
-		order by CP_num) a) where rn between #{startRow} and #{endRow}
+		order by CP_num desc) a) where rn between #{startRow} and #{endRow}
 	</select>
 	
 	<select id="getTotal" parameterType="carpool" resultType="integer">

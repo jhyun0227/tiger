@@ -32,6 +32,8 @@ public class CarpoolController {
 	@Autowired
 	private ReportService rps;
 	
+	@Autowired
+	private MemberService ms;
 	// 타세요 리스트
 	@RequestMapping("cpList")
 	public String cpList(Carpool carpool, String pageNum, Model model) {
@@ -56,8 +58,10 @@ public class CarpoolController {
 	
 	// 타세요 작성폼
 	@RequestMapping("cpWriteForm")
-	public String cpWriteForm(int CP_num, Member member, String pageNum, Model model){
-		model.addAttribute("CP_num", CP_num);
+	public String cpWriteForm(int CP_num, Member member, String pageNum, Model model, HttpSession session){
+		String MB_id = (String)session.getAttribute("MB_id");
+		member = ms.select(MB_id);
+	//	model.addAttribute("CP_num", CP_num);
 		model.addAttribute("member", member);
 		model.addAttribute("pageNum", pageNum);
 		return "carpool/cpWriteForm";
@@ -103,7 +107,26 @@ public class CarpoolController {
 		return "carpool/cpReportResult";
 	}
 	
+	// 타세요 게시글 수정(작성한 회원만 가능)
+	@RequestMapping("cpUpdateForm")
+	public String cpUpdateForm(int CP_num, String pageNum, Model model, HttpSession session) {
+		String MB_id = (String)session.getAttribute("MB_id"); // session에 저장된 MB_id를 통해 MB_num 정보 받기
+		Member member = ms.select(MB_id);
+		Carpool carpool = cps.select(CP_num);
+		model.addAttribute("member", member);
+		model.addAttribute("carpool", carpool);
+		model.addAttribute("pageNum", pageNum);
+		return "carpool/cpUpdateForm";
+	}
 	
-	
+	// 타세요 게시글 수정 결과 안내
+	@RequestMapping("cpUpdateResult")
+	public String cpUpdateResult(Carpool carpool, String pageNum, Model model) {
+		int result = cps.update(carpool);
+		model.addAttribute("result", result);
+		model.addAttribute("pageNum", pageNum);
+		
+		
+	}
 	
 }

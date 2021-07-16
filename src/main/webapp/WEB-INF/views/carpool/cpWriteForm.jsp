@@ -36,7 +36,6 @@
 				<form action="cpWriteResult.do" class="form-horizontal" method="post">
 					<!-- 로그인된 회원번호 -->
 					<input type="hidden" name="MB_num" value="${member.MB_num}" />
-					<input type="hidden" name="CP_num" value="${CP_num}" />
 					<div class="box-body">
 						<div class="form-group">
 							<label for="CP_startPoint" class="col-sm-2 control-label">출발지</label>

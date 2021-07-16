@@ -2,5 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reportns">
-
+	<insert id="RPinsert" parameterType="report">
+		insert into report values
+		(#{RP_num},#{RP_reason},#{CP_num})
+	</insert>
+	
+	<select id="getMaxNum" resultType="integer">
+		select nvl(max(RP_num),0) + 1 from report
+	</select>
 </mapper>

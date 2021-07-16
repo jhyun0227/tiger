@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ch.tiger.service.PagingBean;
+import com.ch.tiger.service.ReportService;
 import com.ch.tiger.model.Carpool;
 import com.ch.tiger.model.Member;
+import com.ch.tiger.model.Report;
 import com.ch.tiger.service.CarpoolService;
 import com.ch.tiger.service.MemberService;
 
@@ -26,12 +28,13 @@ public class CarpoolController {
 	
 	@Autowired
 	private CarpoolService cps;
+
 	@Autowired
-	private MemberService mbs;
+	private ReportService rps;
 	
 	// 타세요 리스트
 	@RequestMapping("cpList")
-	public String list(Carpool carpool, String pageNum, Model model) {
+	public String cpList(Carpool carpool, String pageNum, Model model) {
 		if (pageNum == null || pageNum.equals(""))
 			pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
@@ -71,12 +74,36 @@ public class CarpoolController {
 		return "carpool/cpWriteResult";
 	}
 	
-	// 타세요 상세보기
+	// 타세요 리스트 상세보기
 	@RequestMapping("cpView")
-	public String view(int CP_num, String pageNum, Model model) {
+	public String cpView(int CP_num, String pageNum, Model model) {
 		Carpool carpool = cps.select(CP_num);
 		model.addAttribute("carpool", carpool);
 		model.addAttribute("pageNum", pageNum);
 		return "carpool/cpView";
 	}
+	
+	// 타세요 신고하기 폼
+	@RequestMapping("cpReportForm")
+	public String cpReportForm(int CP_num, Report report, String pageNum, Model model) {
+		model.addAttribute("CP_num", CP_num);
+		model.addAttribute("report", report);
+		model.addAttribute("pageNum", pageNum);
+		return "carpool/cpReportForm";
+	}
+	
+	// 타세요 신고하기 결과 안내
+	@RequestMapping("cpReportResult")
+	public String cpReportResult(Report report, String pageNum, Model model) {
+		int number = rps.getMaxNum(); // 1. 신고 글번호 생성
+		report.setRP_num(number); // 2. report table의  RP_num(max번호 +1) 설정
+		int result = rps.RPinsert(report);
+		model.addAttribute("result", result);
+		model.addAttribute("pageNum", pageNum);
+		return "carpool/cpReportResult";
+	}
+	
+	
+	
+	
 }

@@ -126,17 +126,17 @@
 							<label class="col-sm-2 control-label">성별제한</label>
 							<div class="col-sm-10">
 								<div>
-									<label class="radio-inline"><input type="radio" name="CP_gendertype" id="CP_gendertype1" value="무관" checked="checked"> 무관 </label>
-									<label class="radio-inline"><input type="radio" name="CP_gendertype" id="CP_gendertype2" value="남자"> 남자 </label>
-									<label class="radio-inline"><input type="radio" name="CP_gendertype" id="CP_gendertype2" value="여자"> 여자 </label>
+									<label class="radio-inline"><input type="radio" name="CP_gendertype" id="CP_gendertype1" value=" 무관" checked="checked"> 무관 </label>
+									<label class="radio-inline"><input type="radio" name="CP_gendertype" id="CP_gendertype2" value=" 남자"> 남자 </label>
+									<label class="radio-inline"><input type="radio" name="CP_gendertype" id="CP_gendertype2" value=" 여자"> 여자 </label>
 								</div>
 							</div>
 							<label class="col-sm-2 control-label">참고사항</label>
 							<div>
-								<label class="radio-inline"> <input type="checkbox" name="CP_option" id="CP_option1" value="애완동물 허용"> 애완동물 허용 </label>
-								<label class="radio-inline"> <input type="checkbox" name="CP_option" id="CP_option2" value="조용한 카풀"> 조용한 카풀 </label>
-								<label class="radio-inline"> <input type="checkbox" name="CP_option" id="CP_option3" value="음식물 섭취"> 음식물 섭취 </label>
-								<label class="radio-inline"> <input type="checkbox" name="CP_option" id="CP_option4" value="마스크 착용" checked="checked"> 마스크 착용 </label>
+								<label class="radio-inline"> <input type="checkbox" name="CP_option" id="CP_option1" value=" 애완동물 허용"> 애완동물 허용 </label>
+								<label class="radio-inline"> <input type="checkbox" name="CP_option" id="CP_option2" value=" 조용한 카풀"> 조용한 카풀 </label>
+								<label class="radio-inline"> <input type="checkbox" name="CP_option" id="CP_option3" value=" 음식물 섭취"> 음식물 섭취 </label>
+								<label class="radio-inline"> <input type="checkbox" name="CP_option" id="CP_option4" value=" 마스크 착용" checked="checked"> 마스크 착용 </label>
 							</div>
 						</div>
 					</div>

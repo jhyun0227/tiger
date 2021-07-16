@@ -27,9 +27,7 @@
 	<div class="content-wrapper">
 		<div class="container">
 			<form class="form-horizontal" method="post">
-				<!-- 로그인된 회원번호 -->
-				<input type="hidden" name="MB_num" value="${member.MB_num}" />
-				<input type="hidden" name="CP_num" value="${CP_num}" />
+			<input type="hidden" name="CP_num" value="${carpool.CP_num}" />
 				<!-- 컨텐츠 헤더 부분(Page header) -->
 				<section class="content-header">
 					<h1>
@@ -37,7 +35,7 @@
 					</h1>
 					<!-- 신고 버튼 -->
 					<div align="right">
-						<a href="cpWriteForm.do?CP_num=0&pageNum=1" class="btn btn-danger">신고하기</a>
+						<a href="cpReportForm.do?CP_num=${carpool.CP_num }&pageNum=${pageNum }" class="btn btn-danger">신고</a>
 					</div>
 				</section>
 				<!-- 메인 컨텐츠 부분 -->

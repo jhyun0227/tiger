@@ -38,71 +38,53 @@
 
 </style>
 <script type="text/javascript">
+	// 안보이게 하기
+	$(function() {
+		$("#emailChk").hide();
+		$("#emailChk_success").hide();
+		$("#emailChk_fail").hide();
+	});
+	
 	//이메일 유효성 검사 및 중복 체크
 	function idChk() {
 	/* 이메일 유효성 검사 */
 	var reg_id = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
-	if(!frm.MB_id.value) {
+	if(!frm.MB_id.value) { // 이메일 입력창에 아무것도 작성안하고 체크 눌럿을 때
 		alert("이메일을 입력하세요")
 		frm.MB_id.focus();
 		frm.MB_id.value="";
 		return false;
-	} else {
-		if(!reg_id.test(frm.MB_id.value)){
+	} else { // 작성한 후 체크 줄렀을때
+		if(!reg_id.test(frm.MB_id.value)){ // 올바른 이메일 형식이 아닐때
 			alert("올바른 이메일 형식이 아닙니다.");
 			frm.MB_id.focus();
 			return false;
-		} /* else {
-			인증메일 전송
-			$.post("mailResult.na", "id="+frm.id.value, function(data){
-				인증메일 전송시 인증번호 입력창 보이기
-				var str = data.split(";");
-				alert(str[0]);
-				frm.certify.value=str[1];
-				if (str[0]=="send mail success"){
-					$('#chkIdDIV').css("display","block")
-				}
-			});
-		
-		} */
-		// 아이디 중복 체크 로직
-			$.post('idChk.do', 'MB_id='+frm.MB_id.value, function(data) {
+		} else { // 올바른 이메일 형식이면 중복 체크를 함
+			$.post('idChk.do', 'MB_id='+frm.MB_id.value, function(data) { 
 				$('#idChk').html(data);
-			});
+				if (data == '사용가능한 이메일 입니다.') { // 중복 체크했는데 사용 가능한 아이디일때 메일을 보냄
+					$("#emailChk").show();
+					$.post("mailResult.do", "MB_id="+frm.MB_id.value, function(data2){
+						$("#emailChk").keyup(function() {
+							if (data2 == frm.emailChk.value) {
+								$("#emailChk_success").show();
+								$("#emailChk_fail").hide();
+								$("#submit").attr('disabled', false);
+							} else {
+								$("#emailChk_success").hide();
+								$("#emailChk_fail").show();
+								$("#submit").attr('disabled', true);
+							}
+						});
+					});
+				} else {
+					$("#submit").attr('disabled', true);
+				}
+			});	
+		}
 		}
 	}
      
-    /* 이메일 유효성 검사 및 중복 체크
-	function emailChk() {
-		이메일 유효성 검사
-		var reg_id = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
-		if(!frm.MB_id.value) {
-			alert("이메일을 입력하세요")
-			frm.MB_id.focus();
-			frm.MB_id.value="";
-			return false;
-		} else {
-			if(!reg_id.test(frm.MB_id.value)){
-				alert("올바른 이메일 형식이 아닙니다.");
-				frm.MB_id.focus();
-				return false;
-			} else {
-				$.post('emailChk.do', 'MB_id='+frm.MB_id.value, function(data) {
-					if (data == "인증번호를 입력해주세요.") {
-						$('#emailChkSuccess').html(data);
-						var str = data.split(";");
-						alert(str[0]);
-						frm.certify.value=str[1];
-						$('#chkIdDIV').css("display","block")
-						
-					} else (data == "이미 사용중인 이메일 입니다.") {
-						$('#emailChkFalse').html(data);
-					}
-				});
-			}
-		}
-	} */
-	
 	// 비밀번호 일치 불일치 ajax
 	$(function() {
 		$("#alert-success").hide();
@@ -114,9 +96,11 @@
 				if (MB_pw == MB_pw_confirm) {
 					$("#alert-success").show();
 					$("#alert-danger").hide();
+					$("#submit").attr('disabled', false);
 				} else {
 					$("#alert-success").hide();
 					$("#alert-danger").show();
+					$("#submit").attr('disabled', true);
 				}
 			}
 		});
@@ -133,6 +117,11 @@
 			// 닉네임 중복 체크 로직
 			$.post('nickChk.do', 'MB_nickName='+frm.MB_nickName.value, function(data) {
 				$('#nickChk').html(data);
+				if (data == '사용가능한 닉네임입니다.') {
+					$("#submit").attr('disabled', false);
+				} else {
+					$("#submit").attr('disabled', true);
+				}
 			});
 		}
 	}
@@ -180,11 +169,17 @@
 					<input type="email" name="MB_id" required="required" autofocus="autofocus" placeholder="이메일을 입력해주세요" class="inputline1">
 					<input type="button" onclick="idChk()" class="btn_s" value="이메일 인증">
 					<div id="idChk" class="err"></div>
+					<br>
+					<div id="emailChk">
+						<input type="text" name="emailChk" id="emailChk" class="inputline1" placeholder="인증번호 입력">
+					</div>
+					<div id="emailChk_success" class="err">인증번호가 일치합니다.</div>
+					<div id="emailChk_fail" class="err">인증번호가 일치하지 않습니다.</div>
 					
 					<!-- 이메일이 중복이 아닐 경우
 					<div id="emailChkSuccess" class="err"></div>
 					이메일 인증 
-					<div class="check" id="chkIdDIV">
+					<div class="check" id="">
 						<input type="text" name="mail_chk" class="inputBox-left" placeholder="인증번호 입력">
 						<a class="chk-btn"  id="mailConfirm_btn" onclick="chkMail();">인증 확인</a> 
 						인증버튼 눌렀는지 체크
@@ -241,11 +236,11 @@
 				<td class="col md-10">
 					<input type="tel" name="MB_tel" id="tel" required="required" title="전화번호 형식 3-4-4"
 						pattern="\d{3}-\d{4}-\d{4}" placeholder="000-0000-0000" class="inputline1">
-			</td>
+				</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<input type="submit" value="회원가입" class="btn_small">
+					<input type="submit" id="submit" value="회원가입" class="btn_small" disabled="">
 				</td>
 			</tr>
 		</table>

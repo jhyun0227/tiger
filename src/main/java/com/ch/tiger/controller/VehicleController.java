@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ch.tiger.model.Member;
@@ -57,6 +58,20 @@ public class VehicleController {
 		int MB_num = member.getMB_num();
 		model.addAttribute("MB_num", MB_num);
 		return "mypage/vehicleInsertForm";
+	}
+	
+	// 차량 번호 중복체크
+	@RequestMapping(value = "vhChk", produces = "text/html;charset=utf-8")
+	@ResponseBody // jsp로 가지말고 바로 본문으로 전달
+	public String vhChk(String VH_carNum) {
+		String msg = "";
+		Vehicle vehicle = vs.select(VH_carNum);
+		if (vehicle == null) {
+			msg = "등록가능한 차량번호입니다.";
+		} else {
+			msg = "이미 사용중인 차량번호입니다.";
+		}
+		return msg;
 	}
 	
 	// 차량 등록

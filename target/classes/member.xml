@@ -12,6 +12,11 @@
 		select * from member where MB_nickName=#{MB_nickName}
 	</select>
 	
+	<!-- 마이페이지에서 닉네임 중복체크 -->
+	<select id="selectNickMy" parameterType="member" resultType="member">
+		select * from member where MB_nickName=#{MB_nickName} and MB_num=#{MB_num}
+	</select>
+	
 	<!-- 회원가입 -->
 	<insert id="insert" parameterType="member">
 		insert into member(MB_num, MB_id, MB_pw, MB_name, MB_regNum, MB_gender, MB_nickName, MB_tel, MB_regDate)
@@ -51,4 +56,9 @@
 	<select id="selectNum" parameterType="integer" resultType="member">
 		select * from member where MB_num=#{MB_num}
 	</select>
+	
+	<!-- apply 컨트롤러에서 신청했을 때 driverConfirm 컬럼의 값을 바꿔주는 로직 -->
+	<update id="updateDriverConfirm" parameterType="integer">
+		update member set MB_driverConfirm='I' where MB_num=#{MB_num}
+	</update>
 </mapper>

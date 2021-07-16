@@ -15,4 +15,9 @@ public class ApplyServiceImpl implements ApplyService {
 	public Apply select(int MB_num) {
 		return ad.select(MB_num); // 신청기록이 있는지 알기 위해
 	}
+
+	@Override
+	public int insert(Apply apply) { // 신청 입력
+		return ad.insert(apply);
+	}
 }

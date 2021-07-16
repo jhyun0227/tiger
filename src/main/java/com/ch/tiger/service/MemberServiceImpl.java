@@ -20,6 +20,11 @@ public class MemberServiceImpl implements MemberService {
 	public Member selectNick(String MB_nickName) { // 닉네임 중복체크
 		return mbd.selectNick(MB_nickName);
 	}
+	
+	@Override
+	public Member selectNickMy(Member member) { // 마이페이지에서의 닉네임 중복체크
+		return mbd.selectNickMy(member);
+	}
 
 	@Override
 	public int insert(Member member) { // 회원가입
@@ -55,4 +60,10 @@ public class MemberServiceImpl implements MemberService {
 	public Member selectNum(int MB_num) { // 프로필 상세
 		return mbd.selectNum(MB_num);
 	}
+
+	@Override
+	public int updateDriverConfirm(int MB_num) { // apply 컨트롤러에서 드라이버 신청하면 컬럼 바꾸는 로직
+		return mbd.updateDriverConfirm(MB_num);
+	}
+
 }

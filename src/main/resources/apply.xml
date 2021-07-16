@@ -5,4 +5,8 @@
 	<select id="select" parameterType="integer" resultType="apply">
 		select * from apply where MB_num=#{MB_num}
 	</select>
+	
+	<insert id="insert" parameterType="apply">
+		insert into apply values((select nvl(max(AP_num), 0)+1 from apply), #{AP_picture}, #{MB_num})
+	</insert>
 </mapper>

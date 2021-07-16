@@ -1,7 +1,6 @@
 package com.ch.tiger.controller;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Random;
@@ -15,13 +14,10 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ch.tiger.model.Email;
 import com.ch.tiger.model.Member;
-import com.ch.tiger.model.Vehicle;
 import com.ch.tiger.service.MemberService;
 
 @Controller
@@ -44,50 +40,44 @@ public class MemberController {
 		String msg = "";
 		Member member = mbs.select(MB_id);
 		if (member == null) {
-			msg = "사용 가능 한 이메일 입니다.";
+			msg = "사용가능한 이메일 입니다.";
 		} else {
 			msg = "이미 사용중인 이메일 입니다.";
 		}
 		return msg;
 	}
 
-//	이메일 인증
-//	@RequestMapping(value = "emailChk", produces = "text/html;charset=utf-8")
-//	@ResponseBody
-//	public String emailChk(String MB_id, Email email, Model model) {
-//		String msg = ""; // 내용에 들어갈 메세지
-//		Member member = mbs.select(MB_id);
-//		// 중복이 없는 이메일
-//		if (member == null) {
-//			String code=""; // 인증코드
-//			// 난수 생성
-//			Random random = new Random();
-//			for(int i=0; i<3; i++) {
-//				int index = random.nextInt(25)+65; //A~Z까지 랜덤 알파벳 생성
-//				code += (char)index;
-//			}
-//			int numIndex = random.nextInt(9999)+1000; //4자리 랜덤 정수 생성
-//			code += numIndex;		
-//			msg = (String)code;  //메시지 내용 함수입력
-//					
-//			MimeMessage mm = jMailSender.createMimeMessage();
-//			try {
-//				MimeMessageHelper mmh = new MimeMessageHelper(mm, true, "utf-8");
-//				mmh.setSubject("타이거 인증번호 입니다.");
-//				mmh.setText("인증번호 : " + msg);
-//				mmh.setTo(MB_id);
-//				mmh.setFrom("jhyun0227@naver.com");
-//				jMailSender.send(mm);
-//				model.addAttribute("msg", "인증번호를 입력해주세요.");
-//				model.addAttribute("key", msg);
-//			} catch (Exception e) {
-//				model.addAttribute("msg", e.getMessage());
-//			}		
-//		} else {
-//			msg = "이미 사용중인 이메일 입니다.";
-//		}
-//		return msg;
-//	}
+	// 이메일 인증
+	@RequestMapping(value = "mailResult", produces = "text/html;charset=utf-8")
+	@ResponseBody
+	public String mailResult(String MB_id, Model model) {
+		String msg = ""; // 코드를 담아 보낼 메세지
+		String code=""; // 코드 생성
+		
+		// 난수 생성
+		Random random = new Random();
+		for(int i=0; i<3; i++) {
+			int index = random.nextInt(25)+65; //A~Z까지 랜덤 알파벳 생성
+			code += (char)index;
+		}
+		int numIndex = random.nextInt(9999)+1000; //4자리 랜덤 정수 생성
+		code += numIndex;		
+		msg = (String)code;  //메시지 내용 함수입력
+				
+		MimeMessage mm = jMailSender.createMimeMessage();
+		try {
+			MimeMessageHelper mmh = new MimeMessageHelper(mm, true, "utf-8");
+			mmh.setSubject("이메일 인증번호 입니다.");
+			mmh.setText("인증번호 : " + msg);
+			mmh.setTo(MB_id);
+			mmh.setFrom("jhyun0227@naver.com");
+			jMailSender.send(mm);
+			model.addAttribute("msg", msg);
+		} catch (Exception e) {
+			model.addAttribute("msg", e.getMessage());
+		}		
+		return msg;
+	}
 
 	// 닉네임 중복체크
 	@RequestMapping(value = "nickChk", produces = "text/html;charset=utf-8")
@@ -102,6 +92,25 @@ public class MemberController {
 		}
 		return msg;
 	}
+	
+	// 마이페이지에서 닉네임 중복체크
+		@RequestMapping(value = "nickChkMy", produces = "text/html;charset=utf-8")
+		@ResponseBody // jsp로 가지말고 바로 본문으로 전달
+		public String nickChkMy(Member member) {
+			String msg = "";
+			Member member2 = mbs.selectNickMy(member);
+			if (member2 != null) {
+				msg = "사용가능한 닉네임입니다."; // 기존에 사용중인 닉네임이라서 사용이 가능
+			} else {
+				Member member3 = mbs.selectNick(member.getMB_nickName());
+				if (member3 == null) {
+					msg = "사용가능한 닉네임입니다."; // 기존에 사용중이지 않으면서 아무도 사용하지 않음
+				} else {
+					msg = "이미 사용중인 닉네임입니다."; // 누군가 사용중
+				}
+			}
+			return msg;
+		}
 
 	// 회원가입 로직
 	@RequestMapping("join")
@@ -206,6 +215,12 @@ public class MemberController {
 				mmh.setTo(member.getMB_id());
 				mmh.setFrom("jhyun0227@naver.com");
 				jMailSender.send(mm);
+				
+				// 이메일이 성공적으로 보내졌으면 멤버 비밀번호를 변경
+				member.setMB_pw(msg);
+				int resultUpdatePw = mbs.updatePw(member);
+				model.addAttribute("resultUpdatePw", resultUpdatePw);
+				
 			} catch (Exception e) {
 				result = 0;
 				model.addAttribute("msg", e.getMessage());

@@ -50,9 +50,31 @@
 	    outline: 0;
 		width: 90px;
 	}
+	
+	.err {
+		color: red;
+		font-weight: bold;
+	}
 </style>
 
 <script type="text/javascript">
+	// 차량 번호가 중복인지  확인하는 ajax
+	$(function() {
+		$("#vhChk").hide();
+		$("#carNum").keyup(function() {
+			$.post('vhChk.do', 'VH_carNum='+frm.VH_carNum.value, function(data) {
+				$('#vhChk').html(data);
+				if (data == '등록가능한 차량번호입니다.') {
+					$("#vhChk").show();
+					$("#submit").attr('disabled', false);
+				} else {
+					$("#vhChk").show();
+					$("#submit").attr('disabled', true);
+				}
+			});
+		});
+	});
+	
 	$(document).ready( function(){ 
 		var fileTarget = $('.filebox .upload-hidden'); 
 		
@@ -73,14 +95,15 @@
 <body>
 <div align="center">
 	<h2 class="title">차량 정보 등록</h2>
-	<form action="vehicleInsertResult.do" method="post" enctype="multipart/form-data">
+	<form action="vehicleInsertResult.do" method="post" name="frm" enctype="multipart/form-data">
 	<input type="hidden" name="MB_num" value="${MB_num }">
 		<table class="table narrowWidth">
 			<tr>
 				<td class="col md-2 text-center">차량번호</td>
 				<td class="col md-10">
-					<input type="text" name="VH_carNum" required="required" autofocus="autofocus" 
+					<input type="text" name="VH_carNum" id="carNum" required="required" autofocus="autofocus" 
 					 placeholder="ex)000가 0000" class="inputLine">
+					 <div id="vhChk" class="err"></div>
 				</td>
 			</tr>
 			<tr>
@@ -139,7 +162,7 @@
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<input type="submit" value="차량 등록" class="btn_small">
+					<input type="submit" id="submit" value="차량 등록" class="btn_small" disabled="">
 				</td>
 			</tr>
 		</table>

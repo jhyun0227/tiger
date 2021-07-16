@@ -6,6 +6,8 @@ public interface MemberService {
 	Member select(String MB_id); // 아이디로 정보를 가져오는 로직
 
 	Member selectNick(String MB_nickName); // 닉네임 중복 체크
+	
+	Member selectNickMy(Member member); // 마이페이지에서 중복 체크
 
 	int insert(Member member); // 회원가입
 
@@ -20,4 +22,6 @@ public interface MemberService {
 	int delete(String MB_id); // 회원 탈퇴
 
 	Member selectNum(int MB_num); // 프로필 상세
+
+	int updateDriverConfirm(int MB_num); // apply 컨트롤러에서 드라이버 신청하면 컬럼 바꾸는 로직
 }

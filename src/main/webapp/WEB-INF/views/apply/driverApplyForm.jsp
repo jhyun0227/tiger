@@ -12,6 +12,24 @@
 	<script type="text/javascript" src="${path }/resources/bootstrap/js/jquery.js"></script>
 	<script type="text/javascript" src="${path }/resources/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript">
+	// 차량 번호가 중복인지  확인하는 ajax
+	$(function() {
+		$("#vhChk").hide();
+		$("#carNum").keyup(function() {
+			$.post('vhChk.do', 'VH_carNum='+frm.VH_carNum.value, function(data) {
+				$('#vhChk').html(data);
+				if (data == '등록가능한 차량번호입니다.') {
+					$("#vhChk").show();
+					$("#submit").attr('disabled', false);
+				} else {
+					$("#vhChk").show();
+					$("#submit").attr('disabled', true);
+				}
+			});
+		});
+	});
+   
+   
    // 파일 업로드 해서 같은 화면에 띄우기
     $(document).ready(function (e){
     $("input[type='file']").change(function(e){
@@ -82,7 +100,67 @@
       });//arr.forEach
     }
   });
+   
+    $(document).ready( function(){ 
+		var fileTarget = $('.filebox .upload-hidden'); 
+		
+		fileTarget.on('change', function(){ // 값이 변경되면 
+			if(window.FileReader){ // modern browser 
+				var filename = $(this)[0].files[0].name;
+			} 
+			else { // old IE 
+				var filename = $(this).val().split('/').pop().split('\\').pop(); // 파일명만 추출 
+			} 
+		// 추출한 파일명 삽입 
+		$(this).siblings('.upload-name').val(filename);
+		}); 
+	});
 </script>
+<style type="text/css">
+	.filebox input[type="file"] {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		border: 0;
+	}
+	.filebox label {
+	    display: inline-block;
+	    width: 80px;
+	    height: 30px;
+	    border: none;
+	    background: #242526;
+	    color: #eee;
+	    font-size: 16px;
+	    text-align: center;
+	    cursor: pointer;
+	    line-height: 30px;
+	} 
+	/* named upload */
+	.filebox .upload-name {
+		display: inline-block;
+		background-color: white;
+		cursor: pointer;
+		border: none;
+		-webkit-appearance: none; /* 네이티브 외형 감추기 */
+		-moz-appearance: none;
+		appearance: none;
+	}
+	
+	.inputKm{
+		border: none;
+	    outline: 0;
+		width: 90px;
+	}
+	
+	.err {
+	color: red;
+	font-weight: bold;
+	}
+</style>
 </head>
 <body>
 <!-- 드라이버 신청 중인 경우 중복 신청 못하게 -->
@@ -93,32 +171,44 @@
 	</script>
 </c:if>
 
+<!-- 드라이버 등록이 된 경우 -->
+<c:if test="${result == 0 }">
+	<script type="text/javascript">
+		alert("드라이버 등록이 완료된 계정입니다.");
+		history.go(-1);
+	</script>
+</c:if>
+
+
 <!-- 신청기록이 없거나 신청 후 거절당해서 다시 신청이 가능한 경우 -->
 <c:if test="${result == 1 }">
 <div align="center">
 	<h2 class="title">드라이버 등록</h2>
-	<form action="driverApplyResult.do" enctype="multipart/form-data" method="post"> 
-		<input type="hidden" name="MB_id" value="${MB_id }">
+	<form action="driverApplyResult.do" method="post" name="frm" enctype="multipart/form-data"> 
+		<input type="hidden" name="MB_num" value="${member.MB_num }">
 		<h2>드라이버 정보 입력</h2>
-		<table class="table table-bordered">
+		<table class="table narrowWidth">
 				<tr>
-					<td>아이디</td>
-					<td>${member.MB_id}</td>
+					<td class="col md-2 text-center">아이디</td>
+					<td class="col md-10">${member.MB_id}</td>
 				</tr>
 				<tr>
-					<td>운전면허증 사진</td>  
-				    <td><input type="file" name="fileAp" id="AP_picture"  required="required">
-					<div id="preview"></div> 
+					<td class="col md-2 text-center">운전면허증 사진</td>  
+				    <td class="col md-10">
+				    	<input type="file" name="fileAp" id="AP_picture"  required="required">
+						<div id="preview">
+					</div> 
 		    	</tr>
 		</table>
 		<br>
 		<h2>차량 정보 입력</h2>
-		<table class="table table-bordered">
+		<table class="table narrowWidth">
 			<tr>
 				<td class="col md-2 text-center">차량번호</td>
 				<td class="col md-10">
-					<input type="text" name="VH_carNum" required="required" autofocus="autofocus" 
+					<input type="text" name="VH_carNum" id="carNum" required="required" autofocus="autofocus" 
 					 placeholder="ex)000가 0000" class="inputLine">
+					 <div id="vhChk" class="err"></div>
 				</td>
 			</tr>
 			<tr>
@@ -175,13 +265,12 @@
 					</div>
 				</td>
 			</tr>
+			
 		</table> 
 		
-		<tr>
-		<td colspan="2" align="center">
-					<input type="submit" value="드라이버등록신청">
-					<input type="reset" value="다시 작성"> 
-		</tr>  
+		<div align="center">
+			<input type="submit" id="submit" value="드라이버등록신청" disabled="">
+		</div>
 	</form> 
 </div>
 </c:if>

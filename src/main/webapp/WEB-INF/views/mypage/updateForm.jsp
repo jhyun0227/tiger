@@ -84,9 +84,14 @@
 			frm.MB_nickName.value="";
 			return false;
 		} else {
-			// 닉네임 중복 체크 로직
-			$.post('nickChk.do', 'MB_nickName='+frm.MB_nickName.value, function(data) {
+			// 마이페이지에서 닉네임 중복 체크 로직 회원가입과 다르다 기존 사용하는 닉네임의 판별 여부를 위해 만들었음
+			$.post('nickChkMy.do', 'MB_nickName='+frm.MB_nickName.value+'&MB_num='+'${member.MB_num}', function(data) {
 				$('#nickChk').html(data);
+				if (data == '사용가능한 닉네임입니다.') {
+					$("#submit").attr('disabled', false);
+				} else {
+					$("#submit").attr('disabled', true);
+				}
 			});
 		}
 	}
@@ -106,6 +111,7 @@
 		}); 
 	});
 	
+	// 탈퇴 확인
 	function del() {
 		var cf = confirm("정말로 탈퇴하시겠습니까?");
 		if (cf) {
@@ -166,7 +172,7 @@
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<input type="submit" value="정보 수정" class="btn_small">
+					<input type="submit" id="submit" value="정보 수정" class="btn_small" disabled="">
 				</td>
 			</tr>
 		</table>

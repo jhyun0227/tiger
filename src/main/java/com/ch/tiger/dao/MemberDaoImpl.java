@@ -20,6 +20,12 @@ public class MemberDaoImpl implements MemberDao{
 	public Member selectNick(String MB_nickName) {
 		return sst.selectOne("memberns.selectNick", MB_nickName); // 닉네임 중복 체크
 	}
+	
+	@Override
+	public Member selectNickMy(Member member) {
+		return sst.selectOne("memberns.selectNickMy", member); // 마이페이지에서 닉네임 중복체크
+	}
+
 
 	@Override
 	public int insert(Member member) {
@@ -56,5 +62,9 @@ public class MemberDaoImpl implements MemberDao{
 		return sst.selectOne("memberns.selectNum", MB_num); // 프로필 상세
 	}
 
-	
+	@Override
+	public int updateDriverConfirm(int MB_num) { // apply 컨트롤러에서 드라이버 신청하면 컬럼 바꾸는 로직
+		return sst.update("memberns.updateDriverConfirm", MB_num);
+	}
+
 }

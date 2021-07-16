@@ -17,7 +17,7 @@
 			$("#correct").hide();
 			$("#fail").hide();
 			$("#now_pw").keyup(function() {
-				var MB_pw_db = ${member.MB_pw};
+				var MB_pw_db = "${member.MB_pw}";
 				var MB_pw_now = $("#now_pw").val();
 				if (MB_pw_now != "") {
 					if (MB_pw_db == MB_pw_now) {

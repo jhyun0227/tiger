@@ -57,25 +57,31 @@
 				<td class="col md-2 text-center">성별</td>
 				<td class="col md-10">여자</td>
 			</tr>	
-		</c:if>
-		
-		<c:if test="${member.MB_driverConfirm == 'Y'}">
-		<tr>
-			<td class="col md-2 text-center">드라이버</td>
-			<td class="col md-10">O</td>
-		</tr>
-		</c:if>
-		<c:if test="${member.MB_driverConfirm == 'N'}">
-		<tr>
-			<td class="col md-2 text-center">드라이버</td>
-			<td class="col md-10">X</td>
-		</tr>
-		</c:if>
+		</c:if>	
 		
 		<tr>
 			<td class="col md-2 text-center">가입일</td>
 			<td class="col md-10">${member.MB_regDate }</td>
 		</tr>
+		
+		<c:if test="${member.MB_driverConfirm == 'Y'}">
+			<tr>
+				<td class="col md-2 text-center">드라이버</td>
+				<td class="col md-10">승인</td>
+			</tr>
+		</c:if>
+		<c:if test="${member.MB_driverConfirm == 'I'}">
+			<tr>
+				<td class="col md-2 text-center">드라이버</td>
+				<td class="col md-10">심사중</td>
+			</tr>
+		</c:if>
+		<c:if test="${member.MB_driverConfirm == 'N'}">
+			<tr>
+				<td class="col md-2 text-center">드라이버</td>
+				<td class="col md-10">미신청/거절(재신청 가능)</td>
+			</tr>
+		</c:if>
 	</table>
 </div>
 </body>

@@ -6,101 +6,128 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.menuTitle {
+	color: #000000;
+	margin-left: 30px;
+}
+
+.page_num {
+	color: #000000;
+}
+
+.pagination_bottom {
+	display: inline-flex;
+	margin-top: 100px;
+}
+
+.page_current_num {
+	color: orange;
+}
+
+.pagination_bottom li a:hover {
+	text-decoration: none;
+}
+</style>
 </head>
 <body>
 	<div class="container" align="center">
-		<h2 class="title">드라이버 승인정보</h2>
-		<table class="table table-striped">
+		<h2 class="title">드라이버 신청 목록</h2>
+		<table class="table">
 			<tr>
-				<td>번호</td>
-				<td>회원ID</td>
-				<td>이름</td>
-				<td>성별</td>
-				
-				<td>가입일</td>
-				<td>탈퇴 여부</td>				
+				<th class="col-md-2 text-center">신청번호</th>
+				<th class="col-md-2 text-center">회원 ID</th>
+				<th class="col-md-2 text-center">이름</th>
+				<th class="col-md-2 text-center">성별</th>
+				<th class="col-md-2 text-center">승인상태</th>		
 			</tr>
 			<c:if test="${empty applyList }">
 				<tr>
-					<th colspan="7">회원 정보가 없습니다</th>
+					<th colspan="5" class="text-center">회원 정보가 없습니다</th>
 				</tr>
 			</c:if>
 			<c:if test="${not empty applyList }">
 				<c:forEach var="apply" items="${applyList }">
+					<c:if test="${apply.MB_driverConfirm == 'I'}">
 					<tr>
-						<td>${num }<c:set var="num" value="${num -1 }"></c:set></td>
+						<td class="col-md-2 text-center">${num }<c:set var="num" value="${num -1 }"></c:set></td>
 						<!-- 게시글 번호 순서 정렬 -->
-							<td><a href="adminMbView.do?MB_id=${apply.MB_id }&pageNum=${pb.currentPage}">${member.MB_id }</a></td>
-							<td>${apply.MB_name }</td>
-							<td>${member.MB_nickName }</td>
-							<c:if test="${member.MB_gender == 1 || member.MB_gender == 3}">
-								<td>남자</td>
+							<td class="col-md-2 text-center">
+								<a href="adminMbView.do?MB_id=${apply.MB_id }&pageNum=${pb.currentPage}">${apply.MB_id }</a></td>
+							<td class="col-md-2 text-center">${apply.MB_name }</td>
+							<c:if test="${apply.MB_gender == 1 || apply.MB_gender == 3}">
+								<td class="col-md-2 text-center">남자</td>
 							</c:if>
-							<c:if test="${member.MB_gender == 2 || member.MB_gender == 4}">
-								<td>여자</td>
+							<c:if test="${apply.MB_gender == 2 || apply.MB_gender == 4}">
+								<td class="col-md-2 text-center">여자</td>
 							</c:if>
-							<td>${member.MB_regDate }</td>
-							<c:if test="${member.MB_del == 'N' }">
-								<td>활동중
-									<a href="adminMbDelete.do?MB_id=${member.MB_id }&pageNum=${pageNum }""
-										class="btn btn-danger">탈퇴</a></td>
+							<c:if test="${apply.MB_driverConfirm == 'I' }">
+								<td class="col-md-2 text-center">심사중
+									<%-- <a href="adminPermitResult.do?AP_num=${num }&pageNum=${pageNum }" --%>
+									<a href="adminPermitResult.do?MB_num=${apply.MB_num }&pageNum=${pageNum }"
+										class="btn btn-info">승인</a>
+									<a href="adminReject.do?MB_num=${apply.MB_num }&pageNum=${pageNum }"
+										class="btn btn-danger">거절</a></td>
 							</c:if>
-							<c:if test="${member.MB_del == 'Y' }">
-								<td>탈퇴
-									<a href="adminMbRollback.do?MB_id=${member.MB_id }&pageNum=${pageNum }"
-										class="btn btn-warning">복구</a></td>
+							<c:if test="${apply.MB_driverConfirm == 'N' }">
+								<td class="col-md-2 text-center">반려</td>
+							</c:if>
+							<c:if test="${apply.MB_driverConfirm == 'Y' }">
+								<td class="col-md-2 text-center">승인완료</td>
 							</c:if>
 					</tr>
+					</c:if>
 				</c:forEach>
 			</c:if>
 		</table>
 		<div align="center">
-			<ul class="pagination">
+			<ul class="pagination_bottom">
 				<!-- 시작페이지가 pagePerBlock(10)보다 크면 앞에 보여줄 페이지가 있다 -->
 				<c:if test="${pb.startPage > pb.pagePerBlock }">
 					<li>
-						<a href="adminMbList.do?pageNum=1&search=${member.search }&keyword=${member.keyword }">
-							<span class="glyphicon glyphicon-backward"></span>
+						<a href="adminPermitList.do?pageNum=1&search=${apply.search }&keyword=${apply.keyword }"
+							class="page_num"><span class="glyphicon glyphicon-backward"></span>
 						</a>
 					</li>
-					<li><a href="adminMbList.do?pageNum=${pb.startPage - 1 }&search=${member.search }&keyword=${member.keyword }">
-							<span class="glyphicon glyphicon-triangle-left"></span>
-					</a></li>
+					<li><a href="adminPermitList.do?pageNum=${pb.startPage - 1 }&search=${apply.search }&keyword=${apply.keyword }"
+							class="page_num"><span class="glyphicon glyphicon-triangle-left"></span>
+						</a></li>
 				</c:if>
 				<c:forEach var="i" begin="${pb.startPage }" end="${pb.endPage }">
 					<!-- 현재 머물고 있는 페이지가 몇 페이지인지 구별할 때 -->
 					<c:if test="${pb.currentPage == i }">
-						<li class="active"><a href="adminMbList.do?pageNum=${i }&search=${member.search }&keyword=${member.keyword }">${i }</a></li>
+						<li><a href="adminPermitList.do?pageNum=${i }&search=${apply.search }&keyword=${apply.keyword }"
+							class="page_num">ㅤ${i}ㅤ</a></li>
 					</c:if>
 					<c:if test="${pb.currentPage != i }">
-						<li><a href="adminMbList.do?pageNum=${i }&search=${member.search }&keyword=${member.keyword }">${i }</a></li>
+						<li><a href="adminPermitList.do?pageNum=${i }&search=${apply.search }&keyword=${apply.keyword }"
+							class="page_num">ㅤ${i}ㅤ</a></li>
 					</c:if>
 				</c:forEach>
 				<!-- 보여줄 페이지가 뒤에 남아있는 경우(다음 버튼 활성화)=> endPage < totalPage인 경우 -->
 				<c:if test="${pb.endPage < pb.totalPage }">
-					<li><a href="adminMbList.do?pageNum=${pb.endPage + 1 }&search=${member.search }&keyword=${member.keyword }">
-							<span class="glyphicon glyphicon-triangle-right"></span>
+					<li><a href="adminPermitList.do?pageNum=${pb.endPage + 1 }&search=${apply.search }&keyword=${apply.keyword }"
+						class="page_num"><span class="glyphicon glyphicon-triangle-right"></span>
 					</a></li>
-					<li><a href="adminMbList.do?pageNum=${pb.totalPage }&search=${member.search }&keyword=${member.keyword }">
-							<!-- 끝페이지로 바로 이등(순서 생각하며 넣기) -->
-						<span class="glyphicon glyphicon-forward"></span>
+					<li><a href="adminPermitList.do?pageNum=${pb.totalPage }&search=${apply.search }&keyword=${apply.keyword }"
+						class="page_num"><span class="glyphicon glyphicon-forward"></span>
 					</a></li>
 				</c:if>
 			</ul>
 		</div>
-		<form action="adminMbList.do">
+		<form action="adminPermitList.do">
 			<input type="hidden" name="pageNum" value="1">
 			<select name="search">
-				<c:forTokens var="sh" items="MB_id,MB_name,MB_nickName,MB_gender,MB_regDate" delims="," varStatus="i">
-					<c:if test="${sh == member.search }">
+				<c:forTokens var="sh" items="MB_id,MB_name,MB_gender,MB_driverConfirm" delims="," varStatus="i">
+					<c:if test="${sh == apply.search }">
 						<option value="${sh}" selected="selected">${title[i.index] }</option>
 					</c:if>
-					<c:if test="${sh != member.search }">
+					<c:if test="${sh != apply.search }">
 						<option value="${sh}">${title[i.index] }</option>
 					</c:if>
 				</c:forTokens>
 			</select>
-			<input type="text" name="keyword" value="${member.keyword }">	<!-- model에 추가해줘야한다 -->
+			<input type="text" name="keyword" value="${apply.keyword }">	<!-- model에 추가해줘야한다 -->
 			<input type="submit" value="검색" class="btn btn-info">
 		</form>
 	</div>

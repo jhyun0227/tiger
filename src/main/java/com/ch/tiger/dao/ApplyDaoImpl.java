@@ -18,4 +18,5 @@ public class ApplyDaoImpl implements ApplyDao {
 	public List<Apply> applyList(Apply apply) {
 		return sst.selectList("applyns.applyList", apply);
 	}
+	
 }

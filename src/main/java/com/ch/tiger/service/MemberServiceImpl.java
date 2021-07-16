@@ -33,5 +33,9 @@ public class MemberServiceImpl implements MemberService {
 	public int adminMbRollback(String MB_id) {
 		return mbd.adminMbRollback(MB_id);
 	}
+	@Override
+	public int adminPermit(int MB_num) {
+		return mbd.adminPermit(MB_num);
+	}
 	
 }

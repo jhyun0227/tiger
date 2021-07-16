@@ -17,4 +17,5 @@ public class ApplyServiceImpl implements ApplyService {
 	public List<Apply> applyList(Apply apply) {
 		return ad.applyList(apply);
 	}
+
 }

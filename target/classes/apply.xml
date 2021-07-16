@@ -3,21 +3,22 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="applyns">
 	<select id="getApplyTotal" parameterType="apply" resultType="integer">
-		select count(*) from apply;
+		select count(*) from apply
 	</select>
 	<select id="applyList" parameterType="apply" resultType="apply">
-		select * from (select a.*, rowNum rn from (select * from apply
-			<!-- <where>
+		select * from (select a.*, rowNum rn from (select ap.*, m.MB_id, m.MB_name, m.MB_gender, m.MB_driverConfirm
+						from apply ap, member m where ap.MB_num=m.MB_num
+			<where>
 				<if test="keyword!=null and keyword!=''">
-					<if test="search=='subcon'">
+					<!-- <if test="search=='subcon'">
 						NT_title like '%' || #{keyword} || '%' or
 						NT_content like '%' || #{keyword} || '%'
-					</if>
+					</if> -->
 					<if test="search!='subcon'">
 						${search} like '%' || #{keyword} || '%'
 					</if>
 				</if>
-			</where> -->
+			</where>
 			order by AP_num desc) a)
 			where rn between #{startRow} and #{endRow}
 	</select>

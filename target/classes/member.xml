@@ -36,4 +36,7 @@
 	<update id="adminMbRollback" parameterType="string">
 		update member set MB_del='N' where MB_id=#{MB_id}
 	</update>
+	<update id="adminPermit" parameterType="integer">
+		update member set MB_driverConfirm='Y' where MB_num=#{MB_num}
+	</update>
 </mapper>

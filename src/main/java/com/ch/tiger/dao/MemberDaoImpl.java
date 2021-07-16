@@ -34,5 +34,9 @@ public class MemberDaoImpl implements MemberDao{
 	public int adminMbRollback(String MB_id) {
 		return sst.update("memberns.adminMbRollback", MB_id);
 	}
+	@Override
+	public int adminPermit(int MB_num) {
+		return sst.update("memberns.adminPermit", MB_num);
+	}
 	
 }

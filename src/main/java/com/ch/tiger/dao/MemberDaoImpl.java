@@ -34,5 +34,5 @@ public class MemberDaoImpl implements MemberDao{
 	public int adminMbRollback(String MB_id) {
 		return sst.update("memberns.adminMbRollback", MB_id);
 	}
-		
+	
 }

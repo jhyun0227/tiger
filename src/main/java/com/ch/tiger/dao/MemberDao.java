@@ -8,6 +8,6 @@ public interface MemberDao {
 	List<Member> mbList(Member member);
 	int adminMbUpdate(Member member);
 	int adminMbDelete(String MB_id);
-	int adminMbRollback(String MB_id);	
+	int adminMbRollback(String MB_id);
 
 }

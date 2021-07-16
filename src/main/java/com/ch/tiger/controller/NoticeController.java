@@ -18,7 +18,7 @@ public class NoticeController {
 	@Autowired
 	private MemberService mbs;	//임시 추가
 	@RequestMapping("noticeList")	// 비회원 접근 로직 구현x
-	public String noticeList(Member member, Model model, Notice notice, HttpSession session, String pageNum) {
+	public String noticeList(Model model, Notice notice, String pageNum) {
 		// 처음 notice에는 null로 받아오고, startRow, endRow 보내주기 위한 용도
 		if(pageNum == null || pageNum.equals("")) {
 			pageNum = "1";
@@ -34,22 +34,15 @@ public class NoticeController {
 		int num = total - startRow + 1;		// 번호 순서대로 정렬
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
 		String[] title = {"제목", "내용", "제목+내용"};	// 작성자는 관리자뿐이므로 제외
-		String MB_id = (String)session.getAttribute("MB_id");
-		Member memberDB = mbs.select(MB_id);
-		model.addAttribute("memberDB", memberDB);	// 아이디로 DB에 있는 회원정보 조회
 		model.addAttribute("title", title);	// 검색 기능
-		model.addAttribute("MB_id", MB_id);
 		model.addAttribute("pb", pb);	// paginbean pb
 		model.addAttribute("noticeList", noticeList);		// 공지사항 검색 시 공지사항번호 발생
 		model.addAttribute("num", num);	// 목록 번호 생성 위한 num
 		return "notice/noticeList";
 	}
 	@RequestMapping("noticeView")
-	public String noticeView(int NT_num, String pageNum, Model model, HttpSession session) {
+	public String noticeView(int NT_num, String pageNum, Model model) {
 		Notice notice = ns.select(NT_num);
-		String MB_id = (String)session.getAttribute("MB_id");
-		Member memberDB = mbs.select(MB_id);
-		model.addAttribute("memberDB", memberDB);	// 아이디로 DB에 있는 회원정보 조회
 		model.addAttribute("notice", notice);
 		model.addAttribute("pageNum", pageNum);
 		return "notice/noticeView";

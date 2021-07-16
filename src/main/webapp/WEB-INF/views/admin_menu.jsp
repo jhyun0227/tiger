@@ -48,7 +48,7 @@
 				<li class="menu4"><a href="#">고객센터</a>
 					<ul class="menu4_s submenu">
 						<li><a href="adminNoticeList.do">공지사항</a></li>
-						<li><a href="#">문의내역</a></li>
+						<li><a href="adminQnaList.do">문의내역</a></li>
 						<li><a href="#">신고내역</a></li>
 					</ul></li>
 			</ul>

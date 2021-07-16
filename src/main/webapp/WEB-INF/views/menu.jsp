@@ -36,7 +36,7 @@
 					<ul class="menu5_s submenu">
 						<li><a href="noticeList.do">공지사항</a></li>
 						<li><a href="qnaList.do">문의내역</a></li>
-						<li><a href="#">1:1 문의하기</a></li>
+						<li><a href="qnaWriteForm.do?num=0&pageNum=1">1:1 문의하기</a></li>
 					</ul></li>
 			</ul>
 		<%-- </c:if> --%>

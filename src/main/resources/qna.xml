@@ -2,5 +2,68 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="qnans">
-
+	<select id="getTotal" parameterType="qna" resultType="integer">
+		select count(*) from qna
+		<where>
+			<if test="keyword!=null and keyword!=''">
+				QA_title like '%'||#{keyword}||'%' or QA_content like '%'||#{keyword}||'%'
+			</if>
+		</where>
+		where MB_num=#{MB_num} and QA_del='N'
+	</select>
+	
+	<select id="list" parameterType="qna" resultType="qna">
+		select * from (select a.*, rowNum rn from (select * from qna
+		where MB_num=#{MB_num} and QA_del='N'
+			<if test="keyword!=null and keyword!=''">
+				and QA_title like '%'||#{keyword}||'%' or QA_content like '%'||#{keyword}||'%'
+			</if>
+		order by QA_num desc) a) where rn between #{startRow} and #{endRow}
+	</select>
+	
+	<select id="select" parameterType="integer" resultType="qna">
+		select * from qna where QA_num=#{num}
+	</select>
+	
+	<select id="getMaxNum" resultType="integer">
+		select nvl(max(QA_num),0)+1 from qna
+	</select>
+	
+	<update id="updateStep" parameterType="qna">
+		update qna set QA_refStep=QA_refStep+1 where QA_ref=#{QA_ref} and QA_refStep>#{QA_refStep}
+	</update>
+	
+	<!-- 여기부터 하기 -->
+	<insert id="insert" parameterType="qna">
+		insert into qna values (#{QA_num}, #{QA_title}, sysdate, #{QA_content}, null,
+			#{QA_ref}, #{QA_refStep}, #{QA_refLevel}, 'N', #{MB_num})
+	</insert>
+	
+	<insert id="insertFile" parameterType="qna">
+		insert into qna values (#{QA_num}, #{QA_title}, sysdate, #{QA_content}, #{QA_fileName},
+			#{QA_ref}, #{QA_refStep}, #{QA_refLevel}, 'N', #{MB_num})
+	</insert>
+	
+	<update id="delete" parameterType="qna">
+		update qna set QA_del='Y' where QA_num=#{num}
+	</update>
+	<select id="allQnaList" parameterType="qna" resultType="qna">
+		select * from (select a.*, rowNum rn from (select q.*, m.MB_id from qna q, member m where q.MB_num=m.MB_num
+			<where>
+				<if test="keyword!=null and keyword!=''">
+					<if test="search=='subcon'">
+						QA_title like '%' || #{keyword} || '%' or
+						QA_content like '%' || #{keyword} || '%'
+					</if>
+					<if test="search!='subcon'">
+						${search} like '%' || #{keyword} || '%'
+					</if>
+				</if>
+			</where>
+			order by QA_ref desc, QA_refStep) a)
+			where rn between #{startRow} and #{endRow}
+	</select>
+	<select id="getAllTotal" parameterType="qna" resultType="integer">
+		select count(*) from qna
+	</select>
 </mapper>

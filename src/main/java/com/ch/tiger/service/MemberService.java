@@ -10,5 +10,4 @@ public interface MemberService {
 	int adminMbDelete(String MB_id);
 	int adminMbRollback(String MB_id);
 	
-
 }

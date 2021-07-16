@@ -102,7 +102,7 @@
 				<td class="col md-2 text-center">차량번호</td>
 				<td class="col md-10">
 					<input type="text" name="VH_carNum" id="carNum" required="required" autofocus="autofocus" 
-					 placeholder="ex)000가 0000" class="inputLine">
+					 placeholder="ex)000가 0000" maxlength="9" class="inputLine">
 					 <div id="vhChk" class="err"></div>
 				</td>
 			</tr>

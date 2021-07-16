@@ -295,6 +295,11 @@ public class AdminController {
 		model.addAttribute("pageNum", pageNum);
 		return "admin/adminPermitResult";
 	}
-	
-	
+	@RequestMapping("adminRejectResult")
+	public String adminRejectResult(int MB_num, String pageNum, Model model) {
+		int result = mbs.adminReject(MB_num);
+		model.addAttribute("result", result);
+		model.addAttribute("pageNum", pageNum);
+		return "admin/adminRejectResult";
+	}
 }

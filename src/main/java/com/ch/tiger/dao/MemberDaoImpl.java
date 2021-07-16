@@ -38,5 +38,9 @@ public class MemberDaoImpl implements MemberDao{
 	public int adminPermit(int MB_num) {
 		return sst.update("memberns.adminPermit", MB_num);
 	}
+	@Override
+	public int adminReject(int MB_num) {
+		return sst.update("memberns.adminReject", MB_num);
+	}
 	
 }

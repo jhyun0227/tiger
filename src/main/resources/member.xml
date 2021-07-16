@@ -13,13 +13,7 @@
 		select * from (select a.*, rowNum rn from (select * from member
 			<where>
 				<if test="keyword!=null and keyword!=''">
-					<!-- <if test="search=='subcon'">
-						NT_title like '%' || #{keyword} || '%' or
-						NT_content like '%' || #{keyword} || '%'
-					</if>
-					<if test="search!='subcon'"> -->
 						${search} like '%' || #{keyword} || '%'
-					<!-- </if> -->
 				</if>
 			</where>
 			order by MB_num desc) a)
@@ -38,5 +32,8 @@
 	</update>
 	<update id="adminPermit" parameterType="integer">
 		update member set MB_driverConfirm='Y' where MB_num=#{MB_num}
+	</update>
+	<update id="adminReject" parameterType="integer">
+		update member set MB_driverConfirm='N' where MB_num=#{MB_num}
 	</update>
 </mapper>

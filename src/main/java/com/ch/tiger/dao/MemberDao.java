@@ -10,5 +10,6 @@ public interface MemberDao {
 	int adminMbDelete(String MB_id);
 	int adminMbRollback(String MB_id);
 	int adminPermit(int MB_num);
+	int adminReject(int MB_num);
 
 }

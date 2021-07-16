@@ -66,7 +66,7 @@
 									<%-- <a href="adminPermitResult.do?AP_num=${num }&pageNum=${pageNum }" --%>
 									<a href="adminPermitResult.do?MB_num=${apply.MB_num }&pageNum=${pageNum }"
 										class="btn btn-info">승인</a>
-									<a href="adminReject.do?MB_num=${apply.MB_num }&pageNum=${pageNum }"
+									<a href="adminRejectResult.do?MB_num=${apply.MB_num }&pageNum=${pageNum }"
 										class="btn btn-danger">거절</a></td>
 							</c:if>
 							<c:if test="${apply.MB_driverConfirm == 'N' }">

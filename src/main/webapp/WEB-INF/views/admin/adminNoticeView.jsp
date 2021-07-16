@@ -6,6 +6,22 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.btn_prev {
+	padding: 5px 16px;
+	border: 1px solid #242526;
+	/* background: #242526; */
+	line-height: 40px;
+	font-size: 14px;
+	/* color: #eee; */
+	color: #242526;
+}
+
+.btn_prev:hover {
+	color: orange;
+	text-decoration: none;
+}
+</style>
 <script type="text/javascript">
 	function del() {
 		var cf = confirm("공지사항을 삭제하시겠습니까?");
@@ -19,35 +35,29 @@
 </script>
 </head>
 <body>
-	<div class="container" align="center">
-		<h2 class="text-primary">공지사항 상세</h2>
-		<table class="table table-striped table-bordered">
+	<div class="container">
+		<h2 class="title">공지사항 상세</h2>
+		<table class="table narrowWidth">
 			<tr>
-				<td>제목</td>
-				<td colspan="3">${notice.NT_title }</td>
+				<th class="col-md-2 text-center">제목</th>
+				<td colspan="3" class="col-md-10">${notice.NT_title }</td>
 			</tr>
 			<tr>
-				<td>작성자</td>
-				<%-- <td>${memberDB.MB_name }</td> --%>
-				<td>관리자</td>
-				<td>작성일</td>
-				<td>${notice.NT_regDate }</td>
+				<th class="col-md-2 text-center">작성자</th>
+				<td class="col-md-2 text-center">관리자</td>
+				<th class="col-md-2 text-center">작성일</th>
+				<td class="col-md-2 text-center">${notice.NT_regDate }</td>
 			</tr>
 			<tr>
-				<td>내용</td>
-				<td colspan="3"><pre>${notice.NT_content }</pre></td>
+				<th class="col-md-2 text-center">내용</th>
+				<td colspan="3" class="col-md-2 text-center">${notice.NT_content }</td>
 			</tr>
-			<%-- <c:if test="${memberDB.MB_id == 'admin' }"> --%>
-			<tr>
-				<td colspan="4" align="center">
-					<a href="adminNoticeList.do?pageNum=${pageNum }" class="btn btn-info">공지사항 목록</a>
-					<a href="adminNoticeUpdateForm.do?NT_num=${notice.NT_num }&pageNum=${pageNum }"
-						class="btn btn-warning">수정</a>
-					<a onclick="del()" class="btn btn-danger">삭제</a>
-				</td>
-			</tr>
-			<%-- </c:if> --%>
 		</table>
+		<div align="right">
+			<a href="adminNoticeList.do?pageNum=${pageNum }" class="btn_prev">목록</a>
+			<a href="adminNoticeUpdateForm.do?NT_num=${notice.NT_num }&pageNum=${pageNum }" class="btn_prev">수정</a>
+			<a onclick="del()" class="btn_prev">삭제</a>
+		</div>
 	</div>
 </body>
 </html>

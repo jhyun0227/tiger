@@ -37,5 +37,9 @@ public class MemberServiceImpl implements MemberService {
 	public int adminPermit(int MB_num) {
 		return mbd.adminPermit(MB_num);
 	}
+	@Override
+	public int adminReject(int MB_num) {
+		return mbd.adminReject(MB_num);
+	}
 	
 }

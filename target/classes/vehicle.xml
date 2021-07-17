@@ -2,5 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="vehiclens">
-
+	<!-- 차량 목록 -->
+	<select id="list" parameterType="integer" resultType="vehicle">
+		select * from vehicle where MB_num=#{MB_num} order by VH_num
+	</select>
+	
+	<!-- 차량 중복확인 -->
+	<select id="select" parameterType="string" resultType="vehicle">
+		select * from vehicle where VH_carNum=#{VH_carNum} and VH_del='N'
+	</select>
+	
+	<!-- 차량 등록 -->
+	<insert id="insert" parameterType="vehicle">
+		insert into vehicle(VH_num, VH_carNum, VH_carName, VH_carYear, VH_carType, VH_km, VH_insu, VH_carPicture, MB_num)
+					values((select nvl(max(VH_num), 0)+1 from vehicle), #{VH_carNum}, #{VH_carName}, #{VH_carYear}, #{VH_carType}, #{VH_km}, #{VH_insu}, #{VH_carPicture}, #{MB_num})
+	</insert>
+	
+	<!-- 차량 상세보기 -->
+	<select id="selectNum" parameterType="integer" resultType="vehicle">
+		select * from vehicle where VH_num=#{VH_num}
+	</select>
+	
+	<!-- 차량 삭제 -->
+	<update id="delete" parameterType="integer">
+		update vehicle set VH_del='Y' where VH_num=#{VH_num}
+	</update>
 </mapper>

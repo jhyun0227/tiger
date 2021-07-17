@@ -2,9 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="applyns">
+	<!-- 드라이버 신청 개수 확인 -->
 	<select id="getApplyTotal" parameterType="apply" resultType="integer">
 		select count(*) from apply
 	</select>
+	
+	<!-- 드라이버 신청 목록 -->
 	<select id="applyList" parameterType="apply" resultType="apply">
 		select * from (select a.*, rowNum rn from (select ap.*, m.MB_id, m.MB_name, m.MB_gender, m.MB_driverConfirm
 						from apply ap, member m where ap.MB_num=m.MB_num
@@ -22,4 +25,14 @@
 			order by AP_num desc) a)
 			where rn between #{startRow} and #{endRow}
 	</select>
+	
+	<!-- 드라이버 중복 신청 불가하게 하기 위해 정보 있는지 확인 -->
+	<select id="select" parameterType="integer" resultType="apply">
+		select * from apply where MB_num=#{MB_num}
+	</select>
+	
+	<!-- 드라이버 신청 -->
+	<insert id="insert" parameterType="apply">
+		insert into apply values((select nvl(max(AP_num), 0)+1 from apply), #{AP_picture}, #{MB_num})
+	</insert>
 </mapper>

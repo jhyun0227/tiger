@@ -45,7 +45,7 @@ public class MemberDaoImpl implements MemberDao{
 	@Override
 	public int adminReject(int MB_num) { // 관리자 드라이버 거절
 		return sst.update("memberns.adminReject", MB_num);
-
+	}
 	
 	@Override
 	public Member select(String MB_id) {

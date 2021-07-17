@@ -45,6 +45,7 @@
 	<!-- 관리자 드라이버 신청 거절 -->
 	<update id="adminReject" parameterType="integer">
 		update member set MB_driverConfirm='N' where MB_num=#{MB_num}
+ 	</update>
  	
 	 <!-- 아이디로 검색 -->
 	<select id="select" parameterType="string" resultType="member">
@@ -105,4 +106,5 @@
 	<update id="updateDriverConfirm" parameterType="integer">
 		update member set MB_driverConfirm='I' where MB_num=#{MB_num}
 	</update>
-</mapper>
+
+</mapper> 

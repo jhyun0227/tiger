@@ -8,5 +8,5 @@ import com.ch.tiger.service.MessageService;
 @Controller
 public class MessageController {
 	@Autowired
-	private MessageService msg;
+	private MessageService mgs;
 }

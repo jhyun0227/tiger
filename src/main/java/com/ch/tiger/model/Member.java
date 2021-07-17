@@ -1,5 +1,8 @@
 package com.ch.tiger.model;
 import java.sql.Date;
+
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 @Data
 public class Member {
@@ -16,10 +19,12 @@ public class Member {
 	private String MB_driverConfirm;
 	private String MB_del;
     private String MB_img;
- // paging용
+	// paging용
     private int startRow;
     private int endRow;
- // 검색용
+	// 검색용
     private String search;
     private String keyword;
+    // 업로드
+    private MultipartFile file;
 }

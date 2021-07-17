@@ -1,3 +1,4 @@
+
 /* 폰트 적용 */
 body {
 	font-family: 'IBMPlexSansKR-Regular';
@@ -10,6 +11,10 @@ body {
     font-style: normal;
 }
 
+
+.narrowWidth{
+	width: 80%;
+}
 
 /* header  */
 .header{
@@ -39,8 +44,39 @@ body {
 .title {
 	margin: 50px 0 50px 0;
 	text-align: center;
-	font-size: 24px;
-	
+	font-size: 24px; 
+}
+
+/* input 입력창 */
+.inputLine{
+	border: none;
+	outline: 0;
+	width: 80%;
+}
+
+/* 버튼 */
+.btn_small{
+	width: 300px;
+    height: 40px;
+    background: #242526;
+    color: #eee;
+    font-size: 18px;
+    border: none;
+    margin-top: 60px;
+}
+
+/* a태그 버튼 */
+.btn_prev {
+    padding: 5px 16px;
+    border: 1px solid #242526;
+    line-height: 40px;
+    font-size: 14px;
+    color: #242526;
+}
+
+.btn_prev:hover {
+	color: orange;
+	text-decoration: none;
 }
 
 /* footer */
@@ -54,7 +90,6 @@ footer	{
 	justify-content: center;
 	width: 100%;
 	height: 100px;
-	border-top: 1px solid #242526;
 	margin-top: auto;
 }
 

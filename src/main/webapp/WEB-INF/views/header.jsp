@@ -18,7 +18,7 @@
 		</span>
 		<span class="header_login">
 			<c:if test="${sessionScope.MB_id == null }">
-				<a>회원가입</a>
+				<a href="joinForm.do">회원가입</a>
 				<a href="loginForm.do">로그인</a>
 			</c:if>
 			<c:if test="${sessionScope.MB_id != null }">

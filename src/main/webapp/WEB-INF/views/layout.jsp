@@ -6,7 +6,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
-<html>
+<html> 
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,7 +19,7 @@
 	<script type="text/javascript" src="${path }/resources/bootstrap/js/bootstrap.min.js"></script>
 <meta charset="UTF-8">
 <title>타:이거</title>
-</head>
+</head> 
 <body>
 	<div class="container">
 		<div>

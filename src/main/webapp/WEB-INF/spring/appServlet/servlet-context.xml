@@ -42,9 +42,18 @@
 			</beans:list>
 		</beans:property>
 	</beans:bean>
+   
+   <beans:bean id="sc" class="com.ch.tiger.service.SessionChk"></beans:bean>
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/WEB-INF/views/*"/>
+			<exclude-mapping path="/WEB-INF/views/member/*"/>
+			<beans:ref bean="sc"></beans:ref>
+		</interceptor>
+	</interceptors>
 
-	<context:component-scan
-		base-package="com.ch.tiger" />
+	<context:component-scan base-package="com.ch.tiger" />
 		
 	<beans:bean id="sc" class="com.ch.tiger.service.SessionChk"></beans:bean>
 	<interceptors>

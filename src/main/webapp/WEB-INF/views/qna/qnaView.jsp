@@ -46,7 +46,7 @@
 	</div>
 	<div align="right">
 		<a href="qnaList.do?pageNum=${pageNum}" class="btn_prev">목록</a>
-		<a href="delete.do?num=${qna.QA_num }&pageNum=${pageNum}" class="btn_prev">삭제</a>
+		<a href="qnaDelete.do?num=${qna.QA_num }&pageNum=${pageNum}" class="btn_prev">삭제</a>
 	</div>
 </body>
 </html>

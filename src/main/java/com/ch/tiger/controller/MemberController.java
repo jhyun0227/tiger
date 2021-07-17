@@ -301,7 +301,6 @@ public class MemberController {
 		return "mypage/delete";  
 	}
 	
-	
 	// 좋아요 카테고리에서 프로필 상세보기
 	@RequestMapping("profileView")
 	public String profileView(int MB_num, Model model) {

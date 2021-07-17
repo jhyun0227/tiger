@@ -110,7 +110,7 @@ public class QnAController {
 		return "qna/qnaView";
 	}
 	
-	@RequestMapping("delete")
+	@RequestMapping("qnaDelete")
 	public String delete(int num, String pageNum, Model model) {
 		int result = qas.delete(num);
 		model.addAttribute("pageNum", pageNum);

@@ -51,7 +51,8 @@
 			<mapping path="/WEB-INF/views/*"/>
 			<mapping path="/qnaList.do"/>
 			<mapping path="/qnaWriteForm.do"/>
-			<exclude-mapping path="/WEB-INF/views/member/*"/>
+			<!-- <mapping path="/noticeList.do"/>
+ -->			<exclude-mapping path="/WEB-INF/views/member/*"/>
 			<beans:ref bean="sc"></beans:ref>
 		</interceptor>
 	</interceptors>

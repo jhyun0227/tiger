@@ -22,7 +22,7 @@
 }
 
 .page_current_num{
-	color: orange;
+	color: #3243A8;
 }
 
 .pagination_bottom li a:hover {
@@ -70,7 +70,7 @@
 				<li><a href="qnaList.do?pageNum=${i}&search=${qna.search }&keyword=${qna.keyword}" class="page_num page_current_num">ㅤ${i}ㅤ</a>
 			</c:if>
 			<c:if test="${pb.currentPage != i }">
-				<li><a href="qnaList.do?pageNum=${i}&search=${qna.search }&keyword=${qna.keyword}" class="page_num">${i}</a>
+				<li><a href="qnaList.do?pageNum=${i}&search=${qna.search }&keyword=${qna.keyword}" class="page_num">ㅤ${i}ㅤ</a>
 			</c:if>
 		</c:forEach>
 		<!-- 보여줄 페이지가 남은 경우 / endpage보다 totalpage가 클 경우 -->

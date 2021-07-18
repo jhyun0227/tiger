@@ -1,5 +1,7 @@
 package com.ch.tiger.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,5 +41,30 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int update(Member member) { // 회원정보 수정
 		return mbd.update(member);
+	}
+	
+	public Member selectNum(int MB_num) { // 프로필 상세
+		return mbd.selectNum(MB_num);
+	}
+	
+	@Override
+	public int getMbTotal(Member member) {
+		return mbd.getMbTotal(member);
+	}
+	@Override
+	public List<Member> mbList(Member member) {
+		return mbd.mbList(member);
+	}
+	@Override
+	public int adminMbUpdate(Member member) {
+		return mbd.adminMbUpdate(member);
+	}
+	@Override
+	public int adminMbDelete(String MB_id) {
+		return mbd.adminMbDelete(MB_id);
+	}
+	@Override
+	public int adminMbRollback(String MB_id) {
+		return mbd.adminMbRollback(MB_id);
 	}
 }

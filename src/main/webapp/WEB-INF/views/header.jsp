@@ -32,8 +32,10 @@
 </head>
 <body>
 	<div class="header">
-		<span class="left"> <img alt=""
-			src="${path }/resources/main/logo.png" class="logo">
+		<span class="left">
+		 <a href="main.do">
+		 <img alt="" src="${path }/resources/main/logo.png" class="logo">
+		 </a>
 		</span>
 		<span class="right">
 		<c:if test="${sessionScope.MB_id == null }">
@@ -42,7 +44,7 @@
 		</c:if>
 		<c:if test="${sessionScope.MB_id != null }">
 			<c:if test="${sessionScope.MB_id == 'admin'}">
-				관리자 페이지
+				<a href="adminMain.do">관리자 페이지</a>
 			</c:if>
 			<c:if test="${sessionScope.MB_id != 'admin'}">
 				${sessionScope.MB_id }님 환영합니다

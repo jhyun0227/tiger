@@ -2,5 +2,33 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="messagens">
-
+	<insert id="insert" parameterType="message">
+		insert into message values ((select nvl(max(MSG_num), 0)+1 from message), sysdate, #{MSG_content},'N', #{MB_numS}, #{MB_numR})
+	</insert>
+	
+	<select id="getTotal" parameterType="message" resultType="integer">
+		select count(*) from message where MB_numR=#{MB_numR} and MSG_del='N'
+	</select>
+	
+	<select id="getSendTotal" parameterType="message" resultType="integer">
+		select count(*) from message where MB_numS=#{MB_numS} and MSG_del='N'
+	</select>
+	
+	<select id="recieveList" parameterType="message" resultType="message">
+		select * from (select a.*, rowNum rn from (select * from message where MB_numR=#{MB_numR} 
+			and MSG_del='N' order by MSG_num desc) a) where rn between #{startRow} and #{endRow}
+	</select>
+	
+	<select id="sendList" parameterType="message" resultType="message">
+		select * from (select a.*, rowNum rn from (select * from message where MB_numS=#{MB_numS} 
+			and MSG_del='N' order by MSG_num desc) a) where rn between #{startRow} and #{endRow}
+	</select>
+	
+	<update id="delete" parameterType="message">
+		update message set MSG_del='Y' where MSG_num=#{string}
+	</update>
+	
+	<select id="select" parameterType="integer" resultType="message">
+		select * from message where MSG_num=#{MSG_num}
+	</select>
 </mapper>

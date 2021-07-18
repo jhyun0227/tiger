@@ -9,15 +9,15 @@
 				QA_title like '%'||#{keyword}||'%' or QA_content like '%'||#{keyword}||'%'
 			</if>
 		</where>
+		where MB_num=#{MB_num} and QA_del='N'
 	</select>
 	
 	<select id="list" parameterType="qna" resultType="qna">
 		select * from (select a.*, rowNum rn from (select * from qna
-		<where>
+		where MB_num=#{MB_num} and QA_del='N'
 			<if test="keyword!=null and keyword!=''">
-				QA_title like '%'||#{keyword}||'%' or QA_content like '%'||#{keyword}||'%'
+				and QA_title like '%'||#{keyword}||'%' or QA_content like '%'||#{keyword}||'%'
 			</if>
-		</where>
 		order by QA_num desc) a) where rn between #{startRow} and #{endRow}
 	</select>
 	
@@ -35,6 +35,16 @@
 	
 	<!-- 여기부터 하기 -->
 	<insert id="insert" parameterType="qna">
-		insert into qna values (#{QA_num}, #{QA_title}, sysdate, #{QA_content}, #{QA_ref}, #{QA_refStep}, #{QA_refLevel}, 'N', #{MB_num})
+		insert into qna values (#{QA_num}, #{QA_title}, sysdate, #{QA_content}, null,
+			#{QA_ref}, #{QA_refStep}, #{QA_refLevel}, 'N', #{MB_num})
 	</insert>
+	
+	<insert id="insertFile" parameterType="qna">
+		insert into qna values (#{QA_num}, #{QA_title}, sysdate, #{QA_content}, #{QA_fileName},
+			#{QA_ref}, #{QA_refStep}, #{QA_refLevel}, 'N', #{MB_num})
+	</insert>
+	
+	<update id="delete" parameterType="qna">
+		update qna set QA_del='Y' where QA_num=#{num}
+	</update>
 </mapper>

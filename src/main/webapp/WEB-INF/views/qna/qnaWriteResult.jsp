@@ -10,7 +10,6 @@
 <body>
 <c:if test="${result>0 }">
 	<script type="text/javascript">
-		alert("입력성공")
 		location.href="qnaList.do?pageNum=${pageNum}";
 	</script>
 </c:if>

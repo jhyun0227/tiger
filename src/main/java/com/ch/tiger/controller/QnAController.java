@@ -81,21 +81,18 @@ public class QnAController {
 			qna.setQA_refStep(qna.getQA_refStep()+1);
 		}else qna.setQA_ref(number);
 		qna.setQA_num(number);
-		System.out.println("qna=" + qna);
-		System.out.println("qna file=" + qna.getFile());
 		if (!qna.getFile().isEmpty()){
-			String fileName = qna.getFile().getOriginalFilename();
-			int index = fileName.lastIndexOf(".");
-			String ext = fileName.substring(index);
-			UUID uuid = UUID.randomUUID();
-			fileName = uuid+ext;
-			System.out.println("fileName = " +fileName);			
-			qna.setQA_fileName(fileName);
-			String real = session.getServletContext().getRealPath("/resources/upload");
-			FileOutputStream fos = new FileOutputStream(new File(real+"/"+fileName));
-			fos.write(qna.getFile().getBytes());
-			fos.close();	
-			result = qas.insertFile(qna);
+		String fileName = qna.getFile().getOriginalFilename();
+		int index = fileName.lastIndexOf(".");
+		String ext = fileName.substring(index);
+		UUID uuid = UUID.randomUUID();
+		fileName = uuid+ext;			
+		qna.setQA_fileName(fileName);
+		String real = session.getServletContext().getRealPath("/resources/upload");
+		FileOutputStream fos = new FileOutputStream(new File(real+"/"+fileName));
+		fos.write(qna.getFile().getBytes());
+		fos.close();	
+		result = qas.insertFile(qna);
 		} else {
 			result = qas.insert(qna);
 		}
@@ -119,6 +116,5 @@ public class QnAController {
 		model.addAttribute("result", result);
 		return "qna/qnaDelete";
 	}
-	
 	
 }

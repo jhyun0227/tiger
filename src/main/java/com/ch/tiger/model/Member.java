@@ -19,4 +19,10 @@ public class Member {
 	private String MB_driverConfirm;
 	private String MB_del;
     private String MB_img;
+ // paging용
+    private int startRow;
+    private int endRow;
+ // 검색용
+    private String search;
+    private String keyword;
 }

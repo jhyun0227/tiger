@@ -6,7 +6,7 @@
 	<select id="select" parameterType="string" resultType="member">
 		select * from member where MB_id=#{MB_id}
 	</select>
-	
+
 	<!-- 닉네임 중복체크 -->
 	<select id="selectNick" parameterType="string" resultType="member">
 		select * from member where MB_nickName=#{MB_nickName}
@@ -28,7 +28,46 @@
 		select * from member where MB_name=#{MB_name} and MB_id=#{MB_id}
 	</select>
 	
+	<!-- 프로필 상세 -->
+	<select id="selectNum" parameterType="integer" resultType="member">
+		select * from member where MB_num=#{MB_num}
+	</select>
+	
 	<update id="update" parameterType="member">
 		update member set MB_name=#{MB_name}, MB_nickName=#{MB_nickName}, MB_tel=#{MB_tel} where MB_id=#{MB_id}
 	</update>
+	
+	<select id="getMbTotal" parameterType="member" resultType="integer">
+		select count(*) from member	<!-- member 행 갯수 -->
+		<!-- 회원 검색 기능 추가 -->
+	</select>
+	<select id="mbList" parameterType="member" resultType="member">
+		select * from (select a.*, rowNum rn from (select * from member
+			<where>
+				<if test="keyword!=null and keyword!=''">
+					<!-- <if test="search=='subcon'">
+						NT_title like '%' || #{keyword} || '%' or
+						NT_content like '%' || #{keyword} || '%'
+					</if>
+					<if test="search!='subcon'"> -->
+						${search} like '%' || #{keyword} || '%'
+					<!-- </if> -->
+				</if>
+			</where>
+			order by MB_num desc) a)
+			where rn between #{startRow} and #{endRow}
+	</select>
+	<update id="adminMbUpdate" parameterType="member">
+		update member set MB_pw=#{MB_pw}, MB_name=#{MB_name},
+			MB_nickName=#{MB_nickName}, MB_tel=#{MB_tel}
+		where MB_id=#{MB_id}
+	</update>
+	<update id="adminMbDelete" parameterType="string">
+		update member set MB_del='Y' where MB_id=#{MB_id}
+	</update>
+	<update id="adminMbRollback" parameterType="string">
+		update member set MB_del='N' where MB_id=#{MB_id}
+	</update>
+	
+	
 </mapper>

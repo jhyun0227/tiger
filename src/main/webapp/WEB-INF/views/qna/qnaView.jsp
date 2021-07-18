@@ -19,7 +19,7 @@
 }
 
 .btn_prev:hover {
-	color: orange;
+	color: #3243A8;
 	text-decoration: none;
 }
 </style>
@@ -34,7 +34,7 @@
 		</tr>
 		<tr>
 			<td class="col-md-2 text-center">내용</td>
-			<td><textarea rows="10" cols="100" class="inputLine"><c:out value="${qna.QA_content }"/></textarea></td>
+			<td><pre class="inputLine"><c:out value="${qna.QA_content }"/></pre></td>
 		</tr>
 		<tr>
 			<td class="col-md-2 text-center">첨부파일</td>

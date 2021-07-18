@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.List;
 
 import com.ch.tiger.model.Member;
+
 public interface MemberService {
 	int getMbTotal(Member member); // 관리자가 회원 수를 알기 위함
 	

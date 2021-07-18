@@ -13,13 +13,7 @@
 						from apply ap, member m where ap.MB_num=m.MB_num
 			<where>
 				<if test="keyword!=null and keyword!=''">
-					<!-- <if test="search=='subcon'">
-						NT_title like '%' || #{keyword} || '%' or
-						NT_content like '%' || #{keyword} || '%'
-					</if> -->
-					<if test="search!='subcon'">
-						${search} like '%' || #{keyword} || '%'
-					</if>
+					${search} like '%' || #{keyword} || '%'
 				</if>
 			</where>
 			order by AP_num desc) a)

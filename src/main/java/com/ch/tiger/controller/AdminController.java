@@ -280,13 +280,18 @@ public class AdminController {
 		List<Apply> applyList = as.applyList(apply);	// 공지사항 목록
 		int num = total - startRow + 1;		// 번호 순서대로 정렬
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
-		String[] title = {"아이디", "차량번호", "차량연식", "차종"};
-		
+//		String[] title = {"아이디", "차량번호", "차량연식", "차종"};
+		String[] title = {"아이디", "이름", "성별", "승인상태"};
 		model.addAttribute("title", title);
 		model.addAttribute("pb", pb);	// paginbean pb
 		model.addAttribute("applyList", applyList);
 		model.addAttribute("num", num);	//목록 번호 생성 위한 num
 		return "admin/adminPermitList";
+	}
+	@RequestMapping("adminApplyView")
+	public String adminApplyView(int AP_num, String pageNum, Model model) {
+//		Apply apply = as.select(AP_num);		//여기서부터 작업
+		return "admin/adminApplyView";
 	}
 	@RequestMapping("adminPermitResult")
 	public String adminPermitResult(int MB_num, String pageNum, Model model) {

@@ -85,6 +85,40 @@
 		}
 	}
      
+	// 비밀번호 형태 유효성 검사
+	$(function() {
+        $("#alert1").hide();  
+		$("#alert2").hide();
+		$("#alert3").hide();
+	
+		$("#pw").keyup(function() {  
+			var pw = $("#pw").val(); 
+		   	var num = pw.search(/[0-9]/g);
+			var eng = pw.search(/[a-z]/ig); 	
+			if (pw.length < 4) {  
+				$("#alert1").show();
+				$("#alert2").hide();
+				$("#alert3").hide();
+				
+			} else {
+				 if (pw.search(/\s/) != -1){
+					$("#alert1").hide();
+					$("#alert2").show();  
+					$("#alert3").hide();
+					
+				} else {
+					if (num < 0 || eng < 0 ) {
+						$("#alert1").hide();
+						$("#alert2").hide();
+						$("#alert3").show();
+					
+					} 
+					 $(".alert").hide();
+				}
+			} 
+		});
+	});
+	
 	// 비밀번호 일치 불일치 ajax
 	$(function() {
 		$("#alert-success").hide();
@@ -196,6 +230,11 @@
 				<td class="col md-2 text-center">비밀번호</td>
 				<td class="col md-10">
 					<input type="password" name="MB_pw" id="pw" required="required" placeholder="비밀번호를 입력해주세요" class="inputline1">
+					&nbsp 4~12자, 영문자와 숫자를 혼합하여 입력하세요
+					<br>
+					<div class="alert alert-danger" id="alert1">"비밀번호는 4자리 이상으로 입력해 주세요 "</div>
+				    <div class="alert alert-danger" id="alert2">"비밀번호는 공백 없이 입력해 주세요".</div>	
+				    <div class="alert alert-danger" id="alert3">"영어, 숫자를 혼합하여 입력해 주세요".</div>
 				</td>
 			</tr>
 			<tr>

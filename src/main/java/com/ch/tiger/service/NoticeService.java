@@ -10,5 +10,4 @@ public interface NoticeService {
 	Notice select(int num);
 	int noticeUpdate(Notice notice);
 	int noticeDelete(int num);	
-
 }

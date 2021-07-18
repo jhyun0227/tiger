@@ -1,6 +1,8 @@
 package com.ch.tiger.service;
 import java.util.List;
 
+import java.util.List;
+
 import com.ch.tiger.model.Member;
 public interface MemberService {
 	int getMbTotal(Member member); // 관리자가 회원 수를 알기 위함
@@ -24,11 +26,11 @@ public interface MemberService {
 	Member selectNickMy(Member member); // 마이페이지에서 중복 체크
 
 	int insert(Member member); // 회원가입
-
+	
 	Member selectFindId(Member member); // 아이디 찾기
-
+	
 	Member selectFindPw(Member member); // 비밀번호 찾기
-
+	
 	int update(Member member); // 회원정보 수정
 	
 	int updatePw(Member member); // 비밀번호 변경

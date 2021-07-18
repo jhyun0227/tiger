@@ -1,6 +1,8 @@
 package com.ch.tiger.dao;
 import java.util.List;
 
+import java.util.List;
+
 import com.ch.tiger.model.Member;
 public interface MemberDao {
 	int getMbTotal(Member member); // 관리자가 회원 수를 불러옴
@@ -24,11 +26,11 @@ public interface MemberDao {
 	Member selectNickMy(Member member); // 마이페이지에서의 중복체크
 
 	int insert(Member member); // 회원정보 입력
-
+	
 	Member selectFindId(Member member); // 아이디 찾기
-
+	
 	Member selectFindPw(Member member); // 비밀번호 찾기
-
+	
 	int update(Member member); // 회원정보 수정
 	
 	int updatePw(Member member); // 비밀번호 변경
@@ -38,5 +40,4 @@ public interface MemberDao {
 	Member selectNum(int MB_num); // 프로필 상세보기
 
 	int updateDriverConfirm(int MB_num); // apply 컨트롤러에서 드라이버 신청하면 컬럼 바꾸는 로직
-
 }

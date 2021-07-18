@@ -1,6 +1,8 @@
 package com.ch.tiger.dao;
 import java.util.List;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -68,17 +70,14 @@ public class MemberDaoImpl implements MemberDao{
 		return sst.insert("memberns.insert", member); // 회원가입
 	}
 
-	@Override
 	public Member selectFindId(Member member) {
 		return sst.selectOne("memberns.selectFindId", member); // 아이디 찾기
 	}
 
-	@Override
 	public Member selectFindPw(Member member) {
 		return sst.selectOne("memberns.selectFindPw", member); // 비밀번호 찾기
 	}
 
-	@Override
 	public int update(Member member) {
 		return sst.update("memberns.update", member); // 회원정보 수정
 	}
@@ -102,5 +101,4 @@ public class MemberDaoImpl implements MemberDao{
 	public int updateDriverConfirm(int MB_num) { // apply 컨트롤러에서 드라이버 신청하면 컬럼 바꾸는 로직
 		return sst.update("memberns.updateDriverConfirm", MB_num);
 	}
-
 }

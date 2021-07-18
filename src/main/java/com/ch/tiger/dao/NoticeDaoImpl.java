@@ -37,5 +37,4 @@ public class NoticeDaoImpl implements NoticeDao {
 	public int noticeDelete(int num) {
 		return sst.update("noticens.noticeDelete", num);
 	}
-	
 }

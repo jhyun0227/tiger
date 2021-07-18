@@ -46,6 +46,7 @@ public class AdminController {
 	private ReviewService rs;
 	@Autowired
 	private VehicleService vs;
+	
 	@RequestMapping("adminNoticeList")
 	public String adminNoticeList(Member member, Model model, Notice notice, HttpSession session, String pageNum) {
 		// 처음 notice에는 null로 받아오고, startRow, endRow 보내주기 위한 용도

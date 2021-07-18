@@ -47,6 +47,7 @@
 	<update id="delete" parameterType="qna">
 		update qna set QA_del='Y' where QA_num=#{num}
 	</update>
+	
 	<select id="allQnaList" parameterType="qna" resultType="qna">
 		select * from (select a.*, rowNum rn from (select q.*, m.MB_id from qna q, member m where q.MB_num=m.MB_num
 			<where>

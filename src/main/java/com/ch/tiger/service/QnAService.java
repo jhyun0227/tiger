@@ -15,5 +15,4 @@ public interface QnAService {
 	int delete(int num);
 	List<QnA> allQnaList(QnA qna);
 	int getAllTotal(QnA qna);
-
 }

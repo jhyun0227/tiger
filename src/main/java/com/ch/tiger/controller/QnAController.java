@@ -1,9 +1,11 @@
 package com.ch.tiger.controller;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
+
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,17 +32,17 @@ public class QnAController {
 		qna.setMB_num(MB_num);
 		if(pageNum == null || pageNum.equals("")) pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
-		int rowPerPage = 10;		//나중에 수정
-		int total = 0;		//추가
+		int rowPerPage = 3;
+		int total  = qas.getTotal(qna);
 		int startRow = (currentPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage -1;
 		qna.setStartRow(startRow);
 		qna.setEndRow(endRow);
+		List<QnA> list = qas.list(qna);
 		int num = total - startRow+1;
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
 		model.addAttribute("num", num);
 		model.addAttribute("pb", pb);
-		List<QnA> list = qas.list(qna);
 		model.addAttribute("list", list);
 		return "qna/qnaList";
 	}
@@ -71,23 +73,18 @@ public class QnAController {
 		int MB_num = member.getMB_num();
 		qna.setMB_num(MB_num);
 		int number = qas.getMaxNum();
-		System.out.println("num="+qna.getQA_num());
 		if(qna.getQA_num()!=0) {
 			qas.updateStep(qna);
 			qna.setQA_refLevel(qna.getQA_refLevel()+1);
 			qna.setQA_refStep(qna.getQA_refStep()+1);
-			System.out.println("QA_refStep="+qna.getQA_refStep());
-		} else qna.setQA_ref(number);
+		}else qna.setQA_ref(number);
 		qna.setQA_num(number);
-		System.out.println("qna=" + qna);
-		System.out.println("qna file=" + qna.getFile());
 		if (!qna.getFile().isEmpty()){
 			String fileName = qna.getFile().getOriginalFilename();
 			int index = fileName.lastIndexOf(".");
 			String ext = fileName.substring(index);
 			UUID uuid = UUID.randomUUID();
-			fileName = uuid+ext;
-			System.out.println("fileName = " +fileName);			
+			fileName = uuid+ext;			
 			qna.setQA_fileName(fileName);
 			String real = session.getServletContext().getRealPath("/resources/upload");
 			FileOutputStream fos = new FileOutputStream(new File(real+"/"+fileName));
@@ -117,6 +114,4 @@ public class QnAController {
 		model.addAttribute("result", result);
 		return "qna/qnaDelete";
 	}
-	
-	
 }

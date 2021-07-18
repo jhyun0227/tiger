@@ -1,6 +1,8 @@
 package com.ch.tiger.service;
 import java.util.List;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ch.tiger.dao.MemberDao;
@@ -100,5 +102,4 @@ public class MemberServiceImpl implements MemberService {
 	public int updateDriverConfirm(int MB_num) { // apply 컨트롤러에서 드라이버 신청하면 컬럼 바꾸는 로직
 		return mbd.updateDriverConfirm(MB_num);
 	}
-
 }

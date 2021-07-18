@@ -11,17 +11,17 @@
 <body>
 	<div id="dropMenu">
 		<ul class="myMenu">
-			<li class="menu1"><a href="#">타세요</a></li>
+			<li class="menu1"><a href="imsi.do">타세요</a></li>
 			<li class="menu2"><a href="#">이용내역</a>
 				<ul class="menu2_s submenu">
 					<li><a href="#">드라이버</a></li>
 					<li><a href="#">탑승자</a></li>
 				</ul>
 			</li>
-			<li class="menu3"><a href="#">쪽지함</a>
+			<li class="menu3"><a href="msgRecieveList.do">쪽지함</a>
 				<ul class="menu3_s submenu">
-					<li><a href="#">받은 쪽지함</a></li>
-					<li><a href="#">보낸 쪽지함</a></li>
+					<li><a href="msgRecieveList.do">받은 쪽지함</a></li>
+					<li><a href="msgSendList.do">보낸 쪽지함</a></li>
 				</ul>
 			</li>
 			<li class="menu4"><a href="myMain.do">마이페이지</a>

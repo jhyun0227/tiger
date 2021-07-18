@@ -8,9 +8,8 @@
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 	</bean>
 	
-	<context:property-placeholder
-		location="classpath:db.properties" />
-
+	<context:property-placeholder location="classpath:db.properties" />
+		
 	<!-- SET default mail properties -->
 	<bean id="jMailSender"
 		class="org.springframework.mail.javamail.JavaMailSenderImpl">

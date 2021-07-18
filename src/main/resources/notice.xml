@@ -37,4 +37,5 @@
 	<update id="noticeDelete" parameterType="integer">
 		update notice set NT_del='Y' where NT_num=#{NT_num}
 	</update>
+	
 </mapper>

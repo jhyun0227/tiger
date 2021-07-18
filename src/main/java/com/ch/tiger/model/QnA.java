@@ -2,6 +2,7 @@ package com.ch.tiger.model;
 import java.sql.Date;
 import org.springframework.web.multipart.MultipartFile;
 import lombok.Data;
+
 @Data
 public class QnA {
 	private int QA_num;

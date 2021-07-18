@@ -29,4 +29,9 @@
 	<insert id="insert" parameterType="apply">
 		insert into apply values((select nvl(max(AP_num), 0)+1 from apply), #{AP_picture}, #{MB_num})
 	</insert>
+	
+	<select id="selectAll" parameterType="integer" resultType="apply">
+		select ap.*, m.MB_id, m.MB_name, m.MB_gender, m.MB_driverConfirm from apply ap, member m
+		where ap.MB_num=m.MB_num and m.MB_num=#{MB_num}
+	</select>
 </mapper>

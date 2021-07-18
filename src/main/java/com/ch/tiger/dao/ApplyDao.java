@@ -10,4 +10,6 @@ public interface ApplyDao {
 	Apply select(int MB_num); // 신청기록이 있는지 알기 위해
 
 	int insert(Apply apply); // 신청 입력
+
+	Apply selectAll(int MB_num);	// 관리자가 운전면허사진, 회원정보 조회
 }

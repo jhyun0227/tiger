@@ -290,8 +290,13 @@ public class AdminController {
 		return "admin/adminPermitList";
 	}
 	@RequestMapping("adminApplyView")
-	public String adminApplyView(int AP_num, String pageNum, Model model) {
-//		Apply apply = as.select(AP_num);		//여기서부터 작업
+	public String adminApplyView(int MB_num, String pageNum, Model model) {
+		// 운전면허사진 & 회원정보 조회
+		Apply apply = as.selectAll(MB_num);
+		model.addAttribute("apply", apply);
+		model.addAttribute("pageNum", pageNum);
+		// view에서 마이페이지처럼 주민번호 등 회원정보를 모두 갖고 올지 apply model 데이터만 갖고 올지
+		// 차량정보도 포함시켜야함
 		return "admin/adminApplyView";
 	}
 	@RequestMapping("adminPermitResult")

@@ -54,7 +54,7 @@
 						<!-- 게시글 번호 순서 정렬 -->
 							<td class="col-md-2 text-center">
 								<%-- <a href="adminMbView.do?MB_id=${apply.MB_id }&pageNum=${pb.currentPage}">${apply.MB_id }</a></td> --%>
-								<a href="adminApplyView.do?AP_num=${apply.AP_num }&pageNum=${pb.currentPage}">${apply.MB_id }</a></td>
+								<a href="adminApplyView.do?MB_num=${apply.MB_num }&pageNum=${pb.currentPage}">${apply.MB_id }</a></td>
 							<td class="col-md-2 text-center">${apply.MB_name }</td>
 							<c:if test="${apply.MB_gender == 1 || apply.MB_gender == 3}">
 								<td class="col-md-2 text-center">남자</td>

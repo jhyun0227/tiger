@@ -30,4 +30,9 @@ public class ApplyServiceImpl implements ApplyService {
 	public int insert(Apply apply) { // 신청 입력
 		return ad.insert(apply);
 	}
+
+	@Override
+	public Apply selectAll(int MB_num) {
+		return ad.selectAll(MB_num);	// 관리자가 운전면허사진, 회원정보 조회
+	}
 }

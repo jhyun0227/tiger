@@ -43,17 +43,18 @@
 			</tr>
 			<c:if test="${empty applyList }">
 				<tr>
-					<th colspan="5" class="text-center">회원 정보가 없습니다</th>
+					<th colspan="5" class="text-center">드라이버 신청 정보가 없습니다</th>
 				</tr>
 			</c:if>
 			<c:if test="${not empty applyList }">
 				<c:forEach var="apply" items="${applyList }">
-					<c:if test="${apply.MB_driverConfirm == 'I'}">
+					<%-- <c:if test="${apply.MB_driverConfirm == 'I'}"> --%>
 					<tr>
 						<td class="col-md-2 text-center">${num }<c:set var="num" value="${num -1 }"></c:set></td>
 						<!-- 게시글 번호 순서 정렬 -->
 							<td class="col-md-2 text-center">
-								<a href="adminMbView.do?MB_id=${apply.MB_id }&pageNum=${pb.currentPage}">${apply.MB_id }</a></td>
+								<%-- <a href="adminMbView.do?MB_id=${apply.MB_id }&pageNum=${pb.currentPage}">${apply.MB_id }</a></td> --%>
+								<a href="adminApplyView.do?AP_num=${apply.AP_num }&pageNum=${pb.currentPage}">${apply.MB_id }</a></td>
 							<td class="col-md-2 text-center">${apply.MB_name }</td>
 							<c:if test="${apply.MB_gender == 1 || apply.MB_gender == 3}">
 								<td class="col-md-2 text-center">남자</td>
@@ -64,10 +65,10 @@
 							<c:if test="${apply.MB_driverConfirm == 'I' }">
 								<td class="col-md-2 text-center">심사중
 									<%-- <a href="adminPermitResult.do?AP_num=${num }&pageNum=${pageNum }" --%>
-									<a href="adminPermitResult.do?MB_num=${apply.MB_num }&pageNum=${pageNum }"
+									<%-- <a href="adminPermitResult.do?MB_num=${apply.MB_num }&pageNum=${pageNum }"
 										class="btn btn-info">승인</a>
 									<a href="adminRejectResult.do?MB_num=${apply.MB_num }&pageNum=${pageNum }"
-										class="btn btn-danger">거절</a></td>
+										class="btn btn-danger">거절</a></td> --%>
 							</c:if>
 							<c:if test="${apply.MB_driverConfirm == 'N' }">
 								<td class="col-md-2 text-center">반려</td>
@@ -76,7 +77,7 @@
 								<td class="col-md-2 text-center">승인완료</td>
 							</c:if>
 					</tr>
-					</c:if>
+					<%-- </c:if> --%>
 				</c:forEach>
 			</c:if>
 		</table>
@@ -127,6 +128,7 @@
 					</c:if>
 				</c:forTokens>
 			</select>
+			<!-- 수정 필요 -->
 			<input type="text" name="keyword" value="${apply.keyword }">	<!-- model에 추가해줘야한다 -->
 			<input type="submit" value="검색" class="btn btn-info">
 		</form>

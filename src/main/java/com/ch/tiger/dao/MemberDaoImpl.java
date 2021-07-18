@@ -15,11 +15,6 @@ import com.ch.tiger.model.Member;
 public class MemberDaoImpl implements MemberDao{
 	@Autowired
 	private SqlSessionTemplate sst;
-
-	@Override
-	public Member select(String MB_id) { //회원조회
-		return sst.selectOne("memberns.select", MB_id);
-	}
 	
 	@Override
 	public int getMbTotal(Member member) {	// 회원 총 수 구하기

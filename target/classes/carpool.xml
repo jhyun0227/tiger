@@ -2,5 +2,47 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="carpoolns">
-
+	
+	<insert id="insert" parameterType="carpool">
+		insert into CARPOOL
+		(CP_num,CP_regDate,CP_startPoint,CP_endPoint,CP_startDate,CP_startTime,CP_fee,
+		CP_passNum,CP_gendertype,CP_option,CP_duration,CP_comment,CP_del,MB_num)
+		values(#{CP_num},sysdate, #{CP_startPoint}, #{CP_endPoint}, #{CP_startDate}, #{CP_startTime}, #{CP_fee}, #{CP_passNum},
+		#{CP_gendertype},#{CP_option},#{CP_duration},#{CP_comment},'N',#{MB_num})
+	</insert>
+	
+	<select id="carpoolList" parameterType="carpool" resultType="carpool">
+		select * from (select a.*, rowNum rn from (select * from carpool
+		<!-- 검색 기능 사용시 -->
+		<!-- keyword에 값이 있으면 where속에 like옵션 사용, 없으면 사용X -->
+		<!-- ${}는 변수, #{}는 값 -->
+		<where>
+			<!-- 검색어가 있을때 -->
+			<if test="keyword!=null and keyword!=''">
+				${search} like '%'||#{keyword}||'%'
+			</if>
+		</where>
+		order by CP_num desc) a) where rn between #{startRow} and #{endRow}
+	</select>
+	
+	<select id="getTotal" parameterType="carpool" resultType="integer">
+		select count(*) from carpool
+		<!-- 페이징  숫자 버튼 검색화면에 맞게 설정하기 -->
+		<where>
+			<if test="keyword!=null and keyword!=''">
+				${search} like '%'||#{keyword}||'%'
+			</if>
+		</where>
+	</select>
+	
+	<select id="getMaxNum" resultType="integer">
+		select nvl(max(CP_num),0) + 1 from carpool
+	</select>
+	
+	<select id="select" parameterType="integer" resultType="carpool">
+		select * from carpool where CP_num=#{CP_num}
+	</select>
+	
+	
+	
 </mapper>

@@ -17,6 +17,8 @@ public interface CarpoolDao{
 
 	Carpool select(int CP_num);
 
+	int update(Carpool carpool);
+
 	
 	
 	

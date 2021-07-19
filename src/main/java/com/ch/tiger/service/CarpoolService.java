@@ -17,4 +17,6 @@ public interface CarpoolService {
 
 	Carpool select(int CP_num);
 
+	int update(Carpool carpool);
+
 }

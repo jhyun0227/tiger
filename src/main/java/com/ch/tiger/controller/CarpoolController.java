@@ -125,7 +125,7 @@ public class CarpoolController {
 		int result = cps.update(carpool);
 		model.addAttribute("result", result);
 		model.addAttribute("pageNum", pageNum);
-		
+		return "carpool/cpUpdateResult";
 		
 	}
 	

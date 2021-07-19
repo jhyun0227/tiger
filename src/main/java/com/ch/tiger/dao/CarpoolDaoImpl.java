@@ -38,6 +38,11 @@ public class CarpoolDaoImpl implements CarpoolDao {
 	public Carpool select(int CP_num) {
 		return sst.selectOne("carpoolns.select", CP_num);
 	}
+
+	@Override
+	public int update(Carpool carpool) {
+		return sst.update("carpoolns.update", carpool);
+	}
 	
 	
 	

@@ -43,6 +43,13 @@
 		select * from carpool where CP_num=#{CP_num}
 	</select>
 	
+	<update id="update" parameterType="carpool">
+		update carpool set CP_startPoint=#{CP_startPoint}, CP_endPoint=#{CP_endPoint}, CP_startDate=#{CP_startDate}, CP_startTime=#{CP_startTime}, CP_fee=#{CP_fee}, CP_passNum=#{CP_passNum},
+		CP_gendertype=#{CP_gendertype},CP_option=#{CP_option},CP_duration=#{CP_duration},CP_comment=#{CP_comment} where CP_num=#{CP_num}
+	</update>
+	
+	
+	
 	
 	
 </mapper>

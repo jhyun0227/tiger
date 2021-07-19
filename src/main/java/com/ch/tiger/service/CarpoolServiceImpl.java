@@ -39,4 +39,9 @@ public class CarpoolServiceImpl implements CarpoolService {
 		return cpd.select(CP_num);
 	}
 
+	@Override
+	public int update(Carpool carpool) {
+		return cpd.update(carpool);
+	}
+
 }

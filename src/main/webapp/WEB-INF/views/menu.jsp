@@ -15,8 +15,8 @@
 			<li class="menu2"><a href="#">이용내역</a>
 				<ul class="menu2_s submenu">
 					<li><a href="imsi.do">임시</a></li>
-					<li><a href="#">드라이버</a></li>
-					<li><a href="#">탑승자</a></li>
+					<li><a href="driveHistoryList.do">드라이버</a></li>
+					<li><a href="PsgHistoryList">탑승자</a></li>
 				</ul>
 			</li>
 			<li class="menu3"><a href="msgRecieveList.do">쪽지함</a>

@@ -43,6 +43,37 @@
 		select * from carpool where CP_num=#{CP_num}
 	</select>
 	
+	<!-- 예약 내역에서 페이징을 위해 내가 올린 글을 가져오는 로직 - 준호 -->
+	<select id="getTotalMyRvs" parameterType="carpool" resultType="integer">
+		select count(*) from carpool 
+		<where>
+			<!-- 검색어가 없을 때 -->
+			<if test="keyword == null and keyword ==''">
+				MB_num=#{MB_num}
+			</if>
+			
+			<!-- 검색어가 있을때 -->
+			<if test="keyword!=null and keyword!=''">
+				MB_num=#{MB_num} and ${search} like '%'||#{keyword}||'%'
+			</if>
+		</where>
+	</select>
 	
+	<!-- 예약내역에 내가 올린 글들만 가져옴 -->
+	<select id="carpoolList" parameterType="carpool" resultType="carpool">
+		select * from (select a.*, rowNum rn from (select * from carpool
+		<where>
+			<!-- 검색어가 없을 때 -->
+			<if test="keyword == null and keyword ==''">
+				MB_num=#{MB_num}
+			</if>
+			
+			<!-- 검색어가 있을때 -->
+			<if test="keyword!=null and keyword!=''">
+				MB_num=#{MB_num} and ${search} like '%'||#{keyword}||'%'
+			</if>
+		</where>
+		order by CP_num desc) a) where rn between #{startRow} and #{endRow}
+	</select>
 	
 </mapper>

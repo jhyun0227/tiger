@@ -31,12 +31,22 @@ public class CarpoolDaoImpl implements CarpoolDao {
 
 	@Override
 	public int getMaxNum() {
-		return sst.selectOne("carpoolns.getMaxNum");
+		return sst.selectOne("carpoolns.getMaxNum"); // 예약 내역에서 페이징을 위해 내가 올린 글을 가져오는 로직 - 준호
 	}
 
 	@Override
 	public Carpool select(int CP_num) {
 		return sst.selectOne("carpoolns.select", CP_num);
+	}
+
+	@Override
+	public int getTotalMyRvs(Carpool carpool) {
+		return sst.selectOne("carpoolns.getTotalMyRvs", carpool);
+	}
+
+	@Override
+	public List<Carpool> myCarpoolList(Carpool carpool) {
+		return sst.selectList("carpoolns.myCarpoolList", carpool);
 	}
 	
 	

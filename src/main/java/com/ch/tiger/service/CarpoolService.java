@@ -19,4 +19,6 @@ public interface CarpoolService {
 
 	int update(Carpool carpool);
 
+	int delete(int CP_num);
+
 }

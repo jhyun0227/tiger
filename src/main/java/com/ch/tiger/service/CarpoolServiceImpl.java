@@ -44,4 +44,9 @@ public class CarpoolServiceImpl implements CarpoolService {
 		return cpd.update(carpool);
 	}
 
+	@Override
+	public int delete(int CP_num) {
+		return cpd.delete(CP_num);
+	}
+
 }

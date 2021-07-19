@@ -126,7 +126,28 @@ public class CarpoolController {
 		model.addAttribute("result", result);
 		model.addAttribute("pageNum", pageNum);
 		return "carpool/cpUpdateResult";
-		
 	}
+	
+	// 타세요 게시글 삭제
+	@RequestMapping("cpDeleteForm")
+	public String cpDeleteForm(int CP_num, String pageNum, Model model, HttpSession session) {
+		String MB_id = (String)session.getAttribute("MB_id"); // session에 저장된 MB_id를 통해 MB_pw 정보 받기
+		Member member = ms.select(MB_id);
+		Carpool carpool = cps.select(CP_num);
+		model.addAttribute("member", member); // 게시글 삭제시 회원 비밀번호 검사 후 삭제
+		model.addAttribute("carpool", carpool);
+		model.addAttribute("pageNum", pageNum);
+		return "carpool/cpDeleteForm";
+	}
+	
+	// 타세요 게시글 삭제 결과 안내
+	@RequestMapping("cpDeleteResult")
+	public String cpDeleteResult(int CP_num, String pageNum, Model model) {
+		int result = cps.delete(CP_num);
+		model.addAttribute("result", result);
+		model.addAttribute("pageNum", pageNum);
+		return "carpool/cpDeleteResult";
+	}
+	
 	
 }

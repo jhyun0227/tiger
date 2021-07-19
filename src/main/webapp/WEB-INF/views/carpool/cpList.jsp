@@ -20,7 +20,7 @@
 				<option value="CP_endPoint">도착지</option>
 			</select>
 			<input type="text" name="keyword" value="${carpool.keyword }">
-			<input type="submit" value="검색">
+			<input type="submit" class="btn btn-warning" value="검색">
 		</form>
 		
 		<!-- 타세요 작성 버튼 -->

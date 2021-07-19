@@ -124,12 +124,10 @@
 								</div>
 							</div>
 
-							<div class="form-group">
-								<a href="cpList.do?pageNum=${pageNum }" class="btn btn-info pull-right">뒤로가기</a>
-							</div>
-							<div class="form-group">
-								<a href="cpUpdateForm.do?CP_num=${carpool.CP_num}&pageNum=${pageNum }" class="btn btn-warning pull-right">수정</a>
-								<a href="cpDeleteForm.do?CP_num=${carpool.CP_num}&pageNum=${pageNum }" class="btn btn-danger pull-right">삭제</a>
+							<div class="form-group text-right">
+								<a href="cpList.do?pageNum=${pageNum }" class="btn btn-info ">뒤로가기</a>
+								<a href="cpDeleteForm.do?CP_num=${carpool.CP_num}&pageNum=${pageNum }" class="btn btn-danger">삭제</a>
+								<a href="cpUpdateForm.do?CP_num=${carpool.CP_num}&pageNum=${pageNum }" class="btn btn-warning">수정</a>
 							</div>
 						</form>
 					</div>

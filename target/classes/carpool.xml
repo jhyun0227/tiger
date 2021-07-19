@@ -48,7 +48,9 @@
 		CP_gendertype=#{CP_gendertype},CP_option=#{CP_option},CP_duration=#{CP_duration},CP_comment=#{CP_comment} where CP_num=#{CP_num}
 	</update>
 	
-	
+	<update id="delete" parameterType="integer">
+		update carpool set CP_del='Y' where CP_num=#{CP_num}
+	</update>
 	
 	
 	

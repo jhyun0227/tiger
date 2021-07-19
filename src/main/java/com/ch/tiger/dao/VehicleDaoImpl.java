@@ -42,4 +42,10 @@ public class VehicleDaoImpl implements VehicleDao {
 	public int delete(int VH_num) {
 		return sst.update("vehiclens.delete", VH_num);
 	}
+
+	// 회원 탈퇴시 모든 차량 정보 삭제
+	@Override
+	public int deleteAll(int MB_num) {
+		return sst.update("vehiclens.deleteAll", MB_num);
+	}
 }

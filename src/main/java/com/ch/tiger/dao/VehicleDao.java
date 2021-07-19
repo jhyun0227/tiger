@@ -14,4 +14,6 @@ public interface VehicleDao {
 	Vehicle select(int VH_num); // 차 상세보기
 	
 	int delete(int VH_num); // 차량 삭제
+
+	int deleteAll(int MB_num); // 회원 탈퇴시 모든 차량 정보 삭제
 }

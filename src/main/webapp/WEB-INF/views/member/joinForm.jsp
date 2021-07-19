@@ -205,23 +205,11 @@
 					<div id="idChk" class="err"></div>
 					<br>
 					<div id="emailChk">
-						<input type="text" name="emailChk" id="emailChk" class="inputline1" placeholder="인증번호 입력">
+						<input type="text" name="emailChk" id="emailChk" class="inputline1" placeholder="인증번호 입력" required="required">
 					</div>
 					<div id="emailChk_success" class="err">인증번호가 일치합니다.</div>
 					<div id="emailChk_fail" class="err">인증번호가 일치하지 않습니다.</div>
-					
-					<!-- 이메일이 중복이 아닐 경우
-					<div id="emailChkSuccess" class="err"></div>
-					이메일 인증 
-					<div class="check" id="">
-						<input type="text" name="mail_chk" class="inputBox-left" placeholder="인증번호 입력">
-						<a class="chk-btn"  id="mailConfirm_btn" onclick="chkMail();">인증 확인</a> 
-						인증버튼 눌렀는지 체크
-						<input type="hidden" name="checked_id" value="">
-						인증키 비교값
-						<input type="hidden" name="certify">
-					</div> -->
-					
+
 					<!-- 이메일이 이미 중복일 경우 -->
 					<div id="emailChkFalse" class="err"></div>
 				</td>

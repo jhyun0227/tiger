@@ -28,7 +28,7 @@
 <body>
 <div align="center">
 	<h2 class="title">로그인</h2>
-	<form action="login.do" method="post">
+	<form action="login.do" name="frm" method="post">
 		<table class="narrowWidth1">
 		<!-- <table class="narrowWidth"> -->
 			<tr>
@@ -43,7 +43,7 @@
 				<td colspan="2" class="text-center">
 					<input type="submit" value="로그인" class="btn_small">
 				</td>
-			</tr>	
+			</tr>
 		</table>
 		<a href="findIdForm.do">아이디 찾기</a> |
 		<a href="findPwForm.do">비밀번호 찾기</a>

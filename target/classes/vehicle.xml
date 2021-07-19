@@ -27,4 +27,9 @@
 	<update id="delete" parameterType="integer">
 		update vehicle set VH_del='Y' where VH_num=#{VH_num}
 	</update>
+	
+	<!-- 회원 탈퇴 시 모든 차량 정보 삭제 -->
+	<update id="deleteAll" parameterType="integer">
+		update vehicle set VH_del='Y' where MB_num=#{MB_num}
+	</update>
 </mapper>

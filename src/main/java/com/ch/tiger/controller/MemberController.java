@@ -72,7 +72,7 @@ public class MemberController {
 			mmh.setSubject("이메일 인증번호 입니다.");
 			mmh.setText("인증번호 : " + msg);
 			mmh.setTo(MB_id);
-			mmh.setFrom("jhyun0227@naver.com");
+			mmh.setFrom("*********");
 			jMailSender.send(mm);
 			model.addAttribute("msg", msg);
 		} catch (Exception e) {

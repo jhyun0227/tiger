@@ -47,7 +47,7 @@
 		</tr>
 		<tr>
 			<td class="col md-2 text-center">주행거리</td>
-			<td class="col md-10">${vehicle.VH_km }"</td>
+			<td class="col md-10">${vehicle.VH_km } km</td>
 		</tr>
 		<tr>
 			<td class="col md-2 text-center">보험여부</td>

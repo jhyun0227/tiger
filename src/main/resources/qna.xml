@@ -50,17 +50,15 @@
 	
 	<select id="allQnaList" parameterType="qna" resultType="qna">
 		select * from (select a.*, rowNum rn from (select q.*, m.MB_id from qna q, member m where q.MB_num=m.MB_num
-			<where>
-				<if test="keyword!=null and keyword!=''">
-					<if test="search=='subcon'">
-						QA_title like '%' || #{keyword} || '%' or
-						QA_content like '%' || #{keyword} || '%'
-					</if>
-					<if test="search!='subcon'">
-						${search} like '%' || #{keyword} || '%'
-					</if>
+			<if test="keyword!=null and keyword!=''">
+				<if test="search=='subcon'">
+					and QA_title like '%' || #{keyword} || '%' or
+					QA_content like '%' || #{keyword} || '%'
 				</if>
-			</where>
+				<if test="search!='subcon'">
+					and ${search} like '%' || #{keyword} || '%'
+				</if>
+			</if>
 			order by QA_ref desc, QA_refStep) a)
 			where rn between #{startRow} and #{endRow}
 	</select>

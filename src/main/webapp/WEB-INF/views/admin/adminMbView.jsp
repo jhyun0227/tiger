@@ -19,50 +19,95 @@
 </script>
 </head>
 <body>
-	<div class="container" align="center">
+	<div align="center">
 		<h2 class="title">회원정보 상세</h2>
-		<table class="table table-striped table-bordered">
+		<table class="table narrowWidth">
 			<tr>
-				<td>아이디</td>
-				<td>${member.MB_id }</td>
+				<th class="col md-2 text-center">아이디</th>
+				<td class="col md-10">${member.MB_id }</td>
 			</tr>
 			<tr>
-				<td>비밀번호</td>
-				<td>${member.MB_pw }</td>
+				<th class="col md-2 text-center">비밀번호</th>
+				<td class="col md-10">${member.MB_pw }</td>
 			</tr>
 			<tr>
-				<td>이름</td>
-				<td>${member.MB_name }</td>
+				<th class="col md-2 text-center">이름</th>
+				<td class="col md-10">${member.MB_name }</td>
 			</tr>
 			<tr>
-				<td>주민등록번호</td>
-				<td>${member.MB_regNum }</td>
+				<th class="col md-2 text-center">주민등록번호</th>
+				<td class="col md-10">${member.MB_regNum }<span>　―　</span>
+					<span>${member.MB_gender }******</span></td>
 			</tr>
 			<tr>
-				<td>닉네임</td>
-				<td>${member.MB_nickName }</td>
+				<th class="col md-2 text-center">닉네임</th>
+				<td class="col md-10">${member.MB_nickName }</td>
 			</tr>
 			<tr>
-				<td>연락처</td>
-				<td>${member.MB_tel }</td>
+				<th class="col md-2 text-center">연락처</th>
+				<td class="col md-10">${member.MB_tel }</td>
 			</tr>
 			<tr>
-				<td>성별</td>
+				<th class="col md-2 text-center">성별</th>
 				<c:if test="${member.MB_gender == 1 || member.MB_gender == 3}">
-					<td>남자</td>
+					<td class="col md-10">남자</td>
 				</c:if>
 				<c:if test="${member.MB_gender == 2 || member.MB_gender == 4}">
-					<td>여자</td>
+					<td class="col md-10">여자</td>
 				</c:if>
 			</tr>
 			<tr>
 				<td colspan="4" align="center">
-					<a href="adminMbList.do?pageNum=${pageNum }" class="btn btn-info">회원정보 목록</a>
+					<a href="adminMbList.do?pageNum=${pageNum }" class="btn_prev">목록</a>
 					<a href="adminMbUpdateForm.do?MB_id=${member.MB_id }&pageNum=${pageNum }"
-					class="btn btn-warning">수정</a>
-					<a onclick="del()" class="btn btn-danger">탈퇴</a></td>
+					class="btn_prev">수정</a>
+					<c:if test="${member.MB_id != 'admin' }">
+						<a onclick="del()" class="btn_prev">탈퇴</a>
+					</c:if></td>
 			</tr>
 		</table>
+		<div align="center">
+			<h2 class="title">회원 차량 현황</h2>
+			<table class="table narrowWidth">
+				<tr>
+					<th class="col md-4 text-center">차량번호</th>
+					<th class="col md-3 text-center">차랑명</th>
+					<th class="col md-3 text-center">연식</th>
+					<th class="col md-3 text-center">차종</th>
+					<th class="col md-3 text-center">주행거리</th>
+					<th class="col md-3 text-center">보험여부</th>
+					<th class="col md-2 text-center">삭제여부</th>
+				</tr>
+				<c:if test="${empty vcList }">
+					<th colspan="7" class="text-center">등록된 차량이 없습니다</th>
+				</c:if>
+				<c:if test="${not empty vcList }">
+					<c:forEach var="vehicle" items="${vcList }">
+						<tr>
+							<c:if test="${vehicle.VH_del == 'Y' }">
+								<th colspan="7" class="text-center">삭제된 차량입니다</th>
+							</c:if>
+							<c:if test="${vehicle.VH_del != 'Y' }">
+								<td class="col md-4 text-center">${vehicle.VH_carNum }</td>
+								<td class="col md-3 text-center">${vehicle.VH_carName }</td>
+								<td class="col md-3 text-center">${vehicle.VH_carYear }</td>
+								<td class="col md-3 text-center">
+									<c:if test="${vehicle.VH_carType == '1' }">소형</c:if>
+									<c:if test="${vehicle.VH_carType == '2' }">중형</c:if>
+									<c:if test="${vehicle.VH_carType == '3' }">대형</c:if>
+									<c:if test="${vehicle.VH_carType == '4' }">승합</c:if></td>
+								<td class="col md-3 text-center">${vehicle.VH_km }</td>
+								<td class="col md-3 text-center">
+									<c:if test="${vehicle.VH_insu == 'Y' }">O</c:if>
+									<c:if test="${vehicle.VH_insu == 'N' }">X</c:if></td>
+								<td class="col md-2 text-center">
+									<a href="vehicleDelete.do?VH_num=${vehicle.VH_num }">삭제</a></td>
+							</c:if>
+						</tr>
+					</c:forEach>
+				</c:if>
+			</table>
+		</div>
 	</div>
 </body>
 </html>

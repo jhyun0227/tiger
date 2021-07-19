@@ -27,4 +27,25 @@
 	<update id="delete" parameterType="integer">
 		update vehicle set VH_del='Y' where VH_num=#{VH_num}
 	</update>
+	
+	<!-- 회원 탈퇴 시 모든 차량 정보 삭제 -->
+	<update id="deleteAll" parameterType="integer">
+		update vehicle set VH_del='Y' where MB_num=#{MB_num}
+	</update>
+	
+	<!-- 관리자가 거절 시 동일 차량 등록을 할 수 있게 차량 삭제 -->
+	<delete id="deleteVh" parameterType="integer">
+		delete from vehicle where MB_num=#{MB_num}
+	</delete>
+	
+	<!-- 관리자가 드라이버 승인View에서 드라이버의 최초 차량 정보만 조회 -->
+	<select id="selectVh" parameterType="integer" resultType="vehicle">
+		<!-- select min(VH_num) from vehicle where MB_num=#{MB_num} and VH_del='N' -->
+		select * from vehicle where VH_num = (select min(VH_num) from vehicle where MB_num=#{MB_num})
+	</select>
+	
+	<!-- 관리자가 회원 복구 시 회원 차량 정보도 모두 복구 -->
+	<update id="rollbackAll" parameterType="integer">
+		update vehicle set VH_del='N' where MB_num=#{MB_num}
+	</update>
 </mapper>

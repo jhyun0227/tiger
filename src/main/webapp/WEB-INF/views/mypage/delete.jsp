@@ -8,13 +8,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-<c:if test="${result == 1 }">
+<c:if test="${result > 0 && resultVh > 0 }">
 	<script type="text/javascript">
 		alert("탈퇴되었습니다. 더 좋은 서비스로 찾아뵙겠습니다.");
 		location.href="main.do";
 	</script>
 </c:if>
-<c:if test="${result != 1 }">
+<c:if test="${result != 1  && resultVh != 1  }">
 	<script type="text/javascript">
 		alert("탈퇴가 실패하였습니다.");
 		history.go(-1);

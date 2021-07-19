@@ -42,4 +42,26 @@ public class VehicleServiceImpl implements VehicleService {
 	public int delete(int VH_num) {
 		return vd.delete(VH_num);
 	}
+	
+	// 회원 탈퇴 시 모든 차량 정보 삭제
+	@Override
+	public int deleteAll(int MB_num) {
+		return vd.deleteAll(MB_num);
+	}
+
+	@Override
+	public int deleteVh(int MB_num) {
+		return vd.deleteVh(MB_num);
+	}
+
+	@Override
+	public Vehicle selectVh(int MB_num) {
+		return vd.selectVh(MB_num);
+	}
+
+	@Override
+	public int rollbackAll(int MB_num) {
+		return vd.rollbackAll(MB_num);
+	}
+
 }

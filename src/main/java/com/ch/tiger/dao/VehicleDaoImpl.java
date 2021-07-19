@@ -42,4 +42,25 @@ public class VehicleDaoImpl implements VehicleDao {
 	public int delete(int VH_num) {
 		return sst.update("vehiclens.delete", VH_num);
 	}
+
+	@Override
+	public int deleteVh(int MB_num) {
+		return sst.delete("vehiclens.deleteVh", MB_num);
+	}
+
+	@Override
+	public Vehicle selectVh(int MB_num) {
+		return sst.selectOne("vehiclens.selectVh", MB_num);
+	}
+	
+	// 회원 탈퇴시 모든 차량 정보 삭제
+	@Override
+	public int deleteAll(int MB_num) {
+		return sst.update("vehiclens.deleteAll", MB_num);
+	}
+
+	@Override
+	public int rollbackAll(int MB_num) {
+		return sst.update("vehiclens.rollbackAll", MB_num);
+	}
 }

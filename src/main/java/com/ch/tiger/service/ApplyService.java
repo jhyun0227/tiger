@@ -13,4 +13,6 @@ public interface ApplyService {
 
 	Apply selectAll(int MB_num);	// 관리자가 운전면허사진, 회원정보 조회
 
+	int deleteAp(int MB_num);
+
 }

@@ -26,7 +26,7 @@
 					<a href="adminMain.do">관리자 페이지</a>
 				</c:if>
 				<c:if test="${sessionScope.MB_id != 'admin'}">
-					${sessionScope.MB_id }님 환영합니다
+					${sessionScope.MB_name }님 환영합니다
 				</c:if>
 				<a href="logout.do">로그아웃</a>
 			</c:if>

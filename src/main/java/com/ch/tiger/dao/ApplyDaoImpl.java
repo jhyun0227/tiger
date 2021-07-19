@@ -35,4 +35,9 @@ public class ApplyDaoImpl implements ApplyDao {
 	public Apply selectAll(int MB_num) {	// 관리자가 운전면허사진, 회원정보 조회
 		return sst.selectOne("applyns.selectAll", MB_num);
 	}
+	
+	@Override
+	public int deleteAp(int MB_num) {
+		return sst.delete("applyns.deleteAp", MB_num);
+	}
 }

@@ -34,4 +34,9 @@
 		select ap.*, m.MB_id, m.MB_name, m.MB_gender, m.MB_driverConfirm from apply ap, member m
 		where ap.MB_num=m.MB_num and m.MB_num=#{MB_num}
 	</select>
+	
+	<!-- 관리자가 거절 시 관련 행 삭제(추후에 수정할 수 있으면 수정) -->
+	<delete id="deleteAp" parameterType="integer">
+		delete from apply where MB_num=#{MB_num}
+	</delete>
 </mapper>

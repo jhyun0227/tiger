@@ -23,7 +23,7 @@
 		</tr>
 		<tr>
 			<td class="col md-2 text-center">이메일</td>
-			<td class="col md-10"s>${member.MB_id }</td>
+			<td class="col md-10">${member.MB_id }</td>
 		</tr>
 		<tr>
 			<td class="col md-2 text-center">이름</td>
@@ -33,8 +33,8 @@
 			<td class="col md-2 text-center">주민등록번호</td>
 			<td class="col md-10">
 				${member.MB_regNum }
-				<span>―</span>
-				<span>*******</span>
+				<span>　―　</span>
+				<span>${member.MB_gender }******</span>
 			</td>
 		</tr>
 		<tr>

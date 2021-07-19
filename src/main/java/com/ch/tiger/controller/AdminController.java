@@ -16,6 +16,7 @@ import com.ch.tiger.model.Apply;
 import com.ch.tiger.model.Member;
 import com.ch.tiger.model.Notice;
 import com.ch.tiger.model.QnA;
+import com.ch.tiger.model.Vehicle;
 import com.ch.tiger.service.ApplyService;
 import com.ch.tiger.service.CarpoolService;
 import com.ch.tiger.service.MemberService;
@@ -110,6 +111,9 @@ public class AdminController {
 	@RequestMapping("adminMbView")
 	public String adminMbView(String MB_id, String pageNum, Model model) {
 		Member member = mbs.select(MB_id);
+		int MB_num = member.getMB_num();
+		List<Vehicle> vcList = vs.list(MB_num);	// 회원 차량 정보
+		model.addAttribute("vcList", vcList);
 		model.addAttribute("member", member);	// 아이디로 DB에 있는 회원정보 조회
 		model.addAttribute("pageNum", pageNum);
 		return "admin/adminMbView";
@@ -132,6 +136,12 @@ public class AdminController {
 	@RequestMapping("adminMbDelete")
 	public String adminMbDelete(String MB_id, String pageNum, Model model) {
 		int result = mbs.adminMbDelete(MB_id);
+		Member member = mbs.select(MB_id);
+		int MB_num = member.getMB_num();
+		if(result == 1) {
+			int resultVh = vs.deleteAll(MB_num);
+			model.addAttribute("resultVh", resultVh);
+		}
 		model.addAttribute("result", result);
 		model.addAttribute("pageNum", pageNum);
 		return "admin/adminMbDelete";
@@ -139,6 +149,12 @@ public class AdminController {
 	@RequestMapping("adminMbRollback")
 	public String adminMbRollback(String MB_id, String pageNum, Model model) {
 		int result = mbs.adminMbRollback(MB_id);
+		Member member = mbs.select(MB_id);
+		int MB_num = member.getMB_num();
+		if(result == 1) {
+			int resultVh = vs.rollbackAll(MB_num);
+			model.addAttribute("resultVh", resultVh);
+		}
 		model.addAttribute("result", result);
 		model.addAttribute("pageNum", pageNum);
 		return "admin/adminMbRollback";
@@ -293,6 +309,8 @@ public class AdminController {
 	public String adminApplyView(int MB_num, String pageNum, Model model) {
 		// 운전면허사진 & 회원정보 조회
 		Apply apply = as.selectAll(MB_num);
+		Vehicle vehicle = vs.selectVh(MB_num);
+		model.addAttribute("vehicle", vehicle);
 		model.addAttribute("apply", apply);
 		model.addAttribute("pageNum", pageNum);
 		// view에서 마이페이지처럼 주민번호 등 회원정보를 모두 갖고 올지 apply model 데이터만 갖고 올지
@@ -309,6 +327,12 @@ public class AdminController {
 	@RequestMapping("adminRejectResult")
 	public String adminRejectResult(int MB_num, String pageNum, Model model) {
 		int result = mbs.adminReject(MB_num);
+		if (result == 1) {
+			int resultAp = as.deleteAp(MB_num);
+			int resultVh = vs.deleteVh(MB_num);
+			model.addAttribute("resultAp", resultAp);
+			model.addAttribute("resultVh", resultVh);
+		}
 		model.addAttribute("result", result);
 		model.addAttribute("pageNum", pageNum);
 		return "admin/adminRejectResult";

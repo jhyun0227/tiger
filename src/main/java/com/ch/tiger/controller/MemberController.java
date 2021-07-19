@@ -19,10 +19,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ch.tiger.model.Member;
 import com.ch.tiger.service.MemberService;
+import com.ch.tiger.service.VehicleService;
 @Controller
 public class MemberController {
 	@Autowired
 	private MemberService mbs;
+	@Autowired
+	private VehicleService vs;
 	@Autowired
 	private JavaMailSender jMailSender;
 
@@ -69,7 +72,7 @@ public class MemberController {
 			mmh.setSubject("이메일 인증번호 입니다.");
 			mmh.setText("인증번호 : " + msg);
 			mmh.setTo(MB_id);
-			mmh.setFrom("jhyun0227@naver.com");
+			mmh.setFrom("danny822@naver.com");
 			jMailSender.send(mm);
 			model.addAttribute("msg", msg);
 		} catch (Exception e) {
@@ -143,6 +146,7 @@ public class MemberController {
 		} else if (memberDB.getMB_pw().equals(member.getMB_pw())) {
 			result = 1;
 			session.setAttribute("MB_id", member.getMB_id());
+			session.setAttribute("MB_name", memberDB.getMB_name());
 		}
 		model.addAttribute("result", result);
 		return "member/loginResult";
@@ -293,9 +297,13 @@ public class MemberController {
 	@RequestMapping("delete")
 	public String delete(Model model, HttpSession session) {
 		String MB_id = (String)session.getAttribute("MB_id");
+		Member member = mbs.select(MB_id);
+		int MB_num = member.getMB_num();
 		int result = mbs.delete(MB_id);
 		if (result == 1) {
 			session.invalidate();
+			int resultVh = vs.deleteAll(MB_num);
+			model.addAttribute("resultVh", resultVh);
 		}
 		model.addAttribute("result", result);
 		return "mypage/delete";  

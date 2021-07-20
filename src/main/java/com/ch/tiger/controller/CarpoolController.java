@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ch.tiger.service.PagingBean;
 import com.ch.tiger.service.ReportService;
+import com.ch.tiger.service.ReservationService;
 import com.ch.tiger.model.Carpool;
 import com.ch.tiger.model.Member;
 import com.ch.tiger.model.Report;
+import com.ch.tiger.model.Reservation;
 import com.ch.tiger.service.CarpoolService;
 import com.ch.tiger.service.MemberService;
 
@@ -34,6 +36,10 @@ public class CarpoolController {
 	
 	@Autowired
 	private MemberService ms;
+	
+	@Autowired
+	private ReservationService rvs;
+	
 	// 타세요 리스트
 	@RequestMapping("cpList")
 	public String cpList(Carpool carpool, String pageNum, Model model) {
@@ -80,8 +86,27 @@ public class CarpoolController {
 	
 	// 타세요 리스트 상세보기
 	@RequestMapping("cpView")
-	public String cpView(int CP_num, String pageNum, Model model) {
-		Carpool carpool = cps.select(CP_num);
+	public String cpView(int CP_num, String pageNum, Model model, HttpSession session) {
+		Reservation reservation = new Reservation();
+		reservation.setCP_num(CP_num);
+		/*
+		 * //paging if (pageNum == null || pageNum.equals("")) pageNum = "1"; int
+		 * currentPage = Integer.parseInt(pageNum); int rowPerPage = 10; // 한 화면에 보여주는
+		 * 타세요 신청현황 갯수 int total = rvs.getTotal(reservation); int startRow =
+		 * (currentPage - 1) * rowPerPage + 1; int endRow = startRow + rowPerPage - 1;
+		 * reservation.setStartRow(startRow); reservation.setEndRow(endRow);
+		 */
+		List<Reservation> reservationList = rvs.reservationList(reservation); // reservation 테이블 정보 list로 보여줌
+		/*
+		 * int PageRSV_num = total - startRow + 1; PagingBean pb = new
+		 * PagingBean(currentPage, rowPerPage, total);
+		 */
+		String MB_id = (String)session.getAttribute("MB_id");// 로그인한 회원의 정보
+		Member member = ms.select(MB_id); // 로그인한 회원의 정보
+		Carpool carpool = cps.select(CP_num); // 타세요 작성자 MB_num 조회
+		
+		model.addAttribute("reservationList", reservationList);
+		model.addAttribute("member", member);
 		model.addAttribute("carpool", carpool);
 		model.addAttribute("pageNum", pageNum);
 		return "carpool/cpView";
@@ -148,6 +173,20 @@ public class CarpoolController {
 		model.addAttribute("pageNum", pageNum);
 		return "carpool/cpDeleteResult";
 	}
+	
+	// 타세요 신청버튼 클릭시
+	@RequestMapping("cpRequestResult")
+	public String cpRequestList(int CP_num, int MB_num, String pageNum, Model model) {
+		Reservation reservation = new Reservation();
+		reservation.setCP_num(CP_num);
+		reservation.setMB_num(MB_num);
+		int result = rvs.insert(reservation);
+		model.addAttribute("CP_num", CP_num);
+		model.addAttribute("result", result);
+		model.addAttribute("pageNum", pageNum);
+		return "carpool/cpRequestResult";
+	}
+	
 	
 	
 }

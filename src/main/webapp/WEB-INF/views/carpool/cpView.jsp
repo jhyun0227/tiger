@@ -34,9 +34,12 @@
 						<i class="fa fa-car" aria-hidden="true"></i>타세요 상세보기
 					</h1>
 					<!-- 신고 버튼 -->
-					<div align="right">
-						<a href="cpReportForm.do?CP_num=${carpool.CP_num }&pageNum=${pageNum }" class="btn btn-danger">신고</a>
-					</div>
+					<c:if test="${sessionScope.MB_num != carpool.MB_num }">
+						<div align="right">
+							<a href="cpReportForm.do?CP_num=${carpool.CP_num }&MB_num=${carpool.MB_num }&MB_numR=${sessionScope.MB_num }&pageNum=${pageNum }"
+								class="btn btn-danger">신고</a>
+						</div>
+					</c:if>
 				</section>
 				<!-- 메인 컨텐츠 부분 -->
 				<section class="content container-fluid">

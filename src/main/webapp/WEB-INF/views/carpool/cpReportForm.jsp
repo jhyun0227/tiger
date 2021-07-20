@@ -21,27 +21,29 @@
 		<section class="content container-fluid">
 			<div class="box box-danger">
 				<form action="cpReportResult.do" class="form-horizontal" method="post">
-					<input type="hidden" name="RP_num" value="${report.RP_num}" />
-					<input type="hidden" name="CP_num" value="${CP_num}" />
+					<%-- <input type="hidden" name="RP_num" value="${report.RP_num}" /> --%>
+					<input type="hidden" name="CP_num" value="${report.CP_num}" />
+					<input type="hidden" name="MB_num" value="${report.MB_num}" />
+					<input type="hidden" name="MB_numR" value="${report.MB_numR}" />
 					<div class="box-body">
 						<div class="form-group">
 							<div>
-								<label class="radio-inline"> <input type="checkbox" name="RP_reason" value=" 광고성/홍보성"> 광고성/홍보성 </label>
+								<label class="radio-inline"> <input type="radio" name="RP_reason" value="1"> 광고성/홍보성 </label>
 							</div>
 							<div>	
-								<label class="radio-inline"> <input type="checkbox" name="RP_reason" value=" 음란물/성적수치심 유발"> 음란물/성적수치심 유발 </label>
+								<label class="radio-inline"> <input type="radio" name="RP_reason" value="2"> 음란물/성적수치심 유발 </label>
 							</div>
 							<div>	
-								<label class="radio-inline"> <input type="checkbox" name="RP_reason" value=" 욕설 및 비방"> 욕설 및 비방 </label>
+								<label class="radio-inline"> <input type="radio" name="RP_reason" value="3"> 욕설 및 비방 </label>
 							</div>
 							<div>	
-								<label class="radio-inline"> <input type="checkbox" name="RP_reason" value=" 불법정보 유통"> 불법정보 유통 </label>
+								<label class="radio-inline"> <input type="radio" name="RP_reason" value="4"> 불법정보 유통 </label>
 							</div>
 							<div>	
-								<label class="radio-inline"> <input type="checkbox" name="RP_reason" value=" 불쾌한 표현"> 불쾌한 표현 </label>
+								<label class="radio-inline"> <input type="radio" name="RP_reason" value="5"> 불쾌한 표현 </label>
 							</div>
 							<div>	
-								<label class="radio-inline"> <input type="checkbox" name="RP_reason" value=" 개인정보 노출"> 개인정보 노출 </label>
+								<label class="radio-inline"> <input type="radio" name="RP_reason" value="6"> 개인정보 노출 </label>
 							</div>
 						</div>
 					</div>

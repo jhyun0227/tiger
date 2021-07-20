@@ -1,5 +1,7 @@
 package com.ch.tiger.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,16 @@ public class ReportServiceImpl implements ReportService {
 	@Override
 	public int getMaxNum() {
 		return rpd.getMaxNum();
+	}
+
+	@Override
+	public int getRpTotal(Report report) {
+		return rpd.getRpTotal(report);
+	}
+
+	@Override
+	public List<Report> rpList(Report report) {
+		return rpd.rpList(report);
 	}
 
 }

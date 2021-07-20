@@ -1,21 +1,23 @@
 package com.ch.tiger.controller;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ch.tiger.model.Apply;
+import com.ch.tiger.model.Carpool;
 import com.ch.tiger.model.Member;
 import com.ch.tiger.model.Notice;
 import com.ch.tiger.model.QnA;
+import com.ch.tiger.model.Report;
 import com.ch.tiger.model.Vehicle;
 import com.ch.tiger.service.ApplyService;
 import com.ch.tiger.service.CarpoolService;
@@ -86,7 +88,7 @@ public class AdminController {
 		return "admin/adminNoticeView";
 	}
 	@RequestMapping("adminMbList")
-	public String adminMbList(Member member, String pageNum, Model model, HttpSession session) {
+	public String adminMbList(Member member, String pageNum, Model model) {
 		if(pageNum == null || pageNum.equals("")) {
 			pageNum = "1";
 		}
@@ -336,5 +338,34 @@ public class AdminController {
 		model.addAttribute("result", result);
 		model.addAttribute("pageNum", pageNum);
 		return "admin/adminRejectResult";
+	}
+	@RequestMapping("adminReportList")
+	public String adminReportList(Report report, String pageNum, Model model) {
+		if(pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		}
+		int currentPage = Integer.parseInt(pageNum);
+		int rowPerPage = 10;	// 한 화면에 보여주는 게시글 갯수
+		int total = rps.getRpTotal(report);
+		int startRow = (currentPage -1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		report.setStartRow(startRow);
+		report.setEndRow(endRow);
+		List<Report> rpList = rps.rpList(report);	// 신고 목록
+		int num = total - startRow + 1;
+		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
+		System.out.println(rpList);
+		String[] title = {"작성자", "신고자", "신고사유"};
+//		Member member = mbs.selectNum(report.getMB_num());
+//		String MB_id = member.getMB_id();	// 글 작성자id
+//		Member member2 = mbs.selectNum(report.getMB_numR());
+//		String RP_id = member2.getMB_id();	// 신고자id
+//		model.addAttribute("MB_id", MB_id);
+//		model.addAttribute("RP_id", RP_id);
+		model.addAttribute("title", title);
+		model.addAttribute("pb", pb);	// paginbean pb
+		model.addAttribute("rpList", rpList);
+		model.addAttribute("num", num);	//목록 번호 생성 위한 num
+		return "admin/adminReportList";
 	}
 }

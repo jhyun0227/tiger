@@ -4,10 +4,34 @@
 <mapper namespace="reportns">
 	<insert id="RPinsert" parameterType="report">
 		insert into report values
-		(#{RP_num},#{RP_reason},#{CP_num})
+		(#{RP_num},#{RP_reason}, #{MB_num}, #{MB_numR}, #{CP_num})
 	</insert>
 	
 	<select id="getMaxNum" resultType="integer">
 		select nvl(max(RP_num),0) + 1 from report
+	</select>
+	
+	<!-- 관리자가 모든 신고 내역 갯수 조회 -->
+	<select id="getRpTotal" parameterType="report" resultType="integer">
+		select count(*) from report
+			<where>
+				<if test="keyword!=null and keyword!=''">
+					RP_reason like '%'||#{keyword}||'%'
+				</if>
+			</where>
+	</select>
+	
+	<!-- 관리자가 신고 목록 조회 -->
+	<select id="rpList" parameterType="report" resultType="report">
+		select * from (select a.*, rowNum rn from (select * from report
+			<where>
+				<if test="keyword!=null and keyword!=''">
+					<if test="search!='subcon'">
+						and ${search} like '%' || #{keyword} || '%'
+					</if>
+				</if>
+			</where>
+			order by RP_num desc) a)
+			where rn between #{startRow} and #{endRow}
 	</select>
 </mapper>

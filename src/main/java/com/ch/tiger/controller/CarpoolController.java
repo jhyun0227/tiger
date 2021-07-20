@@ -80,8 +80,10 @@ public class CarpoolController {
 	
 	// 타세요 리스트 상세보기
 	@RequestMapping("cpView")
-	public String cpView(int CP_num, String pageNum, Model model) {
-		Carpool carpool = cps.select(CP_num);
+	public String cpView(Carpool carpool, int CP_num, String pageNum, Model model, HttpSession session) {
+		int MB_num = (int)session.getAttribute("MB_num");
+		carpool.setMB_num(MB_num);
+		carpool = cps.select(CP_num);
 		model.addAttribute("carpool", carpool);
 		model.addAttribute("pageNum", pageNum);
 		return "carpool/cpView";
@@ -89,8 +91,7 @@ public class CarpoolController {
 	
 	// 타세요 신고하기 폼
 	@RequestMapping("cpReportForm")
-	public String cpReportForm(int CP_num, Report report, String pageNum, Model model) {
-		model.addAttribute("CP_num", CP_num);
+	public String cpReportForm(Report report, String pageNum, Model model) {
 		model.addAttribute("report", report);
 		model.addAttribute("pageNum", pageNum);
 		return "carpool/cpReportForm";
@@ -102,6 +103,7 @@ public class CarpoolController {
 		int number = rps.getMaxNum(); // 1. 신고 글번호 생성
 		report.setRP_num(number); // 2. report table의  RP_num(max번호 +1) 설정
 		int result = rps.RPinsert(report);
+		model.addAttribute("report", report);	// 필요?
 		model.addAttribute("result", result);
 		model.addAttribute("pageNum", pageNum);
 		return "carpool/cpReportResult";

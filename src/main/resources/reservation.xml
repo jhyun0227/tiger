@@ -2,5 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reservationns">
-
+	<!-- 드라이버 예약 내역에서 리뷰 작성을 위해 본인의 글을 이용한 사람을 찾아내기 위함 -->
+	<select id="selectList" parameterType="reservation" resultType="reservation">
+		select r.*, m.* from reservation r, member m where r.MB_num=m.MB_num and r.RSV_confirm='Y' and r.RSV_mConfirm='Y' and r.CP_num=#{CP_num}
+	</select>
+	
+	<!-- 리뷰 작성 이후 다시 드라이버 예약내역 리스트를 불러오기 위해 -->
+	<select id="selectCp" parameterType="integer" resultType="reservation">
+		select * from reservation where RSV_num=#{RSV_num}
+	</select>
 </mapper>

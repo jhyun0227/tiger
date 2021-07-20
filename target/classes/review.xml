@@ -2,5 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reviewns">
-
+	<!-- 리뷰 데이터 입력 -->
+	<insert id="insert" parameterType="review">
+		insert into review values((select nvl(max(RV_num), 0)+1 from review), #{RV_writer}, #{RV_reader}, #{RV_star}, #{RV_content}, #{RSV_num})
+	</insert>
+	
+	<select id="selectRv" parameterType="review" resultType="review">
+		select * from review where RV_writer=#{RV_writer} and RV_reader=#{RV_reader} and RSV_num=#{RSV_num}
+	</select>
 </mapper>

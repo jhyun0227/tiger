@@ -146,6 +146,7 @@ public class MemberController {
 		} else if (memberDB.getMB_pw().equals(member.getMB_pw())) {
 			result = 1;
 			session.setAttribute("MB_id", member.getMB_id());
+			session.setAttribute("MB_num", memberDB.getMB_num());
 		}
 		model.addAttribute("result", result);
 		return "member/loginResult";

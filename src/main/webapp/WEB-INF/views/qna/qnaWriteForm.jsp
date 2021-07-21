@@ -4,48 +4,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<style>
-.filebox input[type="file"] {
-	position: absolute;
-	width: 1px;
-	height: 1px;
-	padding: 0;
-	margin: -1px;
-	overflow: hidden;
-	clip: rect(0, 0, 0, 0);
-	border: 0;
-}
-.filebox label {
-    display: inline-block;
-    width: 80px;
-    height: 30px;
-    border: none;
-    background: #242526;
-    color: #eee;
-    font-size: 16px;
-    text-align: center;
-    cursor: pointer;
-    line-height: 30px;
-} 
-/* named upload */
-.filebox .upload-name {
-	display: inline-block;
-	background-color: white;
-	cursor: pointer;
-	border: none;
-	-webkit-appearance: none; /* 네이티브 외형 감추기 */
-	-moz-appearance: none;
-	appearance: none;
-}
-</style>
-
 <script type="text/javascript">
+/* 이전페이지 */
+function prev(){
+	var preUrl = document.referrer.split("/")[4];
+	location.href=preUrl;
+}
+
+/* 첨부파일 */
 $(document).ready( function(){ 
 	var fileTarget = $('.filebox .upload-hidden'); 
-	
-	fileTarget.on('change', function(){ // 값이 변경되면 
+	fileTarget.on('change', function(){
 		if(window.FileReader){ // modern browser 
 			var filename = $(this)[0].files[0].name;
 		} 
@@ -67,7 +36,7 @@ $(document).ready( function(){
 		<input type="hidden" name="QA_ref" value="${QA_ref }">
 		<input type="hidden" name="QA_refLevel" value="${QA_refLevel }">
 		<input type="hidden" name="QA_refStep" value="${QA_refStep }">
-		<table class="table narrowWidth">
+		<table class="table narrowWidth60">
 			<c:if test="${num==0 }">
 				<tr>
 					<td><input type="text" name="QA_title" required="required" autofocus="autofocus" class="inputLine" placeholder="제목을 입력하세요"></td>
@@ -84,14 +53,17 @@ $(document).ready( function(){
 			<tr>
 				<td>
 					<div class="filebox"> 
-						<label for="ex_filename">업로드</label> 
+						<label for="ex_filename">파일첨부</label> 
 						<input class="upload-name" disabled="disabled"> 
 						<input type="file" id="ex_filename" name="file" class="upload-hidden"> 	
 					</div>
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2" class="text-center"><input type="submit" value="작성하기" class="btn_small"></td>
+				<td colspan="2" class="text-center">
+					<input type="button" value="이전" class="btn_sm_stroke" onclick="prev()">
+					<input type="submit" value="저장" class="btn_sm_full">
+				</td>
 			</tr>
 		</table>
 	</form>

@@ -75,7 +75,7 @@ $(document).ready( function(){
 			</c:if>
 			<c:if test="${num!=0 }">
 				<tr>
-					<td><input type="text" name="QA_title" required="required" autofocus="autofocus" value="re:"></td>
+					<td><input type="text" name="QA_title" required="required" autofocus="autofocus" value="re: ${QA_title }"></td>
 				</tr>
 			</c:if>
 			<tr>

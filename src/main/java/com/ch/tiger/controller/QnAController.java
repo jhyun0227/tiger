@@ -32,15 +32,22 @@ public class QnAController {
 		qna.setMB_num(MB_num);
 		if(pageNum == null || pageNum.equals("")) pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
-		int rowPerPage = 3;
+		int rowPerPage = 5;
 		int total  = qas.getTotal(qna);
 		int startRow = (currentPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage -1;
 		qna.setStartRow(startRow);
 		qna.setEndRow(endRow);
 		List<QnA> list = qas.list(qna);
+		for (QnA qa : list) { // 닉네임 입력
+			Member member1 = mbs.selectNum(qa.getMB_num());
+			String nickname = member1.getMB_nickName(); 
+			qa.setMB_nickname(nickname);
+		}
 		int num = total - startRow+1;
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
+		String[] title = {"제목", "내용", "제목+내용"};
+		model.addAttribute("title", title);
 		model.addAttribute("num", num);
 		model.addAttribute("pb", pb);
 		model.addAttribute("list", list);
@@ -100,10 +107,14 @@ public class QnAController {
 	}
 	
 	@RequestMapping("qnaView")
-	public String qnaView(int num, String pageNum, Model model) {
+	public String qnaView(int num, String pageNum, Model model, HttpSession session) {
+		String MB_id = (String)session.getAttribute("MB_id");
+		Member member = mbs.select(MB_id);
+		int MB_num = member.getMB_num();
 		QnA qna = qas.select(num);
 		model.addAttribute("qna",qna);
 		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("MB_num", MB_num);
 		return "qna/qnaView";
 	}
 	

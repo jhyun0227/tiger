@@ -1,4 +1,5 @@
 /* 폰트 적용 */
+
 body {
 	font-family: 'IBMPlexSansKR-Regular';
 }
@@ -12,10 +13,24 @@ body {
 
 
 .narrowWidth{
-	width: 80%;
+	width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.narrowWidth60{
+	width: 60%;
+}
+
+.contents{
+	margin-bottom: 30px;
 }
 
 /* header  */
+
 .header{
 	position: relative;
 	height: 100px;
@@ -24,6 +39,7 @@ body {
 .logo{
 	height: 40px;
 	margin-top: 30px;
+	margin-bottom: 30px;
 }
 
 .header_login {
@@ -39,21 +55,92 @@ body {
 	padding-left: 15px;
 }
 
+
 /* title */
+
 .title {
 	margin: 50px 0 50px 0;
 	text-align: center;
 	font-size: 24px; 
 }
 
+
 /* input 입력창 */
+
 .inputLine{
 	border: none;
 	outline: 0;
 	width: 80%;
 }
 
+.inputUnderLine{
+	border: none;
+    border-bottom: 1px solid black;
+    outline: 0;
+}
+
+.menuTitle {
+	color: #000000;
+	margin-left: 30px;
+}
+
+.menuTitle:hover {
+	color: #3243A8;
+	margin-left: 30px;
+	text-decoration: none;
+}
+
+/* pre 창 */
+
+.textBox{
+    padding: 0;
+    margin: 0 0 10px;
+    font-size: inherit;
+    font-family: inherit;
+    color: inherit;
+    background-color: inherit;
+    border: none;
+}
+
+/* 첨부파일 */
+
+.filebox input[type="file"] {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
+}
+
+.filebox label {
+    display: inline-block;
+    width: 80px;
+    height: 30px;
+    border: none;
+    background: #3243A8;
+    color: #eee;
+    font-size: 14px;
+    font-weight: 100;
+    text-align: center;
+    cursor: pointer;
+    line-height: 30px;
+} 
+
+.filebox .upload-name {
+	display: inline-block;
+	background-color: white;
+	cursor: pointer;
+	border: none;
+	-webkit-appearance: none; /* 네이티브 외형 감추기 */
+	-moz-appearance: none;
+	appearance: none;
+}
+
 /* 버튼 */
+
 .btn_small{
 	width: 300px;
     height: 40px;
@@ -64,7 +151,54 @@ body {
     margin-top: 60px;
 }
 
-/* a태그 버튼 */
+.btn_sm{
+    margin-bottom: 10px;
+    margin-left: 25px;
+    padding: 5px 12px;
+    border: 1px solid #9a9ca3;
+    font-size: 14px;
+    color: #242526;
+    background: initial;
+}
+
+.btn_sm_stroke{
+    margin-bottom: 10px;
+    padding: 5px 12px;
+    border: 1px solid #9a9ca3;
+    font-size: 14px;
+    color: #242526;
+    background: initial;
+}
+
+.btn_sm_full{
+    margin-bottom: 10px;
+    padding: 6px 13px;
+    border: none;
+    font-size: 14px;
+    color: #eee;
+    background: #3243A8;
+}
+
+.btn_search{
+	background-image: url('/tiger/resources/main/search64.png');
+	background-size: 24px;
+	background-color: white;
+    background-position:  0px 0px;
+    background-repeat: no-repeat;
+    height: 29px;
+    border: 0px;
+ 	cursor:pointer;
+ 	outline: 0;
+ 	color: transparent;
+}
+.searchDIV {
+	text-align: left;
+	margin-bottom : 40px;
+}
+
+
+/* 버튼(a태그) */
+
 .btn_prev {
     padding: 5px 16px;
     border: 1px solid #242526;
@@ -74,21 +208,38 @@ body {
 }
 
 .btn_prev:hover {
-	color: orange;
+	color: #3243A8;
 	text-decoration: none;
 }
 
+
+/* paging */
+
+.page_num {
+	color: #000000;
+}
+
+.pagination_bottom {
+	display: inline-flex;
+	margin-top: 100px;
+}
+
+.page_current_num {
+	color: #3243A8;
+}
+
+.pagination_bottom li a:hover {
+	text-decoration: none;
+}
+
+
 /* footer */
+
 .body_footer{
 	min-height: calc(100vh - 100px);
 }
 
 footer	{
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 100%;
-	height: 100px;
 	margin-top: auto;
 }
 

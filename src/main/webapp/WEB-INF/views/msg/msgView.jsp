@@ -6,29 +6,32 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="/tiger/resources/bootstrap/css/common.css">
 <script type="text/javascript">
 function prev(){
-	/* 이전 페이지 넘겨주기 - 우림이코드 참고하기 */
+	var preUrl = document.referrer.split("/")[4];
+	location.href=preUrl;
 }
 </script>
 </head>
 <body>
+<div class="narrowWidth">
+<h2 class="title">쪽지</h2>
 <table class="table">
 	<tr>
-		<th>보낸 사람</th>
-		<td>${message.nicknameS }</td>
+		<th class="col-md-2 text-center">보낸 사람</th>
+		<td class="col-md-4">${nicknameS }</td>
+		<th class="col-md-2 text-center">받는 사람</th>
+		<td class="col-md-4">${nicknameR }</td>
 	</tr>
 	<tr>
-		<th>받는 사람</th>
-		<td>${message.nicknameR }</td>
+		<th class="text-left">내용</th>
+		<td colspan="3"><pre class="textBox">${message.MSG_content }</pre></td>
 	</tr>
 	<tr>
-		<th>내용</th>
-		<td>${message.MSG_content }</td>
-	</tr>
-	<tr>
-		<td colspan="2"><a onclick="prev()">이전</a></td>
+		<td colspan="4" class="text-center"><a onclick="prev()" class="btn_prev">이전</a></td>
 	</tr>
 </table>
+</div>
 </body>
 </html>

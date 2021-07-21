@@ -34,8 +34,7 @@
 			</tr>
 			<tr>
 				<td class="col-md-2 text-center">내용</td>
-				<td><textarea rows="10" cols="100" class="inputLine">
-					<c:out value="${qna.QA_content }" /></textarea></td>
+				<td><textarea rows="10" cols="100" class="inputLine"><c:out value="${qna.QA_content }" /></textarea></td>
 			</tr>
 			<tr>
 				<td class="col-md-2 text-center">첨부파일</td>

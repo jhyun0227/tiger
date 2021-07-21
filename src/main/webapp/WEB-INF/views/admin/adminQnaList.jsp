@@ -6,29 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-.menuTitle {
-	color: #000000;
-	margin-left: 30px;
-}
-
-.page_num {
-	color: #000000;
-}
-
-.pagination_bottom {
-	display: inline-flex;
-	margin-top: 100px;
-}
-
-.page_current_num {
-	color: orange;
-}
-
-.pagination_bottom li a:hover {
-	text-decoration: none;
-}
-</style>
+<link rel="stylesheet" type="text/css" href="/tiger/resources/bootstrap/css/common.css">
 </head>
 <body>
 	<h1 class="title">문의내역</h1>

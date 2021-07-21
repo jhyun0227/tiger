@@ -4,16 +4,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Insert title here</title>
-<c:set var="path" value="${pageContext.request.contextPath }"></c:set>
-<link rel="stylesheet" type="text/css"
-	href="${path }/resources/bootstrap/css/common.css">
 </head>
 <body>
 	<div class="header">
 		<span class="left">
 			<a href="main.do">
-				<img alt="" src="${path }/resources/main/logo.png" class="logo">
+				<img alt="" src="/tiger/resources/main/logo.png" class="logo">
 			</a>
 		</span>
 		<span class="header_login">

@@ -25,7 +25,7 @@ public class MessageController {
 	@Autowired
 	private MemberService mbs;
 	
-//	쪽지보내는 임시 페이지
+	//쪽지보내는 임시 페이지
 	@RequestMapping("imsi")
 	public String imsi(Member member, String pageNum, Model model, HttpSession session) {
 		if(pageNum == null || pageNum.equals("")) {
@@ -49,7 +49,7 @@ public class MessageController {
 		return "msg/imsi";
 	}
 	
-//	쪽지보내기 
+	//쪽지 작성폼
 	@RequestMapping("msgWriteForm")
 	public String msgWriteForm(int MB_num, Model model) {
 		Member member = mbs.selectNum(MB_num);
@@ -59,6 +59,7 @@ public class MessageController {
 		return "nolayout/msgWriteForm";
 	}
 	
+	//쪽지 전송 결과
 	@RequestMapping("msgWriteResult")
 	public String msgWriteResult(Member member, Message msg, Model model, HttpSession session) {
 		int result = 0;
@@ -67,11 +68,11 @@ public class MessageController {
 		int MB_numS = member1.getMB_num();
 		msg.setMB_numS(MB_numS);
 		result = mgs.insert(msg);
-		System.out.println("result:"+result);
 		model.addAttribute("result", result);
 		return "nolayout/msgWriteResult";
 	}
 	
+	//받은 쪽지함
 	@RequestMapping("msgRecieveList")
 	public String msgRecieveList(Message msg, String pageNum, Model model, HttpSession session) {
 		String MB_id = (String)session.getAttribute("MB_id");
@@ -81,24 +82,27 @@ public class MessageController {
 		if(pageNum == null || pageNum.equals("")) pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
 		int rowPerPage = 2;
-		int total = mgs.getTotal(msg);
+		int total = mgs.getTotalR(msg);
 		int startRow = (currentPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage -1;
 		msg.setStartRow(startRow);
 		msg.setEndRow(endRow);
 		List<Message> list = mgs.recieveList(msg);
-		for (Message msg1 : list) {
-			Member member1 = mbs.selectNum(msg1.getMB_numS());
-			msg1.setNicknameS(member1.getMB_nickName());
+		if (list.size()!=0) {
+			for (Message msg1 : list) {
+				Member member1 = mbs.selectNum(msg1.getMB_numS());
+				msg1.setNicknameS(member1.getMB_nickName());
+			}
 		}
 		int num = total - startRow+1;
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
 		model.addAttribute("num", num);
 		model.addAttribute("pb", pb);
-		model.addAttribute("list", list);		
+		model.addAttribute("list", list);
 		return "msg/msgRecieveList";
 	}
 	
+	//보낸 쪽지함
 	@RequestMapping("msgSendList")
 	public String msgSendList(Message msg, String pageNum, Model model, HttpSession session) {
 		String MB_id = (String)session.getAttribute("MB_id");
@@ -108,15 +112,17 @@ public class MessageController {
 		if(pageNum == null || pageNum.equals("")) pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
 		int rowPerPage = 2;
-		int total = mgs.getSendTotal(msg);
+		int total = mgs.getTotalS(msg);
 		int startRow = (currentPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage -1;
 		msg.setStartRow(startRow);
 		msg.setEndRow(endRow);
 		List<Message> list = mgs.sendList(msg);
-		for (Message msg1 : list) {
-			Member member1 = mbs.selectNum(msg1.getMB_numS());
-			msg1.setNicknameR(member1.getMB_nickName());
+		if(list.size()!=0) {
+			for (Message msg1 : list) {
+				Member member1 = mbs.selectNum(msg1.getMB_numR());
+				msg1.setNicknameR(member1.getMB_nickName());
+			}
 		}
 		int num = total - startRow+1;
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
@@ -126,23 +132,45 @@ public class MessageController {
 		return "msg/msgSendList";
 	}
 	
-	@RequestMapping("msgDelete")
-	public String msgDelete(HttpServletRequest request) {
-		String[] msgs = request.getParameterValues("valueArr");
-		int size = msgs.length;
-		System.out.println("size:"+size);
-		for(int i = 0;i<size;i++) {
-			int MSG_num=Integer.parseInt(msgs[i]);
-			mgs.delete(MSG_num);
-		}
-		return "msg/msgRecieveList";
-	}
-	
+	//쪽지 상세페이지
 	@RequestMapping("msgView")
 	public String msgView(int MSG_num, String pageNum, Model model) {
+		Message msg = mgs.select(MSG_num);
+		int MB_numS = msg.getMB_numS();
+		int MB_numR = msg.getMB_numR();
+		Member sender = mbs.selectNum(MB_numS);
+		String nicknameS = sender.getMB_nickName();
+		Member reciever = mbs.selectNum(MB_numR);
+		String nicknameR = reciever.getMB_nickName();
 		Message message = mgs.select(MSG_num);
+		model.addAttribute("nicknameS", nicknameS);
+		model.addAttribute("nicknameR", nicknameR);
 		model.addAttribute("message", message);
 		model.addAttribute("pageNum", pageNum);
 		return "msg/msgView";
 	}
+	
+	//받은쪽지 삭제
+	@RequestMapping("msgDeleteS")
+	public String msgDeleteS(HttpServletRequest request) {
+		String[] msgs = request.getParameterValues("valueArr");
+		int size = msgs.length;
+		for(int i = 0;i<size;i++) {
+			int MSG_num=Integer.parseInt(msgs[i]);
+			mgs.deleteS(MSG_num);
+		}
+		return "msg/msgSendList";
+	}
+	
+	//보낸쪽지 삭제
+	@RequestMapping("msgDeleteR")
+	public String msgDeleteR(HttpServletRequest request) {
+		String[] msgs = request.getParameterValues("valueArr");
+		int size = msgs.length;
+		for(int i = 0;i<size;i++) {
+			int MSG_num=Integer.parseInt(msgs[i]);
+			mgs.deleteR(MSG_num);
+		}
+		return "msg/msgRecieveList";
+	}	
 }

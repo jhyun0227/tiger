@@ -4,8 +4,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet"> 
+	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+	<script src=" https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/lang/summernote-ko-KR.min.js"></script>
 </head>
 <body>
 	<div class="container" align="center">
@@ -24,7 +25,7 @@
 				</tr>
 				<tr>
 					<td>내용</td>
-					<td><textarea rows="5" cols="40" name="NT_content"
+					<td><textarea class="summernote" rows="5" cols="40" name="NT_content"
 							required="required"></textarea></td>
 				</tr>
 				<tr>
@@ -34,5 +35,11 @@
 			</table>
 		</form>
 	</div>
+	<script>
+	$('.summernote').summernote({
+		  height: 300,
+		  lang: "ko-KR"
+		});
+</script>
 </body>
 </html>

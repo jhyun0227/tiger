@@ -12,32 +12,45 @@ import com.ch.tiger.model.Message;
 public class MessageDaoImpl implements MessageDao {
 	@Autowired
 	private SqlSessionTemplate sst;
-
+	
+	//쪽지 입력
 	public int insert(Message msg) {
 		return sst.insert("messagens.insert", msg);
 	}
-
-	public int getTotal(Message msg) {
-		return sst.selectOne("messagens.getTotal", msg);
+	
+	//쪽지 선택
+	public Message select(int MSG_num) {
+		return sst.selectOne("messagens.select", MSG_num);
+	}
+	
+	//받은쪽지 갯수
+	public int getTotalR(Message msg) {
+		return sst.selectOne("messagens.getTotalR", msg);
+	}
+	
+	//보낸쪽지 갯수
+	public int getTotalS(Message msg) {
+		return sst.selectOne("messagens.getTotalS",msg);
 	}
 
+	//받은쪽지함
 	public List<Message> recieveList(Message msg) {
 		return sst.selectList("messagens.recieveList", msg);
 	}
 
-	public void delete(int MSG_num) {
-		sst.update("messagens.delete",MSG_num);
-	}
-
-	public int getSendTotal(Message msg) {
-		return sst.selectOne("messagens.getSendTotal",msg);
-	}
-
+	//보낸쪽지함
 	public List<Message> sendList(Message msg) {
 		return sst.selectList("messagens.sendList", msg);
 	}
 
-	public Message select(int MSG_num) {
-		return sst.selectOne("messagens.select", MSG_num);
+	//받은쪽지 삭제
+	public void deleteR(int MSG_num) {
+		sst.update("messagens.deleteR", MSG_num);	
 	}
+	
+	//보낸쪽지 삭제
+	public void deleteS(int MSG_num) {
+		sst.update("messagens.deleteS", MSG_num);	
+	}
+
 }

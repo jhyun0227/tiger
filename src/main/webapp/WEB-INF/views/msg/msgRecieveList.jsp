@@ -6,33 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-.center {
-	text-align: center;
-}
-
-.page_num{
-	color:#000000;
-}
-
-.pagination_bottom{
-	display: inline-flex;
-	margin-top: 100px;
-}
-
-.page_current_num{
-	color: #3243A8;
-}
-
-.pagination_bottom li a:hover {
-	text-decoration: none;
-}
-
-.btn_sm{
-	margin-bottom: 10px;
-	margin-left: 25px;
-}
-</style>
+<link rel="stylesheet" type="text/css" href="/tiger/resources/bootstrap/css/common.css">
+<link rel="stylesheet" type="text/css" href="/tiger/resources/bootstrap/css/msgList.css">
 <script type="text/javascript">
 /* 체크박스 */
 $(function(){
@@ -57,7 +32,7 @@ $(function(){
 /* 선택 삭제 */
 /* 삭제 후 기존 페이지로 돌아가는거 아직 구현 못함 */
 function deleteValue(){
-	var url="msgDelete.do";
+	var url="msgDeleteR.do";
 	var valueArr = new Array();
 	var list = $("input[name='rowCheck']");
 	for(var i = 0;i<list.length;i++){
@@ -95,25 +70,27 @@ function deleteValue(){
 <h2 class="title">받은 쪽지함</h2>
 <form method="post" name="frm">
 <input type="button" class="btn_sm" value="삭제" onclick="deleteValue();">
-	<table class="table" >
+	<table class="table" style="table-layout:fixed">
 		<tr>
 			<th class="col-md-1 text-center"><input type="checkbox" id="allCheck" name="allCheck"></th>
 			<th class="col-md-2 text-center">보낸 사람</th>
 			<th class="col-md-7 text-center">내용</th>
-			<th class="col-md-2 text-center">보낸 날짜</th>
+			<th class="col-md-2 text-center">받은 날짜</th>
 		</tr>
-		<c:if test="${empty list } ">
+		<c:if test="${empty list}">
 			<tr>
 				<td colspan="4" class="text-center">쪽지가 없습니다.</td>
 			</tr>
 		</c:if>
-		<c:if test="${not empty list }">
+		<c:if test="${not empty list}">
 			<c:forEach var="message" items="${list }">
 				<tr>
-				<c:if test="${message.MSG_del != 'Y' }">
+				<c:if test="${message.MSG_delR != 'Y' }">
 					<td class="text-center"><input type="checkbox" name="rowCheck" value="${message.MSG_num }" ></td>
 					<td class="text-center">${message.nicknameS }</td>
-					<td><a href="msgView.do?MSG_num=${message.MSG_num }&pageNum=${pb.currentPage}">${message.MSG_content }</a></td>
+					<td class="ellip">
+						<a href="msgView.do?MSG_num=${message.MSG_num }&pageNum=${pb.currentPage}">${message.MSG_content }</a>
+					</td>
 					<td class="text-center">${message.MSG_regDate }</td>
 				</c:if>
 				</tr>

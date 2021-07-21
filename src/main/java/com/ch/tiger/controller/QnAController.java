@@ -41,8 +41,8 @@ public class QnAController {
 		List<QnA> list = qas.list(qna);
 		for (QnA qa : list) { // 닉네임 입력
 			Member member1 = mbs.selectNum(qa.getMB_num());
-			String nickname = member1.getMB_nickName(); 
-			qa.setMB_nickname(nickname);
+			String nickName = member1.getMB_nickName(); 
+			qa.setMB_nickName(nickName);
 		}
 		int num = total - startRow+1;
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);

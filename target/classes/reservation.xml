@@ -2,5 +2,57 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reservationns">
+	<!-- 드라이버 예약 내역에서 리뷰 작성을 위해 본인의 글을 이용한 사람을 찾아내기 위함 -->
+	<select id="selectList" parameterType="reservation" resultType="reservation">
+		select r.*, m.* from reservation r, member m where r.MB_num=m.MB_num and r.RSV_confirm='Y' and r.RSV_mConfirm='Y' and r.CP_num=#{CP_num}
+	</select>
+	
+	<!-- 리뷰 작성 이후 다시 드라이버 예약내역 리스트를 불러오기 위해 -->
+	<select id="selectCp" parameterType="integer" resultType="reservation">
+		select * from reservation where RSV_num=#{RSV_num}
+	</select>
+	
+	<!-- 예약내역에서 내가 탑승 예약 신청한 글의 개수를 가져오는 로직 -->
+	<select id="getTotalMyRv" parameterType="reservation" resultType="integer">
+		select count(*) from reservation where MB_num=#{MB_num}
+		<!-- 검색어가 있을때 -->
+			<if test="keyword!=null and keyword!=''">
+				and ${search} like '%'||#{keyword}||'%'
+			</if>
+	</select>
+	
+	<select id="myRvList" parameterType="reservation" resultType="reservation">
+		select * from (select a.*, rowNum rn from (select r.*, c.CP_startDate, c.CP_startPoint, c.CP_endPoint from reservation r, carpool c where r.CP_num=c.CP_num and r.MB_num=#{MB_num}
+			<!-- 검색어가 있을때 -->
+			<if test="keyword!=null and keyword!=''">
+				and ${search} like '%'||#{keyword}||'%'
+			</if>
+		order by RSV_num desc) a) where rn between #{startRow} and #{endRow}
+	</select>
+	
+	<!-- 타세요 상세보기에서 신청버튼 클릭시  -->
+	<insert id="insert" parameterType="reservation">
+		insert into reservation values
+		((SELECT NVL(MAX(RSV_num), 0) + 1 as RSV_num FROM reservation), 'Y', 'N', #{MB_num}, #{CP_num})
+	</insert>
+	
+	<!-- 타세요 상세보기 하단 신청 현황  -->
+	<select id="reservationList" parameterType="reservation" resultType="reservation">
+		select * from reservation where CP_num=#{CP_num} order by RSV_num
+	</select>
+	
+	<select id="getTotal" parameterType="reservation" resultType="integer">
+		select count(*) from reservation
+	</select>
+	
+	<!-- 타세요 신청현황(드라이버) 매칭여부 "수락" 버튼 -->
+	<update id="updateAccept" parameterType="reservation">
+		update reservation set RSV_mConfirm='Y' where CP_num=#{CP_num} and MB_num=#{MB_num}
+	</update>
+	
+	<!-- 타세요 신청현황(드라이버) 매칭여부 "거절" 버튼 -->
+	<update id="updateDenial" parameterType="reservation">
+		update reservation set RSV_confirm='N' where CP_num=#{CP_num} and MB_num=#{MB_num}
+	</update>
 
 </mapper>

@@ -91,7 +91,7 @@ public class CarpoolController {
 		reservation.setCP_num(CP_num);
 		List<Reservation> reservationList = rvs.reservationList(reservation); // reservation 테이블 정보 list로 보여줌
 		String MB_id = (String)session.getAttribute("MB_id");// 로그인한 회원의 정보
-		Member member = ms.select(MB_id); // 로그인한 회원의 정보
+		Member member = mbs.select(MB_id); // 로그인한 회원의 정보
 		Carpool carpool = cps.select(CP_num); // 타세요 작성자 MB_num 조회
 		model.addAttribute("reservationList", reservationList);
 		model.addAttribute("member", member);
@@ -145,7 +145,7 @@ public class CarpoolController {
 	@RequestMapping("cpDeleteForm")
 	public String cpDeleteForm(int CP_num, String pageNum, Model model, HttpSession session) {
 		String MB_id = (String)session.getAttribute("MB_id"); // session에 저장된 MB_id를 통해 MB_pw 정보 받기
-		Member member = ms.select(MB_id);
+		Member member = mbs.select(MB_id);
 		Carpool carpool = cps.select(CP_num);
 		model.addAttribute("member", member); // 게시글 삭제시 회원 비밀번호 검사 후 삭제
 		model.addAttribute("carpool", carpool);

@@ -2,5 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reviewns">
-
+	<!-- 리뷰 데이터 입력 -->
+	<insert id="insert" parameterType="review">
+		insert into review values((select nvl(max(RV_num), 0)+1 from review), #{RV_writer}, #{RV_reader}, #{RV_star}, #{RV_content}, #{RSV_num})
+	</insert>
+	
+	<!-- 리뷰 중복 등록 방지 -->
+	<select id="selectRv" parameterType="review" resultType="review">
+		select * from review where RV_writer=#{RV_writer} and RV_reader=#{RV_reader} and RSV_num=#{RSV_num}
+	</select>
+	
+	<!-- 프로필에 보여줄 리뷰 리스트 -->
+	<select id="selectMb" parameterType="integer" resultType="review">
+		select r.*, m.MB_nickName from review r, member m where r.RV_writer=m.MB_num and RV_reader=#{MB_num} order by RV_num desc
+	</select>
+	
+	<!-- 대상 회원에게 달린 리뷰 평균 -->
+	<select id="selectAvg" parameterType="integer" resultType="float">
+		select nvl(round(avg(RV_star), 1), 0) from review where RV_reader=#{MB_num}
+	</select>
 </mapper>

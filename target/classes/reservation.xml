@@ -11,4 +11,22 @@
 	<select id="selectCp" parameterType="integer" resultType="reservation">
 		select * from reservation where RSV_num=#{RSV_num}
 	</select>
+	
+	<!-- 예약내역에서 내가 탑승 예약 신청한 글의 개수를 가져오는 로직 -->
+	<select id="getTotalMyRv" parameterType="reservation" resultType="integer">
+		select count(*) from reservation where MB_num=#{MB_num}
+		<!-- 검색어가 있을때 -->
+			<if test="keyword!=null and keyword!=''">
+				and ${search} like '%'||#{keyword}||'%'
+			</if>
+	</select>
+	
+	<select id="myRvList" parameterType="reservation" resultType="reservation">
+		select * from (select a.*, rowNum rn from (select r.*, c.CP_startDate, c.CP_startPoint, c.CP_endPoint from reservation r, carpool c where r.CP_num=c.CP_num and r.MB_num=#{MB_num}
+			<!-- 검색어가 있을때 -->
+			<if test="keyword!=null and keyword!=''">
+				and ${search} like '%'||#{keyword}||'%'
+			</if>
+		order by RSV_num desc) a) where rn between #{startRow} and #{endRow}
+	</select>
 </mapper>

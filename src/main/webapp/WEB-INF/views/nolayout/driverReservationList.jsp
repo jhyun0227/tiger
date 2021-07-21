@@ -56,7 +56,7 @@
 						
 						<td class="col-xs-4 text-center">
 															                            <!-- 글게시자(나)					이용자 -->
-							<a href="reviewWriteForm.do?RSV_num=${rvsList.RSV_num }&RV_writer=${sessionScope.MB_num }&RV_reader=${rvsList.MB_num }&MB_nickName=${rvsList.MB_nickName}">작성하기</a>
+							<a href="dvReviewWriteForm.do?RSV_num=${rvsList.RSV_num }&RV_writer=${sessionScope.MB_num }&RV_reader=${rvsList.MB_num }&MB_nickName=${rvsList.MB_nickName}">작성하기</a>
 						</td>				
 					</tr>
 				</c:forEach>

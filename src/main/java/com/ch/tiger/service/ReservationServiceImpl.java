@@ -24,8 +24,13 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 
 	@Override
-	public int getTotalMyRvs(Reservation reservation) {
-		return rvd.getTotalMyRvs(reservation); // 탑승자 예약내역에서 내가 신청한 글 리스트를 불러오기
+	public int getTotalMyRv(Reservation reservation) {
+		return rvd.getTotalMyRv(reservation); // 탑승자 예약내역에서 페이징을 위해 예약한 글 개수를 불러오기
+	}
+
+	@Override
+	public List<Reservation> myRvList(Reservation reservation) {
+		return rvd.myRvList(reservation); // 탑승자 예약내역에서 내가 신청한 글 리스트를 불러오기
 	}
 
 

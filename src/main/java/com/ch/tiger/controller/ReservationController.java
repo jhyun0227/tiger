@@ -71,7 +71,7 @@ public class ReservationController {
 	
 	// 예약내역에서 탑승자로서 이용했던 글들을 가져 오는 로직
 	@RequestMapping("PsgHistoryList")
-	public String PsgHistoryList(Reservation reservation, String pageNum, HttpSession session) {
+	public String PsgHistoryList(Reservation reservation, String pageNum, Model model, HttpSession session) {
 		// 세션 값 가져오기
 		String MB_id = (String) session.getAttribute("MB_id");
 		Member member = mbs.select(MB_id);
@@ -84,9 +84,33 @@ public class ReservationController {
 		}
 		int currentPage = Integer.parseInt(pageNum);
 		int rowPerPage = 10; // 한 화면에 보이는 게시글 수
-		int total = rvs.getTotalMyRvs(reservation);
+		int total = rvs.getTotalMyRv(reservation);
 		int startRow = (currentPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage - 1;
+		
+		// 가져오고 싶은 정보들을 객체에 담아서 보냄
+		reservation.setStartRow(startRow);
+		reservation.setEndRow(endRow);
+		List<Reservation> myRvList = rvs.myRvList(reservation); // 내가 예약한 글들만 담아서 받아옴
+		for (Reservation rv : myRvList) {
+			int CP_num = rv.getCP_num(); // 예약 테이블에서 내가 예약 신청한 게시글의 번호를 가져옴
+			Carpool carpool = cps.select(CP_num); // 가져온 게시글 번호로 게시글의 정보를 가져옴
+			int MB_numDv = carpool.getMB_num(); // 게시글 정보에서 게시글 작성자(드라이버)의 번호를 가져옴
+			Member member2 = mbs.selectNum(MB_numDv); // 게시글 작성자의 번호를 이용해서 게시글 작성자의 정보를 가져옴
+			rv.setMB_numDv(member2.getMB_num()); // 가져온 정보를 이용해서 객체에 적용
+			rv.setMB_nickNameDv(member2.getMB_nickName()); // 가져온 정보를 이용해서 객체에 적용
+			rv.setMB_num(MB_num); // 탑승자의 번호를 재설정 해줌
+		}
+		
+		int num = total - startRow + 1; // 번호 순서대로 정렬
+		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
+		String[] title = {"출발일", "출발지", "도착지"};
+		
+		
+		model.addAttribute("title", title);
+		model.addAttribute("pb", pb);
+		model.addAttribute("myRvList", myRvList);
+		model.addAttribute("num", num);				
 		return "reservation/PsgHistoryList";
 	}
 }

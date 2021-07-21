@@ -38,7 +38,7 @@
 </c:if>
 
 <c:if test="${result == 0 }">
-	<form action="reviewWriteResult.do" method="post">
+	<form action="dvReviewWriteResult.do" method="post">
 		<input type="hidden" name="RV_writer" value="${review.RV_writer }">
 		<input type="hidden" name="RV_reader" value="${review.RV_reader }">
 		<input type="hidden" name="RSV_num" value="${review.RSV_num }">

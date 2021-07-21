@@ -9,7 +9,9 @@ public interface ReservationDao {
 
 	Reservation selectCp(int RSV_num); // 리뷰 작성 이후 다시 드라이버 예약내역 리스트를 불러오기 위해
 
-	int getTotalMyRvs(Reservation reservation); // 탑승자 예약내역에서 내가 신청한 글 리스트를 불러오기
+	int getTotalMyRv(Reservation reservation); // 탑승자 예약내역에서 내가 신청한 글 개수를 불러오기
+
+	List<Reservation> myRvList(Reservation reservation); // 탑승자 예약내역에서 내가 신청한 글 리스트를 불러오기
 	
 
 }

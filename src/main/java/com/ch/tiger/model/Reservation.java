@@ -1,5 +1,7 @@
 package com.ch.tiger.model;
 
+import java.sql.Date;
+
 import lombok.Data;
 
 @Data
@@ -15,9 +17,12 @@ public class Reservation {
     private String MB_gender;		// 성별
     
     // 조인용(탑승자 예약내역에서 사용)
-    private String CP_startDate; 	// 출발일
+    private Date CP_startDate; 	// 출발일
     private String CP_startPoint;	// 출발지
     private String CP_endPoint;		// 도착지
+    
+    private int MB_numDv;		// 드라이버 번호(게시글 작성자)
+    private String MB_nickNameDv; 	// 드라이버 닉네임
     
 	// paging용
 	private int startRow;

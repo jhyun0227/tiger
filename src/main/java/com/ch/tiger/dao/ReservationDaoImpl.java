@@ -24,8 +24,13 @@ public class ReservationDaoImpl implements ReservationDao {
 	}
 
 	@Override
-	public int getTotalMyRvs(Reservation reservation) {
-		return sst.selectOne("reservationns, ); // 탑승자 예약내역에서 내가 신청한 글 리스트를 불러오기
+	public int getTotalMyRv(Reservation reservation) {
+		return sst.selectOne("reservationns.getTotalMyRv", reservation); // 탑승자 예약내역에서 내가 신청한 글 개수를 불러오기
+	}
+
+	@Override
+	public List<Reservation> myRvList(Reservation reservation) {
+		return sst.selectList("reservationns.myRvList", reservation); // 탑승자 예약내역에서 내가 신청한 글 리스트를 불러오기
 	}
 
 

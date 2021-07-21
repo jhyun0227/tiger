@@ -29,7 +29,7 @@
 				<th class="col md-4 text-center">차량번호</th>
 				<th class="col md-3 text-center">차랑명</th>
 				<th class="col md-3 text-center">연식</th>
-				<th class="col md-2 text-center">삭제</ths>
+				<th class="col md-2 text-center">삭제</th>
 			</tr>
 			<c:if test="${empty vcList }">
 				<tr>

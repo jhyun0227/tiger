@@ -3,6 +3,7 @@ package com.ch.tiger.controller;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
@@ -18,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ch.tiger.model.Member;
+import com.ch.tiger.model.Review;
 import com.ch.tiger.service.MemberService;
+import com.ch.tiger.service.ReviewService;
 import com.ch.tiger.service.VehicleService;
 @Controller
 public class MemberController {
@@ -26,6 +29,8 @@ public class MemberController {
 	private MemberService mbs;
 	@Autowired
 	private VehicleService vs;
+	@Autowired
+	private ReviewService rs;
 	@Autowired
 	private JavaMailSender jMailSender;
 
@@ -310,11 +315,25 @@ public class MemberController {
 		return "mypage/delete";  
 	}
 	
-	// 좋아요 카테고리에서 프로필 상세보기
+	// 프로필 상세보기
 	@RequestMapping("profileView")
-	public String profileView(int MB_num, Model model) {
-		Member member = mbs.selectNum(MB_num);
-		model.addAttribute("member", member);
-		return "member/profileView";
+	public String profileView(String MB_nickName, Model model) {
+		int result = 0;
+		Member member = mbs.selectNick(MB_nickName);
+		if (member.getMB_del() == "Y") { // 회원 탈퇴 처리 되어있는지 확인
+			result = 0;
+		} else {
+			result = 1;
+			// 후기 리스트 가져오기
+			List<Review> rvList = rs.selectMb(member.getMB_num()); // 후기 리스트를 가져옴
+			// 리뷰 평점 구하기
+			float reviewAvg = rs.selectAvg(member.getMB_num()); // 회원의 리뷰 평균 평점을 가져옴
+			
+			model.addAttribute("rvList", rvList); // 리뷰 리스트
+			model.addAttribute("reviewAvg", reviewAvg); // 평균 평점
+		}
+		model.addAttribute("result", result); // 회원 탈퇴 여부 확인
+		model.addAttribute("member", member); // 프로필에서 회원정보 입력하기 위해서
+		return "nolayout/profileView";
 	}
 }

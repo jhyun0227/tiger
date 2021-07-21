@@ -71,8 +71,9 @@ public class MemberController {
 			MimeMessageHelper mmh = new MimeMessageHelper(mm, true, "utf-8");
 			mmh.setSubject("이메일 인증번호 입니다.");
 			mmh.setText("인증번호 : " + msg);
+			System.out.println("msg"+msg);
 			mmh.setTo(MB_id);
-			mmh.setFrom("danny822@naver.com");
+			mmh.setFrom("kny09280@naver.com");
 			jMailSender.send(mm);
 			model.addAttribute("msg", msg);
 		} catch (Exception e) {

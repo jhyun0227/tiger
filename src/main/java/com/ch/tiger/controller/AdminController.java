@@ -236,18 +236,22 @@ public class AdminController {
 	@RequestMapping("adminQnaReplyForm")
 	public String adminQnaReplyForm(int num, String pageNum, Model model) {
 		int QA_ref = 0, QA_refLevel = 0, QA_refStep = 0;
+		String QA_title ="";
 		//답변글
 		if(num!=0) {
 			QnA qna = qas.select(num);
 			QA_ref = qna.getQA_ref();
 			QA_refStep = qna.getQA_refStep();
 			QA_refLevel = qna.getQA_refLevel();
+			QA_title = qna.getQA_title();
 		}
 		model.addAttribute("num", num);
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("QA_ref", QA_ref);
 		model.addAttribute("QA_refLevel", QA_refLevel);
 		model.addAttribute("QA_refStep", QA_refStep);
+		model.addAttribute("QA_title", QA_title);
+
 		return "admin/adminQnaReplyForm";
 	}
 	@RequestMapping("adminQnaReplyResult")

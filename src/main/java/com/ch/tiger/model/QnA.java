@@ -23,6 +23,8 @@ public class QnA {
     private String keyword;
     //upload용 사진
     private MultipartFile file;
-    // 조인용
-    private String MB_nickName;
+    //조인용
+    private String MB_id;
+    private String MB_nickname;
+    
 }

@@ -25,6 +25,6 @@ public class QnA {
     private MultipartFile file;
     //조인용
     private String MB_id;
-    private String MB_nickname;
+    private String MB_nickName;
     
 }

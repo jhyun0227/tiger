@@ -2,33 +2,46 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="messagens">
+	<!-- 쪽지 입력 -->
 	<insert id="insert" parameterType="message">
-		insert into message values ((select nvl(max(MSG_num), 0)+1 from message), sysdate, #{MSG_content},'N', #{MB_numS}, #{MB_numR})
+		insert into message values ((select nvl(max(MSG_num), 0)+1 from message), sysdate, #{MSG_content},'N', 'N', #{MB_numS}, #{MB_numR})
 	</insert>
 	
-	<select id="getTotal" parameterType="message" resultType="integer">
-		select count(*) from message where MB_numR=#{MB_numR} and MSG_del='N'
-	</select>
-	
-	<select id="getSendTotal" parameterType="message" resultType="integer">
-		select count(*) from message where MB_numS=#{MB_numS} and MSG_del='N'
-	</select>
-	
-	<select id="recieveList" parameterType="message" resultType="message">
-		select * from (select a.*, rowNum rn from (select * from message where MB_numR=#{MB_numR} 
-			and MSG_del='N' order by MSG_num desc) a) where rn between #{startRow} and #{endRow}
-	</select>
-	
-	<select id="sendList" parameterType="message" resultType="message">
-		select * from (select a.*, rowNum rn from (select * from message where MB_numS=#{MB_numS} 
-			and MSG_del='N' order by MSG_num desc) a) where rn between #{startRow} and #{endRow}
-	</select>
-	
-	<update id="delete" parameterType="message">
-		update message set MSG_del='Y' where MSG_num=#{string}
-	</update>
-	
+	<!-- 쪽지 선택 -->
 	<select id="select" parameterType="integer" resultType="message">
 		select * from message where MSG_num=#{MSG_num}
 	</select>
+	
+	<!-- 받은쪽지 갯수 -->
+	<select id="getTotalR" parameterType="message" resultType="integer">
+		select count(*) from message where MB_numR=#{MB_numR} and MSG_delR='N'
+	</select>
+	
+	<!-- 보낸쪽지 갯수 -->
+	<select id="getTotalS" parameterType="message" resultType="integer">
+		select count(*) from message where MB_numS=#{MB_numS} and MSG_delS='N'
+	</select>
+	
+	<!-- 받은쪽지함 -->
+	<select id="recieveList" parameterType="message" resultType="message">
+		select * from (select a.*, rowNum rn from (select * from message where MB_numR=#{MB_numR} 
+			and MSG_delR='N' order by MSG_num desc) a) where rn between #{startRow} and #{endRow}
+	</select>
+	
+	<!-- 보낸쪽지함 -->
+	<select id="sendList" parameterType="message" resultType="message">
+		select * from (select a.*, rowNum rn from (select * from message where MB_numS=#{MB_numS} 
+			and MSG_delS='N' order by MSG_num desc) a) where rn between #{startRow} and #{endRow}
+	</select>
+	
+	<!-- 받은쪽지 삭제 -->
+	<update id="deleteR" parameterType="message">
+		update message set MSG_delR='Y' where MSG_num=#{string}
+	</update>
+	
+	<!-- 보낸쪽지 삭제 --> 
+	<update id="deleteS" parameterType="message">
+		update message set MSG_delS='Y' where MSG_num=#{string}
+	</update>
+
 </mapper>

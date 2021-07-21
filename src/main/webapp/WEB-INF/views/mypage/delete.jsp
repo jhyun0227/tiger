@@ -14,7 +14,7 @@
 		location.href="main.do";
 	</script>
 </c:if>
-<c:if test="${result != 1  && resultVh != 1  }">
+<c:if test="${result != 1 && resultVh != 1 }">
 	<script type="text/javascript">
 		alert("탈퇴가 실패하였습니다.");
 		history.go(-1);

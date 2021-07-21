@@ -39,4 +39,14 @@ public class CarpoolServiceImpl implements CarpoolService {
 		return cpd.select(CP_num);
 	}
 
+	@Override
+	public int getTotalMyRvs(Carpool carpool) {
+		return cpd.getTotalMyRvs(carpool); // 예약 내역에서 페이징을 위해 내가 올린 글의 내역을 가져오는 로직 - 준호
+	}
+
+	@Override
+	public List<Carpool> myCarpoolList(Carpool carpool) {
+		return cpd.myCarpoolList(carpool); // 예약 내역에 내가 올린 글만 가져옴
+	}
+
 }

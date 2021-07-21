@@ -49,7 +49,7 @@
 					</div>
 					<div class="form-group">
 						<input type="submit" class="btn btn-primary pull-right" value="신고">
-						<input class="btn btn-default pull-right" onclick="history.back()" value="취소">
+						<input type="button" class="btn btn-default pull-right" onclick="history.back()" value="취소">
 					</div>
 				</form>
 			</div>

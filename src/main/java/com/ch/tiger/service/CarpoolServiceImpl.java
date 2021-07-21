@@ -48,5 +48,15 @@ public class CarpoolServiceImpl implements CarpoolService {
 	public List<Carpool> myCarpoolList(Carpool carpool) {
 		return cpd.myCarpoolList(carpool); // 예약 내역에 내가 올린 글만 가져옴
 	}
+	
+	@Override
+	public int update(Carpool carpool) {
+		return cpd.update(carpool);
+	}
+
+	@Override
+	public int delete(int CP_num) {
+		return cpd.delete(CP_num);
+	}
 
 }

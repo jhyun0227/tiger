@@ -33,5 +33,28 @@ public class ReservationDaoImpl implements ReservationDao {
 		return sst.selectList("reservationns.myRvList", reservation); // 탑승자 예약내역에서 내가 신청한 글 리스트를 불러오기
 	}
 
+	public int insert(Reservation reservation) {
+		return sst.insert("reservationns.insert", reservation);
+	}
+
+	@Override
+	public List<Reservation> reservationList(Reservation reservation) {
+		return sst.selectList("reservationns.reservationList", reservation);
+	}
+
+	@Override
+	public int getTotal(Reservation reservation) {
+		return sst.selectOne("reservationns.getTotal", reservation);
+	}
+
+	@Override
+	public int updateAccept(Reservation reservation) {
+		return sst.update("reservationns.updateAccept", reservation);
+	}
+
+	@Override
+	public int updateDenial(Reservation reservation) {
+		return sst.update("reservationns.updateDenial", reservation);
+	}
 
 }

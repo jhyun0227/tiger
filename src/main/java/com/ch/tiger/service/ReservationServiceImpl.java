@@ -33,5 +33,28 @@ public class ReservationServiceImpl implements ReservationService {
 		return rvd.myRvList(reservation); // 탑승자 예약내역에서 내가 신청한 글 리스트를 불러오기
 	}
 
+	public int insert(Reservation reservation) {
+		return rvd.insert(reservation);
+	}
+
+	@Override
+	public List<Reservation> reservationList(Reservation reservation) {
+		return rvd.reservationList(reservation);
+	}
+
+	@Override
+	public int getTotal(Reservation reservation) {
+		return rvd.getTotal(reservation);
+	}
+
+	@Override
+	public int updateAccept(Reservation reservation) {
+		return rvd.updateAccept(reservation);
+	}
+
+	@Override
+	public int updateDenial(Reservation reservation) {
+		return rvd.updateDenial(reservation);
+	}
 
 }

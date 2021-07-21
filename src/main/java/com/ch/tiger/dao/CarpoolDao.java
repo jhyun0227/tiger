@@ -21,6 +21,9 @@ public interface CarpoolDao{
 
 	List<Carpool> myCarpoolList(Carpool carpool); // 예약 내역에 내가 올린 글만 가져옴
 
+	int update(Carpool carpool);
+
+	int delete(int CP_num);
 	
 	
 	

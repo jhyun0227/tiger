@@ -26,7 +26,7 @@
 	<!-- 컨텐츠 시작  -->
 	<div class="content-wrapper">
 		<div class="container">
-			<form action="cpUpdate.do" class="form-horizontal" method="post">
+			<form action="cpUpdateResult.do" class="form-horizontal" method="post">
 			<input type="hidden" name="CP_num" value="${carpool.CP_num}" />
 				<!-- 컨텐츠 헤더 부분(Page header) -->
 				<section class="content-header">
@@ -157,7 +157,7 @@
 							</div>
 
 							<div class="form-group">
-								<input type="submit" class="btn btn-primary pull-right" value="수정하기">
+								<input type="submit" class="btn btn-primary pull-right" value="수정완료">
 								<a href="cpList.do?pageNum=${pageNum }" class="btn btn-info pull-right">타세요 목록</a>
 							</div>
 						</form>

@@ -13,4 +13,16 @@ public interface ReservationService {
 
 	List<Reservation> myRvList(Reservation reservation); // 탑승자 예약내역에서 내가 신청한 글 리스트를 불러오기
 	
+	int insert(Reservation reservation);
+
+	List<Reservation> reservationList(Reservation reservation);
+
+	int getTotal(Reservation reservation);
+
+	int updateAccept(Reservation reservation);
+
+	int updateDenial(Reservation reservation);
+
+
+
 }

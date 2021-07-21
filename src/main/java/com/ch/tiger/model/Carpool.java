@@ -21,7 +21,7 @@ public class Carpool {
     private String CP_del;				//삭제여부
     
     //회원 테이블 회원번호 
-    private Member member;
+    private Member member; 				//join용
     private int MB_num;					//회원번호
     
 	// paging용

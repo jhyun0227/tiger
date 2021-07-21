@@ -16,37 +16,71 @@
 <script type="text/javascript"
 	src="${path }/resources/bootstrap/js/bootstrap.min.js"></script>
 <style type="text/css">
-.err {
-	color: red;
-	font-weight: bold;
-}
 
-.btn_s {
-	width: 100px;
-	height: 30px;
-	border: none;
-	background: #242526;
-	color: #eee;
-}
-
-.inputline1 {
-	border: none;
-	outline: 0;
-	width: 35%;
-}
-
-.narrowWidth1 {
-	width: 60%;
-}
-#keyShow {
-  position: absolute;
-  display: none;
-  margin-right: 10px;
-  margin-top: 4px;
-  font-size: 15px;
-  cursor: pointer;
-  color: grey;
-}
+	.err {
+		color: red;
+		font-weight: bold;
+	}
+	
+	.btn_M {
+		width: 250px;
+		height: 40px;
+		background: #242526;
+		color: #eee;
+		width: 300px;
+	    height: 40px;
+	    font-size: 18px;
+	    border: none;
+	    margin-top: 40px;
+	    margin-left: 60px;
+	    margin-right: 10px;
+	   }
+	 
+	.btn_S { 
+		width: 150px;
+		height: 40px;
+		border: none;
+		background: #242526;
+		color: #eee;
+		margin-top: 40px;
+		font-size: 18px;
+	}
+	
+	.btn_s {
+		width: 100px;
+	    height: 30px;
+	    border: none;
+	    background: #242526;
+	    color: #eee;
+	 }
+	    
+	.alert {
+		height: 20px;
+	    padding: 0px;
+	    margin-bottom: 0px;
+	    border: none;
+	    border-radius: 4px;
+	}
+	
+	.inputline1 {
+		border: none;
+		outline: 0;
+		width: 35%;
+	}
+	
+	.narrowWidth1 {
+		width: 60%;
+	}
+	
+	#keyShow {
+	  position: absolute;
+	  display: none;
+	  margin-right: 10px;
+	  margin-top: 4px;
+	  font-size: 15px;
+	  cursor: pointer;
+	  color: grey;
+	}
 </style>
 <script type="text/javascript">
 //안보이게 하기
@@ -95,96 +129,97 @@
 		    }
 		}
 	}
+	
 // 비밀번호 유효성 검사
-$(function () {
+ 	$(function () {
 	// 1. 비밀번호와 비밀번호  일치 확인 ajax
-	$("#alert-success").hide();
-	$("#alert-danger").hide();
-	$("#pw_confirm").keyup(function() {
-		var MB_pw = $("#pw").val();
-		var MB_pw_confirm = $("#pw_confirm").val();
-		if (MB_pw != "" || MB_pw_confirm != "") {
-			if (MB_pw == MB_pw_confirm) {
-				$("#alert-success").show();
-				$("#alert-danger").hide();
-				$("#submit").attr('disabled', false);
-			} else {
-				$("#alert-success").hide();
-				$("#alert-danger").show();
-				$("#submit").attr('disabled', true);
-			}
-		}
-     });
+		$("#alert-success").hide();
+		$("#alert-danger").hide();
+		$("#pw_confirm").keyup(function() {
+			var MB_pw = $("#pw").val();
+			var MB_pw_confirm = $("#pw_confirm").val();
+			if (MB_pw != "" || MB_pw_confirm != "") {
+				if (MB_pw == MB_pw_confirm) {
+					$("#alert-success").show();
+					$("#alert-danger").hide();
+					$("#submit").attr('disabled', false);
+				} else {
+					$("#alert-success").hide();
+					$("#alert-danger").show();
+					$("#submit").attr('disabled', true);
+				}
+		    }
+       });
 	
-	 //2. 비밀번호 형태 유효성 검사
-    $("#alert1").hide();  
-	$("#alert2").hide();
-	$("#alert3").hide();
-	$("#alert4").hide();
+ //2. 비밀번호 형태 유효성 검사
+		    $("#alert1").hide();  
+			$("#alert2").hide();
+			$("#alert3").hide();
+			$("#alert4").hide();
 
-	$("#pw").keyup(function() {  
-	 	var pw = $("#pw").val(); 
-     	var num = pw.search(/[0-9]/g);      //숫자 기입
-	 	var eng = pw.search(/[a-zA-Z]/ig);  //영문자 기입
-	 	var tab = pw.search(/[/\s/]/ig);    //공백
-
-	 	if (tab != -1) {
-	    	 $("#alert1").hide();
-			 $("#alert2").toggle();
-			 $("#alert3").hide();
-			 $("#alert4").hide();
-			 $("#submit").attr('disabled', true);
-		 } else {
-		 	 if (pw.length < 4 ) {  
-				$("#alert1").toggle();
-				$("#alert2").hide();
-				$("#alert3").hide();
-			    $("#alert4").hide();
-			    $("#submit").attr('disabled', true);
-   			 } else if (num >= 0 && eng >= 0){
-    			$(".alert").hide(); 
-    			$("#submit").attr('disabled', false);
- 	  		 } else if (num < 0 && eng >= 0   ) {
-			    $("#alert1").hide();
-		        $("#alert2").hide();
-		  	    $("#alert3").toggle();    
-		   	    $("#alert4").hide();
-		   	    $("#submit").attr('disabled', true);
-	   		 } else if ( num >= 0 && eng < 0  ){  
-			    $("#alert1").hide();
-				$("#alert2").hide();
-				$("#alert3").hide();
-				$("#alert4").toggle();
-				$("#submit").attr('disabled', true);
-		 	 }	
-        } 
-	  });	
+		$("#pw").keyup(function() {  
+		 	var pw = $("#pw").val(); 
+	     	var num = pw.search(/[0-9]/g);      //숫자 기입
+		 	var eng = pw.search(/[a-zA-Z]/ig);  //영문자 기입
+		 	var tab = pw.search(/[/\s/]/ig);    //공백
 	
-	// 비밀번호 보이거나 감추는 선택 기능
-$(function () {	
-	$("#pw").on("keyup", function(event) {
-		if (event.keyCode === 13) {
-		    event.preventDefault();
-		    $("#submit").triggerHandler("click");
-		} else {
-			if (this.value) {
-				$("#keyShow").css("display", "inline-block");
-			} else {
-				$("#keyShow").hide();
-			}
-		}
-	}).focus();
+		 	if (tab != -1) {
+		    	 $("#alert1").hide();
+				 $("#alert2").toggle();
+				 $("#alert3").hide();
+				 $("#alert4").hide();
+				 $("#submit").attr('disabled', true);
+			 } else {
+			 	 if (pw.length < 4 ) {  
+					$("#alert1").toggle();
+					$("#alert2").hide();
+					$("#alert3").hide();
+				    $("#alert4").hide();
+				    $("#submit").attr('disabled', true);
+	   			 } else if (num >= 0 && eng >= 0){
+	    			$(".alert").hide(); 
+	    			$("#submit").attr('disabled', false);
+	 	  		 } else if (num < 0 && eng >= 0   ) {   
+				    $("#alert1").hide();
+			        $("#alert2").hide();
+			  	    $("#alert3").toggle();    
+			   	    $("#alert4").hide();
+			   	    $("#submit").attr('disabled', true);
+		   		 } else if ( num >= 0 && eng < 0  ){  
+				    $("#alert1").hide();
+					$("#alert2").hide();
+					$("#alert3").hide();
+					$("#alert4").toggle();
+					$("#submit").attr('disabled', true);
+			 	 }	
+	        } 
+		  });	
 	
-	$("#keyShow").on("click", function() {
-		if ($("#pw").attr("type") == "password") {
-			$("#pw").attr("type", "text");
-			$($(this)).text("HIDE");
-		} else {
-			$("#pw").attr("type", "password");
-			$($(this)).text("SHOW");
-		}
-	 });	
-   });	
+// 비밀번호 보이거나 감추는 선택 기능
+	
+			$("#pw").on("keyup", function(event) {
+				if (event.keyCode === 13) {
+				    event.preventDefault();
+				    $("#submit").triggerHandler("click");
+				} else {
+					if (this.value) {
+						$("#keyShow").css("display", "inline-block");
+					} else {
+						$("#keyShow").hide();
+				}
+			  }
+		    }).focus();
+	 	
+		    $("#keyShow").on("click", function() {
+		  		if ($("#pw").attr("type") == "password") {
+					$("#pw").attr("type", "text");
+					$($(this)).text("H I D E");
+				} else {
+					$("#pw").attr("type", "password");
+					$($(this)).text("SHOW");
+				}
+		 	});	
+	  	 	
   });	
  
 //미성년자 여부 판단
@@ -203,7 +238,7 @@ $(function () {
 		
 			var  birthYear  = (gender == 1 || gender == 2) ? 19 : 20;
 		  	   birthYear  += regNum.substr(0,2);  
-			var  birthMonth =  regNum.substr(2,2) - 1;
+			var  birthMonth =  regNum.substr(2,2);/* -1 */
 			var	 birthDate  =  regNum.substr(4,2);
 			var	 birth = new Date(birthYear, birthMonth, birthDate);
 			
@@ -293,10 +328,10 @@ $(function () {
 			<table class="table narrowWidth1">
 				<tr>
 					<td class="col md-2 text-center">이메일</td>
-					<td class="col md-10"><input type="email" name="MB_id"
-						required="required" autofocus="autofocus"
-						placeholder="이메일을 입력해주세요" class="inputline1"> <input
-						type="button" onclick="idChk()" class="btn_s" value="이메일 인증">
+					<td class="col md-10">
+					 	<input type="email" name="MB_id" required="required" autofocus="autofocus"
+								placeholder="이메일을 입력해주세요" class="inputline1">
+						<input type="button" onclick="idChk()" class="btn_s" value="이메일 인증">
 						<div id="idChk" class="err"></div> <br>
 						<div id="emailChk">
 							<input type="text" name="emailChk" id="emailChk"
@@ -308,26 +343,29 @@ $(function () {
 				</tr>
 				<tr>
 					<td class="col md-2 text-center">비밀번호</td>
-					<td class="col md-10"><input type="password" name="MB_pw"
-						id="pw" maxlength="12" class="inputline1" autocomplete="false"
-						placeholder="비밀번호(영문자와 숫자 포함, 4자 이상)" required="required">
-						<div id="keyShow">show</div>
-						<br>
-						<div class="alert alert-danger" id="alert1">"숫자와 영문자를 포함해서
-							4자리 이상 "</div>
+					<td class="col md-10">
+						<input type="password" name="MB_pw" id="pw" maxlength="12" autocomplete="false"
+								class="inputline1"  placeholder="비밀번호(영문자와 숫자 포함, 4자 이상)" 
+								required="required">
+							<div id="keyShow">show</div>
+							<br>
+						<div class="alert alert-danger" id="alert1" >
+						     "숫자와 영문자를 포함해서 4자리 이상 "</div>
 						<div class="alert alert-danger" id="alert2">"공백 없이 입력"</div>
 						<div class="alert alert-danger" id="alert3">"숫자 필수 포함"</div>
-						<div class="alert alert-danger" id="alert4">"영문자 필수 포함"</div></td> 
-				</tr>
+						<div class="alert alert-danger" id="alert4">"영문자 필수 포함"</div>
+				   </td> 
+				</tr>  
 				<tr>
 					<td class="col md-2 text-center">비밀번호 확인</td>
-					<td class="col md-10"><input type="password"
-						name="MB_pw_confirm" id="pw_confirm" required="required"
-						placeholder="비밀번호 확인" class="inputline1"> <br>
-						<div class="alert alert-success" id="alert-success">비밀번호가
-							일치합니다.</div>
-						<div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지
-							않습니다.</div></td>
+					<td class="col md-10">
+					    <input type="password" 	name="MB_pw_confirm" id="pw_confirm" 
+					           required="required"	placeholder="비밀번호 확인" class="inputline1"> <br>
+						<div class="alert alert-success" id="alert-success">
+						      비밀번호가 일치합니다.</div>
+						<div class="alert alert-danger" id="alert-danger">
+                             비밀번호가 일치하지 않습니다.</div>
+                    </td>
 				</tr>
 				<tr>
 					<td class="col md-2 text-center">이름</td>
@@ -338,12 +376,12 @@ $(function () {
 				<tr>
 					<td class="col md-2 text-center" >주민등록번호</td>
 					<td class="col md-10" id="CheckRegNum">
-					    <input type="text" name="MB_regNum" id="regNum" required="required" maxlength="6" style="width: 20%;"
-						placeholder="6자리" class="inputline1" autofocus="autofocus" > 
+					    <input type="text" name="MB_regNum" id="regNum" required="required" maxlength="6" 
+					           style="width: 20%;" placeholder="6자리" class="inputline1" autofocus="autofocus" > 
 						<span>―</span> <!-- 1, 3일 경우 남자 / 2, 4일 경우 여자 -->
 						<input type="text" name="MB_gender" id="gender" placeholder="1" 
-						required="required" maxlength="1" style="width: 15px;"						
-						class="inputline1"> <span>******</span> 
+								required="required" maxlength="1" style="width: 15px;" class="inputline1">
+					    <span>******</span> 
 						<div class="alert alert-danger"  id="err_regNum1">미성년자는 가입할 수 없습니다</div>
 						<div  class="alert alert-danger" id="err_regNum2">유효하지 않은 정보입니다</div>
 						<div class="alert alert-success"  id="err_regNum3">유효한 정보입니다</div> 
@@ -352,22 +390,25 @@ $(function () {
 				</tr>
 				<tr>
 					<td class="col md-2 text-center">닉네임</td>
-					<td class="col md-10"><input type="text" name="MB_nickName"
-						id="nickName" required="required" placeholder="닉네임을 입력해주세요"
-						class="inputline1"> <input type="button"
-						onclick="nickChk()" class="btn_s" value="중복체크">
+					<td class="col md-10">
+						<input type="text" name="MB_nickName" id="nickName" required="required" 
+						        placeholder="닉네임을 입력해주세요" class="inputline1"> 
+						<input type="button" onclick="nickChk()" class="btn_s" value="중복체크">
 						<div id="nickChk" class="err"></div></td>
 				</tr>
 				<tr>
 					<td class="col md-2 text-center">연락처</td>
-					<td class="col md-10"><input type="tel" name="MB_tel" id="tel"
-						required="required" title="전화번호 형식 3-4-4"
-						pattern="\d{3}-\d{4}-\d{4}" placeholder="000-0000-0000"
-						class="inputline1"></td>
+					<td class="col md-10"><input type="tel" name="MB_tel" id="tel" 	required="required"
+					     title="전화번호 형식 3-4-4" pattern="\d{3}-\d{4}-\d{4}" placeholder="000-0000-0000"
+						class="inputline1">
+					</td>
 				</tr>
 				<tr>
-					<td colspan="2" align="center"><input type="submit"
-						id="submit" value="회원가입" class="btn_small" disabled=""></td>
+					<td colspan="2" align="center" class="text-center">
+					    <input type="submit" id="submit" value="회원가입" class="btn_M" disabled="">
+					    <input type="button"  onclick="location.href='loginForm.do'" class="btn_S" 
+					    	    value="로그인" >  
+					 </td>
 				</tr>
 			</table>
 		</form>

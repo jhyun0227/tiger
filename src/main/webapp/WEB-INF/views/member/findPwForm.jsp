@@ -11,14 +11,15 @@
 	<script type="text/javascript" src="${path }/resources/bootstrap/js/jquery.js"></script>
 	<script type="text/javascript" src="${path }/resources/bootstrap/js/bootstrap.min.js"></script>
 <style type="text/css">
+
 	.narrowWidth1 {
    	 	width: 30%;
 	}
 	
-	.inputLine1{
-	width: 100%;
-	border: none;
-	border-bottom: 1px solid #000000;
+	.inputline1 {
+		border: none;
+		outline: 0;
+		width: 35%;
 	}
 	
 	td, th {
@@ -30,10 +31,13 @@
 <div align="center">
 	<h2 class="title">비밀번호 찾기</h2>
 	<form action="findPwResult.do" method="post">
-		<table class="narrowWidth1">
+		<table class="table narrowWidth1">  
 			<tr>
 				<td class="col md-2 text-center">이름</td>
-				<td class="col md-10"><input type="text" name="MB_name" required="required" autofocus="autofocus" placeholder="이름" class="inputLine1"></td>
+				<td class="col md-10">
+					<input type="text" name="MB_name" required="required" autofocus="autofocus"
+					 placeholder="이름" class="inputline1">
+				</td>
 			</tr>
 			
 			<!-- 아이디 찾기 후 비밀번호를 찾으면 값이 자동으로 넘어가게 하기 위함 -->
@@ -41,7 +45,8 @@
 			<tr>
 				<td class="col md-2 text-center">이메일</td>			
 				<td class="col md-10">
-					<input type="email" name="MB_id" id="email" required="required" value="${MB_id }" class="inputLine1">
+					<input type="email" name="MB_id" id="email" required="required" 
+							value="${MB_id }" class="inputline1">
 				</td>
 			</tr>
 			</c:if>
@@ -49,7 +54,8 @@
 			<tr>
 				<td class="col md-2 text-center">이메일</td>			
 				<td class="col md-10">
-					<input type="email" name="MB_id" id="email" required="required" placeholder="이메일" class="inputLine1">
+					<input type="email" name="MB_id" id="email" required="required" 
+						placeholder="이메일" class="inputline1">
 				</td>
 			</tr>
 			</c:if>

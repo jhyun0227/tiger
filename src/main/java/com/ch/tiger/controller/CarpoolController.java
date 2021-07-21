@@ -120,13 +120,13 @@ public class CarpoolController {
 	}
 	
 	// 타세요 게시글 수정 결과 안내
-	@RequestMapping("cpUpdateResult")
+	/*@RequestMapping("cpUpdateResult")
 	public String cpUpdateResult(Carpool carpool, String pageNum, Model model) {
 		int result = cps.update(carpool);
 		model.addAttribute("result", result);
-		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("pageNum", pageNum);*/
 		
 		
-	}
+	//}
 	
 }

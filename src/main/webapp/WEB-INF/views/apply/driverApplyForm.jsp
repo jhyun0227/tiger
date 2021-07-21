@@ -12,6 +12,7 @@
 	<script type="text/javascript" src="${path }/resources/bootstrap/js/jquery.js"></script>
 	<script type="text/javascript" src="${path }/resources/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript">
+
 	// 차량 번호가 중복인지  확인하는 ajax
 	$(function() {
 		$("#vhChk").hide();

@@ -27,7 +27,7 @@
 			</li>
 			<li class="menu4"><a href="myMain.do">마이페이지</a>
 				<ul class="menu4_s submenu">
-					<li><a href="updateForm.do">내 정보 수정</a></li>
+					<li><a href="myMain.do">내 정보</a></li>
 					<li><a href="updatePw.do">비밀번호 변경</a></li>
 					<li><a href="driverApplyForm.do">드라이버 신청</a></li>
 					<li><a href="vehicleList.do">차량정보 관리</a></li>

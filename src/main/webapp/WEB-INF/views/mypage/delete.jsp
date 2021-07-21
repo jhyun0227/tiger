@@ -10,7 +10,7 @@
 <body>
 <c:if test="${result == 1 }">
 	<script type="text/javascript">
-		alert("탈퇴되었습니다. 더 좋은 서비스로 찾아뵙겠습니다.");
+		alert("더 좋은 서비스로 찾아뵙겠습니다.");
 		location.href="main.do";
 	</script>
 </c:if>

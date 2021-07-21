@@ -27,4 +27,15 @@ public class ReservationServiceImpl implements ReservationService {
 	public int getTotal(Reservation reservation) {
 		return rvd.getTotal(reservation);
 	}
+
+	@Override
+	public int updateAccept(Reservation reservation) {
+		return rvd.updateAccept(reservation);
+	}
+
+	@Override
+	public int updateDenial(Reservation reservation) {
+		return rvd.updateDenial(reservation);
+	}
+
 }

@@ -12,4 +12,10 @@ public interface ReservationService {
 
 	int getTotal(Reservation reservation);
 
+	int updateAccept(Reservation reservation);
+
+	int updateDenial(Reservation reservation);
+
+
+
 }

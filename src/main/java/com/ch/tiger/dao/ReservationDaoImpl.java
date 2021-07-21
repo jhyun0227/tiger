@@ -27,4 +27,15 @@ public class ReservationDaoImpl implements ReservationDao {
 	public int getTotal(Reservation reservation) {
 		return sst.selectOne("reservationns.getTotal", reservation);
 	}
+
+	@Override
+	public int updateAccept(Reservation reservation) {
+		return sst.update("reservationns.updateAccept", reservation);
+	}
+
+	@Override
+	public int updateDenial(Reservation reservation) {
+		return sst.update("reservationns.updateDenial", reservation);
+	}
+
 }

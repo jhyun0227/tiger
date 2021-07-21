@@ -89,22 +89,10 @@ public class CarpoolController {
 	public String cpView(int CP_num, String pageNum, Model model, HttpSession session) {
 		Reservation reservation = new Reservation();
 		reservation.setCP_num(CP_num);
-		/*
-		 * //paging if (pageNum == null || pageNum.equals("")) pageNum = "1"; int
-		 * currentPage = Integer.parseInt(pageNum); int rowPerPage = 10; // 한 화면에 보여주는
-		 * 타세요 신청현황 갯수 int total = rvs.getTotal(reservation); int startRow =
-		 * (currentPage - 1) * rowPerPage + 1; int endRow = startRow + rowPerPage - 1;
-		 * reservation.setStartRow(startRow); reservation.setEndRow(endRow);
-		 */
 		List<Reservation> reservationList = rvs.reservationList(reservation); // reservation 테이블 정보 list로 보여줌
-		/*
-		 * int PageRSV_num = total - startRow + 1; PagingBean pb = new
-		 * PagingBean(currentPage, rowPerPage, total);
-		 */
 		String MB_id = (String)session.getAttribute("MB_id");// 로그인한 회원의 정보
 		Member member = ms.select(MB_id); // 로그인한 회원의 정보
 		Carpool carpool = cps.select(CP_num); // 타세요 작성자 MB_num 조회
-		
 		model.addAttribute("reservationList", reservationList);
 		model.addAttribute("member", member);
 		model.addAttribute("carpool", carpool);
@@ -187,6 +175,30 @@ public class CarpoolController {
 		return "carpool/cpRequestResult";
 	}
 	
+	// 타세요 드라이버 로그인 >> 매칭 여부 컬럼 "수락" 버튼 클릭시
+	@RequestMapping("cpAcceptResult")
+	public String cpAcceptResult(int CP_num, int MB_num, Model model) {
+		Reservation reservation = new Reservation();
+		reservation.setCP_num(CP_num);
+		reservation.setMB_num(MB_num);
+		int result = rvs.updateAccept(reservation);
+		model.addAttribute("result", result);
+		model.addAttribute("CP_num", CP_num);
+		return "carpool/cpAcceptResult";
+	}
 	
+	// 타세요 드라이버 로그인 >> 매칭 여부 컬럼 "거절" 버튼 클릭시
+	@RequestMapping("cpDenialResult")
+	public String cpDenialResult(int CP_num, int MB_num, Model model) {
+		Reservation reservation = new Reservation();
+		reservation.setCP_num(CP_num);
+		reservation.setMB_num(MB_num);
+		int result = rvs.updateDenial(reservation);
+		model.addAttribute("result", result);
+		model.addAttribute("CP_num", CP_num);
+		return "carpool/cpDenialResult";
+	}
+	
+	// 타세요 상세보기 신청현황 닉네임/성별 컬럼 회원 정보
 	
 }

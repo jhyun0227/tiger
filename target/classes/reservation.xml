@@ -9,14 +9,23 @@
 		((SELECT NVL(MAX(RSV_num), 0) + 1 as RSV_num FROM reservation), 'Y', 'N', #{MB_num}, #{CP_num})
 	</insert>
 	
+	<!-- 타세요 상세보기 하단 신청 현황  -->
 	<select id="reservationList" parameterType="reservation" resultType="reservation">
 		select * from reservation where CP_num=#{CP_num} order by RSV_num
-		<!-- select * from (select a.*, rowNum rn from (select * from reservation where CP_num=#{CP_num}
-		order by RSV_num desc) a) where rn between #{startRow} and #{endRow} -->
 	</select>
 	
 	<select id="getTotal" parameterType="reservation" resultType="integer">
 		select count(*) from reservation
 	</select>
+	
+	<!-- 타세요 신청현황(드라이버) 매칭여부 "수락" 버튼 -->
+	<update id="updateAccept" parameterType="reservation">
+		update reservation set RSV_mConfirm='Y' where CP_num=#{CP_num} and MB_num=#{MB_num}
+	</update>
+	
+	<!-- 타세요 신청현황(드라이버) 매칭여부 "거절" 버튼 -->
+	<update id="updateDenial" parameterType="reservation">
+		update reservation set RSV_confirm='N' where CP_num=#{CP_num} and MB_num=#{MB_num}
+	</update>
 
 </mapper>

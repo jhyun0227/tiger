@@ -24,8 +24,8 @@
 	<!-- 컨텐츠 시작  -->
 	<div class="container">
 		<form class="form-horizontal" method="post">
-		<input type="text" name="CP_num" value="${carpool.CP_num}" />
-		<input type="text" name="MB_num" value="${member.MB_num}" />
+		<input type="text" name="CP_num" value="${carpool.CP_num} CP_num" />
+		<input type="text" name="MB_num" value="${member.MB_num} MB_num" />
 			<!-- 컨텐츠 헤더 부분(Page header) -->
 			<section class="content-header">
 				<h1>
@@ -202,13 +202,15 @@
 									<td class="btn btn-success btn-sm">매칭완료</td>
 								</c:if>
 								<c:if test="${reservation.RSV_mConfirm == 'N' }">
-									<td class="btn btn-info btn-sm mr-1">수락</td> 
-									<td class="btn btn-danger btn-sm">거절</td>
+									<td>
+										<a href="cpAcceptResult.do?MB_num=${reservation.MB_num}&CP_num=${carpool.CP_num}" class="btn btn-info btn-sm">수락</a>
+										<a href="cpDenialResult.do?MB_num=${reservation.MB_num}&CP_num=${carpool.CP_num}" class="btn btn-danger btn-sm">거절</a>
+									</td>
 								</c:if>
 							</c:if>
 							<c:if test="${reservation.RSV_confirm == 'N' }">
 								<c:if test="${reservation.RSV_mConfirm == 'N' }">
-									<td class="btn btn-primary btn-sm">취소한매칭</td>
+									<td class="btn btn-primary btn-sm">거절한 매칭</td>
 								</c:if>
 							</c:if>	
 						</tr>

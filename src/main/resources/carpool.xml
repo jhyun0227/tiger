@@ -2,6 +2,45 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="carpoolns">
+<!-- 	<resultMap type="carpool" id="carpoolResult">
+		<result property="CP_num" 			column="CP_num" />
+		<result property="CP_regDate" 		column="CP_regDate" />
+		<result property="CP_startPoint"	column="CP_startPoint" />
+		<result property="CP_endPoint" 		column="CP_endPoint" />
+		<result property="CP_startDate" 	column="CP_startDate" />
+		<result property="CP_startTime" 	column="CP_startTime" />
+		<result property="CP_fee" 			column="CP_fee" />
+		<result property="CP_passNum" 		column="CP_passNum" />
+		<result property="CP_gendertype" 	column="CP_gendertype" />
+		<result property="CP_option" 		column="CP_option" />
+		<result property="CP_duration" 		column="CP_duration" />
+		<result property="CP_comment" 		column="CP_comment" />
+		<result property="CP_del" 			column="CP_del" />
+		<result property="MB_num" 			column="MB_num" />
+		paging용
+		<result property="startRow" column="startRow" />
+		<result property="endRow" 	column="endRow" />
+		검색용
+		<result property="search" 	column="search" />
+		<result property="keyword"	column="keyword" />
+		join용 
+		<collection property="member" resultMap="memberResult"></collection>
+	</resultMap>
+	<resultMap type="member" id="memberResult">
+		<result property="MB_num"		column="MB_num"/>
+		<result property="MB_id"		column="MB_id"/>
+		<result property="MB_pw" 		column="MB_pw"/>
+		<result property="MB_name" 		column="MB_name"/>
+		<result property="MB_regNum" 	column="MB_regNum"/>
+		<result property="MB_nickName" 	column="MB_nickName"/>
+		<result property="MB_tel" 		column="MB_tel"/>
+		<result property="MB_gender" 	column="MB_gender"/>
+		<result property="MB_regDate" 	column="MB_regDate"/>
+		<result property="MB_car" 		column="MB_car"/>
+		<result property="MB_driverConfirm" 	column="MB_driverConfirm"/>
+		<result property="MB_del" 		column="MB_del"/>
+		<result property="MB_img" 		column="MB_img"/>
+	</resultMap> -->
 	
 	<insert id="insert" parameterType="carpool">
 		insert into CARPOOL
@@ -51,7 +90,6 @@
 	<update id="delete" parameterType="integer">
 		update carpool set CP_del='Y' where CP_num=#{CP_num}
 	</update>
-	
 	
 	
 </mapper>

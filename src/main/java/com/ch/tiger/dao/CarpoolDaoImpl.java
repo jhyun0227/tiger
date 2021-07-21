@@ -48,12 +48,7 @@ public class CarpoolDaoImpl implements CarpoolDao {
 	public int delete(int CP_num) {
 		return sst.update("carpoolns.delete", CP_num);
 	}
-	
-	
-	
-	
-	
-	
+
 	
 }
 

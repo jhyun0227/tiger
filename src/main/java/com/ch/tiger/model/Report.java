@@ -16,7 +16,6 @@ public class Report {
     private String search;
     private String keyword;
     // member용
-    private String MB_id;	// 타세요 글 작성자id
-    private String RP_id;	// 타세요 글 신고자id
+    private String MB_nickName;	// 타세요 글 신고자 닉네임
     
 }

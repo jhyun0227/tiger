@@ -21,14 +21,13 @@
 			</where> -->
 	</select>
 	
-	<!-- 관리자가 신고 목록 조회(검색 기능 수정 필요) -->
+	<!-- 관리자가 신고 목록 조회 -->
 	<select id="rpList" parameterType="report" resultType="report">
-		select * from (select a.*, rowNum rn from (select * from report
-			<where>
-				<if test="keyword!=null and keyword!=''">
-					${search} like '%'||#{keyword}||'%'
-				</if>
-			</where>
+		select * from (select a.*, rowNum rn from (select r.*, m.MB_nickName from report r, member m
+			where r.MB_numR = m.MB_num
+			<if test="keyword!=null and keyword!=''">
+				and ${search} like '%'||#{keyword}||'%'
+			</if>
 			order by RP_num desc) a)
 			where rn between #{startRow} and #{endRow}
 	</select>

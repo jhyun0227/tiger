@@ -24,5 +24,5 @@ public class QnA {
     //upload용 사진
     private MultipartFile file;
     // 조인용
-    private String MB_id;
+    private String MB_nickName;
 }

@@ -53,7 +53,7 @@
 						<!-- 답글 10px 들여쓰기 -->
 						<c:if test="${qna.QA_refLevel > 0 }">
 							<td class="col-md-2 text-center">${qna.QA_regDate }</td>
-							<td class="col-md-2 text-center">${qna.MB_id }</td>
+							<td class="col-md-2 text-center">${qna.MB_nickName }</td>
 							<td class="col-md-10 text-left title_left">
 							<a href="adminQnaView.do?num=${qna.QA_num }&pageNum=${pb.currentPage}"
 								class="menuTitle">　　${qna.QA_title }</a></td>
@@ -62,7 +62,7 @@
 						</c:if>
 						<c:if test="${qna.QA_refLevel == 0 }">
 						<td class="col-md-2 text-center">${qna.QA_regDate }</td>
-						<td class="col-md-2 text-center">${qna.MB_id }</td>
+						<td class="col-md-2 text-center">${qna.MB_nickName }</td>
 						<td class="col-md-10 text-left title_left">
 							<a href="adminQnaView.do?num=${qna.QA_num }&pageNum=${pb.currentPage}"
 								class="menuTitle">${qna.QA_title }</a></td>

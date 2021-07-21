@@ -49,7 +49,7 @@
 	</update>
 	
 	<select id="allQnaList" parameterType="qna" resultType="qna">
-		select * from (select a.*, rowNum rn from (select q.*, m.MB_id from qna q, member m where q.MB_num=m.MB_num
+		select * from (select a.*, rowNum rn from (select q.*, m.MB_nickName from qna q, member m where q.MB_num=m.MB_num
 			<if test="keyword!=null and keyword!=''">
 				<if test="search=='subcon'">
 					and QA_title like '%' || #{keyword} || '%' or

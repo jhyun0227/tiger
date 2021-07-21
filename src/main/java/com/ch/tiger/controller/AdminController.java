@@ -343,7 +343,7 @@ public class AdminController {
 	public String adminReportList(Report report, String pageNum, Model model) {
 		if(pageNum == null || pageNum.equals("")) {
 			pageNum = "1";
-		}
+		} 
 		int currentPage = Integer.parseInt(pageNum);
 		int rowPerPage = 10;	// 한 화면에 보여주는 게시글 갯수
 		int total = rps.getRpTotal(report);
@@ -354,16 +354,16 @@ public class AdminController {
 		List<Report> rpList = rps.rpList(report);	// 신고 목록
 		int num = total - startRow + 1;
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
-		System.out.println(rpList);
-		String[] title = {"작성자", "신고자", "신고사유"};
-		for(Report rt :rpList) {
-			Member member = mbs.selectNum(rt.getMB_num());
-			String MB_id = member.getMB_id();	// 글 작성자id
-			Member member2 = mbs.selectNum(rt.getMB_numR());
-			String RP_id = member2.getMB_id();	// 신고자id
-			rt.setMB_id(MB_id);		//model에 추가
-			rt.setRP_id(RP_id);		//model에 추가
-		}
+//		String[] title = {"작성자", "신고자", "신고사유"};
+		String[] title = {"신고자", "신고사유"};		// 신고일 추가 할까?말까?
+//		for(Report rt :rpList) {
+//			Member member3 = mbs.selectNum(rt.getMB_num());
+//			String MB_nickName = member3.getMB_nickName();	// 글 작성자id
+//			Member member4 = mbs.selectNum(rt.getMB_numR());
+//			String RP_nickName = member4.getMB_nickName();	// 신고자id
+//			rt.setMB_nickName(MB_nickName);		//model에 추가
+//			rt.setRP_nickName(RP_nickName);		//model에 추가
+//		}
 		model.addAttribute("title", title);
 		model.addAttribute("pb", pb);	// paginbean pb
 		model.addAttribute("rpList", rpList);

@@ -36,7 +36,7 @@
 		<table class="table">
 			<tr>
 				<th class="col-md-2 text-center">번호</th>
-				<th class="col-md-2 text-center">작성자</th>
+				<th class="col-md-2 text-center">게시글</th>
 				<th class="col-md-2 text-center">신고자</th>
 				<th class="col-md-2 text-center">신고사유</th>
 			</tr>
@@ -51,8 +51,8 @@
 						<td class="col-md-2 text-center">${num }
 						<c:set var="num" value="${num -1 }"></c:set></td>
 						<td class="col-md-2 text-center">
-							<a href="cpView.do?CP_num=${report.CP_num}&pageNum=${pb.currentPage}">${report.MB_id}</a></td>
-						<td class="col-md-2 text-center">${report.RP_id}</td>
+							<a href="cpView.do?CP_num=${report.CP_num}&pageNum=${pb.currentPage}" class="btn_prev">상세</a></td>
+						<td class="col-md-2 text-center">${report.MB_nickName}</td>
 						<c:if test="${report.RP_reason == 1 }">
 							<td class="col-md-2 text-center">광고성/홍보성</td>
 						</c:if>
@@ -109,7 +109,8 @@
 		<form action="adminReportList.do">
 			<input type="hidden" name="pageNum" value="1">
 			<select name="search">
-				<c:forTokens var="sh" items="MB_num,MB_numR,RP_reason" delims="," varStatus="i">
+				<%-- <c:forTokens var="sh" items="MB_num,MB_numR,RP_reason" delims="," varStatus="i"> --%>
+				<c:forTokens var="sh" items="MB_nickName,RP_reason" delims="," varStatus="i">
 					<c:if test="${sh == report.search }">
 						<option value="${sh}" selected="selected">${title[i.index] }</option>
 					</c:if>

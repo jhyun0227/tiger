@@ -239,7 +239,7 @@
 		
 			var  birthYear  = (gender == 1 || gender == 2) ? 19 : 20;
 		  	   birthYear  += regNum.substr(0,2);  
-			var  birthMonth =  regNum.substr(2,2) - 1;
+			var  birthMonth =  regNum.substr(2,2);/* -1 */
 			var	 birthDate  =  regNum.substr(4,2);
 			var	 birth = new Date(birthYear, birthMonth, birthDate);
 			
@@ -358,7 +358,7 @@
 						<input type="password" name="MB_pw" id="pw" maxlength="12" autocomplete="false"
 								class="inputline1"  placeholder="비밀번호(영문자와 숫자 포함, 4자 이상)" 
 								required="required">
-							<div id="keyShow"></div>
+							<div id="keyShow">show</div>
 							<br>
 						<div class="alert alert-danger" id="alert1" >
 						     "숫자와 영문자를 포함해서 4자리 이상 "</div>

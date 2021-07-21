@@ -182,16 +182,27 @@
 		<form action="updateResult.do" method="post" enctype="multipart/form-data" 
 				name="frm" onsubmit="return chk()">
 			<input type="hidden" name="MB_id" value="${member.MB_id }">
-			<div class="table narrowWidth1" >
+			<div class="table narrowWidth1" >  
 				<div class="col md-2" id="img_box"  >  
 					<%-- <h4 class="text-center" >${member.MB_nickName }</h4> --%>
-					<img alt="" src="${path }/resources/memberImg/${member.MB_img }" class="thumbnail" > 
-					<div class="filebox">   
-				      <label for="ex_filename" >upload</label> 
-				      <input class="upload-name" disabled="disabled" > 
-				      <input type="file" name="file" id="ex_filename" class="upload-hidden"
-				             style="display:none;"onchange="fileUpload(this);"> 
-				 	</div>        
+					<c:if test="${empty MB_img}">
+				     	<img alt="" src="${path }/resources/main/none_img.jpg" class="thumbnail" >
+						<div class="filebox">   
+							<label for="AP_picture" >upload</label> 
+							<input type="file" name="fileAp" id="AP_picture" class="upload-hidden"
+							         style="display:none;" onchange="fileUpload(this);"> 
+							<input class="upload-name" disabled="disabled" >         
+						</div>  
+					</c:if>
+					<c:if test="${not empty MB_img }">
+						<img alt="" src="${path }/resources/memberImg/${member.MB_img }" class="thumbnail" > 
+						<div class="filebox">   
+					      <label for="ex_filename" >upload</label> 
+					      <input class="upload-name" disabled="disabled" > 
+					      <input type="file" name="file" id="ex_filename" class="upload-hidden"
+					             style="display:none;"onchange="fileUpload(this);"> 
+					 	</div>  
+					</c:if>	      
 				</div>	  
 				<div id="inform_box" class="col md-10">		      
 			  		<table class="table narrowWidth2"  >

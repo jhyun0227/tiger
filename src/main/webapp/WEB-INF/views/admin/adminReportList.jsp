@@ -51,28 +51,26 @@
 						<td class="col-md-2 text-center">${num }
 						<c:set var="num" value="${num -1 }"></c:set></td>
 						<td class="col-md-2 text-center">
-							<a href="cpView.do?CP_num=${report.CP_num}&pageNum=${pb.currentPage}"
-								class="menuTitle">${MB_id}</a></td>
-						<td class="col-md-2 text-center">${RP_id }</td>
-						<td class="col-md-2 text-center">${report.RP_reason }</td>
-						<%-- <c:if test="${report.RP_reason == '1' }">
+							<a href="cpView.do?CP_num=${report.CP_num}&pageNum=${pb.currentPage}">${report.MB_id}</a></td>
+						<td class="col-md-2 text-center">${report.RP_id}</td>
+						<c:if test="${report.RP_reason == 1 }">
 							<td class="col-md-2 text-center">광고성/홍보성</td>
 						</c:if>
-						<c:if test="${report.RP_reason == '2' }">
+						<c:if test="${report.RP_reason == 2 }">
 							<td class="col-md-2 text-center">음란물/성적수치심 유발</td>
 						</c:if>
-						<c:if test="${report.RP_reason == '3' }">
+						<c:if test="${report.RP_reason == 3 }">
 							<td class="col-md-2 text-center">욕설 및 비방</td>
 						</c:if>
-						<c:if test="${report.RP_reason == '4' }">
+						<c:if test="${report.RP_reason == 4 }">
 							<td class="col-md-2 text-center">불법정보 유통</td>
 						</c:if>
-						<c:if test="${report.RP_reason == '5' }">
+						<c:if test="${report.RP_reason == 5 }">
 							<td class="col-md-2 text-center">불쾌한 표현</td>
 						</c:if>
-						<c:if test="${report.RP_reason == '6' }">
+						<c:if test="${report.RP_reason == 6 }">
 							<td class="col-md-2 text-center">개인정보 노출</td>
-						</c:if> --%>
+						</c:if>
 					</tr>
 				</c:forEach>
 			</c:if>
@@ -111,7 +109,7 @@
 		<form action="adminReportList.do">
 			<input type="hidden" name="pageNum" value="1">
 			<select name="search">
-				<c:forTokens var="sh" items="MB_id,RP_id,RP_reason" delims="," varStatus="i">
+				<c:forTokens var="sh" items="MB_num,MB_numR,RP_reason" delims="," varStatus="i">
 					<c:if test="${sh == report.search }">
 						<option value="${sh}" selected="selected">${title[i.index] }</option>
 					</c:if>

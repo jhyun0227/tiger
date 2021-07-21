@@ -34,7 +34,7 @@
 						<i class="fa fa-car" aria-hidden="true"></i>타세요 상세보기
 					</h1>
 					<!-- 신고 버튼 -->
-					<c:if test="${sessionScope.MB_num != carpool.MB_num }">
+					<c:if test="${sessionScope.MB_num != carpool.MB_num && sessionScope.MB_id != 'admin' }">
 						<div align="right">
 							<a href="cpReportForm.do?CP_num=${carpool.CP_num }&MB_num=${carpool.MB_num }&MB_numR=${sessionScope.MB_num }&pageNum=${pageNum }"
 								class="btn btn-danger">신고</a>

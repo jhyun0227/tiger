@@ -15,4 +15,8 @@ public class Report {
 	// 검색용
     private String search;
     private String keyword;
+    // member용
+    private String MB_id;	// 타세요 글 작성자id
+    private String RP_id;	// 타세요 글 신고자id
+    
 }

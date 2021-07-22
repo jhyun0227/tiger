@@ -104,4 +104,5 @@ public class MemberServiceImpl implements MemberService {
 	public int updateDriverConfirm(int MB_num) { // apply 컨트롤러에서 드라이버 신청하면 컬럼 바꾸는 로직
 		return mbd.updateDriverConfirm(MB_num);
 	}
+
 }

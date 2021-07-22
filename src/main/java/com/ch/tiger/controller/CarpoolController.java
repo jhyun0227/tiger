@@ -93,6 +93,9 @@ public class CarpoolController {
 		String MB_id = (String)session.getAttribute("MB_id");// 로그인한 회원의 정보
 		Member member = mbs.select(MB_id); // 로그인한 회원의 정보
 		Carpool carpool = cps.select(CP_num); // 타세요 작성자 MB_num 조회
+		Member memberDB = null; // 타세요 작성한 회원 닉네임 같이 보여주기
+		memberDB = mbs.selectNum(carpool.getMB_num());
+		model.addAttribute("memberDB", memberDB);
 		model.addAttribute("reservationList", reservationList);
 		model.addAttribute("member", member);
 		model.addAttribute("carpool", carpool);
@@ -198,7 +201,5 @@ public class CarpoolController {
 		model.addAttribute("CP_num", CP_num);
 		return "carpool/cpDenialResult";
 	}
-	
-	// 타세요 상세보기 신청현황 닉네임/성별 컬럼 회원 정보
-	
+
 }

@@ -25,6 +25,11 @@ body {
 	width: 60%;
 }
 
+/* 타세요 신청현황 테이블 간격 임시 수정 --병우 */
+.narrowWidth40{
+	width: 40%;
+}
+
 .contents{
 	margin-bottom: 30px;
 }

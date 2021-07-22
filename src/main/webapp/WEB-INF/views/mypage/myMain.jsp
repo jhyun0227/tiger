@@ -7,10 +7,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
-	<link rel="stylesheet" type="text/css" href="${path }/resources/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="${path }/resources/bootstrap/css/common.css">
-	<script type="text/javascript" src="${path }/resources/bootstrap/js/jquery.js"></script>
-	<script type="text/javascript" src="${path }/resources/bootstrap/js/bootstrap.min.js"></script>
 <style type="text/css">
 
 	.narrowWidth1 {
@@ -29,7 +25,7 @@
 		float: right !important;
 		width : 55%;
 	}
-	 
+	   
 	.thumbnail {
 		height: 200px;
 		width: 200px;
@@ -51,12 +47,17 @@
 	<div align="center">
 		<h2 class="title">${member.MB_nickName } 프로필</h2>  
 		<form> 
-			<div class="table narrowWidth1" >
-				<div class="col md-2" id="img_box"  >
-					<img alt="" src="${path }/resources/memberImg/${member.MB_img }" class="thumbnail" > 
-					<input onclick="location.href='updateForm.do?MB_id${member.MB_id }'"  
-			 		      class="btn_SM" value="내 정보 변경하러 가기" >
-				</div>        
+			<div class=" narrowWidth1" >    
+				<div class="col md-2" id="img_box"  >  
+					<c:if test="${empty member.MB_img }">
+						<img alt="" src="${path }/resources/main/none_img3.jpg" class="thumbnail" >
+					</c:if> 
+					<c:if test="${not empty member.MB_img  }">  
+						<img alt="" src="${path }/resources/memberImg/${member.MB_img }" class="thumbnail" >  
+					 </c:if>    	  	 
+						<input onclick="location.href='updateForm.do?MB_id${member.MB_id }'"  
+			 		     	 class="btn_SM" type="button"   value="내 정보 수정" >
+			  	</div>        
 				<div class="col md-10" id="inform_box">		       
 			  		 <table class="table narrowWidth2">
 			  		 	<tr>

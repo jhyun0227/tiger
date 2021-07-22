@@ -24,8 +24,8 @@
 	<!-- 컨텐츠 시작  -->
 	<div class="container">
 		<form class="form-horizontal" method="post">
-		<input type="text" name="CP_num" value="${carpool.CP_num} CP_num" />
-		<input type="text" name="MB_num" value="${member.MB_num} MB_num" />
+		<input type="hidden" name="CP_num" value="${carpool.CP_num} CP_num" />
+		<input type="hidden" name="MB_num" value="${member.MB_num} MB_num" />
 			<!-- 컨텐츠 헤더 부분(Page header) -->
 			<section class="content-header">
 				<h1>

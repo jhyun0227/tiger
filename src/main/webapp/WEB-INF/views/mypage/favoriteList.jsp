@@ -36,9 +36,10 @@
 		<table class="table">
 			<tr>
 				<th class="col-md-2 text-center">번호</th>
-				<th class="col-md-3 text-center">닉네임</th>
+				<th class="col-md-2 text-center">닉네임</th>
+				<th class="col-md-2 text-center">아이디</th>
 				<th class="col-md-2 text-center">성별</th>
-				<th class="col-md-3 text-center">가입일</th>
+				<th class="col-md-2 text-center">가입일</th>
 				<th class="col-md-2 text-center">평점</th>
 			</tr>
 			<c:if test="${empty fvList }">
@@ -50,10 +51,12 @@
 				<c:forEach var="fvList" items="${fvList }">
 					<tr>
 							<td class="col-md-2 text-center">${num }<c:set var="num" value="${num -1 }"></c:set></td>
-							<td class="col-md-3 text-center">
+							<td class="col-md-2 text-center">
 								<a onclick="window.open('profileView.do?MB_nickName=${fvList.MB_nickName }', '',
 									'width=500,height=1000,location=no,status=no,scrollbars=yes');">${fvList.MB_nickName }</a>
 							</td>
+							
+							<td class="col-md-2 text-center">${fvList.MB_id }</td>
 							
 							<c:if test="${fvList.MB_gender == '1' || fvList.MB_gender == '3'}">
 									<td class="col-md-2 text-center">남자</td>	
@@ -62,9 +65,9 @@
 									<td class="col-md-2 text-center">여자</td>
 							</c:if>
 							
-							<td class="col-md-3 text-center">${fvList.MB_regDate }</td>
+							<td class="col-md-2 text-center">${fvList.MB_regDate }</td>
 							
-							<td class="col-md-2 text-center">${fvList.reviewAvg }</td>				
+							<%-- <td class="col-md-2 text-center">${fvList.reviewAvg }</td>	 --%>			
 					</tr>
 				</c:forEach>
 			</c:if>
@@ -104,7 +107,7 @@
 		<form action="favoriteList.do">
 			<input type="hidden" name="pageNum" value="1">
 			<select name="search">
-				<c:forTokens var="sh" items="NT_title,NT_content,subcon" delims="," varStatus="i">
+				<c:forTokens var="sh" items="MB_id,MB_nickName" delims="," varStatus="i">
 					<c:if test="${sh == favorite.search }">
 						<option value="${sh}" selected="selected">${title[i.index] }</option>
 					</c:if>

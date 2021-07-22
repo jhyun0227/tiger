@@ -42,6 +42,7 @@ public class FavoriteController {
 		int currentPage = Integer.parseInt(pageNum);
 		int rowPerPage = 10; // 한 화면에 보이는 게시글 수
 		int total = fs.getTotal(favorite);
+		System.out.println(total);
 		int startRow = (currentPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage - 1;		
 		
@@ -49,16 +50,16 @@ public class FavoriteController {
 		favorite.setStartRow(startRow);
 		favorite.setEndRow(endRow);
 		List<Favorite> fvList = fs.list(favorite);
-		for (Favorite fv : fvList) {
-			// 리뷰 평점 구하기
-			float reviewAvg = rs.selectAvg(fv.getMB_numT()); // 회원의 리뷰 평균 평점을 가져옴			
-			fv.setReviewAvg(reviewAvg);
-		}
+//		for (Favorite fv : fvList) {
+//			// 리뷰 평점 구하기
+//			float reviewAvg = rs.selectAvg(fv.getMB_numT()); // 회원의 리뷰 평균 평점을 가져옴			
+//			fv.setReviewAvg(reviewAvg);
+//		}
 		
 		int num = total - startRow + 1; // 번호 순서대로 정렬
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
 		String[] title = {"아이디", "닉네임"};
-		System.out.println(fvList);
+
 		model.addAttribute("title", title);
 		model.addAttribute("pb", pb);
 		model.addAttribute("fvList", fvList);

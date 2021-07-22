@@ -18,6 +18,7 @@ import com.ch.tiger.model.Member;
 import com.ch.tiger.model.Notice;
 import com.ch.tiger.model.QnA;
 import com.ch.tiger.model.Report;
+import com.ch.tiger.model.Reservation;
 import com.ch.tiger.model.Vehicle;
 import com.ch.tiger.service.ApplyService;
 import com.ch.tiger.service.CarpoolService;
@@ -34,7 +35,7 @@ public class AdminController {
 	@Autowired
 	private ApplyService as;
 	@Autowired
-	private CarpoolService cs;
+	private CarpoolService cps;
 	@Autowired
 	private MemberService mbs;
 	@Autowired
@@ -373,5 +374,60 @@ public class AdminController {
 		model.addAttribute("rpList", rpList);
 		model.addAttribute("num", num);	//목록 번호 생성 위한 num
 		return "admin/adminReportList";
+	}
+	@RequestMapping("adminCpDelete")
+	public String adminCpDelete(int CP_num, String pageNum, Model model) {
+		int result = cps.adminCpDelete(CP_num);
+		model.addAttribute("result", result);
+		model.addAttribute("pageNum", pageNum);
+		return "admin/adminCpDelete";
+	}
+	@RequestMapping("adminCpRollback")
+	public String adminCpRollback(int CP_num, String pageNum, Model model) {
+		int result = cps.adminCpRollback(CP_num);
+		model.addAttribute("result", result);
+		model.addAttribute("pageNum", pageNum);
+		return "admin/adminCpRollback";
+	}
+	@RequestMapping("adminRpDelete")
+	public String adminRpDelete(int RP_num, String pageNum, Model model) {
+		int result = rps.adminRpDelete(RP_num);
+		model.addAttribute("result", result);
+		model.addAttribute("pageNum", pageNum);
+		return "admin/adminRpDelete";
+	}
+	@RequestMapping("adminCpList")
+	public String adminCpList(Carpool carpool, String pageNum, Model model) {
+		if(pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		} 
+		int currentPage = Integer.parseInt(pageNum);
+		int rowPerPage = 10;	// 한 화면에 보여주는 게시글 갯수
+		int total = cps.getTotal(carpool);
+		int startRow = (currentPage -1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		carpool.setStartRow(startRow);
+		carpool.setEndRow(endRow);
+		List<Carpool> adminCpList = cps.adminCpList(carpool);	// 신고 목록
+		int num = total - startRow + 1;
+		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
+		String[] title = {"작성자", "출발지", "도착지"};
+		model.addAttribute("title", title);
+		model.addAttribute("pb", pb);	// paginbean pb
+		model.addAttribute("adminCpList", adminCpList);
+		model.addAttribute("num", num);	//목록 번호 생성 위한 num
+		return "admin/adminCpList";
+	}
+	@RequestMapping("adminCpView")
+	public String adminCpView(int CP_num, String pageNum, Model model) {
+		Reservation reservation = new Reservation();
+		int num = rvs.getTotal(CP_num);
+		reservation.setCP_num(CP_num);	// CP_num에 해당하는 예약내역
+		List<Reservation> adminRvList = rvs.adminRvList(reservation);
+		Carpool carpool = cps.select(CP_num);
+		model.addAttribute("carpool", carpool);	// 데이터 출력을 위한 객체
+		model.addAttribute("num", num);
+		model.addAttribute("pageNum", pageNum);
+		return "admin/adminCpView";
 	}
 }

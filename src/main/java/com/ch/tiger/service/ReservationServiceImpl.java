@@ -43,8 +43,8 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 
 	@Override
-	public int getTotal(Reservation reservation) {
-		return rvd.getTotal(reservation);
+	public int getTotal(int CP_num) {
+		return rvd.getTotal(CP_num);
 	}
 
 	@Override
@@ -55,6 +55,11 @@ public class ReservationServiceImpl implements ReservationService {
 	@Override
 	public int updateDenial(Reservation reservation) {
 		return rvd.updateDenial(reservation);
+	}
+
+	@Override
+	public List<Reservation> adminRvList(Reservation reservation) {
+		return rvd.adminRvList(reservation);	// 관리자가 CP_num에 해당하는 카풀글 내 예약내역 - 동윤
 	}
 
 }

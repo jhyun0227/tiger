@@ -20,8 +20,8 @@ public class CarpoolDaoImpl implements CarpoolDao {
 	}
 
 	@Override
-	public List<Carpool> carpoolList(Carpool carpool) {
-		return sst.selectList("carpoolns.carpoolList", carpool);
+	public List<Carpool> cpList(Carpool carpool) {
+		return sst.selectList("carpoolns.cpList", carpool);
 	}
 
 	@Override
@@ -59,7 +59,21 @@ public class CarpoolDaoImpl implements CarpoolDao {
 		return sst.update("carpoolns.delete", CP_num);
 	}
 
-	
+	@Override
+	public int adminCpDelete(int CP_num) {	// 관리자가 신고 내역에 해당하는 카풀 글 삭제 - 동윤
+		return sst.update("carpoolns.adminCpDelete", CP_num);
+	}
+
+	@Override
+	public int adminCpRollback(int CP_num) {	// 관리자가 신고 내역에 해당하는 카풀 글 복구 - 동윤
+		return sst.update("carpoolns.adminCpRollback", CP_num);
+	}
+
+	@Override
+	public List<Carpool> adminCpList(Carpool carpool) {	// 관리자 카풀 목록 - 동윤
+		return sst.selectList("carpoolns.adminCpList", carpool);
+	}
+
 }
 
 

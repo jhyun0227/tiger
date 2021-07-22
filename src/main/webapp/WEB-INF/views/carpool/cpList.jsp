@@ -74,13 +74,13 @@
 				<th>출발시간</th>
 				<th>좌석수</th>
 			</tr>
-			<c:if test="${empty carpoolList }">
+			<c:if test="${empty cpList }">
 				<tr>
 					<th colspan="8">등록된 게시글이 없습니다</th>
 				</tr>
 			</c:if>
-			<c:if test="${not empty carpoolList }">
-				<c:forEach var="carpool" items="${carpoolList }">
+			<c:if test="${not empty cpList }">
+				<c:forEach var="carpool" items="${cpList }">
 					<tr>
 						<td>${CP_num}<c:set var="CP_num" value="${CP_num - 1}"></c:set>
 						<%-- ${carpool.CP_num } --%></td>

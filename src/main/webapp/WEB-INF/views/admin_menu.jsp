@@ -12,7 +12,7 @@
 <body>
 	<div id="dropMenu">
 			<ul class="myMenu">
-				<li class="menu1"><a href="#">타세요 관리</a></li>
+				<li class="menu1"><a href="adminCpList.do">타세요 관리</a></li>
 				<li class="menu2"><a href="adminMbList.do">회원관리</a></li>
 				<li class="menu3"><a href="adminPermitList.do">드라이버 승인</a></li>
 				<li class="menu4"><a href="#">고객센터</a>

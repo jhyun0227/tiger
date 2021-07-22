@@ -11,7 +11,7 @@
 		#{CP_gendertype},#{CP_option},#{CP_duration},#{CP_comment},'N',#{MB_num})
 	</insert>
 	
-	<select id="carpoolList" parameterType="carpool" resultType="carpool">
+	<select id="cpList" parameterType="carpool" resultType="carpool">
 		select * from (select a.*, rowNum rn from (select * from carpool
 		<!-- 검색 기능 사용시 -->
 		<!-- keyword에 값이 있으면 where속에 like옵션 사용, 없으면 사용X -->
@@ -69,5 +69,27 @@
 			</if>
 		order by CP_num desc) a) where rn between #{startRow} and #{endRow}
 	</select>
+	
+	<!-- 관리자가 신고내역의 카풀 게시글 삭제 - 동윤 -->
+	<update id="adminCpDelete" parameterType="integer">
+		update carpool set CP_del='Y' where CP_num=#{CP_num}
+	</update>
+	
+	<!-- 관리자가 신고내역의 카풀 게시글 복구 - 동윤 -->
+	<update id="adminCpRollback" parameterType="integer">
+		update carpool set CP_del='N' where CP_num=#{CP_num}
+	</update>
+	
+	<!-- 관리자 카풀 목록 - 동윤 -->
+	<select id="adminCpList" parameterType="carpool" resultType="carpool">
+		select * from (select a.*, rowNum rn from (select c.*, m.MB_nickName, rv.RSV_confirm, rv.RSV_mConfirm from carpool c
+			inner join member m on c.MB_num=m.MB_num
+			inner join reservation rv on c.CP_num=rv.CP_num
+			<if test="keyword!=null and keyword!=''">
+				and ${search} like '%'||#{keyword}||'%'
+			</if>
+			order by c.CP_num desc) a)
+			where rn between #{startRow} and #{endRow}
+	</select>	
 	
 </mapper>

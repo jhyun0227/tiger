@@ -14,5 +14,7 @@ public interface ReportDao {
 
 	List<Report> rpList(Report report);	//관리자 신고 목록
 
+	int adminRpDelete(int RP_num);	// 관리자 신고 내역 삭제 - 동윤
+
 
 }

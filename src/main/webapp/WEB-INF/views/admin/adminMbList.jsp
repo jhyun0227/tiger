@@ -45,15 +45,13 @@
 									<td>관리자</td>
 								</c:if>
 								<c:if test="${member.MB_id != 'admin' }">
-									<td>활동중
-										<a href="adminMbDelete.do?MB_id=${member.MB_id }&pageNum=${pageNum }""
-											class="btn btn-danger">탈퇴</a></td>
+									<td><a href="adminMbDelete.do?MB_id=${member.MB_id }&pageNum=${pageNum }"
+											class="btn_prev">탈퇴</a></td>
 								</c:if>
 							</c:if>
 							<c:if test="${member.MB_del == 'Y' }">
-								<td>탈퇴
-									<a href="adminMbRollback.do?MB_id=${member.MB_id }&pageNum=${pageNum }"
-										class="btn btn-warning">복구</a></td>
+								<td><a href="adminMbRollback.do?MB_id=${member.MB_id }&pageNum=${pageNum }"
+										class="btn_prev">복구</a></td>
 							</c:if>
 					</tr>
 				</c:forEach>

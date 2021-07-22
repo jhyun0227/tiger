@@ -1,28 +1,23 @@
 package com.ch.tiger.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ch.tiger.service.PagingBean;
-import com.ch.tiger.service.ReportService;
-import com.ch.tiger.service.ReservationService;
 import com.ch.tiger.model.Carpool;
 import com.ch.tiger.model.Member;
 import com.ch.tiger.model.Report;
 import com.ch.tiger.model.Reservation;
 import com.ch.tiger.service.CarpoolService;
 import com.ch.tiger.service.MemberService;
+import com.ch.tiger.service.PagingBean;
+import com.ch.tiger.service.ReportService;
+import com.ch.tiger.service.ReservationService;
 
 
 @Controller
@@ -52,13 +47,13 @@ public class CarpoolController {
 		int endRow = startRow + rowPerPage - 1;
 		carpool.setStartRow(startRow);
 		carpool.setEndRow(endRow);
-		List<Carpool> carpoolList = cps.carpoolList(carpool);
+		List<Carpool> cpList = cps.cpList(carpool);
 		int CP_num = total - startRow + 1;
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
 		model.addAttribute("CP_num", CP_num);
 		model.addAttribute("carpool", carpool);
 		model.addAttribute("pb", pb);
-		model.addAttribute("carpoolList", carpoolList);
+		model.addAttribute("cpList", cpList);
 		return "carpool/cpList";
 	}
 	

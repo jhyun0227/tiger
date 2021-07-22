@@ -33,4 +33,9 @@ public class ReportServiceImpl implements ReportService {
 		return rpd.rpList(report);
 	}
 
+	@Override
+	public int adminRpDelete(int RP_num) {
+		return rpd.adminRpDelete(RP_num);	// 관리자 신고 내역 삭제 - 동윤
+	}
+
 }

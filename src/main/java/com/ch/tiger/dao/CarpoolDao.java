@@ -9,7 +9,7 @@ public interface CarpoolDao{
 
 	int insert(Carpool carpool);
 
-	List<Carpool> carpoolList(Carpool carpool);
+	List<Carpool> cpList(Carpool carpool);
 
 	int getTotal(Carpool carpool);
 
@@ -24,9 +24,11 @@ public interface CarpoolDao{
 	int update(Carpool carpool);
 
 	int delete(int CP_num);
-	
-	
-	
-	
-	
+
+	int adminCpDelete(int CP_num);	// 관리자가 신고 내역에 해당하는 카풀 글 삭제 - 동윤	
+
+	int adminCpRollback(int CP_num);	// 관리자가 신고 내역에 해당하는 카풀 글 복구 - 동윤
+
+	List<Carpool> adminCpList(Carpool carpool);	// 관리자 카풀 목록 - 동윤
+
 }

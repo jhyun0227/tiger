@@ -20,8 +20,8 @@ public class CarpoolServiceImpl implements CarpoolService {
 	}
 
 	@Override
-	public List<Carpool> carpoolList(Carpool carpool) {
-		return cpd.carpoolList(carpool);
+	public List<Carpool> cpList(Carpool carpool) {
+		return cpd.cpList(carpool);
 	}
 
 	@Override
@@ -57,6 +57,21 @@ public class CarpoolServiceImpl implements CarpoolService {
 	@Override
 	public int delete(int CP_num) {
 		return cpd.delete(CP_num);
+	}
+
+	@Override
+	public int adminCpDelete(int CP_num) {
+		return cpd.adminCpDelete(CP_num);	// 관리자가 신고 내역에 해당하는 카풀 글 삭제 - 동윤
+	}
+
+	@Override
+	public int adminCpRollback(int CP_num) {
+		return cpd.adminCpRollback(CP_num);	// 관리자가 신고 내역에 해당하는 카풀 글 복구 - 동윤
+	}
+
+	@Override
+	public List<Carpool> adminCpList(Carpool carpool) {
+		return cpd.adminCpList(carpool);	// 관리자 카풀 목록 - 동윤
 	}
 
 }

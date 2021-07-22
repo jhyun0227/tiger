@@ -17,12 +17,12 @@ public interface ReservationService {
 
 	List<Reservation> reservationList(Reservation reservation);
 
-	int getTotal(Reservation reservation);
+	int getTotal(int CP_num);	// CP_num에 해당하는 예약내역 행 갯수 - 동윤
 
 	int updateAccept(Reservation reservation);
 
 	int updateDenial(Reservation reservation);
 
-
+	List<Reservation> adminRvList(Reservation reservation);	// 관리자가 CP_num에 해당하는 카풀글 내 예약내역 - 동윤
 
 }

@@ -41,8 +41,9 @@
 		select * from reservation where CP_num=#{CP_num} order by RSV_num
 	</select>
 	
-	<select id="getTotal" parameterType="reservation" resultType="integer">
-		select count(*) from reservation
+	<!-- CP_num에 해당하는 예약내역 행 갯수 - 동윤 -->
+	<select id="getTotal" parameterType="integer" resultType="integer">
+		select count(*) from reservation where CP_num=#{CP_num}
 	</select>
 	
 	<!-- 타세요 신청현황(드라이버) 매칭여부 "수락" 버튼 -->
@@ -54,5 +55,10 @@
 	<update id="updateDenial" parameterType="reservation">
 		update reservation set RSV_confirm='N' where CP_num=#{CP_num} and MB_num=#{MB_num}
 	</update>
-
+	
+	<!-- 관리자가 CP_num에 해당하는 카풀글 내 예약내역 - 동윤 -->
+	<select id="adminRvList" parameterType="reservation" resultType="reservation">
+		select * from 
+	</select>
+	
 </mapper>

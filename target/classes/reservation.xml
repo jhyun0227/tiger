@@ -58,7 +58,8 @@
 	
 	<!-- 관리자가 CP_num에 해당하는 카풀글 내 예약내역 - 동윤 -->
 	<select id="adminRvList" parameterType="reservation" resultType="reservation">
-		select * from 
+		select rv.*, m.MB_nickName, m.MB_gender from reservation rv, member m
+		where 
 	</select>
 	
 </mapper>

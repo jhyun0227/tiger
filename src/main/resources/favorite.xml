@@ -2,9 +2,37 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="favoritens">
-	<!-- 좋아요 목록 -->
-	<select id="list" parameterType="integer" resultType="favorite">
-		select f.*, m.MB_id, m.MB_nickName, m.MB_gender from favorite f, member m where f.MB_numT=m.MB_num and
-		MB_numG=#{MB_numG} order by FV_num
+	<select id="list" parameterType="favorite" resultType="favorite">
+		select * from (select a.*, rowNum rn from (select f.*, m.MB_id, m.MB_nickName, m.MB_gender, m.MB_regDate from favorite f, member m
+		where f.MB_numT=m.MB_num and f.MB_numG=#{MB_numG} 
+			<!-- 검색어가 있을때 -->
+			<if test="keyword!=null and keyword!=''">
+				and ${search} like '%'||#{keyword}||'%'
+			</if>
+		order by FV_num desc) a) where rn between #{startRow} and #{endRow}
+	</select>
+	
+	<!-- 프로필에서 좋아요 표시를 하기위해 두 계정의 번호를 담아서 조회 -->
+	<select id="select" parameterType="favorite" resultType="favorite">
+		select * from favorite where MB_numG=#{MB_numG} and MB_numT=#{MB_numT}
+	</select>
+	
+	<!-- 좋아요 추가 -->
+	<insert id="addFv" parameterType="favorite">
+		insert into favorite values((select nvl(max(FV_num), 0)+1 from favorite), #{MB_numG}, #{MB_numT})
+	</insert>
+	
+	<!-- 좋아요 삭제 -->
+	<delete id="deleteFv" parameterType="favorite">
+		delete from favorite where MB_numG=#{MB_numG} and MB_numT=#{MB_numT}
+	</delete>
+	
+	<!-- 좋아요 리스트의 총 개수를 가져옴 -->
+	<select id="getTotal" parameterType="favorite" resultType="integer">
+		select count(*) from favorite where MB_numG=#{MB_numG}
+		<!-- 검색어가 있을때 -->
+			<if test="keyword!=null and keyword!=''">
+				and ${search} like '%'||#{keyword}||'%'
+			</if>
 	</select>
 </mapper>

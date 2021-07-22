@@ -18,8 +18,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ch.tiger.model.Favorite;
 import com.ch.tiger.model.Member;
 import com.ch.tiger.model.Review;
+import com.ch.tiger.service.FavoriteService;
 import com.ch.tiger.service.MemberService;
 import com.ch.tiger.service.ReviewService;
 import com.ch.tiger.service.VehicleService;
@@ -31,6 +33,8 @@ public class MemberController {
 	private VehicleService vs;
 	@Autowired
 	private ReviewService rs;
+	@Autowired
+	private FavoriteService fs;
 	@Autowired
 	private JavaMailSender jMailSender;
 
@@ -319,20 +323,34 @@ public class MemberController {
 	
 	// 프로필 상세보기
 	@RequestMapping("profileView")
-	public String profileView(String MB_nickName, Model model) {
+	public String profileView(String MB_nickName, HttpSession session, Model model) {
 		int result = 0;
-		Member member = mbs.selectNick(MB_nickName);
+		int favo = 0; // 좋아요 확인
+		int MB_num = (int) session.getAttribute("MB_num"); // 좋아요 확인을 위해 로그인 계정의 mb_num을 가져옴
+		
+		Member member = mbs.selectNick(MB_nickName); // 선택한 계정의 정보를 가져옴
 		if (member.getMB_del() == "Y") { // 회원 탈퇴 처리 되어있는지 확인
-			result = 0;
+			result = 0; // 회원 탈퇴 처리가 되어있음
 		} else {
-			result = 1;
+			result = 1; // 회원 탈퇴 처리가 안되있을 경우
 			// 후기 리스트 가져오기
 			List<Review> rvList = rs.selectMb(member.getMB_num()); // 후기 리스트를 가져옴
 			// 리뷰 평점 구하기
-			float reviewAvg = rs.selectAvg(member.getMB_num()); // 회원의 리뷰 평균 평점을 가져옴
-			
+			float reviewAvg = rs.selectAvg(member.getMB_num()); // 회원의 리뷰 평균 평점을 가져옴			
 			model.addAttribute("rvList", rvList); // 리뷰 리스트
 			model.addAttribute("reviewAvg", reviewAvg); // 평균 평점
+			
+			// 로그인 계정과 프로필 계정을 조회하여 favorite 테이블에 행이 있는지 조사
+			Favorite favorite = new Favorite();
+			favorite.setMB_numG(MB_num);
+			favorite.setMB_numT(member.getMB_num());
+			Favorite favorite2 = fs.select(favorite); // 두 개의 계정의 번호를 객체에 담아 조회
+			if (favorite2 != null) {
+				favo = 1; // 정보 검색 결과가 있으면 1 반환
+			} else {
+				favo = 0; // 정보 검색 결과가 없으면 0 반환
+			}
+			model.addAttribute("favo", favo);
 		}
 		model.addAttribute("result", result); // 회원 탈퇴 여부 확인
 		model.addAttribute("member", member); // 프로필에서 회원정보 입력하기 위해서

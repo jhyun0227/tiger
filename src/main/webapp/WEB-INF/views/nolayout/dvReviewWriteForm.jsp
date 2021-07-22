@@ -56,7 +56,7 @@
 			</tr>
 			<tr>
 				<td colspan="2">
-					<textarea name="RV_content" cols="50" rows="10" required="required">상대방 후기를 작성해주세요.</textarea>
+					<textarea name="RV_content" cols="50" rows="10" required="required" placeholder="상대방 후기를 작성해주세요."></textarea>
 				</td>
 			</tr>
 			<tr>

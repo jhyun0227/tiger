@@ -55,6 +55,28 @@
 				<td class="col md-2 text-center">가입일</td>
 				<td class="col md-10">${member.MB_regDate }</td>
 			</tr>
+			
+			<tr>
+				<c:if test="${favo > 0 }">
+					<td>
+						<a class="glyphicon glyphicon-heart" aria-hidden="true"
+							href="deleteFv.do?MB_numG=${sessionScope.MB_num }&MB_numT=${member.MB_num}&MB_nickName=${member.MB_nickName}"></a>
+					</td>
+				</c:if>
+				
+				<c:if test="${favo == 0 }">
+					<td>
+						<a class="glyphicon glyphicon-heart-empty" aria-hidden="true" 
+							href="addFv.do?MB_numG=${sessionScope.MB_num }&MB_numT=${member.MB_num}&MB_nickName=${member.MB_nickName}"></a>
+					</td>
+				</c:if>
+				
+				<td>
+					<a class="glyphicon glyphicon-envelope" aria-hidden="true" 
+						onclick="window.open('msgWriteForm.do?MB_num=${member.MB_num }','쪽지 보내기',
+						'width=430,height=400,location=no,status=no,scrollbars=yes');"></a>
+				</td>
+			</tr>
 		</table>
 		
 		<c:if test="${result2 == -1 }">

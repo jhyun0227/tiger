@@ -10,7 +10,7 @@
 <body>
 	<c:if test="${result > 0 }">
 		<script type="text/javascript">
-			alert("로그인 성공");
+			alert("좋은 하루 입니다");
 			location.href="main.do";
 		</script>
 	</c:if>

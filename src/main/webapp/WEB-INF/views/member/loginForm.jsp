@@ -5,16 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<link rel="stylesheet" type="text/css" href="${path }/resources/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="${path }/resources/bootstrap/css/common.css">
-	<script type="text/javascript" src="${path }/resources/bootstrap/js/jquery.js"></script>
-	<script type="text/javascript" src="${path }/resources/bootstrap/js/bootstrap.min.js"></script>
 <style type="text/css">
-
 	.narrowWidth1 {
-   	 	width: 30%;
+   	 	width: 35%;
 	}
-
 	.inputline1 {
 		border: none;
 		outline: 0;
@@ -22,15 +16,17 @@
 	}
 	td, th {
     padding: 10px 20px;
-}
+   	}
+	#idBtn {
+		margin-top: 30px;
+	}
 </style>
 </head>
 <body>
-<div align="center">
+<div class="container narrowWidth1"  align="center">
 	<h2 class="title">로그인</h2>
 	<form action="login.do" method="post">
-		<table class="table narrowWidth1">  
-		<!-- <table class="narrowWidth"> -->
+		<table class="table ">  
 			<tr>
 				<td class="col md-2 text-center">이메일</td>
 				<td class="col md-10">
@@ -45,12 +41,12 @@
 			<tr>
 			<tr>
 				<td colspan="2" class="text-center">
-					<input type="submit" value="로그인" class="btn_small">
+					<input type="submit" value="로그인" class="btn_sm_full" id="idBtn">
 				</td>
 			</tr>
 		</table>
-		<a href="findIdForm.do">아이디 찾기</a> |   
-		<a href="findPwForm.do">비밀번호 찾기</a>
+		<a href="findIdForm.do">아이디 찾기</a>&nbsp; |      
+		<a href="findPwForm.do">비밀번호 찾기</a>&nbsp;
 	</form>
 </div>  
 </body>

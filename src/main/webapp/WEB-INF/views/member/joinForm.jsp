@@ -7,14 +7,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
-<link rel="stylesheet" type="text/css"
-	href="${path }/resources/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css"
-	href="${path }/resources/bootstrap/css/common.css">
-<script type="text/javascript"
-	src="${path }/resources/bootstrap/js/jquery.js"></script>
-<script type="text/javascript"
-	src="${path }/resources/bootstrap/js/bootstrap.min.js"></script>
 <style type="text/css">
 
 	.err {
@@ -22,55 +14,25 @@
 		font-weight: bold;
 	}
 	
-	.btn_M {
-		width: 250px;
-		height: 40px;
-		background: #242526;
-		color: #eee;
-		width: 300px;
-	    height: 40px;
-	    font-size: 18px;
-	    border: none;
-	    margin-top: 40px;
-	    margin-left: 60px;
-	    margin-right: 10px;
-	   }
-	 
-	.btn_S { 
-		width: 150px;
-		height: 40px;
-		border: none;
-		background: #242526;
-		color: #eee;
-		margin-top: 40px;
-		font-size: 18px;
-	}
-	
-	.btn_s {
-		width: 100px;
-	    height: 30px;
-	    border: none;
-	    background: #242526;
-	    color: #eee;
-	 }
-	    
 	.alert {
 		height: 20px;
 	    padding: 0px;
 	    margin-bottom: 0px;
 	    border: none;
 	    border-radius: 4px;
+	    background-color: none;
 	}
 	
 	.inputline1 {
 		border: none;
 		outline: 0;
-		width: 35%;
+		width: 65%;
 	}
-	
-	.narrowWidth1 {
-		width: 60%;
-	}
+ 	.inputline2 {
+		border: none;
+		outline: 0;
+		width: 50%;
+	} 
 	
 	#keyShow {
 	  position: absolute;
@@ -175,7 +137,7 @@
 					$("#alert2").hide();
 					$("#alert3").hide();
 				    $("#alert4").hide();
-				    $("#submit").attr('disabled', true);
+				    $("#submit").attr('disabled', true); 
 	   			 } else if (num >= 0 && eng >= 0){
 	    			$(".alert").hide(); 
 	    			$("#submit").attr('disabled', false);
@@ -191,7 +153,7 @@
 					$("#alert3").hide();
 					$("#alert4").toggle();
 					$("#submit").attr('disabled', true);
-			 	 }	
+			 	 }
 	        } 
 		  });	
 	
@@ -238,7 +200,7 @@
 		
 			var  birthYear  = (gender == 1 || gender == 2) ? 19 : 20;
 		  	   birthYear  += regNum.substr(0,2);  
-			var  birthMonth =  regNum.substr(2,2);/* -1 */
+			var  birthMonth =  regNum.substr(2,2)-1;
 			var	 birthDate  =  regNum.substr(4,2);
 			var	 birth = new Date(birthYear, birthMonth, birthDate);
 			
@@ -286,7 +248,7 @@
 		          } 
 			   }
 		    }
-	  });	
+	  });	   
 	});	   
 
 // 닉네임 중복 체크
@@ -316,7 +278,7 @@
 			frm.MB_pw.focus(); // 커서
 			frm.MB_pw.value=""; // password에 있는 데이터를 지우기
 			return false; // action을 실행하지 않음
-		} 
+		} return;
 	}	
 </script>  
 </head>
@@ -330,12 +292,12 @@
 					<td class="col md-2 text-center">이메일</td>
 					<td class="col md-10">
 					 	<input type="email" name="MB_id" required="required" autofocus="autofocus"
-								placeholder="이메일을 입력해주세요" class="inputline1">
-						<input type="button" onclick="idChk()" class="btn_s" value="이메일 인증">
+								placeholder="이메일을 입력해주세요" class="inputline2">
+						<input type="button" onclick="idChk()"  value="이메일 인증" class="btn_ck">
 						<div id="idChk" class="err"></div> <br>
 						<div id="emailChk">
-							<input type="text" name="emailChk" id="emailChk"
-								class="inputline1" placeholder="인증번호 입력">
+							<input type="text" name="emailChk" id="emailChk" 
+								class="inputline1" placeholder="인증번호 입력"> 
 						</div>
 						<div id="emailChk_success" class="err">인증번호가 일치합니다.</div>
 						<div id="emailChk_fail" class="err">인증번호가 일치하지 않습니다.</div>
@@ -345,7 +307,7 @@
 					<td class="col md-2 text-center">비밀번호</td>
 					<td class="col md-10">
 						<input type="password" name="MB_pw" id="pw" maxlength="12" autocomplete="false"
-								class="inputline1"  placeholder="비밀번호(영문자와 숫자 포함, 4자 이상)" 
+								class="inputline1"  placeholder="비밀번호(영문자, 숫자, 4자 이상)" 
 								required="required">
 							<div id="keyShow">show</div>
 							<br>
@@ -369,9 +331,9 @@
 				</tr>
 				<tr>
 					<td class="col md-2 text-center">이름</td>
-					<td class="col md-10"><input type="text" name="MB_name"
-						id="name" required="required" placeholder="이름을 입력해주세요"
-						class="inputline1"></td>
+					<td class="col md-10">
+						<input type="text" name="MB_name" required="required" id="name" 
+								 placeholder="이름을 입력해주세요" class="inputline1"></td>
 				</tr>
 				<tr>
 					<td class="col md-2 text-center" >주민등록번호</td>
@@ -392,8 +354,8 @@
 					<td class="col md-2 text-center">닉네임</td>
 					<td class="col md-10">
 						<input type="text" name="MB_nickName" id="nickName" required="required" 
-						        placeholder="닉네임을 입력해주세요" class="inputline1"> 
-						<input type="button" onclick="nickChk()" class="btn_s" value="중복체크">
+						        placeholder="닉네임을 입력해주세요" class="inputline2"> 
+						<input type="button" onclick="nickChk()"  value="중복체크" class="btn_ck">
 						<div id="nickChk" class="err"></div></td>
 				</tr>
 				<tr>
@@ -405,9 +367,9 @@
 				</tr>
 				<tr>
 					<td colspan="2" align="center" class="text-center">
-					    <input type="submit" id="submit" value="회원가입" class="btn_M" disabled="">
-					    <input type="button"  onclick="location.href='loginForm.do'" class="btn_S" 
-					    	    value="로그인" >  
+					    <input type="submit" id="submit" value="회원가입"  disabled="disabled" class="btn_sm_full">
+					    <input type="button"  onclick="location.href='loginForm.do'" 
+					    	    value="로그인" class="btn_sm_stroke">    
 					 </td>
 				</tr>
 			</table>

@@ -4,102 +4,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
-	<link rel="stylesheet" type="text/css" href="${path }/resources/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="${path }/resources/bootstrap/css/common.css">
-	<script type="text/javascript" src="${path }/resources/bootstrap/js/jquery.js"></script>
-	<script type="text/javascript" src="${path }/resources/bootstrap/js/bootstrap.min.js"></script>
 <style type="text/css">
 	.err {
 		color: red;
 		font-weight: bold;
 	}
-    
-	.filebox input[type="file"] {
-	    position: absolute;  
-		width: 1px;
-		height: 1px;
-	 	padding: 0;  
-		/* margin: -1px; */
-		overflow: hidden; 
-		clip: rect(0, 0, 0, 0);
-		border: 0;
-	}  
-	
-	.filebox label {
-	    display: inline-block;  
-	    position: relative; 
-	    width: 80px;
-	    height: 30px;
-	    border: none;  
-	    background: #242526;
-	    color: #eee;
-	    font-size: 16px; 
-	    text-align: center; 
-	    cursor: pointer;
-	    line-height: 30px;
-	    left : 60px; 
-	  }     
-	/* named upload */
-	.filebox .upload-name {
-	 	display: inline-block; 
-	 	 position: relative; 
-		background-color: white;
-		cursor: pointer;
-		border: none;
-		-webkit-appearance: none; /* 네이티브 외형 감추기 */
-		-moz-appearance: none;
-		appearance: none;
-		left : 70px;
-	}
-	.inputKm {
-		border: none;  
-	    outline: 0;
-		width: 90px;
-	}
-	
-	.narrowWidth1 {
-   	 width: 60%;
-   	}
+   	
 	.narrowWidth2 {
-   	 width: 100%;
+   	 width: 75%;  
+   	} 
+	.narrowWidth1-1 {
+   	 width: 70%;  
    	} 
 	
-	.btn_s {
-	width: 100px;
-    height: 30px;
-    border: none;
-    background: #242526;
-    color: #eee;
-
-	}
-	
-	.inputline1{
+	.inputline1{  
 	    border: none;
 	    outline: 0;
-	    width: 35%;
-	}
+	    width: 64%;
+     }  
 	
 	#inform_box {
 		float: right !important;
-		margin-top: 15px;
-		padding-left: 0px;	} 
+		/* margin-top: 15px;
+		padding-left: 0px;	 */
+	} 
+	
+	.delBtn {
+		color: darkgray;
+		margin-top: -10px;
+	}
+	
 	
 	#img_box {
 		float: left !important;
 	} 
 	 
 	.thumbnail {
-		height: 170px;
-		width: 170px; 
-		margin-top: 20px;
-	}     
-
+		height: 130px;  
+		width: 130px;; 
+		margin-top: 0; 
+		margin-bottom: 8px; 
+	}    
 </style>
 <script type="text/javascript">
-	// 닉네임 중복체크
+// 닉네임 중복체크
 	function nickChk() {
 		if(!frm.MB_nickName.value) {
 			alert("닉네임을 입력하세요")
@@ -119,8 +68,8 @@
 		}
 	}
 	
- // 파일 업로드 미리보기
- function fileUpload(fis) {  
+ // 파일 업로드 미리보기 완성
+	function fileUpload(fis) {  
 	   var str = fis.value;
        $('.thumbnail').text(fis.value.substring(str.lastIndexOf("\\")+1));
        // 이미지를 변경한다.
@@ -129,26 +78,9 @@
 	   $('.thumbnail').attr('src',e.target.result);
       }
    	 reader.readAsDataURL(fis.files[0]);
-	}   
+	}  
  
-// 파일 업로드 미리보기 삭제 
-  /*   function resetInputFile($input, $preview) { 
-	var agent = navigator.userAgent.toLowerCase(); 
-	if((navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') != -1) || 
-			(agent.indexOf("msie") != -1)) { // ie 일때 
-		$input.replaceWith($input.clone(true)); 
-		$preview.empty(); 
-	} else { //other 
-		$input.val(""); $preview.empty(); } 
-	} 
-	$(".btn-delete").click(function(event) { 
-		var $input = $(".inp-img"); 
-		var $preview = $('#preview'); 
-		resetInputFile($input, $preview); 
-	});
- */
-
-//    	
+ //
 	$(document).ready( function(){ 
 		var fileTarget = $('.filebox .upload-hidden'); 
 		
@@ -177,75 +109,80 @@
 </script>
 </head>
 <body>   
-	<div align="center">
-		<h2 class="title">${member.MB_nickName } 정보 수정</h2>
-		<form action="updateResult.do" method="post" enctype="multipart/form-data" 
+<div class="container narrowWidth1-1" align="center">
+	<h2 class="title">${member.MB_nickName }님의 프로필 설정</h2>
+	<form action="updateResult.do" method="post" enctype="multipart/form-data" 
 				name="frm" onsubmit="return chk()">
-			<input type="hidden" name="MB_id" value="${member.MB_id }">
-			<div class="table narrowWidth1" >  
-				<div class="col md-2" id="img_box"  >  
-					<%-- <h4 class="text-center" >${member.MB_nickName }</h4> --%>
-					<c:if test="${empty MB_img}">
-				     	<img alt="" src="${path }/resources/main/none_img.jpg" class="thumbnail" >
-						<div class="filebox">   
-							<label for="AP_picture" >upload</label> 
-							<input type="file" name="fileAp" id="AP_picture" class="upload-hidden"
-							         style="display:none;" onchange="fileUpload(this);"> 
-							<input class="upload-name" disabled="disabled" >         
-						</div>  
-					</c:if>
-					<c:if test="${not empty MB_img }">
-						<img alt="" src="${path }/resources/memberImg/${member.MB_img }" class="thumbnail" > 
-						<div class="filebox">   
-					      <label for="ex_filename" >upload</label> 
-					      <input class="upload-name" disabled="disabled" > 
-					      <input type="file" name="file" id="ex_filename" class="upload-hidden"
-					             style="display:none;"onchange="fileUpload(this);"> 
-					 	</div>  
-					</c:if>	      
-				</div>	  
-				<div id="inform_box" class="col md-10">		      
-			  		<table class="table narrowWidth2"  >
-						<tr>
-							<td class="col md-3 text-center">이메일</td>
-							<td class="col md-9">${member.MB_id }</td>
+	<input type="hidden" name="MB_id" value="${member.MB_id }">			
+		<div class="row">
+			<div class="col-md-2" id="img_box"  > 
+				<c:if test="${empty member.MB_img }">
+					<img alt="" src="${path }/resources/main/none_img3.jpg" class="thumbnail" >
+				</c:if> 
+				<c:if test="${not empty member.MB_img  }">  
+					<img alt="" src="${path }/resources/memberImg/${member.MB_img }" class="thumbnail" >  
+				 </c:if>    
+			     <div class="filebox">   
+											<!-- 그림있는 곳에 커셔가 가면 메세지 나옴 -->
+					<label for="ex_filename"  data-toggle="tooltip" data-placement="left" 	
+					                          title="이미지를 선택하세요"> upload</label>
+					     <input class="upload-name " disabled="disabled"  ><br> 
+				         <input type="file" name="file" id="ex_filename" class="upload-hidden"
+					              style="display:none;"  onchange="fileUpload(this);">  
+	  		     </div> 
+	  
+			</div>
+			<div class="col-md-10" id="inform_box">	
+				<table class="table narrowWidth2">  
+					   <tr>
+							<td class="col-md-2 text-center">이메일</td>
+							<td class="col-md-8">${member.MB_id }</td>
 						</tr>
 						<tr>
-							<td class="col md-3 text-center">이름</td>
-							<td class="col md-9"><input type="text" name="MB_name"
+							<td class="col-md-3 text-center">이름</td>
+							<td class="col-md-7"><input type="text" name="MB_name"
 								required="required" autofocus="autofocus"
 								value="${member.MB_name }" class="inputline1"></td>
 						</tr>
 						<tr>
-							<td class="col md-3 text-center">주민등록번호</td>
-							<td class="col md-9">${member.MB_regNum }<span>―</span><span>*******</span></td>
+							<td class="col-md-3 text-center">주민등록번호</td>
+							<td class="col-md-7">${member.MB_regNum }
+							 <span>―</span><span>*******</span>
+					    </td>
 						</tr>
 						<tr>
-							<td class="col md-3 text-center">닉네임</td>
-							<td class="col md-9"><input type="text" name="MB_nickName"
-								required="required" value="${member.MB_nickName }"
-								class="inputline1"> <input type="button"
-								onclick="nickChk()" class="btn_s" value="중복체크">
-								<div id="nickChk" class="err"></div></td>
-						</tr>  
+							<td class="col md-2 text-center">닉네임</td>
+							<td class="col md-8">
+								<input type="text" name="MB_nickName" id="nickName" required="required" 
+								        placeholder="닉네임을 입력해주세요" class="inputline1"> 
+								<input type="button" onclick="nickChk()"  value="중복체크" class="btn_ck">
+								<div id="nickChk" class="err"></div>
+							</td>
+					 	 </tr> 
+						<tr>  
+							<td class="col-md-2 text-center">연락처</td>
+							<td class="col-md-8">
+							    <input type="tel" name="MB_tel" required="required" 
+							           title="전화번호 형식 3-4-4" pattern="\d{3}-\d{4}-\d{4}" 
+							            placeholder="000-0000-0000" value="${member.MB_tel }" 
+							            class="inputline1">
+							</td>
 						<tr>
-							<td class="col md-3 text-center">연락처</td>
-							<td class="col md-9"><input type="tel" name="MB_tel"
-								required="required" title="전화번호 형식 3-4-4"
-								pattern="\d{3}-\d{4}-\d{4}" placeholder="000-0000-0000"
-								value="${member.MB_tel }" class="inputline1"></td>
 						<tr>
-						<tr>
-							<td colspan="2" align="center"><input type="submit"
-								id="submit" value="정보 수정" class="btn_small" disabled=""></td>
+							<td colspan="2" align="center" class="text-center">
+								<div class="text-right">
+									<a onclick="del()" class="delBtn" >회원 탈퇴</a>
+								</div>
+								<div>
+									<input type="submit" id="submit" value="정보 수정" 
+							       				class="btn_sm_full" disabled="disabled">
+							       	</div>
+							 </td>    
 						</tr>
-			  		</table>
-					<div align="center">
-						<a onclick="del()" class="btn_prev">회원 탈퇴</a>
-					</div>
-	    		</div>
-			</div>    
-		</form>  
-	</div>
+				</table>
+			</div>
+		</div>
+	</form>
+</div>	
 </body>  
 </html>

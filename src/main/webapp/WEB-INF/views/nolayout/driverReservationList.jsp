@@ -30,7 +30,7 @@
 </style>
 </head>
 <body>
-	<h1 class="msgTitle">후기</h1>
+	<h1 class="msgTitle">탑승자 내역</h1>
 	<table class="table tableBG">
 		<tr>
 			<th class="col-xs-4 text-center">닉네임</th>
@@ -41,6 +41,7 @@
 			<c:if test="${empty rvsList }">
 				<tr>
 					<th colspan="3" class="text-center">이용자가 없습니다.</th>
+				</tr>
 			</c:if>
 			<c:if test="${not empty rvsList }">
 				<c:forEach var="rvsList" items="${rvsList }" >

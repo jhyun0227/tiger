@@ -1,25 +1,38 @@
 @charset "UTF-8";
+/* 너비 */
+.narrowWidth70{
+	width: 70%;
+    margin: 0 auto;
+}
+
+.mainDiv{
+	margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;	
+}
 
 /* swiper 전체 크기 */
 .swiper-container {
   width: 100%;
-  height: 450px;
+  height: 55vh;
 }
 
 /* 메인 이미지 */
 .slide1{
-	background : url('/tiger/resources/main/main5.png');
-	background-size:100% 100%;
+	background : url('/tiger/resources/main/1.png') center;
+	background-size: cover;
 }
 
 .slied2{
-	background : url('/tiger/resources/main/main7.png');
-	background-size:100% 100%;
+	background : url('/tiger/resources/main/main7.png') center;
+	background-size: cover;
 }
 
 .slied3{
-	background : url('/tiger/resources/main/main4.png');
-	background-size:100%;
+	background : url('/tiger/resources/main/main4.png') center;
+	background-size: cover; 
 }
 
 /* 좌우 버튼 */

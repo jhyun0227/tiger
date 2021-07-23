@@ -18,7 +18,7 @@
 				</ul>
 			</li>
 			<li class="menu3"><a href="msgRecieveList.do">쪽지함</a>
-				<ul class="menu3_s submenu">
+		 		<ul class="menu3_s submenu">
 					<li><a href="msgRecieveList.do">받은 쪽지함</a></li>
 					<li><a href="msgSendList.do">보낸 쪽지함</a></li>
 				</ul>

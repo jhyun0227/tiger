@@ -21,27 +21,27 @@
 			<th class="col-md-2 text-center">매칭여부</th>
 			
 		</tr>
-		<c:if test="${empty adminCpList}">
+		<c:if test="${empty adminRvAllList}">
 			<tr>
-				<td colspan="3" class="text-center">이 존재하지 않습니다</td>
+				<td colspan="3" class="text-center">내역이 존재하지 않습니다</td>
 			</tr>
 		</c:if>
-		<c:if test="${not empty adminCpList }">
-			<c:forEach var="carpool" items="${adminCpList }">
+		<c:if test="${not empty adminRvAllList }">
+			<c:forEach var="reservation" items="${adminRvAllList }">
 				<tr>
 					<td class="col-md-1 text-center">${num }
 						<c:set var="num" value="${num -1 }"></c:set></td>
 					<td class="col-md-1 text-center">
-						<a href="adminCpView.do?CP_num=${carpool.CP_num }&pageNum=${pb.currentPage}"
+						<a href="adminCpView.do?CP_num=${reservation.CP_num }&pageNum=${pb.currentPage}"
 							class="btn_prev">상세</a></td>	
-					<td class="col-md-2 text-center">${carpool.MB_nickName }</td>
+					<td class="col-md-2 text-center">${reservation.MB_nickNameDv }</td>
 					<td class="col-md-2 text-center">${reservation.MB_nickName }</td>
-					<td class="col-md-2 text-center">${carpool.CP_startPoint }</td>
-					<td class="col-md-2 text-center">${carpool.CP_endPoint }</td>
+					<td class="col-md-2 text-center">${reservation.CP_startPoint }</td>
+					<td class="col-md-2 text-center">${reservation.CP_endPoint }</td>
 					<td class="col-md-2 text-center">
-						<c:if test="${carpool.RSV_confirm == 'Y' && carpool.RSV_mConfirm == 'Y' }">매칭완료</c:if>
-						<c:if test="${carpool.RSV_confirm == 'Y' && carpool.RSV_mConfirm == 'N' }">매칭대기</c:if>
-						<c:if test="${carpool.RSV_confirm == 'N' && carpool.RSV_mConfirm == 'N' }">거절</c:if>
+						<c:if test="${reservation.RSV_confirm == 'Y' && reservation.RSV_mConfirm == 'Y' }">매칭완료</c:if>
+						<c:if test="${reservation.RSV_confirm == 'Y' && reservation.RSV_mConfirm == 'N' }">매칭대기</c:if>
+						<c:if test="${reservation.RSV_confirm == 'N' && reservation.RSV_mConfirm == 'N' }">거절</c:if>
 					</td>
 				</tr>
 			</c:forEach>
@@ -52,48 +52,48 @@
 				<!-- 시작페이지가 pagePerBlock(10)보다 크면 앞에 보여줄 페이지가 있다 -->
 				<c:if test="${pb.startPage > pb.pagePerBlock }">
 					<li>
-						<a href="adminCpList.do?pageNum=1&search=${carpool.search }&keyword=${carpool.keyword }"
+						<a href="adminRvList.do?pageNum=1&search=${reservation.search }&keyword=${reservation.keyword }"
 							class="page_num"><span class="glyphicon glyphicon-backward"></span>
 						</a>
 					</li>
-					<li><a href="adminCpList.do?pageNum=${pb.startPage - 1 }&search=${carpool.search }&keyword=${carpool.keyword }"
+					<li><a href="adminRvList.do?pageNum=${pb.startPage - 1 }&search=${reservation.search }&keyword=${reservation.keyword }"
 							class="page_num"><span class="glyphicon glyphicon-triangle-left"></span>
 					</a></li>
 				</c:if>
 				<c:forEach var="i" begin="${pb.startPage }" end="${pb.endPage }">
 					<!-- 현재 머물고 있는 페이지가 몇 페이지인지 구별할 때 -->
 					<c:if test="${pb.currentPage == i }">
-						<li class="active"><a href="adminCpList.do?pageNum=${i }&search=${carpool.search }&keyword=${carpool.keyword }"
+						<li class="active"><a href="adminRvList.do?pageNum=${i }&search=${reservation.search }&keyword=${reservation.keyword }"
 							class="page_num page_current_num">　${i}　</a></li>
 					</c:if>
 					<c:if test="${pb.currentPage != i }">
-						<li><a href="adminCpList.do?pageNum=${i }&search=${carpool.search }&keyword=${carpool.keyword }"
+						<li><a href="adminRvList.do?pageNum=${i }&search=${reservation.search }&keyword=${reservation.keyword }"
 							class="page_num">　${i }　</a></li>
 					</c:if>
 				</c:forEach>
 				<!-- 보여줄 페이지가 뒤에 남아있는 경우(다음 버튼 활성화)=> endPage < totalPage인 경우 -->
 				<c:if test="${pb.endPage < pb.totalPage }">
-					<li><a href="adminCpList.do?pageNum=${pb.endPage + 1 }&search=${carpool.search }&keyword=${carpool.keyword }"
+					<li><a href="adminRvList.do?pageNum=${pb.endPage + 1 }&search=${reservation.search }&keyword=${reservation.keyword }"
 							class="page_num"><span class="glyphicon glyphicon-triangle-right"></span>
 					</a></li>
-					<li><a href="adminCpList.do?pageNum=${pb.totalPage }&search=${carpool.search }&keyword=${carpool.keyword }"
+					<li><a href="adminRvList.do?pageNum=${pb.totalPage }&search=${reservation.search }&keyword=${reservation.keyword }"
 							class="page_num"><span class="glyphicon glyphicon-forward"></span>
 					</a></li>
 				</c:if>
 			</ul>
-		<form action="adminCpList.do">
+		<form action="adminRvList.do">
 			<input type="hidden" name="pageNum" value="1">
 			<select name="search">
-				<c:forTokens var="sh" items="MB_nickNameD,MB_nickNameP,CP_startPoint,CP_endPoint" delims="," varStatus="i">
-					<c:if test="${sh == carpool.search }">
+				<c:forTokens var="sh" items="CP_startPoint,CP_endPoint" delims="," varStatus="i">
+					<c:if test="${sh == reservation.search }">
 						<option value="${sh}" selected="selected">${title[i.index] }</option>
 					</c:if>
-					<c:if test="${sh != carpool.search }">
+					<c:if test="${sh != reservation.search }">
 						<option value="${sh}">${title[i.index] }</option>
 					</c:if>
 				</c:forTokens>
 			</select>
-				<input type="text" name="keyword" value="${carpool.keyword }">
+				<input type="text" name="keyword" value="${reservation.keyword }">
 				<input type="submit" value="검색" class="btn btn-info">
 		</form>
 	</div>

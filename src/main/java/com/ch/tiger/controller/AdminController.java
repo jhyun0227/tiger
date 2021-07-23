@@ -396,7 +396,7 @@ public class AdminController {
 		model.addAttribute("pageNum", pageNum);
 		return "admin/adminRpDelete";
 	}
-	@RequestMapping("adminCpList")
+	@RequestMapping("adminRvList")
 	public String adminCpList(Reservation reservation, String pageNum, Model model) {	// Carpool carpool
 		if(pageNum == null || pageNum.equals("")) {
 			pageNum = "1";
@@ -411,7 +411,7 @@ public class AdminController {
 		//carpool.setEndRow(endRow);
 		reservation.setStartRow(startRow);
 		reservation.setEndRow(endRow);
-		//List<Carpool> adminCpList = cps.adminCpList(carpool);	// 신고 목록
+		//List<Carpool> adminCpList = cps.adminCpList(carpool);
 		// 수정 및 추가(테스트)
 		List<Reservation> adminRvAllList = rvs.adminRvAllList(reservation);	// 추가 0723
 		for (Reservation rv : adminRvAllList) {	// 추가 0723
@@ -421,11 +421,13 @@ public class AdminController {
 	         Member member2 = mbs.selectNum(MB_numDv); // 게시글 작성자의 번호를 이용해서 게시글 작성자의 정보를 가져옴
 	         rv.setMB_numDv(member2.getMB_num()); // 가져온 정보를 이용해서 객체에 적용
 	         rv.setMB_nickNameDv(member2.getMB_nickName()); // 가져온 정보를 이용해서 객체에 적용
-	         rv.setMB_num(carpool.getMB_numP()); // 탑승자의 번호를 재설정 해줌
+	         Member memberDB = mbs.selectNum(rv.getMB_num());
+	         rv.setMB_nickName(memberDB.getMB_nickName());
 	      }
 		int num = total - startRow + 1;
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
-		String[] title = {"작성자", "신청자", "출발지", "도착지"};
+		//String[] title = {"작성자", "신청자", "출발지", "도착지"};	// 테이블에 칼럼없어서 불가/ 조인하면 닉네임하나는 가능
+		String[] title = {"출발지", "도착지"};
 		model.addAttribute("title", title);
 		model.addAttribute("pb", pb);	// paginbean pb
 		model.addAttribute("adminRvAllList", adminRvAllList);	// 수정 0723

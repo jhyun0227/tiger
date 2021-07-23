@@ -70,13 +70,13 @@
 	</select>
 	
 	<select id="getTotalRv" parameterType="reservation" resultType="integer">
-		select count(*) from reservation
-		<where>
+		select count(*) from (select a.*, rowNum rn from (select rv.*, c.CP_startPoint, c.CP_endPoint from reservation rv, carpool c
+		where rv.CP_num=c.CP_num
 		<!-- 검색어가 있을때 -->
 			<if test="keyword!=null and keyword!=''">
-				${search} like '%'||#{keyword}||'%'
+				and ${search} like '%'||#{keyword}||'%'
 			</if>
-		</where>
+		order by c.CP_num desc) a)
 	</select>
 	
 	<select id="adminRvAllList" parameterType="reservation" resultType="reservation">

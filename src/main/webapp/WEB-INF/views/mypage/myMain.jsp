@@ -96,6 +96,7 @@
 								<td class="col md-9">여자</td>
 							</tr>	
 						</c:if>	
+						
 						<tr>
 							<td class="col md-3 text-center">가입일</td>
 							<td class="col md-9">${member.MB_regDate }</td>

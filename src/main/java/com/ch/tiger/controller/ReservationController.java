@@ -53,7 +53,6 @@ public class ReservationController {
 		int num = total - startRow + 1; // 번호 순서대로 정렬
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
 		String[] title = {"출발일", "출발지", "도착지"};
-		
 		model.addAttribute("title", title);
 		model.addAttribute("pb", pb);
 		model.addAttribute("myCarpoolList", myCarpoolList);
@@ -77,6 +76,7 @@ public class ReservationController {
 		Member member = mbs.select(MB_id);
 		int MB_num = member.getMB_num();
 		reservation.setMB_num(MB_num); // total 값을 알아내기 위해 먼저 객체에 넣음, 검색의 경우에는 자동으로 들어가지만 덮어 씌움
+		System.out.println(reservation);
 		
 		// 페이징
 		if (pageNum == null || pageNum.equals("")) {
@@ -85,6 +85,7 @@ public class ReservationController {
 		int currentPage = Integer.parseInt(pageNum);
 		int rowPerPage = 10; // 한 화면에 보이는 게시글 수
 		int total = rvs.getTotalMyRv(reservation);
+		System.out.println(total);
 		int startRow = (currentPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage - 1;
 		
@@ -105,7 +106,6 @@ public class ReservationController {
 		int num = total - startRow + 1; // 번호 순서대로 정렬
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
 		String[] title = {"출발일", "출발지", "도착지"};
-		
 		
 		model.addAttribute("title", title);
 		model.addAttribute("pb", pb);

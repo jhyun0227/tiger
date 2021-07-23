@@ -67,7 +67,6 @@ public class CarpoolController {
 	public String cpWriteForm(int CP_num, Member member, String pageNum, Model model, HttpSession session){
 		String MB_id = (String)session.getAttribute("MB_id");
 		member = mbs.select(MB_id);
-	//	model.addAttribute("CP_num", CP_num);
 		model.addAttribute("member", member);
 		model.addAttribute("pageNum", pageNum);
 		return "carpool/cpWriteForm";
@@ -117,7 +116,6 @@ public class CarpoolController {
 		int number = rps.getMaxNum(); // 1. 신고 글번호 생성
 		report.setRP_num(number); // 2. report table의  RP_num(max번호 +1) 설정
 		int result = rps.RPinsert(report);
-		model.addAttribute("report", report);	// 필요?
 		model.addAttribute("result", result);
 		model.addAttribute("pageNum", pageNum);
 		return "carpool/cpReportResult";
@@ -168,10 +166,17 @@ public class CarpoolController {
 	// 타세요 신청버튼 클릭시
 	@RequestMapping("cpRequestResult")
 	public String cpRequestList(int CP_num, int MB_num, String pageNum, Model model) {
-		Reservation reservation = new Reservation();
+		int result = 0;
+		Reservation reservation = new Reservation(); // reservation에 CP_num과 MB_num값 저장 
 		reservation.setCP_num(CP_num);
 		reservation.setMB_num(MB_num);
-		int result = rvs.insert(reservation);
+		// 신청버튼 중복 클릭 방지
+		Reservation reservation2 = rvs.selectRv(reservation);
+		if (reservation2 != null) {
+			result = -1; // 신청한 정보가 이미 있음
+		} else {
+			result = rvs.insert(reservation); // 신청 성공/실패
+		}
 		model.addAttribute("CP_num", CP_num);
 		model.addAttribute("result", result);
 		model.addAttribute("pageNum", pageNum);

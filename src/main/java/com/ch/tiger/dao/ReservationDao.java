@@ -24,6 +24,8 @@ public interface ReservationDao {
 
 	int updateDenial(Reservation reservation);
 
+	Reservation selectRv(Reservation reservation);
+
 
 
 }

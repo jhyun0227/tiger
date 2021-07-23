@@ -57,4 +57,9 @@ public class ReservationDaoImpl implements ReservationDao {
 		return sst.update("reservationns.updateDenial", reservation);
 	}
 
+	@Override
+	public Reservation selectRv(Reservation reservation) { // 타세요 신청 중복 방지
+		return sst.selectOne("reservationns.selectRv", reservation);
+	}
+
 }

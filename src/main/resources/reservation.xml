@@ -41,6 +41,11 @@
 		select * from (select r.*, m.MB_gender, m.MB_nickName from reservation r, member m where r.MB_num=m.MB_num) where CP_num=#{CP_num} order by RSV_num
 	</select>
 	
+	<!-- 신청 중복 등록 방지 -->
+	<select id="selectRv" parameterType="reservation" resultType="reservation">
+		select * from reservation where CP_num=#{CP_num} and MB_num=#{MB_num}
+	</select>
+	
 	<select id="getTotal" parameterType="reservation" resultType="integer">
 		select count(*) from reservation
 	</select>

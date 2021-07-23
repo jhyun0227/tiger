@@ -20,5 +20,11 @@
 			history.back();
 		</script>
 	</c:if>
+	<c:if test="${result == -1 }">
+		<script type="text/javascript">
+			alert("이미 신청하신 게시글 입니다.");
+			history.back();
+		</script>
+	</c:if>
 </body>
 </html>

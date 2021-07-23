@@ -4,7 +4,7 @@
 <mapper namespace="reportns">
 	<insert id="RPinsert" parameterType="report">
 		insert into report values
-		(#{RP_num},#{RP_reason}, #{MB_num}, #{MB_numR}, #{CP_num})
+		(#{RP_num},#{RP_reason},'N', #{MB_num}, #{MB_numR}, #{CP_num})
 	</insert>
 	
 	<select id="getMaxNum" resultType="integer">

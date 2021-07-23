@@ -33,8 +33,7 @@
 				<!--          로그인한 회원 정보 != 작성자 정보   -->
 				<c:if test="${sessionScope.MB_num != carpool.MB_num && sessionScope.MB_id != 'admin' }">
 					<div align="right">
-						<a href="cpReportForm.do?CP_num=${carpool.CP_num }&MB_num=${carpool.MB_num }&MB_numR=${sessionScope.MB_num }&pageNum=${pageNum }"
-							class="btn btn-danger">신고</a>
+						<a href="cpReportForm.do?CP_num=${carpool.CP_num }&MB_num=${carpool.MB_num }&MB_numR=${sessionScope.MB_num }&pageNum=${pageNum }" class="btn btn-danger">신고</a>
 					</div>
 				</c:if>
 			</section>

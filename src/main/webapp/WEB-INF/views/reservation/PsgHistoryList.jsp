@@ -71,7 +71,7 @@
 							<c:if test="${rvList.RSV_confirm == 'Y' && rvList.RSV_mConfirm == 'Y' }">
 								<td class="col-md-1 text-center">매칭완료</td>
 							</c:if>
-							<c:if test="${rvList.RSV_confirm == 'Y' && rvList.RSV_mConfirm == 'N' }">
+							<c:if test="${rvList.RSV_confirm == 'N' && rvList.RSV_mConfirm == 'N' }">
 								<td class="col-md-1 text-center">매칭거절</td>
 							</c:if>							
 							

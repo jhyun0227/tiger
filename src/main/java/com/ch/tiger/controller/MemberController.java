@@ -8,8 +8,10 @@ import java.util.Random;
 import java.util.UUID;
 
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.tiles.request.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -137,13 +139,18 @@ public class MemberController {
 
 	// 로그인 폼으로 이동
 	@RequestMapping("loginForm")
-	public String loginForm() {
+	public String loginForm(HttpServletRequest request, Model model) {
+		String prevUrl = request.getHeader("Referer");
+		System.out.println(prevUrl);
+		prevUrl = prevUrl.substring(28);
+		System.out.println("prev:"+prevUrl);
+		model.addAttribute("prevUrl", prevUrl);
 		return "member/loginForm";
 	}
 
 	// 로그인
 	@RequestMapping("login")
-	public String login(Member member, Model model, HttpSession session) {
+	public String login(String prevUrl, Member member, Model model, HttpSession session) {
 		// memberDB ; DB 데이터
 		Member memberDB = mbs.select(member.getMB_id());
 		int result = 0; // 암호가 일치하지 않는 경우
@@ -156,6 +163,7 @@ public class MemberController {
 			session.setAttribute("MB_nickName", memberDB.getMB_nickName());	//header출력용
 		}
 		model.addAttribute("result", result);
+		model.addAttribute("prevUrl", prevUrl);
 		return "member/loginResult";
 	}
 	

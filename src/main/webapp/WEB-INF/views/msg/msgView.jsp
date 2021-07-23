@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,11 +26,17 @@ function prev(){
 		<td class="col-md-4">${nicknameR }</td>
 	</tr>
 	<tr>
-		<th class="text-left">내용</th>
+		<th class="text-center">내용</th>
 		<td colspan="3"><pre class="textBox">${message.MSG_content }</pre></td>
 	</tr>
 	<tr>
-		<td colspan="4" class="text-center"><a onclick="prev()" class="btn_prev">이전</a></td>
+		<td colspan="4" class="text-center">
+			<a onclick="prev()" class="btn_prev">이전</a>
+				<c:if test="${prevUrl == 'msgRecieveList'}">
+					<a onclick="window.open('msgWriteForm.do?MB_num=${message.MB_numR }','쪽지 보내기',
+					'width=430,height=400,location=no,status=no,scrollbars=yes');" class="btn_prev">답장</a>
+				</c:if>
+		</td>
 	</tr>
 </table>
 </div>

@@ -59,7 +59,27 @@
 	<!-- 관리자가 CP_num에 해당하는 카풀글 내 예약내역 - 동윤 -->
 	<select id="adminRvList" parameterType="reservation" resultType="reservation">
 		select rv.*, m.MB_nickName, m.MB_gender from reservation rv, member m
-		where 
+		where rv.MB_num=m.MB_num and rv.CP_num=#{CP_num}
+	</select>
+	
+	<select id="getTotalRv" parameterType="reservation" resultType="integer">
+		select count(*) from reservation
+		<where>
+		<!-- 검색어가 있을때 -->
+			<if test="keyword!=null and keyword!=''">
+				${search} like '%'||#{keyword}||'%'
+			</if>
+		</where>
+	</select>
+	
+	<select id="adminRvAllList" parameterType="reservation" resultType="reservation">
+		select * from (select a.*, rowNum rn from (select rv.*, c.CP_startPoint, c.CP_endPoint from reservation rv, carpool c
+			where rv.CP_num=c.CP_num
+			<!-- 검색어가 있을때 -->
+			<if test="keyword!=null and keyword!=''">
+				and ${search} like '%'||#{keyword}||'%'
+			</if>
+		order by c.CP_num desc) a) where rn between #{startRow} and #{endRow}
 	</select>
 	
 </mapper>

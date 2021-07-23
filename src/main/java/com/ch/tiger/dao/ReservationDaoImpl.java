@@ -62,4 +62,14 @@ public class ReservationDaoImpl implements ReservationDao {
 		return sst.selectList("reservationns.adminRvList", reservation);
 	}
 
+	@Override
+	public int getTotalRv(Reservation reservation) {
+		return sst.selectOne("reservationns.getTotalRv", reservation); // 추가 0723
+	}
+
+	@Override
+	public List<Reservation> adminRvAllList(Reservation reservation) {
+		return sst.selectList("reservationns.adminRvAllList", reservation); // 추가 0723
+	}
+
 }

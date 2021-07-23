@@ -62,4 +62,14 @@ public class ReservationServiceImpl implements ReservationService {
 		return rvd.adminRvList(reservation);	// 관리자가 CP_num에 해당하는 카풀글 내 예약내역 - 동윤
 	}
 
+	@Override
+	public int getTotalRv(Reservation reservation) {	//추가 0723
+		return rvd.getTotalRv(reservation);
+	}
+
+	@Override
+	public List<Reservation> adminRvAllList(Reservation reservation) {	// 추가0723
+		return rvd.adminRvAllList(reservation);
+	}
+
 }

@@ -53,7 +53,7 @@
 				
 				<td class="col-md-2 text-center">
 					<a onclick="window.open('profileView.do?MB_nickName=${reservation.MB_nickNameDv }', '',
-						'width=500,height=1000,location=no,status=no,scrollbars=yes');" class="menuTitle">${reservation.MB_nickNameDv }</a>
+						'width=1000,height=1000,location=no,status=no,scrollbars=yes');" class="menuTitle">${reservation.MB_nickNameDv }</a>
 				</td>
 				
 				<c:if test="${reservation.RSV_confirm == 'Y' && reservation.RSV_mConfirm == 'N' }">

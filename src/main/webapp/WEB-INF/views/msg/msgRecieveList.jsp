@@ -32,6 +32,7 @@ $(function(){
 /* 선택 삭제 */
 /* 삭제 후 기존 페이지로 돌아가는거 아직 구현 못함 */
 function deleteValue(){
+	var conUrl = document.location.href.split("/")[4]; //현재페이지
 	var url="msgDeleteR.do";
 	var valueArr = new Array();
 	var list = $("input[name='rowCheck']");
@@ -43,24 +44,27 @@ function deleteValue(){
 	if(valueArr.length==0) {
 		alert("삭제할 쪽지를 선택하세요");
 	}else {
-		var chk = confirm("선택한 쪽지를 삭제하시겠습니까?");
-		$.ajax({
-			url: url,
-			type:'POST',
-			traditional : true,
-			data:{
-				valueArr : valueArr
-			},
-			success: function(jdata){
-				if(jdata=1){
-					location.href="msgRecieveList.do";
+		if (confirm("선택한 쪽지를 삭제하시겠습니까?") == true) {
+			$.ajax({
+				url: url,
+				type:'POST',
+				traditional : true,
+				data:{
+					valueArr : valueArr
+				},
+				success: function(jdata){
+					if(jdata=1){
+						location.href=conUrl; //삭제 후 기존 페이지로 이동
+					}
+					else{
+						alert("쪽지 삭제에 실패했습니다. 다시 시도해주세요");
+						history.back();
+					}
 				}
-				else{
-					alert("쪽지 삭제에 실패했습니다. 다시 시도해주세요");
-					history.back();
-				}
-			}
-		});
+			});
+		}else {
+			return false;
+		}
 	}
 }
 
@@ -69,7 +73,6 @@ function deleteValue(){
 <body>
 <h2 class="title">받은 쪽지함</h2>
 <form method="post" name="frm">
-<input type="button" class="btn_sm" value="삭제" onclick="deleteValue();">
 	<table class="table" style="table-layout:fixed">
 		<tr>
 			<th class="col-md-1 text-center"><input type="checkbox" id="allCheck" name="allCheck"></th>
@@ -96,6 +99,10 @@ function deleteValue(){
 				</tr>
 			</c:forEach>
 		</c:if>
+		<tr>
+			<td class="text-center"><input type="button" class="btn_sm" value="삭제" onclick="deleteValue();"></td>
+			<td colspan="3"></td>
+		</tr>
 	</table>
 </form>
 <div align="center">

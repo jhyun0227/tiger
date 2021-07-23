@@ -44,14 +44,14 @@
 					<td class="col-md-8 text-left title_left">
 						<a href="qnaView.do?num=${qna.QA_num }&pageNum=${pb.currentPage}" class="menuTitle">　${qna.QA_title }</a>
 					</td>
-					<td class="col-md-2 text-center">${qna.MB_nickname }</td>
+					<td class="col-md-2 text-center">${qna.MB_nickName }</td>
 				</c:if>
 				<c:if test="${qna.QA_refLevel == 0 }">
 					<td class="col-md-2 text-center">${qna.QA_regDate }</td>
 					<td class="col-md-8 text-left title_left">
 						<a href="qnaView.do?num=${qna.QA_num }&pageNum=${pb.currentPage}" class="menuTitle">${qna.QA_title }</a>
 					</td>
-					<td class="col-md-2 text-center">${qna.MB_nickname}</td>
+					<td class="col-md-2 text-center">${qna.MB_nickName}</td>
 				</c:if>
 			</c:if>
 			</tr>

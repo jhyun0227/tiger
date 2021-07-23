@@ -30,9 +30,9 @@ $(function(){
 });
 
 /* 선택 삭제 */
-/* 삭제 후 기존 페이지로 돌아가는거 아직 구현 못함 */
 function deleteValue(){
-	var url="msgDeleteS.do";
+	var conUrl = document.location.href.split("/")[4]; //현재페이지
+	var url="msgDeleteS.do?";
 	var valueArr = new Array();
 	var list = $("input[name='rowCheck']");
 	for(var i = 0;i<list.length;i++){
@@ -43,24 +43,27 @@ function deleteValue(){
 	if(valueArr.length==0) {
 		alert("삭제할 쪽지를 선택하세요");
 	}else {
-		var chk = confirm("선택한 쪽지를 삭제하시겠습니까?");
-		$.ajax({
-			url: url,
-			type:'POST',
-			traditional : true,
-			data:{
-				valueArr : valueArr
-			},
-			success: function(jdata){
-				if(jdata=1){
-					location.href="msgSendList.do";
+		if (confirm("선택한 쪽지를 삭제하시겠습니까?") == true){
+			$.ajax({
+				url: url,
+				type:'POST',
+				traditional : true,
+				data:{
+					valueArr : valueArr
+				},
+				success: function(jdata){
+					if(jdata=1){
+						location.href=conUrl; //삭제 후 기존 페이지로 이동
+					}
+					else{
+						alert("쪽지 삭제에 실패했습니다. 다시 시도해주세요");
+						history.back();
+					}
 				}
-				else{
-					alert("쪽지 삭제에 실패했습니다. 다시 시도해주세요");
-					history.back();
-				}
-			}
-		});
+			});	
+		}else {
+			return false;
+		}
 	}
 }
 </script>
@@ -68,7 +71,6 @@ function deleteValue(){
 <body>
 <h2 class="title">보낸 쪽지함</h2>
 <form method="post" name="frm">
-<input type="button" class="btn_sm" value="삭제" onclick="deleteValue();">
 	<table class="table" style="table-layout:fixed">
 		<tr>
 			<th class="col-md-1 text-center"><input type="checkbox" id="allCheck" name="allCheck"></th>
@@ -95,11 +97,17 @@ function deleteValue(){
 				</tr>
 			</c:forEach>
 		</c:if>
+		<!-- 삭제버튼  -->
+		<tr>
+			<td class="text-center"><input type="button" class="btn_sm" value="삭제" onclick="deleteValue();"></td>
+			<td colspan="3"></td>
+		</tr>
 	</table>
 </form>
+
+<!-- 페이지네이션 -->
 <div align="center">
 	<ul class="pagination_bottom">
-		<!-- 시작 페이지가 pagePerBlock 보다 크면 앞에 보여줄 페이지가 있다 -->
 		<c:if test="${pb.startPage > pb.pagePerBlock }">
 			<li><a href="msgSendList.do?pageNum=1" class="page_num">
 				<span class="glyphicon glyphicon-backward"></span>
@@ -118,7 +126,6 @@ function deleteValue(){
 				<li><a href="msgSendList.do?pageNum=${i}" class="page_num">ㅤ${i}ㅤ</a>
 			</c:if>
 		</c:forEach>
-		<!-- 보여줄 페이지가 남은 경우 / endpage보다 totalpage가 클 경우 -->
 		<c:if test="${pb.endPage < pb.totalPage }">
 			<li><a href="msgSendList.do?pageNum=${pb.endPage+1 }" class="page_num">
 				<span class="glyphicon glyphicon-triangle-right"></span>

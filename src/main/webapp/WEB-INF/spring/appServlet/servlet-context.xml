@@ -48,7 +48,17 @@
 	<beans:bean id="sc" class="com.ch.tiger.service.SessionChk"></beans:bean>
 	<interceptors>
 		<interceptor>
-			<mapping path="/WEB-INF/views/*"/>
+			<mapping path="/cpWriteForm.do"/>
+			<mapping path="/cpView.do"/>
+			<mapping path="/driverHistoryList.do"/>
+			<mapping path="/msgRecieveList.do"/>
+			<mapping path="/msgSendList.do"/>
+			<mapping path="/myMain.do"/>
+			<mapping path="/updatePw.do"/>
+			<mapping path="/driverApplyForm.do"/>
+			<mapping path="/favoriteList.do"/>
+			<mapping path="/vehicleList.do"/>
+			<mapping path="/PsgHistoryList.do"/>
 			<mapping path="/qnaList.do"/>
 			<mapping path="/qnaWriteForm.do"/>
 			<!-- <mapping path="/noticeList.do"/> -->

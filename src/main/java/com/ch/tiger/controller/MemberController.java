@@ -84,7 +84,7 @@ public class MemberController {
 			mmh.setText("인증번호 : " + msg);
 			System.out.println("msg"+msg);
 			mmh.setTo(MB_id);
-			mmh.setFrom("*********");
+			mmh.setFrom("email@Email.com");
 			jMailSender.send(mm);
 			model.addAttribute("msg", msg);
 		} catch (Exception e) {

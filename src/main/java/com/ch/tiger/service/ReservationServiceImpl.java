@@ -70,6 +70,10 @@ public class ReservationServiceImpl implements ReservationService {
 	@Override
 	public List<Reservation> adminRvAllList(Reservation reservation) {	// 추가0723
 		return rvd.adminRvAllList(reservation);
+	
+	@Override
+	public Reservation selectRv(Reservation reservation) { // 타세요 신청 중복 방지
+		return rvd.selectRv(reservation);
 	}
 
 }

@@ -81,7 +81,7 @@ public class MessageController {
 		msg.setMB_numR(MB_num);
 		if(pageNum == null || pageNum.equals("")) pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
-		int rowPerPage = 2;
+		int rowPerPage = 10;
 		int total = mgs.getTotalR(msg);
 		int startRow = (currentPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage -1;
@@ -111,7 +111,7 @@ public class MessageController {
 		msg.setMB_numS(MB_num);
 		if(pageNum == null || pageNum.equals("")) pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
-		int rowPerPage = 2;
+		int rowPerPage = 10;
 		int total = mgs.getTotalS(msg);
 		int startRow = (currentPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage -1;

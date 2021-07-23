@@ -24,6 +24,8 @@ public interface ReservationDao {
 	int updateDenial(Reservation reservation);
 
 	List<Reservation> adminRvList(Reservation reservation);	// 관리자가 CP_num에 해당하는 카풀글 내 예약내역 - 동윤
+	
+	Reservation selectRv(Reservation reservation);
 
 	int getTotalRv(Reservation reservation);	//추가 0723
 

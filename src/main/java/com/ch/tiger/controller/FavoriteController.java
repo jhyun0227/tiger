@@ -50,15 +50,15 @@ public class FavoriteController {
 		favorite.setStartRow(startRow);
 		favorite.setEndRow(endRow);
 		List<Favorite> fvList = fs.list(favorite);
-//		for (Favorite fv : fvList) {
-//			// 리뷰 평점 구하기
-//			float reviewAvg = rs.selectAvg(fv.getMB_numT()); // 회원의 리뷰 평균 평점을 가져옴			
-//			fv.setReviewAvg(reviewAvg);
-//		}
+		for (Favorite fv : fvList) {
+			// 리뷰 평점 구하기
+			float reviewAvg = rs.selectAvg(fv.getMB_numT()); // 회원의 리뷰 평균 평점을 가져옴			
+			fv.setReviewAvg(reviewAvg);
+		}
 		
 		int num = total - startRow + 1; // 번호 순서대로 정렬
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
-		String[] title = {"아이디", "닉네임"};
+		String[] title = {"닉네임", "아이디"};
 
 		model.addAttribute("title", title);
 		model.addAttribute("pb", pb);

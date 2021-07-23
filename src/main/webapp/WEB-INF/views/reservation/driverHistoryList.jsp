@@ -45,8 +45,7 @@
 					<td class="col-md-2 text-center">${num }
 					<c:set var="num" value="${num -1 }"></c:set></td>
 					<td class="col-md-2 text-center">
-						<a href="cpView.do?CP_num=${carpool.CP_num }&pageNum=${pageNum}" class="menuTitle">
-						이동</a></td>
+						<a href="cpView.do?CP_num=${carpool.CP_num }&pageNum=${pageNum}" class="menuTitle">이동</a></td>
 					<td class="col-md-2 text-center">${carpool.CP_startDate }</td>
 					<td class="col-md-2 text-center">${carpool.CP_startPoint }</td>
 					<td class="col-md-2 text-center">${carpool.CP_endPoint }</td>

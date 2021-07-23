@@ -45,11 +45,12 @@
 	
 	<!-- 예약 내역에서 페이징을 위해 내가 올린 글을 가져오는 로직 - 준호 -->
 	<select id="getTotalMyRvs" parameterType="carpool" resultType="integer">
-		select count(*) from carpool where MB_num=#{MB_num}
+		select count(*) from (select a.*, rowNum rn from (select * from carpool where MB_num=#{MB_num}
 			<!-- 검색어가 있을때 -->
 			<if test="keyword!=null and keyword!=''">
 				and ${search} like '%'||#{keyword}||'%'
 			</if>
+		order by CP_num desc) a)
 	</select>
 	
 	<update id="update" parameterType="carpool">

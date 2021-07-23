@@ -11,7 +11,7 @@
 	<form action="favoriteList.do">
 		<input type="hidden" name="pageNum" value="1">
 			<select name="search" class="inputUnderLine">
-				<c:forTokens var="sh" items="MB_id,MB_nickName" delims="," varStatus="i">
+				<c:forTokens var="sh" items="MB_nickName,MB_id" delims="," varStatus="i">
 					<c:if test="${sh == favorite.search }">
 						<option value="${sh}" selected="selected">${title[i.index] }</option>
 					</c:if>

@@ -3,25 +3,25 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="favoritens">
 	<!-- 리스트 -->
-<!-- 	<select id="list" parameterType="favorite" resultType="favorite">
+ 	<select id="list" parameterType="favorite" resultType="favorite">
 		select * from (select a.*, rowNum rn from (select f.*, m.MB_id, m.MB_nickName, m.MB_gender, m.MB_regDate from favorite f, member m
 		where f.MB_numT=m.MB_num and f.MB_numG=#{MB_numG} 
-			검색어가 있을때
+			<!-- 검색어가 있을때 -->
 			<if test="keyword!=null and keyword!=''">
-				and ${search} like '%'||f.#{keyword}||'%'
+				and ${search} like '%'||#{keyword}||'%'
 			</if>
-		order by FV_num desc) a) where rn between #{startRow} and #{endRow}
-	</select> -->
+		order by f.FV_num desc) a) where rn between #{startRow} and #{endRow}
+	</select>
 	
-	<select id="list" parameterType="favorite" resultType="favorite">
+	<!-- 리스트 -->
+<!-- 	<select id="list" parameterType="favorite" resultType="favorite">
 		select * from (select a.*, rowNum rn from (select f.*, m.MB_id, m.MB_nickName, m.MB_gender, m.MB_regDate from favorite f
 			inner join member m on f.MB_numT=m.MB_num where MB_numG=#{MB_numG}
 			<if test="keyword!=null and keyword!=''">
-				and m.${search} like '%'||f.#{keyword}||'%'
+				and ${search} like '%'||#{keyword}||'%'
 			</if>
-			order by f.FV_num desc) a)
-			where rn between #{startRow} and #{endRow}
-	</select>
+			order by f.FV_num desc) a) where rn between #{startRow} and #{endRow}
+	</select> -->
 	
 	<!-- 프로필에서 좋아요 표시를 하기위해 두 계정의 번호를 담아서 조회 -->
 	<select id="select" parameterType="favorite" resultType="favorite">
@@ -39,21 +39,23 @@
 	</delete>
 	
 	<!-- 좋아요 리스트의 총 개수를 가져옴 -->
-<!-- 	<select id="getTotal" parameterType="favorite" resultType="integer">
-		select count(*) from favorite where MB_numG=#{MB_numG}
-		검색어가 있을때
+ 	<select id="getTotal" parameterType="favorite" resultType="integer">
+		select count(*) from (select a.*, rowNum rn from (select f.*, m.MB_id, m.MB_nickName, m.MB_gender, m.MB_regDate from favorite f, member m 
+		where f.MB_numT=m.MB_num and f.MB_numG=#{MB_numG}
+		<!-- 검색어가 있을때 -->
 			<if test="keyword!=null and keyword!=''">
 				and ${search} like '%'||#{keyword}||'%'
 			</if>
-	</select> -->
+		order by f.FV_num desc) a)
+	</select>
 	
-		<!-- 좋아요 리스트의 총 개수를 가져옴 -->
-	<select id="getTotal" parameterType="favorite" resultType="integer">
+	<!-- 좋아요 리스트의 총 개수를 가져옴 -->
+<!-- 	<select id="getTotal" parameterType="favorite" resultType="integer">
 		select count(*) from (select a.*, rowNum rn from (select f.*, m.MB_id, m.MB_nickName, m.MB_gender, m.MB_regDate from favorite f
 			inner join member m on f.MB_numT=m.MB_num where MB_numG=#{MB_numG}
 			<if test="keyword!=null and keyword!=''">
 				and ${search} like '%'||#{keyword}||'%'
 			</if>
 			order by f.FV_num desc) a)
-	</select>
+	</select> -->
 </mapper>

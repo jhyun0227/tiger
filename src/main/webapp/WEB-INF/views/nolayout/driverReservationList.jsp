@@ -64,7 +64,7 @@
 			</c:if>
 			
 		<tr>
-			<td colspan="2" align="center">
+			<td colspan="3" align="center">
 				<button class="btnMsg" onclick="closeMsg()">닫기</button>
 			</td>
 		</tr>

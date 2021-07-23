@@ -70,6 +70,7 @@ public class ReservationDaoImpl implements ReservationDao {
 	@Override
 	public List<Reservation> adminRvAllList(Reservation reservation) {
 		return sst.selectList("reservationns.adminRvAllList", reservation); // 추가 0723
+	}
 
 	@Override
 	public Reservation selectRv(Reservation reservation) { // 타세요 신청 중복 방지

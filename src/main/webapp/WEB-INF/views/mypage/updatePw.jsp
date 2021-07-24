@@ -7,13 +7,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
-	<link rel="stylesheet" type="text/css" href="${path }/resources/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="${path }/resources/bootstrap/css/common.css">
-	<script type="text/javascript" src="${path }/resources/bootstrap/js/jquery.js"></script>
-	<script type="text/javascript" src="${path }/resources/bootstrap/js/bootstrap.min.js"></script>
 <style type="text/css">
-	.narrowWidth1 {
-   	 width: 60%;
+	
+	.narrowWidth2 {
+   	 	width: 43%;
 	}
 	
 	.btn_s {
@@ -25,10 +22,10 @@
 
 	}
 	
-	.inputline1{
+	.inputline3{
 	    border: none;
 	    outline: 0;
-	    width: 35%;
+	    width: 90%;
 	}
 	
 	#keyShow {
@@ -158,26 +155,26 @@
 
 </head>
 <body>
-<div align="center">
+<div class="container narrowWidth2" align="center">
 	<h2 class="title">비밀번호 변경</h2>
 	<form action="updatePwResult.do"  method="post" name="frm" onsubmit="return chk()">
 	<input type="hidden" name="MB_id" value="${member.MB_id }">
-	<table class="table narrowWidth1">  
+	<table class="table ">  
 			<tr>
-				<td class="col md-2 text-center">현재 비밀번호</td>
-				<td class="col md-10">
+				<td class="col-md-4 text-center">현재 비밀번호</td>
+				<td class="col-md-8">
 					<input type="password" name="MB_now_pw" id="now_pw" required="required" 
-							placeholder="현재 비밀번호" class="inputline1">
+							placeholder="현재 비밀번호" class="inputline3">
 					<br>
 					<div class="alert alert-success" id="correct">현재 비밀번호와 일치합니다.</div>
 					<div class="alert alert-danger" id="fail">현재 비밀번호와 일치하지 않습니다.</div>
 				</td>
 			</tr>
 			<tr>
-				<td class="col md-2 text-center">변경 비밀번호</td>
-				<td class="col md-10">
+				<td class="col-md-4 text-center">변경 비밀번호</td>
+				<td class="col-md-8">
 						<input type="password" name="MB_pw" id="pw" maxlength="12" autocomplete="false"
-								class="inputline1"  placeholder="비밀번호(영문자와 숫자 포함, 4자 이상)" 
+								class="inputline3"  placeholder="비밀번호(영문자, 숫자, 4자 이상)" 
 								required="required">
 							<div id="keyShow">show</div>
 				
@@ -189,9 +186,10 @@
 				   </td> 
 			</tr>  
 			<tr>
-				<td class="col md-2 text-center">변경 비밀번호 확인</td>
-				<td class="col md-10">
-					<input type="password" name="MB_pw_confirm" id="pw_confirm" placeholder="변경 비밀번호 확인" required="required" class="inputline1">
+				<td class="col-md-4 text-center">변경 비밀번호 확인</td>
+				<td class="col-md-8">
+					<input type="password" name="MB_pw_confirm" id="pw_confirm" 
+							placeholder="변경 비밀번호 확인" required="required" class="inputline3">
 					<br>
 					<div class="alert alert-success" id="alert-success">변경 비밀번호가 일치합니다.</div>
 					<div class="alert alert-danger" id="alert-danger">변경 비밀번호가 일치하지 않습니다.</div>
@@ -199,7 +197,8 @@
 			</tr>
 			<tr>  
 				<td colspan="2" align="center">
-					<input type="submit" id="submit" value="비밀번호 변경" class="btn_small" disabled="">
+					<input type="submit" id="submit" value="비밀번호 변경" 
+							class="btn_sm_full" disabled="">
 				</td>
 			</tr>
 	</table>

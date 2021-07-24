@@ -10,13 +10,13 @@
 <body>
 <c:if test="${result > 0 }">
 	<script type="text/javascript">
-		alert("회원가입 성공");
+		alert("좋은 서비스로 보답 하겠습니다");
 		location.href="loginForm.do";
 	</script>
 </c:if>
 <c:if test="${result == 0 }">
 	<script type="text/javascript">
-		alert("회원가입 실패");
+		alert("다시 한번 시도해 주세요");
 		history.go(-1);
 	</script>
 </c:if>

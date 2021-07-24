@@ -81,9 +81,14 @@ body{
 	margin: 0;
 }
 
+/* 화면 크기 */
+.narrowWidth1 {
+   	 width: 60%;
+}
+	
 /* input 입력창 */
 
-.inputLine{
+.inputLine {
 	border: none;
 	outline: 0;
 	width: 80%;
@@ -133,43 +138,59 @@ body{
 }
 
 .filebox label {
-    display: inline-block;
-    width: 80px;
-    height: 30px;
-    border: none;
-    background: #3243A8;
-    color: #eee;
-    font-size: 14px;
-    font-weight: 100;
-    text-align: center;
+    display: inline-block; 
+    width: 60px;
+    height: 25px;
+    color: #3243A8;
+    text-align: center; 
     cursor: pointer;
-    line-height: 30px;
-} 
+    font-size: 15px;
+    font-weight:bolder;
+    background: initial;
+    line-height: 25px;
+   /*  border: 0.5px solid #3243A8 ; */
+   padding-left: 30px;
+ } 
 
 .filebox .upload-name {
-	display: inline-block;
+	display: inline-block; 
 	background-color: white;
 	cursor: pointer;
 	border: none;
 	-webkit-appearance: none; /* 네이티브 외형 감추기 */
 	-moz-appearance: none;
 	appearance: none;
-}
-
+/* 	text-align: center;    
+	width: 200%; */
+}    
+  
 /* 버튼 */
 
-.btn_small{
+.btn_small {
 	width: 300px;
     height: 40px;
-    background: #242526;
+    background:  #242526;
     color: #eee;
     font-size: 18px;
     border: none;
     margin-top: 60px;
 }
 
-.btn_sm{
+.btn_medium {
+	margin-left: 25px;
+	margin-top: 30px;  
+	margin-right: 0;
+    border: none;
+    font-size: 14px;
+    color: #eee;
+    background: #3243A8;
+    width: 200px;
+    height: 35px;
+} 
+ 
+.btn_sm {
     margin-bottom: 10px;
+    margin-left: 25px;  
     padding: 5px 12px;
     border: 1px solid #9a9ca3;
     font-size: 14px;
@@ -177,7 +198,24 @@ body{
     background: initial;
 }
 
-.btn_sm_stroke{
+.btn_smt {
+    width: 50%;
+    height: 40px;
+    background:  #3243A8;
+    color: #eee;
+    font-size: 15px;  
+    border: none;
+   
+}
+.btn_ck {
+	border: none ;
+    font-size: 15px;
+    color:  #3243A8;
+    font-weight: bold;
+    background: none;
+}
+
+.btn_sm_stroke {
     margin-bottom: 10px;
     padding: 5px 12px;
     border: 1px solid #9a9ca3;
@@ -187,12 +225,13 @@ body{
 }
 
 .btn_sm_full{
-    margin-bottom: 10px;
+    margin-bottom: -22px;
     padding: 6px 13px;
     border: none;
     font-size: 14px;
     color: #eee;
     background: #3243A8;
+    margin-top: 17px;
 }
 
 .btn_search{
@@ -206,6 +245,36 @@ body{
  	cursor:pointer;
  	outline: 0;
  	color: transparent;
+}
+/* 설정 icon */
+.btn_setting{
+	background-image: url('/tiger/resources/main/cogwheel.png');
+	background-size: 20px;
+	background-color: white;
+    background-position:  0px 0px;
+    background-repeat: no-repeat;
+    height: 20px;
+    border: 0px;
+ 	cursor:pointer;
+ 	outline: 0;
+ 	color: transparent;
+ 	margin-bottom: 0; 
+ 	width: 30px;
+}
+/* upload icon */
+.btn_upload{
+	background-image: url('/tiger/resources/main/upload.png');
+	background-size: 15x;
+	background-color: white;
+    background-position:  0px 0px;
+    background-repeat: no-repeat;
+    height: 15px;
+    border: 0px;
+ 	cursor:pointer;
+ 	outline: 0;
+ 	color: transparent;
+ 	margin-bottom: 0; 
+ 	width: 15px;
 }
 .searchDIV {
 	text-align: left;

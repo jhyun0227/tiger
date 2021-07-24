@@ -397,22 +397,18 @@ public class AdminController {
 		return "admin/adminRpDelete";
 	}
 	@RequestMapping("adminRvList")
-	public String adminCpList(Reservation reservation, String pageNum, Model model) {	// Carpool carpool
+	public String adminRvList(Reservation reservation, String pageNum, Model model) {	// Carpool carpool
 		if(pageNum == null || pageNum.equals("")) {
 			pageNum = "1";
 		} 
 		int currentPage = Integer.parseInt(pageNum);
 		int rowPerPage = 10;	// 한 화면에 보여주는 게시글 갯수
-		//int total = cps.getTotal(carpool);
 		int total = rvs.getTotalRv(reservation);	//추가 0723
 		int startRow = (currentPage -1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage - 1;
-		//carpool.setStartRow(startRow);
-		//carpool.setEndRow(endRow);
 		reservation.setStartRow(startRow);
 		reservation.setEndRow(endRow);
-		//List<Carpool> adminCpList = cps.adminCpList(carpool);
-		// 수정 및 추가(테스트)
+		// 0723 수정 및 추가(테스트)
 		List<Reservation> adminRvAllList = rvs.adminRvAllList(reservation);	// 추가 0723
 		for (Reservation rv : adminRvAllList) {	// 추가 0723
 	         int CP_num = rv.getCP_num(); // 예약 테이블에서 내가 예약 신청한 게시글의 번호를 가져옴
@@ -431,7 +427,6 @@ public class AdminController {
 		model.addAttribute("title", title);
 		model.addAttribute("pb", pb);	// paginbean pb
 		model.addAttribute("adminRvAllList", adminRvAllList);	// 수정 0723
-		//model.addAttribute("adminCpList", adminCpList);
 		model.addAttribute("num", num);	//목록 번호 생성 위한 num
 		return "admin/adminRvList";	// 수정 0723
 	}

@@ -10,6 +10,23 @@
 </head>
 <body>
 	<h1 class="title">타세요 관리 목록</h1>
+	<div class="searchDIV">
+		<form action="adminRvList.do">
+			<input type="hidden" name="pageNum" value="1">
+			<select name="search" class="inputUnderLine">
+				<c:forTokens var="sh" items="CP_startPoint,CP_endPoint" delims="," varStatus="i">
+					<c:if test="${sh == reservation.search }">
+						<option value="${sh}" selected="selected">${title[i.index] }</option>
+					</c:if>
+					<c:if test="${sh != reservation.search }">
+						<option value="${sh}">${title[i.index] }</option>
+					</c:if>
+				</c:forTokens>
+			</select>
+				<input type="text" name="keyword" value="${reservation.keyword }" class="inputUnderLine">
+				<input type="submit" value="검색" class="btn_search">
+		</form>
+	</div>
 	<table class="table">
 		<tr>
 			<th class="col-md-1 text-center">번호</th>
@@ -81,21 +98,6 @@
 					</a></li>
 				</c:if>
 			</ul>
-		<form action="adminRvList.do">
-			<input type="hidden" name="pageNum" value="1">
-			<select name="search">
-				<c:forTokens var="sh" items="CP_startPoint,CP_endPoint" delims="," varStatus="i">
-					<c:if test="${sh == reservation.search }">
-						<option value="${sh}" selected="selected">${title[i.index] }</option>
-					</c:if>
-					<c:if test="${sh != reservation.search }">
-						<option value="${sh}">${title[i.index] }</option>
-					</c:if>
-				</c:forTokens>
-			</select>
-				<input type="text" name="keyword" value="${reservation.keyword }">
-				<input type="submit" value="검색" class="btn btn-info">
-		</form>
 	</div>
 </body>
 </html>

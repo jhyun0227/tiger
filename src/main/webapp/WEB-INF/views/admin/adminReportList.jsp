@@ -10,6 +10,24 @@
 <body>
 	<div class="container" align="center">
 		<h2 class="title">신고내역 목록</h2>
+		<div class="searchDIV">
+			<form action="adminReportList.do">
+			<input type="hidden" name="pageNum" value="1">
+			<select name="search" class="inputUnderLine">
+				<%-- <c:forTokens var="sh" items="MB_num,MB_numR,RP_reason" delims="," varStatus="i"> --%>
+				<c:forTokens var="sh" items="MB_nickName,RP_reason" delims="," varStatus="i">
+					<c:if test="${sh == report.search }">
+						<option value="${sh}" selected="selected">${title[i.index] }</option>
+					</c:if>
+					<c:if test="${sh != report.search }">
+						<option value="${sh}">${title[i.index] }</option>
+					</c:if>
+				</c:forTokens>
+			</select>
+			<input type="text" name="keyword" value="${report.keyword }" class="inputUnderLine">
+			<input type="submit" value="검색" class="btn_search">
+		</form>
+		</div>
 		<table class="table">
 			<tr>
 				<th class="col-md-2 text-center">번호</th>
@@ -110,22 +128,6 @@
 				</c:if>
 			</ul>
 		</div>
-		<form action="adminReportList.do">
-			<input type="hidden" name="pageNum" value="1">
-			<select name="search">
-				<%-- <c:forTokens var="sh" items="MB_num,MB_numR,RP_reason" delims="," varStatus="i"> --%>
-				<c:forTokens var="sh" items="MB_nickName,RP_reason" delims="," varStatus="i">
-					<c:if test="${sh == report.search }">
-						<option value="${sh}" selected="selected">${title[i.index] }</option>
-					</c:if>
-					<c:if test="${sh != report.search }">
-						<option value="${sh}">${title[i.index] }</option>
-					</c:if>
-				</c:forTokens>
-			</select>
-			<input type="text" name="keyword" value="${report.keyword }">	<!-- model에 추가해줘야한다 -->
-			<input type="submit" value="검색" class="btn btn-info">
-		</form>
 	</div>
 </body>
 </html>

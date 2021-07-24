@@ -46,7 +46,10 @@
 			<c:if test="${not empty rvsList }">
 				<c:forEach var="rvsList" items="${rvsList }" >
 					<tr>
-						<td class="col-xs-4 text-center">${rvsList.MB_nickName }</td>
+						<td class="col-xs-4 text-center">
+							<a onclick="window.open('profileView.do?MB_nickName=${rvsList.MB_nickName }', '',
+							'width=1000,height=1000,location=no,status=no,scrollbars=yes');" class="menuTitle">${rvsList.MB_nickName }</a>
+						</td>
 						
 						<c:if test="${rvsList.MB_gender == '1' || rvsList.MB_gender == '3'}">
 								<td class="col-xs-4 text-center">남자</td>

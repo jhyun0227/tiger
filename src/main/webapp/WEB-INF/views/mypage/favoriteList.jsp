@@ -35,7 +35,7 @@
 	</tr>
 	<c:if test="${empty fvList}">
 		<tr>
-			<th colspan="6" class="text-center">이용내역이 존재하지 않습니다</th>
+			<th colspan="6" class="text-center">등록한 회원이 존재하지 않습니다.</th>
 		</tr>
 	</c:if>
 	<c:if test="${not empty fvList }">
@@ -44,7 +44,7 @@
 				<td class="col-md-2 text-center">${num }<c:set var="num" value="${num -1 }"></c:set></td>
 				<td class="col-md-2 text-center">
 					<a onclick="window.open('profileView.do?MB_nickName=${fvList.MB_nickName }', '',
-						'width=500,height=1000,location=no,status=no,scrollbars=yes');" class="menuTitle">${fvList.MB_nickName }</a>
+						'width=1000,height=1000,location=no,status=no,scrollbars=yes');" class="menuTitle">${fvList.MB_nickName }</a>
 				</td>
 				
 				<td class="col-md-2 text-center">${fvList.MB_id }</td>

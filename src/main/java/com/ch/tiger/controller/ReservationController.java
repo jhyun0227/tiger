@@ -76,7 +76,6 @@ public class ReservationController {
 		Member member = mbs.select(MB_id);
 		int MB_num = member.getMB_num();
 		reservation.setMB_num(MB_num); // total 값을 알아내기 위해 먼저 객체에 넣음, 검색의 경우에는 자동으로 들어가지만 덮어 씌움
-		System.out.println(reservation);
 		
 		// 페이징
 		if (pageNum == null || pageNum.equals("")) {

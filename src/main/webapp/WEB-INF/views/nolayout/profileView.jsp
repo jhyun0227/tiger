@@ -97,25 +97,34 @@
 								<td class="col-md-9">${member.MB_regDate }</td>
 							</tr>
 
-							<tr>
+							<tr align="center">
 								<c:if test="${favo > 0 }">
-									<td><a class="glyphicon glyphicon-heart"
+									<td colspan="2">
+										<a class="glyphicon glyphicon-heart"
 										aria-hidden="true"
 										href="deleteFv.do?MB_numG=${sessionScope.MB_num }&MB_numT=${member.MB_num}&MB_nickName=${member.MB_nickName}"></a>
-									</td>
+										
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+									
+										<a class="glyphicon glyphicon-envelope" aria-hidden="true"
+										onclick="window.open('msgWriteForm.do?MB_num=${member.MB_num }','쪽지 보내기',
+										'width=430,height=400,location=no,status=no,scrollbars=yes');"></a>
+								</td>
 								</c:if>
 
 								<c:if test="${favo == 0 }">
-									<td><a class="glyphicon glyphicon-heart-empty"
+									<td colspan="2">
+										<a class="glyphicon glyphicon-heart-empty"
 										aria-hidden="true"
 										href="addFv.do?MB_numG=${sessionScope.MB_num }&MB_numT=${member.MB_num}&MB_nickName=${member.MB_nickName}"></a>
-									</td>
-								</c:if>
 
-								<td><a class="glyphicon glyphicon-envelope" aria-hidden="true"
-									onclick="window.open('msgWriteForm.do?MB_num=${member.MB_num }','쪽지 보내기',
-									'width=430,height=400,location=no,status=no,scrollbars=yes');"></a>
-								</td>
+										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+										
+										<a class="glyphicon glyphicon-envelope" aria-hidden="true"
+										onclick="window.open('msgWriteForm.do?MB_num=${member.MB_num }','쪽지 보내기',
+										'width=430,height=400,location=no,status=no,scrollbars=yes');"></a>
+								</td>									
+								</c:if>
 							</tr>
 						</table>
 					</div>
@@ -131,22 +140,44 @@
 
 				<table class="table narrowWidth1">
 					<tr>
-						<th class="col-md-4 text-center">닉네임</th>
-						<th class="col-md-3 text-center">별점</th>
-						<th class="col-md-3 text-center">리뷰</th>
+						<th colspan="2" class="text-center">리뷰는 최근 5개까지만 표시됩니다.</th>
 					</tr>
 					<c:if test="${empty rvList }">
 						<tr>
-							<th colspan="3" class="text-center">등록된 리뷰가 없습니다.</th>
+							<th colspan="2" class="text-center">등록된 리뷰가 없습니다.</th>
 						</tr>
 					</c:if>
 					<c:if test="${not empty rvList }">
 						<c:forEach var="review" items="${rvList }">
 							<tr>
-								<td class="col-md-4 text-center">${review.MB_nickName }</td>
-								<td class="col-md-3 text-center">${review.RV_star }</td>
-								<td class="col-md-3 text-center">${review.RV_content }</td>
+								<td class="col-md-5 text-left">${review.MB_nickName }</td>
+								
+								<c:if test="${review.RV_star == 5 }">
+									<td class="col-md-7 text-left">★★★★★</td>
+								</c:if>
+								<c:if test="${review.RV_star == 4 }">
+									<td class="col-md-7 text-left">★★★★☆</td>
+								</c:if>
+								<c:if test="${review.RV_star == 3 }">
+									<td class="col-md-7 text-left">★★★☆☆</td>
+								</c:if>
+								<c:if test="${review.RV_star == 2 }">
+									<td class="col-md-7 text-left">★★☆☆☆</td>
+								</c:if>
+								<c:if test="${review.RV_star == 1 }">
+									<td class="col-md-7 text-left">★☆☆☆☆</td>
+								</c:if>
+								<c:if test="${review.RV_star == 1 }">
+									<td class="col-md-7 text-left">☆☆☆☆☆</td>
+								</c:if>								
+																																								
 							</tr>
+							<tr>
+								<td colspan="2">
+									<textarea rows="3" cols="90" readonly="readonly" style="border: none">${review.RV_content }</textarea>
+								</td>
+							</tr>
+							<br>
 						</c:forEach>
 					</c:if>
 				</table>

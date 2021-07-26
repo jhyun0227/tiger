@@ -28,6 +28,7 @@
 		if($('input[type="range"]').val() == 0){
 			alert('최소 점수는 1점 입니다.');
 			return false;
+		}
 	}
 
 	function closeMsg() {

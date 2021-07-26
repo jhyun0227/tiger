@@ -12,24 +12,25 @@
 	.inputline1 {
 		border: none;
 		outline: 0;
-		width: 35%;
 	}
+	
 	td, th {
     padding: 10px 20px;
    	}
+   	
 	#idBtn {
 		margin-top: 30px;
 	}
 </style>
 <script type="text/javascript">
-	function prev() {
-		var preUrl = document.referrer.split("/")[4];
-		
+// 	function prev() {
+// 		var preUrl = document.referrer.split("/")[4];
+// 		var conUrl = document.location.href.split("/")[4]; //현재페이지
 	}
 </script>
 </head>
 <body>
-<div class="container narrowWidth1"  align="center">
+<div class="narrowWidth"  align="center">
 	<h2 class="title">로그인</h2>
 	<form action="login.do?prevUrl=${prevUrl }" method="post">
 		<table class="table narrowWidth1">  

@@ -55,7 +55,7 @@ public class QnAController {
 	}
 	
 	@RequestMapping("qnaWriteForm")
-	public String qnaWriteForm(int num, String pageNum, Model model, HttpSession session) {
+	public String qnaWriteForm(int num, String pageNum, Model model) {
 		int QA_ref=0, QA_refLevel=0, QA_refStep=0;
 		//답변글
 		if(num!=0) {

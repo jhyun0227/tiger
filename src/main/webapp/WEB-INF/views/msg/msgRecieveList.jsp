@@ -30,7 +30,6 @@ $(function(){
 });
 
 /* 선택 삭제 */
-/* 삭제 후 기존 페이지로 돌아가는거 아직 구현 못함 */
 function deleteValue(){
 	var conUrl = document.location.href.split("/")[4]; //현재페이지
 	var url="msgDeleteR.do";
@@ -100,7 +99,7 @@ function deleteValue(){
 			</c:forEach>
 		</c:if>
 		<tr>
-			<td class="text-center"><input type="button" class="btn_sm" value="삭제" onclick="deleteValue();"></td>
+			<td class="text-center"><input type="button" class="btn_sm_stroke" value="삭제" onclick="deleteValue();"></td>
 			<td colspan="3"></td>
 		</tr>
 	</table>

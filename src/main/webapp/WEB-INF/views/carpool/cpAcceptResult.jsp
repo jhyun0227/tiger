@@ -12,7 +12,8 @@
 		<script type="text/javascript">
 			alert("수락 완료");
 			location.href="cpView.do?CP_num=${CP_num}";
-		</script>
+/* 			location.href="cpView.do?CP_num=${CP_num}";
+ */		</script>
 	</c:if>
 	<c:if test="${result == 0 }">
 		<script type="text/javascript">

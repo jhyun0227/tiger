@@ -59,4 +59,9 @@ public class CarpoolServiceImpl implements CarpoolService {
 		return cpd.delete(CP_num);
 	}
 
+	@Override
+	public int updatePassNumNow(int CP_num) {
+		return cpd.updatePassNumNow(CP_num);
+	}
+
 }

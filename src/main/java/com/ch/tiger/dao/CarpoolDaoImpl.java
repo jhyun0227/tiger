@@ -59,6 +59,11 @@ public class CarpoolDaoImpl implements CarpoolDao {
 		return sst.update("carpoolns.delete", CP_num);
 	}
 
+	@Override
+	public int updatePassNumNow(int CP_num) {
+		return sst.update("carpoolns.updatePassNumNow", CP_num);
+	}
+
 	
 }
 

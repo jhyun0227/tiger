@@ -18,6 +18,10 @@
 		url=url+"&eName="+end
 		window.open(url,"실제경로검색");
 	}
+	function preUrl(){
+		var preUrl = document.referrer.split("/")[4];
+		location.href=preUrl;
+	}
 </script>
 </head>
 <body>
@@ -127,7 +131,7 @@
 						<div class="form-group">
 							<label for="CP_comment" class="col-sm-2 control-label">기타요구사항</label>
 							<div class="col-sm-10">
-								<textarea name="CP_comment" id="CP_comment" rows="5" class="form-control" readonly="readonly">${carpool.CP_comment }</textarea>
+								<pre name="CP_comment" id="CP_comment" rows="5" class="form-control textBox" readonly="readonly">${carpool.CP_comment }</pre>
 							</div>
 						</div>
 					</form>
@@ -178,8 +182,12 @@
 				</c:if>
 				</table>
 				<div align="center">
-					<a href="cpList.do?pageNum=${pageNum }" class="btn_sm_stroke">뒤로가기</a>
-					<a href="cpRequestResult.do?CP_num=${carpool.CP_num}&MB_num=${member.MB_num}&pageNum=${pageNum}" class="btn_sm_full">신청</a>
+					<a onclick="preUrl()" class="btn_sm_stroke">뒤로가기</a>
+					<%-- <a href="cpList.do?pageNum=${pageNum }" class="btn_sm_stroke">뒤로가기</a> --%>
+					<!-- 신청가능 인원수 다 채우면 신청 못하게 막음 -->
+					<c:if test="${carpool.CP_passNumNow < carpool.CP_passNum }">
+						<a href="cpRequestResult.do?CP_num=${carpool.CP_num}&MB_num=${member.MB_num}&pageNum=${pageNum}" class="btn_sm_full">신청</a>
+					</c:if>	
 				</div>
 			</c:if>
 		</div>
@@ -228,7 +236,7 @@
 				</c:if>
 				</table>
 				<div align="center">
-					<a href="cpList.do?pageNum=${pageNum }" class="btn_sm_stroke">뒤로가기</a>
+					<a onclick="preUrl()" <%-- href="cpList.do?pageNum=${pageNum }" --%> class="btn_sm_stroke">뒤로가기</a>
 					<a href="cpDeleteForm.do?CP_num=${carpool.CP_num}&pageNum=${pageNum }" class="btn_sm_full">삭제</a>
 					<a href="cpUpdateForm.do?CP_num=${carpool.CP_num}&pageNum=${pageNum }" class="btn_sm_full">수정</a>
 				</div>

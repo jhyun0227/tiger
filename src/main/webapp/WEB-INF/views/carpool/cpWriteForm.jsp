@@ -60,26 +60,7 @@
 				<label for="CP_startTime" class="col-sm-2 control-label">출발시간</label>
 				<div class="col-sm-4">
 					<div class="input-group">
-						<select name="CP_startTime" id="CP_startTime">
-							<option value="07:00" >07:00</option>
-							<option value="07:15" >07:15</option>
-							<option value="07:30" >07:30</option>
-							<option value="07:45" >07:45</option>
-							<option value="08:00" >08:00</option>
-							<option value="08:15" >08:15</option>
-							<option value="08:30" >08:30</option>
-							<option value="08:45" >08:45</option>
-							<option value="09:00" >09:00</option>
-							<option value="18:00" >18:00</option>
-							<option value="18:15" >18:15</option>
-							<option value="18:30" >18:30</option>
-							<option value="18:45" >18:45</option>
-							<option value="19:00" >19:00</option>
-							<option value="19:15" >19:15</option>
-							<option value="19:30" >19:30</option>
-							<option value="19:30" >19:45</option>
-							<option value="20:00" >20:00</option>
-						</select>
+						<input type="text" class="form-control" name="CP_startTime" id="CP_startTime" placeholder="18:00" required="required">
 					</div>
 				</div>
 			</div>

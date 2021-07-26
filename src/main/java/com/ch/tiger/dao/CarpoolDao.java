@@ -24,6 +24,8 @@ public interface CarpoolDao{
 	int update(Carpool carpool);
 
 	int delete(int CP_num);
+
+	int updatePassNumNow(int CP_num);
 	
 	
 	

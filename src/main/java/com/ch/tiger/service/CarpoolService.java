@@ -24,5 +24,7 @@ public interface CarpoolService {
 
 	int delete(int CP_num);
 
+	int updatePassNumNow(int CP_num);
+
 
 }

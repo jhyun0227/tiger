@@ -61,7 +61,6 @@
 			<mapping path="/PsgHistoryList.do"/>
 			<mapping path="/qnaList.do"/>
 			<mapping path="/qnaWriteForm.do"/>
-			<!-- <mapping path="/noticeList.do"/> -->
 			<exclude-mapping path="/WEB-INF/views/member/*"/>
 			<beans:ref bean="sc"></beans:ref>
 		</interceptor>

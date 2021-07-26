@@ -13,22 +13,18 @@
 		border: none;
 		outline: 0;
 	}
+	
 	td, th {
     padding: 10px 20px;
    	}
+   	
 	#idBtn {
 		margin-top: 30px;
 	}
 </style>
-<script type="text/javascript">
-	function prev() {
-		var preUrl = document.referrer.split("/")[4];
-		
-	}  
-</script>
 </head>
 <body>
-<div class="container"  align="center">
+<div class="narrowWidth"  align="center">
 	<h2 class="title">로그인</h2>
 	<form action="login.do?prevUrl=${prevUrl }" method="post">
 		<table class="table ">  

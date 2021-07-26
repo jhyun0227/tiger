@@ -27,8 +27,20 @@ body {
     height: 100vh;
 }
 
+/* 화면 크기 */
+
 .narrowWidth60{
 	width: 60%;
+}
+
+.narrowWidth80{
+	width: 80%;
+}
+
+.narrowWidth1 {
+   	width: 60%;
+   	margin-left: auto;
+    margin-right: auto;
 }
 
 /* 타세요 신청현황 테이블 간격 임시 수정 --병우 */
@@ -80,11 +92,6 @@ body {
 body{
 	margin: 0;
 }
-
-/* 화면 크기 */
-.narrowWidth1 {
-   	 width: 60%;
-}
 	
 /* input 입력창 */
 
@@ -93,7 +100,7 @@ body{
 	outline: 0;
 	width: 80%;
 }
-
+	
 .inputUnderLine{
 	height: 23px;
 	border: none;
@@ -168,11 +175,11 @@ body{
 .btn_small {
 	width: 300px;
     height: 40px;
-    background:  #242526;
+    background:  #3243A8;
     color: #eee;
     font-size: 18px;
     border: none;
-    margin-top: 60px;
+    margin-bottom: 30px;
 }
 
 .btn_medium {
@@ -245,6 +252,16 @@ body{
  	outline: 0;
  	color: transparent;
 }
+
+/* 프로필 섬네일 */
+
+.thumb {
+		height: 150px;
+		width: 150px; 
+		margin-top: 55px;
+		margin-bottom: 10px;
+	}  
+	
 /* 설정 icon */
 .btn_setting{
 	background-image: url('/tiger/resources/main/setting.png');

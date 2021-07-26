@@ -4,8 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/tiger/resources/bootstrap/css/common.css">
 <link rel="stylesheet" type="text/css" href="/tiger/resources/bootstrap/css/msgList.css">
 <script type="text/javascript">
@@ -102,7 +100,7 @@ function deleteValue(){
 		</c:if>
 		<!-- 삭제버튼  -->
 		<tr>
-			<td class="text-center"><input type="button" class="btn_sm" value="삭제" onclick="deleteValue();"></td>
+			<td class="text-center"><input type="button" class="btn_sm_stroke" value="삭제" onclick="deleteValue();"></td>
 			<td colspan="3"></td>
 		</tr>
 	</table>

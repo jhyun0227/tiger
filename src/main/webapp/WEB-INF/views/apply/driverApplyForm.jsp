@@ -125,7 +125,7 @@
 			</c:if>  
 			<c:if test="${not empty AP_picture}">
 				<img alt=""  class="thumbnail"   
-				     src="${path }/resources/upload_driverLicense/${apply.AP_picture}">	
+				     src="${path }/resources/applyImg/${apply.AP_picture}">	
 			</c:if>	     		
 			<div class="filebox">   
 				<label for="AP_picture" >upload</label> 

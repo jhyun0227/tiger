@@ -118,6 +118,7 @@
 									aria-valuemax="100" style="width: 55%" >
 								 <span>심사중</span>
 							 </div>
+							 <a href="driverApplyConfirm.do?MB_id=${member.MB_id }">서류 확인</a>
 						</td>
 					</tr>
 					</c:if>

@@ -28,7 +28,6 @@ import com.ch.tiger.service.PagingBean;
 import com.ch.tiger.service.QnAService;
 import com.ch.tiger.service.ReportService;
 import com.ch.tiger.service.ReservationService;
-import com.ch.tiger.service.ReviewService;
 import com.ch.tiger.service.VehicleService;
 @Controller
 public class AdminController {
@@ -46,8 +45,6 @@ public class AdminController {
 	private ReportService rps;
 	@Autowired
 	private ReservationService rvs;
-	@Autowired
-	private ReviewService rs;
 	@Autowired
 	private VehicleService vs;
 	

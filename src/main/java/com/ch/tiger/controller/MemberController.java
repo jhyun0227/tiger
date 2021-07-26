@@ -20,9 +20,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ch.tiger.model.Apply;
 import com.ch.tiger.model.Favorite;
 import com.ch.tiger.model.Member;
 import com.ch.tiger.model.Review;
+import com.ch.tiger.model.Vehicle;
+import com.ch.tiger.service.ApplyService;
 import com.ch.tiger.service.FavoriteService;
 import com.ch.tiger.service.MemberService;
 import com.ch.tiger.service.ReviewService;
@@ -37,6 +40,8 @@ public class MemberController {
 	private ReviewService rs;
 	@Autowired
 	private FavoriteService fs;
+	@Autowired
+	private ApplyService as;
 	@Autowired
 	private JavaMailSender jMailSender;
 
@@ -262,7 +267,21 @@ public class MemberController {
 		model.addAttribute("member", member);
 		return "mypage/myMain";
 	}
-	 
+	
+	// 마이페이지에서 드라이버 승인 서류 확인
+	@RequestMapping("driverApplyConfirm")
+	public String driverApplyConfirm(Model model, HttpSession session) {
+		String MB_id = (String)session.getAttribute("MB_id");
+		Member member  = mbs.select(MB_id);
+		int MB_num = member.getMB_num();
+		Apply apply = as.selectAll(MB_num);
+		Vehicle vehicle = vs.selectVh(MB_num);
+		model.addAttribute("member", member);
+		model.addAttribute("apply", apply);
+		model.addAttribute("vehicle", vehicle);
+		return "mypage/driverApplyConfirm";
+	}
+	
 	// 마이페이지 회원정보 수정폼으로 이동
 	@RequestMapping("updateForm")
 	public String updateForm(Model model, HttpSession session) {

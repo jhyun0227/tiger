@@ -308,7 +308,7 @@
 					<td class="col md-2 text-center">비밀번호</td>
 					<td class="col md-10">
 						<input type="password" name="MB_pw" id="pw" maxlength="12" autocomplete="false"
-								class="inputline1"  placeholder="비밀번호(영문자, 숫자, 4자 이상)" 
+								class="inputline2"  placeholder="영문자, 숫자, 4자 이상" 
 								required="required">
 							<div id="keyShow">show</div>
 							<br>

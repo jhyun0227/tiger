@@ -7,7 +7,7 @@
 <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
 <style type="text/css">
 	.err {
-		color: red;
+		color: red;   
 		font-weight: bold;
 	}
 	
@@ -59,7 +59,16 @@
 		color: #eee;   
 		font-size: 18px;
 		text-align: center;
-	}  
+	}
+	 
+	#fileA {
+		width: 100%;
+		text-align: center;
+	} 
+	#nameA {
+		width: 100%;  
+		text-align: center;
+	} 
 </style>
 <script type="text/javascript">
 	// 중복체크안해도 submit 버튼 활성화
@@ -104,7 +113,7 @@
    	 reader.readAsDataURL(fis.files[0]);
 	}  
  
- //
+ //파일이름
 	$(document).ready( function(){ 
 		var fileTarget = $('.filebox .upload-hidden'); 
 		
@@ -138,7 +147,7 @@
 	<form action="updateResult.do" method="post" enctype="multipart/form-data" 
 				name="frm" onsubmit="return chk()">
 	<input type="hidden" name="MB_id" value="${member.MB_id }">			
-		<div class="row">
+		<div class="row">  
 			<div class="col-md-2" id="img_box"  > 
 				<c:if test="${empty member.MB_img }">
 					<img alt="" src="${path }/resources/main/none_img3.jpg" class="thumbnail" >
@@ -149,8 +158,8 @@
 			     <div class="filebox">   
 											<!-- 그림있는 곳에 커셔가 가면 메세지 나옴 -->
 					<label for="ex_filename"  data-toggle="tooltip" data-placement="left" 	
-					                          title="이미지를 선택하세요"> upload</label>
-					     <input class="upload-name " disabled="disabled"  ><br> 
+					                          title="이미지를 선택하세요" id="nameA"> upload</label>
+					     <input class="upload-name " disabled="disabled" id="fileA" ><br> 
 				         <input type="file" name="file" id="ex_filename" class="upload-hidden"
 					              style="display:none;"  onchange="fileUpload(this);">  
 	  		     </div> 

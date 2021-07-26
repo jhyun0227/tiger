@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
 <style type="text/css">
-	.row{
+	.row {
 		margin-top: -30px;
 	}
 	.narrowWidth1 {

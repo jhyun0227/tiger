@@ -367,7 +367,7 @@
 				</tr>
 				<tr>
 					<td colspan="2" align="center" class="text-center">
-					    <input type="submit" id="submit" value="회원가입"  disabled="disabled" class="btn_sm_full">
+					    <input type="submit" id="submit" value="회원가입"  disabled="" class="btn_sm_full">
 					    <input type="button"  onclick="location.href='loginForm.do'" 
 					    	    value="로그인" class="btn_sm_stroke">    
 					 </td>

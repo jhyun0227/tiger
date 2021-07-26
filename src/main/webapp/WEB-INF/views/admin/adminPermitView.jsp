@@ -11,7 +11,7 @@
 <body>
 <div align="center">
 	<h2 class="title">드라이버 신청 정보</h2>
-	<table class="table narrowWidth">
+	<table class="table">
 		<tr>
 			<th class="col md-2 text-center">아이디</th>
 			<td class="col md-10">${apply.MB_id }</td>

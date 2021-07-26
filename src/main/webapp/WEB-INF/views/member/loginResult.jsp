@@ -10,7 +10,11 @@
 <body>
 	<c:if test="${result > 0 }">
 		<script type="text/javascript">
-			location.href="${prevUrl}";
+			if("${prevUrl}" == "join.do") {
+				location.href="main.do"
+			} else {
+				location.href="${prevUrl}";
+			}
 		</script>
 	</c:if>
 	<c:if test="${result == 0 }">

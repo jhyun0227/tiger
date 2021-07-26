@@ -29,7 +29,7 @@
 </script>
 </head>
 <body>
-<div class="container narrowWidth1"  align="center">
+<div class="container"  align="center">
 	<h2 class="title">로그인</h2>
 	<form action="login.do?prevUrl=${prevUrl }" method="post">
 		<table class="table narrowWidth1">  

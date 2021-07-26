@@ -132,7 +132,7 @@
 				<input class="upload-name" disabled="disabled" >    
 				<input type="file" name="fileAp" id="AP_picture" class="upload-hidden"
 					       style="display:none;" onchange="fileUpload(this);" 
-					       multiple="multiple"> 
+					       required="required"> 
 			</div>    
 	 	</div>
 	 	<div class="col-md-9" id="inform_box">
@@ -207,7 +207,6 @@
 				<input type="submit" id="submit" value="드라이버등록신청" disabled="disabled"
 						class="btn_medium">
 		     </div>
-	 		</table>
 	 	</div>
 	 </div>	
 	</form>

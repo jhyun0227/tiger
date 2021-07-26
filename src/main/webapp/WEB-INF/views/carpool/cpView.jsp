@@ -162,15 +162,15 @@
 							</td>
 							<c:if test="${reservation.RSV_confirm == 'Y' }">
 								<c:if test="${reservation.RSV_mConfirm == 'Y' }">
-									<td class="btn btn_sm_full">매칭완료</td>
+									<td>매칭완료</td>
 								</c:if>
 								<c:if test="${reservation.RSV_mConfirm == 'N' }">
-									<td class="btn btn_sm_stroke">매칭대기</td>
+									<td>매칭대기</td>
 								</c:if>
 							</c:if>
 							<c:if test="${reservation.RSV_confirm == 'N' }">
 								<c:if test="${reservation.RSV_mConfirm == 'N' }">
-									<td class="btn btn_sm_full">매칭실패</td>
+									<td>거절</td>
 								</c:if>
 							</c:if>
 						</tr>
@@ -204,23 +204,23 @@
 						<tr>
 							<td>${reservation.MB_nickName }</td>
 							<td>
-								<c:if test="${reservation.MB_gender == '1' }">남</c:if>
-								<c:if test="${reservation.MB_gender == '2' }">여</c:if>
+								<c:if test="${reservation.MB_gender == '1' || reservation.MB_gender == '3' }">남자</c:if>
+								<c:if test="${reservation.MB_gender == '2' || reservation.MB_gender == '4' }">여자</c:if>
 							</td>
 							<c:if test="${reservation.RSV_confirm == 'Y' }">
 								<c:if test="${reservation.RSV_mConfirm == 'Y' }">
-									<td class="btn btn_sm_full">매칭완료</td>
+									<td>매칭완료</td>
 								</c:if>
 								<c:if test="${reservation.RSV_mConfirm == 'N' }">
 									<td>
-										<a href="cpAcceptResult.do?MB_num=${reservation.MB_num}&CP_num=${carpool.CP_num}" class="btn btn_sm_full">수락</a>
-										<a href="cpDenialResult.do?MB_num=${reservation.MB_num}&CP_num=${carpool.CP_num}" class="btn btn_sm_stroke">거절</a>
+										<a href="cpAcceptResult.do?MB_num=${reservation.MB_num}&CP_num=${carpool.CP_num}" class="btn_prev">수락</a>
+										<a href="cpDenialResult.do?MB_num=${reservation.MB_num}&CP_num=${carpool.CP_num}" class="btn_prev">거절</a>
 									</td>
 								</c:if>
 							</c:if>
 							<c:if test="${reservation.RSV_confirm == 'N' }">
 								<c:if test="${reservation.RSV_mConfirm == 'N' }">
-									<td class="btn btn_sm_stroke">거절한 매칭</td>
+									<td>거절</td>
 								</c:if>
 							</c:if>	
 						</tr>

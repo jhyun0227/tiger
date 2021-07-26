@@ -8,12 +8,12 @@
 <title>Insert title here</title>
 <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
 <style type="text/css">
-	.row{
+	.row {
 		margin-top: -30px;
 	}
 	.narrowWidth1 {
    	 width: 70%;
-   	}
+   	}  
    	
 	.narrowWidth2 {
    	 width: 80%;
@@ -26,8 +26,9 @@
 	}
 	
 	#labelUp{
-		padding-left: 0;
-	}
+		/* padding-left: ; */
+		width: 35%;
+	}    
 	
 	#inform_box {
 		float: right !important;
@@ -39,16 +40,25 @@
 	} 
 	 
 	.thumbnail {
-		height: 150px;
-		width: 150px; 
+		height: 170px;
+		width: 170px; 
 		margin-top: 55px;
 		margin-bottom: 10px;
-	}     
+	}  
+	#fileA {
+		width: 100%;
+		text-align: center;   
+	} 
+	.inputline4{
+		border: none;
+	    outline: 0;
+	    width: 35%;
+	}   
 
 </style>	
 <script type="text/javascript">
 
-// 차량 번호가 중복인지  확인하는 ajax
+// 차량 번호가 중복인지  확인하는 ajax  
 	$(function() {
 		$("#vhChk").hide();
 		$("#carNum").keyup(function() {
@@ -64,10 +74,24 @@
 			});
 		});
 	});
-   
+	
+// 차량주행거리에 천단위로 콤마(,) 넣기 
+	$( function () {
+	 	const input = document.querySelector('#comma');
+		input.addEventListener('keyup', function(e) {
+ 			 let value = e.target.value;
+  			 value = Number(value.replaceAll(',', ''));
+  		if(isNaN(value)) {
+   			 input.value = 0;
+ 		 }else {
+  			  const formatValue = value.toLocaleString('ko-KR');
+   			 input.value = formatValue;
+ 		 }
+		});
+	});
    
 // 파일 업로드 미리보기
-	 function fileUpload(fis) {  
+	 function preView(fis) {  
 		   var str = fis.value;
 	       $('.thumbnail').text(fis.value.substring(str.lastIndexOf("\\")+1));
 	       // 이미지를 변경한다.
@@ -77,17 +101,22 @@
 	      }
 	   	 reader.readAsDataURL(fis.files[0]);
 	}
-// 파일 업로드 미리보기
-	 function fileUpload2(fis) {  
-		   var str = fis.value;
-	       $('.thumbnail').text(fis.value.substring(str.lastIndexOf("\\")+1));
-	       // 이미지를 변경한다.
-	       var reader = new FileReader();
-		   reader.onload = function(e){
-		   $('.thumbnail').attr('src',e.target.result);
-	      }
-	   	 reader.readAsDataURL(fis.files[0]);
-	}
+
+// 파일 이름 
+	$(document).ready( function(){ 
+		var fileTarget = $('.filebox .upload-hidden'); 
+		
+		fileTarget.on('change', function(){ // 값이 변경되면 
+			if(window.FileReader){ // modern browser 
+				var filename = $(this)[0].files[0].name;
+			} 
+			else { // old IE 
+				var filename = $(this).val().split('/').pop().split('\\').pop(); // 파일명만 추출 
+			} 
+		// 추출한 파일명 삽입 
+		$(this).siblings('.upload-name').val(filename);
+		}); 
+	});
 </script>
 
 </head>
@@ -117,23 +146,21 @@
 	<form action="driverApplyResult.do" method="post" name="frm" enctype="multipart/form-data"> 
 	 	<input type="hidden" name="MB_num" value="${member.MB_num }">
 	 <div class="row ">
-	 	<div class="col-md-2" id="img_box"  > 
+	 	<div class="col-md-3" id="img_box"  > 
 	 		<c:if test="${empty AP_picture}">  
-			<img alt="" src="${path }/resources/main/none_dr.png" class="thumbnail" 
-					data-toggle="tooltip" data-placement="left" 
-					title="운전면허증 사진을 첨부해 주세요" id="togText">
-			</c:if>  
-			<c:if test="${not empty AP_picture}">
-				<img alt=""  class="thumbnail"   
-				     src="${path }/resources/upload_driverLicense/${apply.AP_picture}">	
+				<img alt=""	class="btn_uploadDr thumbnail " data-toggle="tooltip" data-placement="left" 
+					title="운전면허증 사진을 첨부해 주세요"> 
+			</c:if>   
+			<c:if test="${not empty AP_picture}">  
+				<img alt=""  class="thumbnail" src="${path }/resources/applyImg/${apply.AP_picture}">	
 			</c:if>	     		
 			<div class="filebox">   
-				<label for="AP_picture" >upload</label> 
-				<input class="upload-name" disabled="disabled" >    
+				<label for="AP_picture" >운전면허증 앞면 첨부</label> 
+				<input class="upload-name" disabled="disabled"  id="fileA">    
 				<input type="file" name="fileAp" id="AP_picture" class="upload-hidden"
-					       style="display:none;" onchange="fileUpload(this);" 
-					       multiple="multiple"> 
-			</div>    
+					       style="display:none;" onchange="preView(this);"  required="required">
+					       
+			</div>      
 	 	</div>
 	 	<div class="col-md-9" id="inform_box">
 	 			<h4 class="text-center">차량 정보 입력</h4>  
@@ -177,8 +204,8 @@
 					<tr>
 						<td class="col-md-3 text-center">주행거리</td>
 						<td class="col-md-6">
-							<input type="text" name="VH_km" required="required" class="inputline1"
-									placeholder="ex)100,000" class="inputKm">km
+							<input type="text" name="VH_km" required="required" class="inputline4"
+									placeholder="ex)100,000" id="comma" >km
 						</td>
 					</tr>
 					<tr>
@@ -195,10 +222,10 @@
 						<td class="col-md-3 text-center">차량 앞면 사진</td>
 						<td class="col-md-6">
 							<div class="filebox" > 
-								<label for="ex_filename" id="labelUp">업로드</label> 
-								<input class="upload-name" disabled="disabled"> 
-								<input type="file" name="file" id="ex_filename" required="required"
-								       class="upload-hidden" > 	
+								<label for="VH_carPicture" id="labelUp">사진업로드</label> 
+								<input type="file" name="file" id="VH_carPicture" required="required"
+								       class="upload-hidden" > 
+								<input class="upload-name" disabled="disabled"> 	
 							</div>
 						 </td>	
 					 </tr>
@@ -208,7 +235,7 @@
 						class="btn_medium">
 		     </div>
 	 		</table>
-	 	</div>
+	 	</div>  
 	 </div>	
 	</form>
 	 

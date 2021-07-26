@@ -6,39 +6,36 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-.menuTitle {
-	color: #000000;
-	margin-left: 30px;
-}
-
-.page_num {
-	color: #000000;
-}
-
-.pagination_bottom {
-	display: inline-flex;
-	margin-top: 100px;
-}
-
-.page_current_num {
-	color: orange;
-}
-
-.pagination_bottom li a:hover {
-	text-decoration: none;
-}
-</style>
 </head>
 <body>
 	<div class="container" align="center">
 		<h2 class="title">신고내역 목록</h2>
+		<div class="searchDIV">
+			<form action="adminReportList.do">
+			<input type="hidden" name="pageNum" value="1">
+			<select name="search" class="inputUnderLine">
+				<%-- <c:forTokens var="sh" items="MB_num,MB_numR,RP_reason" delims="," varStatus="i"> --%>
+				<c:forTokens var="sh" items="MB_nickName,RP_reason" delims="," varStatus="i">
+					<c:if test="${sh == report.search }">
+						<option value="${sh}" selected="selected">${title[i.index] }</option>
+					</c:if>
+					<c:if test="${sh != report.search }">
+						<option value="${sh}">${title[i.index] }</option>
+					</c:if>
+				</c:forTokens>
+			</select>
+			<input type="text" name="keyword" value="${report.keyword }" class="inputUnderLine">
+			<input type="submit" value="검색" class="btn_search">
+		</form>
+		</div>
 		<table class="table">
 			<tr>
 				<th class="col-md-2 text-center">번호</th>
 				<th class="col-md-2 text-center">게시글</th>
 				<th class="col-md-2 text-center">신고자</th>
 				<th class="col-md-2 text-center">신고사유</th>
+				<th class="col-md-2 text-center">게시글 관리</th>
+				<th class="col-md-2 text-center">신고 관리</th>
 			</tr>
 			<c:if test="${empty rpList }">
 				<tr>
@@ -71,6 +68,31 @@
 						<c:if test="${report.RP_reason == 6 }">
 							<td class="col-md-2 text-center">개인정보 노출</td>
 						</c:if>
+						<td class="col-md-2 text-center">
+							<c:if test="${report.CP_del == 'N' }">
+								<a href="adminCpDelete.do?CP_num=${report.CP_num }&pageNum=${pageNum}"
+									class="btn_prev">삭제</a>
+							</c:if>
+							<c:if test="${report.CP_del == 'Y' }">
+								<a href="adminCpRollback.do?CP_num=${report.CP_num }&pageNum=${pageNum}"
+									class="btn_prev">복구</a>
+							</c:if>
+						</td>
+						<td class="col-md-2 text-center">
+							<c:if test="${report.CP_del == 'Y' }">
+								<c:if test="${report.RP_del == 'N' }">
+									<a href="adminRpDelete.do?RP_num=${report.RP_num }&pageNum=${pageNum}"
+										class="btn_prev">신고삭제</a>
+								</c:if>
+								<c:if test="${report.RP_del == 'Y' }">
+									삭제 완료
+								</c:if>
+								
+							</c:if>
+							<c:if test="${report.CP_del == 'N' }">
+								관리자 확인중
+							</c:if>
+						</td>
 					</tr>
 				</c:forEach>
 			</c:if>
@@ -106,22 +128,6 @@
 				</c:if>
 			</ul>
 		</div>
-		<form action="adminReportList.do">
-			<input type="hidden" name="pageNum" value="1">
-			<select name="search">
-				<%-- <c:forTokens var="sh" items="MB_num,MB_numR,RP_reason" delims="," varStatus="i"> --%>
-				<c:forTokens var="sh" items="MB_nickName,RP_reason" delims="," varStatus="i">
-					<c:if test="${sh == report.search }">
-						<option value="${sh}" selected="selected">${title[i.index] }</option>
-					</c:if>
-					<c:if test="${sh != report.search }">
-						<option value="${sh}">${title[i.index] }</option>
-					</c:if>
-				</c:forTokens>
-			</select>
-			<input type="text" name="keyword" value="${report.keyword }">	<!-- model에 추가해줘야한다 -->
-			<input type="submit" value="검색" class="btn btn-info">
-		</form>
 	</div>
 </body>
 </html>

@@ -18,6 +18,7 @@ import com.ch.tiger.model.Member;
 import com.ch.tiger.model.Notice;
 import com.ch.tiger.model.QnA;
 import com.ch.tiger.model.Report;
+import com.ch.tiger.model.Reservation;
 import com.ch.tiger.model.Vehicle;
 import com.ch.tiger.service.ApplyService;
 import com.ch.tiger.service.CarpoolService;
@@ -34,7 +35,7 @@ public class AdminController {
 	@Autowired
 	private ApplyService as;
 	@Autowired
-	private CarpoolService cs;
+	private CarpoolService cps;
 	@Autowired
 	private MemberService mbs;
 	@Autowired
@@ -373,5 +374,78 @@ public class AdminController {
 		model.addAttribute("rpList", rpList);
 		model.addAttribute("num", num);	//목록 번호 생성 위한 num
 		return "admin/adminReportList";
+	}
+	@RequestMapping("adminCpDelete")
+	public String adminCpDelete(int CP_num, String pageNum, Model model) {
+		int result = cps.adminCpDelete(CP_num);
+		model.addAttribute("result", result);
+		model.addAttribute("pageNum", pageNum);
+		return "admin/adminCpDelete";
+	}
+	@RequestMapping("adminCpRollback")
+	public String adminCpRollback(int CP_num, String pageNum, Model model) {
+		int result = cps.adminCpRollback(CP_num);
+		model.addAttribute("result", result);
+		model.addAttribute("pageNum", pageNum);
+		return "admin/adminCpRollback";
+	}
+	@RequestMapping("adminRpDelete")
+	public String adminRpDelete(int RP_num, String pageNum, Model model) {
+		int result = rps.adminRpDelete(RP_num);
+		model.addAttribute("result", result);
+		model.addAttribute("pageNum", pageNum);
+		return "admin/adminRpDelete";
+	}
+	@RequestMapping("adminRvList")
+	public String adminRvList(Reservation reservation, String pageNum, Model model) {	// Carpool carpool
+		if(pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		} 
+		int currentPage = Integer.parseInt(pageNum);
+		int rowPerPage = 10;	// 한 화면에 보여주는 게시글 갯수
+		int total = rvs.getTotalRv(reservation);	//추가 0723
+		int startRow = (currentPage -1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		reservation.setStartRow(startRow);
+		reservation.setEndRow(endRow);
+		// 0723 수정 및 추가(테스트)
+		List<Reservation> adminRvAllList = rvs.adminRvAllList(reservation);	// 추가 0723
+		for (Reservation rv : adminRvAllList) {	// 추가 0723
+	         int CP_num = rv.getCP_num(); // 예약 테이블에서 내가 예약 신청한 게시글의 번호를 가져옴
+	         Carpool carpool = cps.select(CP_num); // 가져온 게시글 번호로 게시글의 정보를 가져옴
+	         int MB_numDv = carpool.getMB_num(); // 게시글 정보에서 게시글 작성자(드라이버)의 번호를 가져옴
+	         Member member2 = mbs.selectNum(MB_numDv); // 게시글 작성자의 번호를 이용해서 게시글 작성자의 정보를 가져옴
+	         rv.setMB_numDv(member2.getMB_num()); // 가져온 정보를 이용해서 객체에 적용
+	         rv.setMB_nickNameDv(member2.getMB_nickName()); // 가져온 정보를 이용해서 객체에 적용
+	         Member memberDB = mbs.selectNum(rv.getMB_num());
+	         rv.setMB_nickName(memberDB.getMB_nickName());
+	      }
+		int num = total - startRow + 1;
+		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
+		//String[] title = {"작성자", "신청자", "출발지", "도착지"};	// 테이블에 칼럼없어서 불가/ 조인하면 닉네임하나는 가능
+		String[] title = {"출발지", "도착지"};
+		model.addAttribute("title", title);
+		model.addAttribute("pb", pb);	// paginbean pb
+		model.addAttribute("adminRvAllList", adminRvAllList);	// 수정 0723
+		model.addAttribute("num", num);	//목록 번호 생성 위한 num
+		return "admin/adminRvList";	// 수정 0723
+	}
+	@RequestMapping("adminCpView")
+	public String adminCpView(int CP_num, String pageNum, Model model, HttpSession session) {
+		String MB_id = (String)session.getAttribute("MB_id");
+		Member memberDB = mbs.select(MB_id);
+		Reservation reservation = new Reservation();
+		int num = rvs.getTotal(CP_num);
+		reservation.setCP_num(CP_num);	// CP_num에 해당하는 예약내역
+		List<Reservation> adminRvList = rvs.adminRvList(reservation);
+		Carpool carpool = cps.select(CP_num);
+		Member member = mbs.selectNum(carpool.getMB_num());
+		model.addAttribute("member", member);	// 타세요 글 작성자 정보
+		model.addAttribute("memberDB", memberDB);	// 로그인한 관리자 정보
+		model.addAttribute("carpool", carpool);	// 데이터 출력을 위한 객체
+		model.addAttribute("adminRvList", adminRvList);
+		model.addAttribute("num", num);
+		model.addAttribute("pageNum", pageNum);
+		return "admin/adminCpView";
 	}
 }

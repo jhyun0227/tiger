@@ -38,35 +38,36 @@
 </c:if>
 
 <c:if test="${result == 0 }">
-	<form action="dvReviewWriteResult.do" method="post">
-		<input type="hidden" name="RV_writer" value="${review.RV_writer }">
-		<input type="hidden" name="RV_reader" value="${review.RV_reader }">
-		<input type="hidden" name="RSV_num" value="${review.RSV_num }">
-		<h1 class="msgTitle">후기 작성</h1>
-		<table class="table tableBG">
-			<tr>
-				<th class="col-xs-3 text-center">탑승자</th>
-				<td class="col-xs-9 text-left">${MB_nickName}</td>
-			</tr>	
-			<tr>
-				<th class="col-xs-3 text-center">별점</th>
-				<td class="col-xs-9 text-left">
-					<input type="number" name="RV_star" min="0" max="5" value="5" required="required" autofocus="autofocus">
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<textarea name="RV_content" cols="50" rows="10" required="required">상대방 후기를 작성해주세요.</textarea>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2" align="center">
-					<input type="submit" value="후기 작성" class="btnMsg">
-					<button class="btnMsg" onclick="closeMsg()">닫기</button>
-				</td>
-			</tr>
-		</table>
-	</form>
+<form action="dvReviewWriteResult.do" method="post"> 
+	<input type="hidden" name="RV_writer" value="${review.RV_writer }">
+	<input type="hidden" name="RV_reader" value="${review.RV_reader }">
+	<input type="hidden" name="RSV_num" value="${review.RSV_num }">
+	<h1 class="msgTitle">후기 작성</h1>
+	<table class="table tableBG">
+		<tr>
+			<th class="col-xs-3 text-center">탑승자</th>
+			<td class="col-xs-9 text-left">${MB_nickName}</td>
+		</tr>	
+		<tr>
+			<th class="col-xs-3 text-center">별점</th>
+			<td class="col-xs-9 text-left">
+				<input type="number" name="RV_star" min="0" max="5" value="5" required="required" autofocus="autofocus">
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<textarea name="RV_content" cols="50" rows="10" required="required" placeholder="상대방 후기를 작성해주세요."></textarea>
+			</td>
+		</tr>
+		
+		<tr>
+			<td colspan="2" align="center">
+				<input type="submit" value="후기 작성" class="btnMsg">
+				<button class="btnMsg" onclick="closeMsg()">닫기</button>
+			</td>
+		</tr>
+	</table>
+</form>
 </c:if>
 </body>
 </html>

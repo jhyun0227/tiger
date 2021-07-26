@@ -43,8 +43,8 @@ public class ReservationDaoImpl implements ReservationDao {
 	}
 
 	@Override
-	public int getTotal(Reservation reservation) {
-		return sst.selectOne("reservationns.getTotal", reservation);
+	public int getTotal(int CP_num) {
+		return sst.selectOne("reservationns.getTotal", CP_num);
 	}
 
 	@Override
@@ -55,6 +55,26 @@ public class ReservationDaoImpl implements ReservationDao {
 	@Override
 	public int updateDenial(Reservation reservation) {
 		return sst.update("reservationns.updateDenial", reservation);
+	}
+
+	@Override
+	public List<Reservation> adminRvList(Reservation reservation) {	// 관리자가 CP_num에 해당하는 카풀글 내 예약내역 - 동윤
+		return sst.selectList("reservationns.adminRvList", reservation);
+	}
+
+	@Override
+	public int getTotalRv(Reservation reservation) {
+		return sst.selectOne("reservationns.getTotalRv", reservation); // 추가 0723
+	}
+
+	@Override
+	public List<Reservation> adminRvAllList(Reservation reservation) {
+		return sst.selectList("reservationns.adminRvAllList", reservation); // 추가 0723
+	}
+
+	@Override
+	public Reservation selectRv(Reservation reservation) { // 타세요 신청 중복 방지
+		return sst.selectOne("reservationns.selectRv", reservation);
 	}
 
 }

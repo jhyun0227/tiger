@@ -81,7 +81,7 @@ public class MessageController {
 		msg.setMB_numR(MB_num);
 		if(pageNum == null || pageNum.equals("")) pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
-		int rowPerPage = 2;
+		int rowPerPage = 10;
 		int total = mgs.getTotalR(msg);
 		int startRow = (currentPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage -1;
@@ -111,7 +111,7 @@ public class MessageController {
 		msg.setMB_numS(MB_num);
 		if(pageNum == null || pageNum.equals("")) pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
-		int rowPerPage = 2;
+		int rowPerPage = 10;
 		int total = mgs.getTotalS(msg);
 		int startRow = (currentPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage -1;
@@ -134,7 +134,10 @@ public class MessageController {
 	
 	//쪽지 상세페이지
 	@RequestMapping("msgView")
-	public String msgView(int MSG_num, String pageNum, Model model) {
+	public String msgView(int MSG_num, String pageNum, Model model, HttpServletRequest request) {
+		String prevUrl = request.getHeader("Referer");
+		int index = prevUrl.lastIndexOf(".do");
+		prevUrl = prevUrl.substring(28,index);
 		Message msg = mgs.select(MSG_num);
 		int MB_numS = msg.getMB_numS();
 		int MB_numR = msg.getMB_numR();
@@ -147,12 +150,14 @@ public class MessageController {
 		model.addAttribute("nicknameR", nicknameR);
 		model.addAttribute("message", message);
 		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("prevUrl", prevUrl);
 		return "msg/msgView";
 	}
 	
 	//받은쪽지 삭제
 	@RequestMapping("msgDeleteS")
-	public String msgDeleteS(HttpServletRequest request) {
+	public String msgDeleteS(HttpServletRequest request, String preUrl) {
+		System.out.println("preUrl" + preUrl);
 		String[] msgs = request.getParameterValues("valueArr");
 		int size = msgs.length;
 		for(int i = 0;i<size;i++) {

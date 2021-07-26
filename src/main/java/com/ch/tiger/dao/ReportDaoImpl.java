@@ -33,5 +33,10 @@ public class ReportDaoImpl implements ReportDao {
 		return sst.selectList("reportns.rpList", report);
 	}
 
+	@Override
+	public int adminRpDelete(int RP_num) {	// 관리자 신고 내역 삭제 - 동윤
+		return sst.update("reportns.adminRpDelete", RP_num);
+	}
+
 
 }

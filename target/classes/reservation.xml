@@ -14,20 +14,22 @@
 	
 	<!-- 예약내역에서 내가 탑승 예약 신청한 글의 개수를 가져오는 로직 -->
 	<select id="getTotalMyRv" parameterType="reservation" resultType="integer">
-		select count(*) from reservation where MB_num=#{MB_num}
+		select count(*) from (select a.*, rowNum rn from (select r.*, c.CP_startDate, c.CP_startPoint, c.CP_endPoint from reservation r, carpool c where r.CP_num=c.CP_num and r.MB_num=#{MB_num}
 		<!-- 검색어가 있을때 -->
 			<if test="keyword!=null and keyword!=''">
 				and ${search} like '%'||#{keyword}||'%'
 			</if>
+		order by r.RSV_num desc) a)
 	</select>
 	
+	<!-- 예약내역에서 리스트 불러오기 -->
 	<select id="myRvList" parameterType="reservation" resultType="reservation">
 		select * from (select a.*, rowNum rn from (select r.*, c.CP_startDate, c.CP_startPoint, c.CP_endPoint from reservation r, carpool c where r.CP_num=c.CP_num and r.MB_num=#{MB_num}
 			<!-- 검색어가 있을때 -->
 			<if test="keyword!=null and keyword!=''">
 				and ${search} like '%'||#{keyword}||'%'
 			</if>
-		order by RSV_num desc) a) where rn between #{startRow} and #{endRow}
+		order by r.RSV_num desc) a) where rn between #{startRow} and #{endRow}
 	</select>
 	
 	<!-- 타세요 상세보기에서 신청버튼 클릭시  -->
@@ -38,11 +40,17 @@
 	
 	<!-- 타세요 상세보기 하단 신청 현황  -->
 	<select id="reservationList" parameterType="reservation" resultType="reservation">
-		select * from reservation where CP_num=#{CP_num} order by RSV_num
+		select * from (select r.*, m.MB_gender, m.MB_nickName from reservation r, member m where r.MB_num=m.MB_num) where CP_num=#{CP_num} order by RSV_num
 	</select>
 	
-	<select id="getTotal" parameterType="reservation" resultType="integer">
-		select count(*) from reservation
+	<!-- 신청 중복 등록 방지 -->
+	<select id="selectRv" parameterType="reservation" resultType="reservation">
+		select * from reservation where CP_num=#{CP_num} and MB_num=#{MB_num}
+	</select>
+	
+	<!-- CP_num에 해당하는 예약내역 행 갯수 - 동윤 -->
+	<select id="getTotal" parameterType="integer" resultType="integer">
+		select count(*) from reservation where CP_num=#{CP_num}
 	</select>
 	
 	<!-- 타세요 신청현황(드라이버) 매칭여부 "수락" 버튼 -->
@@ -54,5 +62,31 @@
 	<update id="updateDenial" parameterType="reservation">
 		update reservation set RSV_confirm='N' where CP_num=#{CP_num} and MB_num=#{MB_num}
 	</update>
-
+	
+	<!-- 관리자가 CP_num에 해당하는 카풀글 내 예약내역 - 동윤 -->
+	<select id="adminRvList" parameterType="reservation" resultType="reservation">
+		select rv.*, m.MB_nickName, m.MB_gender from reservation rv, member m
+		where rv.MB_num=m.MB_num and rv.CP_num=#{CP_num}
+	</select>
+	
+	<select id="getTotalRv" parameterType="reservation" resultType="integer">
+		select count(*) from (select a.*, rowNum rn from (select rv.*, c.CP_startPoint, c.CP_endPoint from reservation rv, carpool c
+		where rv.CP_num=c.CP_num
+		<!-- 검색어가 있을때 -->
+			<if test="keyword!=null and keyword!=''">
+				and ${search} like '%'||#{keyword}||'%'
+			</if>
+		order by c.CP_num desc) a)
+	</select>
+	
+	<select id="adminRvAllList" parameterType="reservation" resultType="reservation">
+		select * from (select a.*, rowNum rn from (select rv.*, c.CP_startPoint, c.CP_endPoint from reservation rv, carpool c
+			where rv.CP_num=c.CP_num
+			<!-- 검색어가 있을때 -->
+			<if test="keyword!=null and keyword!=''">
+				and ${search} like '%'||#{keyword}||'%'
+			</if>
+		order by c.CP_num desc) a) where rn between #{startRow} and #{endRow}
+	</select>
+	
 </mapper>

@@ -6,33 +6,28 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-.menuTitle {
-	color: #000000;
-	margin-left: 30px;
-}
-
-.page_num {
-	color: #000000;
-}
-
-.pagination_bottom {
-	display: inline-flex;
-	margin-top: 100px;
-}
-
-.page_current_num {
-	color: orange;
-}
-
-.pagination_bottom li a:hover {
-	text-decoration: none;
-}
-</style>
 </head>
 <body>
 	<div class="container" align="center">
 		<h2 class="title">드라이버 신청 목록</h2>
+		<div class="searchDIV">
+			<form action="adminPermitList.do">
+			<input type="hidden" name="pageNum" value="1">
+			<select name="search" class="inputUnderLine">
+				<c:forTokens var="sh" items="MB_id,MB_name,MB_gender,MB_driverConfirm" delims="," varStatus="i">
+					<c:if test="${sh == apply.search }">
+						<option value="${sh}" selected="selected">${title[i.index] }</option>
+					</c:if>
+					<c:if test="${sh != apply.search }">
+						<option value="${sh}">${title[i.index] }</option>
+					</c:if>
+				</c:forTokens>
+			</select>
+			<!-- 수정 필요 -->
+			<input type="text" name="keyword" value="${apply.keyword }" class="inputUnderLine">
+			<input type="submit" value="검색" class="btn_search">
+		</form>
+		</div>
 		<table class="table">
 			<tr>
 				<th class="col-md-2 text-center">신청번호</th>
@@ -116,22 +111,6 @@
 				</c:if>
 			</ul>
 		</div>
-		<form action="adminPermitList.do">
-			<input type="hidden" name="pageNum" value="1">
-			<select name="search">
-				<c:forTokens var="sh" items="MB_id,MB_name,MB_gender,MB_driverConfirm" delims="," varStatus="i">
-					<c:if test="${sh == apply.search }">
-						<option value="${sh}" selected="selected">${title[i.index] }</option>
-					</c:if>
-					<c:if test="${sh != apply.search }">
-						<option value="${sh}">${title[i.index] }</option>
-					</c:if>
-				</c:forTokens>
-			</select>
-			<!-- 수정 필요 -->
-			<input type="text" name="keyword" value="${apply.keyword }">	<!-- model에 추가해줘야한다 -->
-			<input type="submit" value="검색" class="btn btn-info">
-		</form>
 	</div>
 </body>
 </html>

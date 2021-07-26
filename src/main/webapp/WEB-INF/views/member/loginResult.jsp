@@ -10,8 +10,7 @@
 <body>
 	<c:if test="${result > 0 }">
 		<script type="text/javascript">
-			alert("좋은 하루 입니다");
-			location.href="main.do";
+			location.href="${prevUrl}";
 		</script>
 	</c:if>
 	<c:if test="${result == 0 }">

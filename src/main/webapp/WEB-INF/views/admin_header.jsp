@@ -12,7 +12,7 @@
 <body>
 	<div class="header">
 		<span class="left">
-			<a href="main.do">
+			<a href="adminMain.do">
 				<img alt="" src="${path }/resources/main/logo.png" class="logo">
 			</a>
 		</span>

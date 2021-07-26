@@ -12,18 +12,23 @@ public interface ReservationDao {
 	int getTotalMyRv(Reservation reservation); // 탑승자 예약내역에서 내가 신청한 글 개수를 불러오기
 
 	List<Reservation> myRvList(Reservation reservation); // 탑승자 예약내역에서 내가 신청한 글 리스트를 불러오기
-	
 
 	int insert(Reservation reservation);
 
 	List<Reservation> reservationList(Reservation reservation);
 
-	int getTotal(Reservation reservation);
+	int getTotal(int CP_num);
 
 	int updateAccept(Reservation reservation);
 
 	int updateDenial(Reservation reservation);
 
+	List<Reservation> adminRvList(Reservation reservation);	// 관리자가 CP_num에 해당하는 카풀글 내 예약내역 - 동윤
+	
+	Reservation selectRv(Reservation reservation);
 
+	int getTotalRv(Reservation reservation);	//추가 0723
+
+	List<Reservation> adminRvAllList(Reservation reservation);	// 추가 0723
 
 }

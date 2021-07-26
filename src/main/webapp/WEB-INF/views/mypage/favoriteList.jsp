@@ -4,45 +4,96 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<c:set var="path" value="${pageContext.request.contextPath }"></c:set>
-	<link rel="stylesheet" type="text/css" href="${path }/resources/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="${path }/resources/bootstrap/css/common.css">
-	<script type="text/javascript" src="${path }/resources/bootstrap/js/jquery.js"></script>
-	<script type="text/javascript" src="${path }/resources/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div align="center">
-		<h2 class="title">좋아요</h2>
-		<table class="table narrowWidth">
+<h1 class="title">좋아요</h1>
+<div class="searchDIV">
+	<form action="favoriteList.do">
+		<input type="hidden" name="pageNum" value="1">
+			<select name="search" class="inputUnderLine">
+				<c:forTokens var="sh" items="MB_nickName,MB_id" delims="," varStatus="i">
+					<c:if test="${sh == favorite.search }">
+						<option value="${sh}" selected="selected">${title[i.index] }</option>
+					</c:if>
+					<c:if test="${sh != favorite.search }">
+						<option value="${sh}">${title[i.index] }</option>
+					</c:if>
+				</c:forTokens>
+			</select>
+				<input type="text" name="keyword" value="${favorite.keyword }" class="inputUnderLine">
+				<input type="submit" value="검색" class="btn_search">
+			</form>
+		</div>
+<table class="table">
+	<tr>
+		<th class="col-md-2 text-center">번호</th>
+		<th class="col-md-2 text-center">닉네임</th>
+		<th class="col-md-2 text-center">아이디</th>
+		<th class="col-md-2 text-center">성별</th>
+		<th class="col-md-2 text-center">가입일</th>
+		<th class="col-md-2 text-center">평점</th>
+	</tr>
+	<c:if test="${empty fvList}">
+		<tr>
+			<th colspan="6" class="text-center">등록한 회원이 존재하지 않습니다.</th>
+		</tr>
+	</c:if>
+	<c:if test="${not empty fvList }">
+		<c:forEach var="fvList" items="${fvList }">
 			<tr>
-				<th class="col md-5 text-center">아이디</th>
-				<th class="col md-4 text-center">닉네임</th>
-				<th class="col md-3 text-center">성별</th>
+				<td class="col-md-2 text-center">${num }<c:set var="num" value="${num -1 }"></c:set></td>
+				<td class="col-md-2 text-center">
+					<a onclick="window.open('profileView.do?MB_nickName=${fvList.MB_nickName }', '',
+						'width=1000,height=1000,location=no,status=no,scrollbars=yes');" class="menuTitle">${fvList.MB_nickName }</a>
+				</td>
+				
+				<td class="col-md-2 text-center">${fvList.MB_id }</td>
+				
+				<c:if test="${fvList.MB_gender == '1' || fvList.MB_gender == '3'}">
+						<td class="col-md-2 text-center">남자</td>	
+				</c:if>
+				<c:if test="${fvList.MB_gender == '2' || fvList.MB_gender == '4'}">
+						<td class="col-md-2 text-center">여자</td>
+				</c:if>
+				
+				<td class="col-md-2 text-center">${fvList.MB_regDate }</td>
+				
+				<td class="col-md-2 text-center">${fvList.reviewAvg }</td>			
 			</tr>
-			<c:if test="${empty fvList }">
-				<tr>
-					<td colspan="3" class="text-center">좋아요 목록이 없습니다.</td>
-				</tr>		
+		</c:forEach>
+	</c:if>	
+</table>
+<div align="center">
+	<ul class="pagination_bottom">
+		<c:if test="${pb.startPage > pb.pagePerBlock }">
+			<li><a href="favoriteList.do?pageNum=1&search=${favorite.search }&keyword=${favorite.keyword}" class="page_num">
+				<span class="glyphicon glyphicon-backward"></span>
+				</a>
+			</li>
+			<li><a href="favoriteList.do?pageNum=${pb.pagePerBlock }&search=${favorite.search }&keyword=${favorite.keyword}" class="page_num">
+				<span class="glyphicon glyphicon-triangle-left"></span>
+				</a>
+			</li>
+		</c:if>
+		<c:forEach var="i" begin="${pb.startPage }" end="${pb.endPage }">
+			<c:if test="${pb.currentPage == i }">
+				<li><a href="favoriteList.do?pageNum=${i}&search=${favorite.search }&keyword=${favorite.keyword}" class="page_num page_current_num">ㅤ${i}ㅤ</a>
 			</c:if>
-			<c:if test="${not empty fvList }">
-				<c:forEach var="favorite" items="${fvList }">
-					<tr>
-						<td class="col md-4 text-center"><a href="profileView.do?MB_num=${favorite.MB_numT }">${favorite.MB_id }</a></td>
-						<td class="col md-4 text-center">${favorite.MB_nickName }</td>
-						
-						<c:if test="${favorite.MB_gender == '1' || favorite.MB_gender == '3'}">
-							<td class="col md-4 text-center">남자</td>
-						</c:if>
-						<c:if test="${favorite.MB_gender == '2' || favorite.MB_gender == '4'}">
-							<td class="col md-4 text-center">여자</td>
-						</c:if>
-						
-					</tr>
-				</c:forEach>
+			<c:if test="${pb.currentPage != i }">
+				<li><a href="favoriteList.do?pageNum=${i}&search=${favorite.search }&keyword=${favorite.keyword}" class="page_num">ㅤ${i}ㅤ</a>
 			</c:if>
-		</table>
-	</div>
+		</c:forEach>
+		<c:if test="${pb.endPage < pb.totalPage }">
+			<li><a href="favoriteList.do?pageNum=${pb.endPage+1 }&search=${favorite.search }&keyword=${favorite.keyword}" class="page_num">
+				<span class="glyphicon glyphicon-triangle-right"></span>
+				</a>
+			</li>
+			<li><a href="favoriteList.do?pageNum=${pb.totalPage }&search=${favorite.search }&keyword=${favorite.keyword}" class="page_num">
+				<span class="glyphicon glyphicon-forward"></span>
+				</a>
+			</li>
+		</c:if>
+	</ul>
+</div>
 </body>
 </html>

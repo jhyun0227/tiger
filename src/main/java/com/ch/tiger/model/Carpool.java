@@ -19,10 +19,13 @@ public class Carpool {
     private int CP_duration;			//예상소요시간
     private String CP_comment;			//기타요구사항
     private String CP_del;				//삭제여부
+    private int MB_num;					//회원번호(드라이버)
     
-    //회원 테이블 회원번호 
-    private Member member; 				//join용
-    private int MB_num;					//회원번호
+    // 조인용
+    private String MB_nickName;
+    private String RSV_mConfirm;
+    private String RSV_confirm;
+    private int MB_numP;				//회원번호(탑승자)
     
 	// paging용
 	private int startRow;

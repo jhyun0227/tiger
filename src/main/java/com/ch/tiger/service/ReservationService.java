@@ -13,16 +13,22 @@ public interface ReservationService {
 
 	List<Reservation> myRvList(Reservation reservation); // 탑승자 예약내역에서 내가 신청한 글 리스트를 불러오기
 	
-	int insert(Reservation reservation);
+	int insert(Reservation reservation); // 타세요 매칭 게시글 상세보기 신청 버튼 클릭
 
 	List<Reservation> reservationList(Reservation reservation);
 
-	int getTotal(Reservation reservation);
+	int getTotal(int CP_num);	// CP_num에 해당하는 예약내역 행 갯수 - 동윤
 
-	int updateAccept(Reservation reservation);
+	int updateAccept(Reservation reservation); // 드라이버 타세요 수락 버튼
 
-	int updateDenial(Reservation reservation);
+	int updateDenial(Reservation reservation); // 드라이버 타세요 거절 버튼
 
+	Reservation selectRv(Reservation reservation); // 타세요 신청 중복 방지
 
+	List<Reservation> adminRvList(Reservation reservation);	// 관리자가 CP_num에 해당하는 카풀글 내 예약내역 - 동윤
+
+	int getTotalRv(Reservation reservation);	// 추가 0723
+
+	List<Reservation> adminRvAllList(Reservation reservation);	//추가 0723
 
 }

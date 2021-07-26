@@ -10,15 +10,32 @@
 <body>
 	<div class="container" align="center">
 		<h2 class="title">회원정보</h2>
-		<table class="table table-striped">
+		<div class="searchDIV">
+			<form action="adminMbList.do">
+			<input type="hidden" name="pageNum" value="1">
+			<select name="search" class="inputUnderLine">
+				<c:forTokens var="sh" items="MB_id,MB_name,MB_nickName,MB_gender,MB_regDate" delims="," varStatus="i">
+					<c:if test="${sh == member.search }">
+						<option value="${sh}" selected="selected">${title[i.index] }</option>
+					</c:if>
+					<c:if test="${sh != member.search }">
+						<option value="${sh}">${title[i.index] }</option>
+					</c:if>
+				</c:forTokens>
+			</select>
+			<input type="text" name="keyword" value="${member.keyword }" class="inputUnderLine">
+			<input type="submit" value="검색" class="btn_search">
+		</form>
+		</div>
+		<table class="table">
 			<tr>
-				<td>회원번호</td>
-				<td>회원ID</td>
-				<td>이름</td>
-				<td>닉네임</td>
-				<td>성별</td>
-				<td>가입일</td>
-				<td>탈퇴 여부</td>				
+				<th class="col-md-1 text-center">회원번호</th>
+				<th class="col-md-2 text-center">회원ID</th>
+				<th class="col-md-2 text-center">이름</th>
+				<th class="col-md-2 text-center">닉네임</th>
+				<th class="col-md-2 text-center">성별</th>
+				<th class="col-md-2 text-center">가입일</th>
+				<th class="col-md-1 text-center">탈퇴 여부</th>				
 			</tr>
 			<c:if test="${empty mbList }">
 				<tr>
@@ -28,39 +45,39 @@
 			<c:if test="${not empty mbList }">
 				<c:forEach var="member" items="${mbList }">
 					<tr>
-						<td>${num }<c:set var="num" value="${num -1 }"></c:set></td>
+						<td class="col-md-1 text-center">${num }
+							<c:set var="num" value="${num -1 }"></c:set></td>
 						<!-- 게시글 번호 순서 정렬 -->
-							<td><a href="adminMbView.do?MB_id=${member.MB_id }&pageNum=${pb.currentPage}">${member.MB_id }</a></td>
-							<td>${member.MB_name }</td>
-							<td>${member.MB_nickName }</td>
+							<td class="text-center">
+								<a href="adminMbView.do?MB_id=${member.MB_id }&pageNum=${pb.currentPage}">${member.MB_id }</a></td>
+							<td class="col-md-2 text-center">${member.MB_name }</td>
+							<td class="col-md-2 text-center">${member.MB_nickName }</td>
 							<c:if test="${member.MB_gender == 1 || member.MB_gender == 3}">
-								<td>남자</td>
+								<td class="col-md-2 text-center">남자</td>
 							</c:if>
 							<c:if test="${member.MB_gender == 2 || member.MB_gender == 4}">
-								<td>여자</td>
+								<td class="col-md-2 text-center">여자</td>
 							</c:if>
-							<td>${member.MB_regDate }</td>
+							<td class="col-md-2 text-center">${member.MB_regDate }</td>
 							<c:if test="${member.MB_del == 'N' }">
 								<c:if test="${member.MB_id == 'admin' }">
-									<td>관리자</td>
+									<td class="col-md-2 text-center">관리자</td>
 								</c:if>
 								<c:if test="${member.MB_id != 'admin' }">
-									<td>활동중
-										<a href="adminMbDelete.do?MB_id=${member.MB_id }&pageNum=${pageNum }""
-											class="btn btn-danger">탈퇴</a></td>
+									<td class="text-center"><a href="adminMbDelete.do?MB_id=${member.MB_id }&pageNum=${pageNum }"
+											class="btn_prev">탈퇴</a></td>
 								</c:if>
 							</c:if>
 							<c:if test="${member.MB_del == 'Y' }">
-								<td>탈퇴
-									<a href="adminMbRollback.do?MB_id=${member.MB_id }&pageNum=${pageNum }"
-										class="btn btn-warning">복구</a></td>
+								<td class="text-center"><a href="adminMbRollback.do?MB_id=${member.MB_id }&pageNum=${pageNum }"
+										class="btn_prev">복구</a></td>
 							</c:if>
 					</tr>
 				</c:forEach>
 			</c:if>
 		</table>
 		<div align="center">
-			<ul class="pagination">
+			<ul class="pagination_bottom">
 				<!-- 시작페이지가 pagePerBlock(10)보다 크면 앞에 보여줄 페이지가 있다 -->
 				<c:if test="${pb.startPage > pb.pagePerBlock }">
 					<li>
@@ -93,21 +110,6 @@
 				</c:if>
 			</ul>
 		</div>
-		<form action="adminMbList.do">
-			<input type="hidden" name="pageNum" value="1">
-			<select name="search">
-				<c:forTokens var="sh" items="MB_id,MB_name,MB_nickName,MB_gender,MB_regDate" delims="," varStatus="i">
-					<c:if test="${sh == member.search }">
-						<option value="${sh}" selected="selected">${title[i.index] }</option>
-					</c:if>
-					<c:if test="${sh != member.search }">
-						<option value="${sh}">${title[i.index] }</option>
-					</c:if>
-				</c:forTokens>
-			</select>
-			<input type="text" name="keyword" value="${member.keyword }">	<!-- model에 추가해줘야한다 -->
-			<input type="submit" value="검색" class="btn btn-info">
-		</form>
 	</div>
 </body>
 </html>

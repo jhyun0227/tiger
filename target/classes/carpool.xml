@@ -11,7 +11,7 @@
 		#{CP_gendertype},#{CP_option},#{CP_duration},#{CP_comment},'N',#{MB_num})
 	</insert>
 	
-	<select id="carpoolList" parameterType="carpool" resultType="carpool">
+	<select id="cpList" parameterType="carpool" resultType="carpool">
 		select * from (select a.*, rowNum rn from (select * from carpool
 		<!-- 검색 기능 사용시 -->
 		<!-- keyword에 값이 있으면 where속에 like옵션 사용, 없으면 사용X -->
@@ -45,12 +45,14 @@
 	
 	<!-- 예약 내역에서 페이징을 위해 내가 올린 글을 가져오는 로직 - 준호 -->
 	<select id="getTotalMyRvs" parameterType="carpool" resultType="integer">
-		select count(*) from carpool where MB_num=#{MB_num}
+		select count(*) from (select a.*, rowNum rn from (select * from carpool where MB_num=#{MB_num}
 			<!-- 검색어가 있을때 -->
 			<if test="keyword!=null and keyword!=''">
 				and ${search} like '%'||#{keyword}||'%'
 			</if>
+		order by CP_num desc) a)
 	</select>
+	
 	<update id="update" parameterType="carpool">
 		update carpool set CP_startPoint=#{CP_startPoint}, CP_endPoint=#{CP_endPoint}, CP_startDate=#{CP_startDate}, CP_startTime=#{CP_startTime}, CP_fee=#{CP_fee}, CP_passNum=#{CP_passNum},
 		CP_gendertype=#{CP_gendertype},CP_option=#{CP_option},CP_duration=#{CP_duration},CP_comment=#{CP_comment} where CP_num=#{CP_num}
@@ -69,5 +71,27 @@
 			</if>
 		order by CP_num desc) a) where rn between #{startRow} and #{endRow}
 	</select>
+	
+	<!-- 관리자가 신고내역의 카풀 게시글 삭제 - 동윤 -->
+	<update id="adminCpDelete" parameterType="integer">
+		update carpool set CP_del='Y' where CP_num=#{CP_num}
+	</update>
+	
+	<!-- 관리자가 신고내역의 카풀 게시글 복구 - 동윤 -->
+	<update id="adminCpRollback" parameterType="integer">
+		update carpool set CP_del='N' where CP_num=#{CP_num}
+	</update>
+	
+	<!-- 관리자 카풀 목록 - 동윤 -->
+	<select id="adminCpList" parameterType="carpool" resultType="carpool">
+		select * from (select a.*, rowNum rn from (select c.*, m.MB_nickName, rv.RSV_confirm, rv.RSV_mConfirm from carpool c
+			inner join member m on c.MB_num=m.MB_num
+			inner join reservation rv on c.CP_num=rv.CP_num
+			<if test="keyword!=null and keyword!=''">
+				and ${search} like '%'||#{keyword}||'%'
+			</if>
+			order by c.CP_num desc) a)
+			where rn between #{startRow} and #{endRow}
+	</select>	
 	
 </mapper>

@@ -30,7 +30,7 @@
 </style>
 </head>
 <body>
-	<h1 class="msgTitle">후기</h1>
+	<h1 class="msgTitle">탑승자 내역</h1>
 	<table class="table tableBG">
 		<tr>
 			<th class="col-xs-4 text-center">닉네임</th>
@@ -41,11 +41,15 @@
 			<c:if test="${empty rvsList }">
 				<tr>
 					<th colspan="3" class="text-center">이용자가 없습니다.</th>
+				</tr>
 			</c:if>
 			<c:if test="${not empty rvsList }">
 				<c:forEach var="rvsList" items="${rvsList }" >
 					<tr>
-						<td class="col-xs-4 text-center">${rvsList.MB_nickName }</td>
+						<td class="col-xs-4 text-center">
+							<a onclick="window.open('profileView.do?MB_nickName=${rvsList.MB_nickName }', '',
+							'width=1000,height=1000,location=no,status=no,scrollbars=yes');" class="menuTitle">${rvsList.MB_nickName }</a>
+						</td>
 						
 						<c:if test="${rvsList.MB_gender == '1' || rvsList.MB_gender == '3'}">
 								<td class="col-xs-4 text-center">남자</td>
@@ -63,7 +67,7 @@
 			</c:if>
 			
 		<tr>
-			<td colspan="2" align="center">
+			<td colspan="3" align="center">
 				<button class="btnMsg" onclick="closeMsg()">닫기</button>
 			</td>
 		</tr>

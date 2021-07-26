@@ -6,10 +6,26 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="/tiger/resources/bootstrap/css/common.css">
 </head>
 <body>
 	<h1 class="title">문의내역</h1>
+	<div class="searchDIV">
+		<form action="adminQnaList.do">
+			<input type="hidden" name="pageNum" value="1">
+			<select name="search" class="inputUnderLine">
+				<c:forTokens var="sh" items="QA_title,MB_id,QA_content,subcon" delims="," varStatus="i">
+					<c:if test="${sh == qna.search }">
+						<option value="${sh}" selected="selected">${title[i.index] }</option>
+					</c:if>
+					<c:if test="${sh != qna.search }">
+						<option value="${sh}">${title[i.index] }</option>
+					</c:if>
+				</c:forTokens>
+			</select>
+				<input type="text" name="keyword" value="${qna.keyword }" class="inputUnderLine">
+				<input type="submit" value="검색" class="btn_search">
+		</form>
+	</div>
 	<table class="table">
 		<tr>
 			<th class="col-md-2 text-center">작성일</th>
@@ -84,21 +100,6 @@
 					</a></li>
 				</c:if>
 			</ul>
-		<form action="adminQnaList.do">
-			<input type="hidden" name="pageNum" value="1">
-			<select name="search">
-				<c:forTokens var="sh" items="QA_title,MB_id,QA_content,subcon" delims="," varStatus="i">
-					<c:if test="${sh == qna.search }">
-						<option value="${sh}" selected="selected">${title[i.index] }</option>
-					</c:if>
-					<c:if test="${sh != qna.search }">
-						<option value="${sh}">${title[i.index] }</option>
-					</c:if>
-				</c:forTokens>
-			</select>
-				<input type="text" name="keyword" value="${qna.keyword }">
-				<input type="submit" value="검색" class="btn btn-info">
-		</form>
 	</div>
 </body>
 </html>

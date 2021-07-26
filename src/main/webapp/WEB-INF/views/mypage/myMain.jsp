@@ -48,7 +48,7 @@
 	<form>
 		<div class="row">
 			<div class="col-md-1 text-center">
-				 <input onclick="location.href='updateForm.do?MB_id${member.MB_id }'"  
+				 <input onclick="location.href='updateForm.do'"  
 				 		  class="btn_setting" type="button" data-toggle="tooltip" 
 				 		  data-placement="top" title="변경을 원하시면 CLICK!">	
 			</div>

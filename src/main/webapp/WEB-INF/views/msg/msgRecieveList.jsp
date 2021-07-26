@@ -90,7 +90,10 @@ function deleteValue(){
 				<tr>
 				<c:if test="${message.MSG_delR != 'Y' }">
 					<td class="text-center"><input type="checkbox" name="rowCheck" value="${message.MSG_num }" ></td>
-					<td class="text-center">${message.nicknameS }</td>
+					<td class="text-center">
+						<a onclick="window.open('profileView.do?MB_nickName=${message.nicknameS }', '',
+							'width=500,height=560,location=no,status=no,scrollbars=yes');">${message.nicknameS }</a>
+					</td>
 					<td class="ellip">
 						<a href="msgView.do?MSG_num=${message.MSG_num }&pageNum=${pb.currentPage}">${message.MSG_content }</a>
 					</td>

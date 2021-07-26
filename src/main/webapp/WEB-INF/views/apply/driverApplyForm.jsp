@@ -182,7 +182,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td class="col-md-3 text-center">보험</td>
+						<td class="col-md-3 text-center">자차보험</td>
 						<td class="col-md-6">
 							<input type="radio" name="VH_insu" id="y" value="Y" checked="checked">
 							<label for="y">있음</label>

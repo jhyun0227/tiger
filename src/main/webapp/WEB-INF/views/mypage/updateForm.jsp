@@ -62,7 +62,17 @@
 	}  
 </style>
 <script type="text/javascript">
-// 닉네임 중복체크
+	// 중복체크안해도 submit 버튼 활성화
+	$(function() {
+		var MB_nickName = '${member.MB_nickName }';
+		if (MB_nickName == frm.MB_nickName.value || MB_nickName.equals(frm.MB_nickName.value)) {
+			$("#submit").attr('disabled', false);
+		} else {
+			$("#submit").attr('disabled', true);
+		}
+	});
+
+	// 닉네임 중복체크
 	function nickChk() {
 		if(!frm.MB_nickName.value) {
 			alert("닉네임을 입력하세요")
@@ -168,8 +178,7 @@
 							<td class="col md-2 text-center">닉네임</td>
 							<td class="col md-8">
 								<input type="text" name="MB_nickName" id="nickName" required="required" 
-								        placeholder="닉네임을 입력해주세요" class="inputline1"> 
-								<input type="button" onclick="nickChk()"  value="중복체크" class="btn_ck">
+								        placeholder="닉네임을 입력해주세요" class="inputline1" value="${member.MB_nickName }" onchange="nickChk()"> 
 								<div id="nickChk" class="err"></div>
 							</td>
 					 	 </tr> 

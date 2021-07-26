@@ -49,7 +49,7 @@
 			<tr>
 				<td class="col-md-1 text-center">${num }<c:set var="num" value="${num -1 }"></c:set></td>
 				<td class="col-md-1 text-center">
-					<a href="cpView.do?CP_num=${reservation.CP_num }&pageNum=${pageNum}" class="menuTitle">이동</a>
+					<a href="cpView.do?CP_num=${reservation.CP_num }&pageNum=${pageNum}" class="">이동</a>
 				</td>
 				<td class="col-md-2 text-center">${reservation.CP_startDate }</td>
 				<td class="col-md-2 text-center">${reservation.CP_startPoint }</td>
@@ -57,7 +57,7 @@
 				
 				<td class="col-md-2 text-center">
 					<a onclick="window.open('profileView.do?MB_nickName=${reservation.MB_nickNameDv }', '',
-						'width=1000,height=1000,location=no,status=no,scrollbars=yes');" class="menuTitle">${reservation.MB_nickNameDv }</a>
+						'width=500,height=560,location=no,status=no,scrollbars=yes');" class="">${reservation.MB_nickNameDv }</a>
 				</td>
 				
 				<c:if test="${reservation.RSV_confirm == 'Y' && reservation.RSV_mConfirm == 'N' }">
@@ -75,7 +75,7 @@
 					<td class="col-md-1 text-center">
 																								<!-- DMB_num에는 후기테이블에 작성자 컬럼에 들어가기 위해 카풀 게시글 등록자의 이름을 보냄 -->
 						<a onclick="window.open('psgReviewWriteForm.do?RSV_num=${reservation.RSV_num }&RV_writer=${reservation.MB_num }&RV_reader=${reservation.MB_numDv }&MB_nickName=${reservation.MB_nickNameDv }', '',
-							'width=430,height=400,location=no,status=no,scrollbars=yes');" class="menuTitle">후기 작성</a>
+							'width=430,height=400,location=no,status=no,scrollbars=yes');" class="btn_sm_stroke">후기 작성</a>
 					</td>
 				</c:if>
 				<c:if test="${today < reservation.CP_startDate }">

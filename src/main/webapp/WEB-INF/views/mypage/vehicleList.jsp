@@ -30,7 +30,7 @@
 				<th class="col md-2 text-center">차랑명</th>
 				<th class="col md-2 text-center">연식</th>
 				<th class="col md-2 text-center">차종</th>
-				<th class="col md-2 text-center">보험여부</th>
+				<th class="col md-2 text-center">자차보험</th>
 				<th class="col md-2 text-center">삭제</th>
 			</tr>
 			<c:if test="${empty vcList }">

@@ -69,7 +69,7 @@ public class ApplyController {
 		// 파일을 리소스 폴더에 저장
 		String real = session.getServletContext().getRealPath("/resources/applyImg");
 		FileOutputStream fos = new FileOutputStream(new File(real+"/"+fileName));
-		fos.write(vehicle.getFile().getBytes());
+		fos.write(apply.getFileAp().getBytes());
 		fos.close();
 		
 		// 변경된 파일이름을 apply 객체에 저장하고 db로 보냄

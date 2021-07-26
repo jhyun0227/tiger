@@ -76,11 +76,12 @@
 							if (data2 == frm.emailChk.value) {
 								$("#emailChk_success").show();
 								$("#emailChk_fail").hide();
-								$("#submit").attr('disabled', false);
+								/* $("#submit").attr('disabled', false); */
+								$("#nickNameChk").attr('disabled', false);
 							} else {
 								$("#emailChk_success").hide();
 								$("#emailChk_fail").show();
-								$("#submit").attr('disabled', true);
+								/* $("#submit").attr('disabled', true); */
 							}
 							});
 						});
@@ -104,11 +105,11 @@
 				if (MB_pw == MB_pw_confirm) {
 					$("#alert-success").show();
 					$("#alert-danger").hide();
-					$("#submit").attr('disabled', false);
+					/* $("#submit").attr('disabled', false); */
 				} else {
 					$("#alert-success").hide();
 					$("#alert-danger").show();
-					$("#submit").attr('disabled', true);
+					/* $("#submit").attr('disabled', true); */
 				}
 		    }
        });
@@ -130,29 +131,29 @@
 				 $("#alert2").toggle();
 				 $("#alert3").hide();
 				 $("#alert4").hide();
-				 $("#submit").attr('disabled', true);
+				 /* $("#submit").attr('disabled', true); */
 			 } else {
 			 	 if (pw.length < 4 ) {  
 					$("#alert1").toggle();
 					$("#alert2").hide();
 					$("#alert3").hide();
 				    $("#alert4").hide();
-				    $("#submit").attr('disabled', true); 
+				   /*  $("#submit").attr('disabled', true);  */
 	   			 } else if (num >= 0 && eng >= 0){
 	    			$(".alert").hide(); 
-	    			$("#submit").attr('disabled', false);
+	    			/* $("#submit").attr('disabled', false); */
 	 	  		 } else if (num < 0 && eng >= 0   ) {   
 				    $("#alert1").hide();
 			        $("#alert2").hide();
 			  	    $("#alert3").toggle();    
 			   	    $("#alert4").hide();
-			   	    $("#submit").attr('disabled', true);
+			   	    /* $("#submit").attr('disabled', true); */
 		   		 } else if ( num >= 0 && eng < 0  ){  
 				    $("#alert1").hide();
 					$("#alert2").hide();
 					$("#alert3").hide();
 					$("#alert4").toggle();
-					$("#submit").attr('disabled', true);
+					/* $("#submit").attr('disabled', true); */
 			 	 }
 	        } 
 		  });	
@@ -213,7 +214,7 @@
 				$("#err_regNum4").hide();
 				$("#regNum").val('');  
 				$("#regNum").focus();
-				$("#submit").attr('disabled', true); 
+				/* $("#submit").attr('disabled', true); */ 
 		     } else {
 		    	 if (gender == 1 || gender == 2) { // 주민등록번호 뒷자리 첫번째 값이 1과 2인 경우
 					age = year - (1900 + parseInt(regNum.substring(0,2)));  // 유효한 정보
@@ -221,7 +222,7 @@
 						$("#err_regNum2").hide();
 						$("#err_regNum3").toggle();
 						$("#err_regNum4").hide();
-						$("#submit").attr('disabled', false);
+						/* $("#submit").attr('disabled', false); */
 			    } else {
 			    	if  (gender == 3 || gender == 4) { // 3과 4인 경우
 						age = year - (2000 + parseInt(regNum.substring(0,2)));
@@ -233,7 +234,7 @@
 							$("#regNum").val('');  
 							$("#gender").val('');  
 							$("#regNum").focus();
-							$("#submit").attr('disabled', true); 
+							/* $("#submit").attr('disabled', true); */ 
 				      } else if (age < 0) {
 				    	    $("#err_regNum1").hide();
 							$("#err_regNum2").hide();
@@ -242,7 +243,7 @@
 							$("#regNum").val('');  
 							$("#gender").val('');  
 							$("#regNum").focus();
-							$("#submit").attr('disabled', true);
+							/* $("#submit").attr('disabled', true); */
 				      }
 			        } 	
 		          } 
@@ -355,7 +356,7 @@
 					<td class="col md-10">
 						<input type="text" name="MB_nickName" id="nickName" required="required" 
 						        placeholder="닉네임을 입력해주세요" class="inputline2"> 
-						<input type="button" onclick="nickChk()"  value="중복체크" class="btn_ck">
+						<input type="button" onclick="nickChk()" id="nickNameChk" value="중복체크" class="btn_ck" disabled="disabled">
 						<div id="nickChk" class="err"></div></td>
 				</tr>
 				<tr>

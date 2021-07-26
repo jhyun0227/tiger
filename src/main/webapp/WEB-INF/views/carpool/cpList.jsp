@@ -2,6 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<!-- 현재시간 불러와서 타세요 글중에서 시간 지난글 안보여줌 -->
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<jsp:useBean id="now" class="java.util.Date" />
+<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
+<fmt:formatDate value="${now}" pattern="HH:mm" var="todayTime" />
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -81,30 +87,72 @@
 			<c:if test="${not empty carpoolList }">
 				<c:forEach var="carpool" items="${carpoolList }">
 					<tr>
-						<td>${CP_num}<c:set var="CP_num" value="${CP_num - 1}"></c:set>
+						<td class="text-center">${CP_num}<c:set var="CP_num" value="${CP_num - 1}"></c:set>
 						<%-- ${carpool.CP_num } --%></td>
 						<c:if test="${carpool.CP_del == 'Y' }">
 							<th colspan="7" class="text-center">삭제된 글 입니다</th>
 						</c:if>
 						<c:if test="${carpool.CP_del != 'Y' }">
-							<td title="상세보기" class="text-center">
-								<a href="cpView.do?CP_num=${carpool.CP_num }&pageNum=${pageNum}" class="btn btn-info btn-sm">상세보기</a>
-							</td>
-							<td class="text-center">${carpool.CP_startPoint }</td>
-							<td class="text-center">${carpool.CP_endPoint }</td>
-							<td class="text-center">${carpool.CP_fee }</td>
-							<td class="text-center">${carpool.CP_startDate }</td>
-							<td class="text-center">${carpool.CP_startTime }</td>
-							<td class="text-center">
-								<!-- 매칭완료된 좌석수 / 총 좌석수  -->
-								<c:if test="${carpool.CP_passNumNow < carpool.CP_passNum }">
-									${carpool.CP_passNumNow } / ${carpool.CP_passNum }
+							<!-- 1.현재날짜와 비교해서 출발일이 이후 일때 목록 보여줌 -->
+							<c:if test="${today < carpool.CP_startDate}">
+								<!-- 1-1.현재시간과 비교해서 출발시간 전일때 목록 보여줌 -->
+								<c:if test="${todayTime > carpool.CP_startTime}">
+									<td title="상세보기" class="text-center">
+										<a href="cpView.do?CP_num=${carpool.CP_num }&pageNum=${pageNum}" class="btn btn-default btn-sm">상세보기</a>
+									</td>
+									<td class="text-center">${carpool.CP_startPoint }</td>
+									<td class="text-center">${carpool.CP_endPoint }</td>
+									<td class="text-center">${carpool.CP_fee }</td>
+									<td class="text-center">${carpool.CP_startDate }</td>
+									<td class="text-center">${carpool.CP_startTime }</td>
+									<td class="text-center">
+										<!-- 1-1-1.매칭완료된 좌석수 / 총 좌석수  -->
+										<c:if test="${carpool.CP_passNumNow < carpool.CP_passNum }">
+											${carpool.CP_passNumNow } / ${carpool.CP_passNum }
+										</c:if>
+										<!-- 1-1-2.매칭완료좌석수와 총좌석수가 같으면 "완료된 매칭"으로 띄움 -->
+										<c:if test="${carpool.CP_passNumNow == carpool.CP_passNum }">
+											완료된 매칭
+										</c:if>
+									</td>
 								</c:if>
-								<!-- 매칭완료좌석수와 총좌석수가 같으면 "완료된 매칭"으로 띄움 -->
-								<c:if test="${carpool.CP_passNumNow == carpool.CP_passNum }">
-									완료된 매칭
+								<!-- 1-2.현재시간과 비교해서 지난 출발시간은 목록에서 보여주지 않음 -->
+			 					<c:if test="${todayTime < carpool.CP_startTime}">
+			 						<th colspan="7" class="text-center">출발시간이 지난 매칭 입니다</th>
+			 					</c:if>
+							</c:if>
+							<!-- 2.현재날짜와 비교해서 지난 출발일들은 목록에서 보여주지 않음 -->
+		 					<c:if test="${today > carpool.CP_startDate}">
+		 						<th colspan="7" class="text-center">출발시간이 지난 매칭 입니다</th>
+		 					</c:if>
+		 					<!-- 3.현재날짜와 비교해서 출발일이 같을때도 목록 보여줌 -->
+							<c:if test="${today == carpool.CP_startDate}">
+								<!-- 3-1.현재시간과 비교해서 출발시간 일때 목록 보여줌 -->
+								<c:if test="${todayTime < carpool.CP_startTime}">
+									<td title="상세보기" class="text-center">
+										<a href="cpView.do?CP_num=${carpool.CP_num }&pageNum=${pageNum}" class="btn btn-default btn-sm">상세보기</a>
+									</td>
+									<td class="text-center">${carpool.CP_startPoint }</td>
+									<td class="text-center">${carpool.CP_endPoint }</td>
+									<td class="text-center">${carpool.CP_fee }</td>
+									<td class="text-center">${carpool.CP_startDate }</td>
+									<td class="text-center">${carpool.CP_startTime }</td>
+									<td class="text-center">
+										<!-- 3-1-1.매칭완료된 좌석수 / 총 좌석수  -->
+										<c:if test="${carpool.CP_passNumNow < carpool.CP_passNum }">
+											${carpool.CP_passNumNow } / ${carpool.CP_passNum }
+										</c:if>
+										<!-- 3-1-2.매칭완료좌석수와 총좌석수가 같으면 "완료된 매칭"으로 띄움 -->
+										<c:if test="${carpool.CP_passNumNow == carpool.CP_passNum }">
+											완료된 매칭
+										</c:if>
+									</td>
 								</c:if>
-							</td>
+								<!-- 3-2.현재시간과 비교해서 지난 출발시간은 목록에서 보여주지 않음 -->
+			 					<c:if test="${todayTime > carpool.CP_startTime}">
+			 						<th colspan="7" class="text-center">출발시간이 지난 매칭 입니다</th>
+			 					</c:if>
+							</c:if>
 						</c:if>		
 					</tr>
 				</c:forEach>

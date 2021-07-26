@@ -46,7 +46,7 @@ public class CarpoolController {
 		if (pageNum == null || pageNum.equals(""))
 			pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
-		int rowPerPage = 2; // 한 화면에 보여주는 게시글 갯수
+		int rowPerPage = 10; // 한 화면에 보여주는 게시글 갯수
 		int total = cps.getTotal(carpool);
 		int startRow = (currentPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage - 1;
@@ -94,7 +94,7 @@ public class CarpoolController {
 		Carpool carpool = cps.select(CP_num); // 타세요 작성자 MB_num 조회
 		Member memberDB = null; // 타세요 작성한 회원 닉네임 같이 보여주기
 		memberDB = mbs.selectNum(carpool.getMB_num());
-		//referer
+		// referer 전페이지로 이동(pageNum 포함)
 		String preUrl = request.getHeader("Referer");
 		preUrl = preUrl.substring(28);
 		model.addAttribute("preUrl", preUrl);
@@ -105,7 +105,7 @@ public class CarpoolController {
 		model.addAttribute("pageNum", pageNum);
 		return "carpool/cpView";
 	}
-
+	//referer 적용 전 cpView controller
 	/*
 	 * @RequestMapping("cpView") public String cpView(int CP_num, String pageNum,
 	 * Model model, HttpSession session) { Reservation reservation = new
@@ -119,7 +119,8 @@ public class CarpoolController {
 	 * model.addAttribute("reservationList", reservationList);
 	 * model.addAttribute("member", member); model.addAttribute("carpool", carpool);
 	 * model.addAttribute("pageNum", pageNum); return "carpool/cpView"; }
-	 */	
+	 */
+	
 	// 타세요 신고하기 폼
 	@RequestMapping("cpReportForm")
 	public String cpReportForm(Report report, String pageNum, Model model) {

@@ -14,15 +14,15 @@
 	width: 100%;
 }
 
-#img_box {
-	float: left !important;
-}
+/* #img_box { */
+/* 	float: left !important; */
+/* } */
 
-#inform_box {
-	margin-top: 15px;
-	float: right !important;
-	width: 55%;
-}
+/* #inform_box { */
+/* 	margin-top: 15px; */
+/* 	float: right !important; */
+/* 	width: 50%; */
+/* } */
 
 .thumbnail {
 	height: 200px;
@@ -41,13 +41,40 @@
 }
 
 .profileDiv{
-	height: 30vh;
+	height: 20vh;
 }
 
 .reviewDiv{
-	height: 30vh;
+	height: 20vh;
+	margin-top: 330px;
+}
+.glyphicon-heart{
+	font-size: 30px;
+	color: red;
+}
+.glyphicon-heart:hover {
+	text-decoration: none;
+	color: red;
 }
 
+.glyphicon-heart-empty{
+	font-size: 30px;
+	color: red;
+}
+.glyphicon-heart-empty:hover{
+	text-decoration: none;
+	color: red;
+}
+
+.glyphicon-envelope {
+	font-size: 30px;
+	color: black
+}
+
+.glyphicon-envelope:hover {
+	text-decoration: none;
+	color: black
+}
 </style>
 </head>
 <body>
@@ -60,8 +87,8 @@
 
 	<c:if test="${result == 1 }">
 		<div align="center">
+				<h2 class="">${member.MB_nickName }님의 프로필</h2>
 			<div class="profileDiv">
-				<h2 class="title">${member.MB_nickName }님의프로필</h2>
 				<div class="narrowWidth1">
 					<div id="img_box">
 						<img alt="" src="${path }/resources/memberImg/${member.MB_img }" class="thumbnail">
@@ -69,38 +96,38 @@
 					<div id="inform_box">
 						<table class="table">
 							<tr>
-								<td class="col-md-3 text-center">이메일</td>
-								<td class="col-md-9">${member.MB_id }</td>
+								<td class="col-sm-3 text-center">이메일</td>
+								<td class="col-sm-9">${member.MB_id }</td>
 							</tr>
 							<tr>
-								<td class="col-md-3 text-center">닉네임</td>
-								<td class="col-md-9">${member.MB_nickName }</td>
+								<td class="col-sm-3 text-center">닉네임</td>
+								<td class="col-sm-9">${member.MB_nickName }</td>
 							</tr>
 
 							<c:if
 								test="${member.MB_gender == '1' || member.MB_gender == '3'}">
 								<tr>
-									<td class="col-md-3 text-center">성별</td>
-									<td class="col-md-9">남자</td>
+									<td class="col-sm-3 text-center">성별</td>
+									<td class="col-sm-9">남자</td>
 								</tr>
 							</c:if>
 							<c:if
 								test="${member.MB_gender == '2' || member.MB_gender == '4'}">
 								<tr>
-									<td class="col-md-3 text-center">성별</td>
-									<td class="col-md-9">여자</td>
+									<td class="col-sm-3 text-center">성별</td>
+									<td class="col-sm-9">여자</td>
 								</tr>
 							</c:if>
 
 							<tr>
-								<td class="col-md-3 text-center">가입일</td>
-								<td class="col-md-9">${member.MB_regDate }</td>
+								<td class="col-sm-3 text-center">가입일</td>
+								<td class="col-sm-9">${member.MB_regDate }</td>
 							</tr>
 
 							<tr align="center">
 								<c:if test="${favo > 0 }">
 									<td colspan="2">
-										<a class="glyphicon glyphicon-heart"
+										<a class="glyphicon glyphicon-heart" 
 										aria-hidden="true"
 										href="deleteFv.do?MB_numG=${sessionScope.MB_num }&MB_numT=${member.MB_num}&MB_nickName=${member.MB_nickName}"></a>
 										
@@ -132,13 +159,19 @@
 			</div>
 			<div class="reviewDiv">
 				<c:if test="${result2 == -1 }">
-					<h2 class="title">평점 : 0점</h2>
+					<h2 class="">
+						<img alt="" src="${path }/resources/starImg/star.png" width="50px" height="50px">&nbsp;&nbsp;
+						0.0
+					</h2>
 				</c:if>
 				<c:if test="${result2 != -1 }">
-					<h2 class="title">평점 : ${reviewAvg }점</h2>
+					<h2 class="">
+						<img alt="" src="${path }/resources/starImg/star.png" width="50px" height="50px">&nbsp;&nbsp;
+						${reviewAvg }
+					</h2>
 				</c:if>
 
-				<table class="table narrowWidth1">
+				<table class="table">
 					<tr>
 						<th colspan="2" class="text-center">리뷰는 최근 5개까지만 표시됩니다.</th>
 					</tr>
@@ -150,31 +183,31 @@
 					<c:if test="${not empty rvList }">
 						<c:forEach var="review" items="${rvList }">
 							<tr>
-								<td class="col-md-5 text-left">${review.MB_nickName }</td>
+								<td class="col-sm-6 text-left">${review.MB_nickName }</td>
 								
 								<c:if test="${review.RV_star == 5 }">
-									<td class="col-md-7 text-left">★★★★★</td>
+									<td class="col-sm-6 text-left">★★★★★</td>
 								</c:if>
 								<c:if test="${review.RV_star == 4 }">
-									<td class="col-md-7 text-left">★★★★☆</td>
+									<td class="col-sm-6 text-left">★★★★☆</td>
 								</c:if>
 								<c:if test="${review.RV_star == 3 }">
-									<td class="col-md-7 text-left">★★★☆☆</td>
+									<td class="col-sm-6 text-left">★★★☆☆</td>
 								</c:if>
 								<c:if test="${review.RV_star == 2 }">
-									<td class="col-md-7 text-left">★★☆☆☆</td>
+									<td class="col-sm-6 text-left">★★☆☆☆</td>
 								</c:if>
 								<c:if test="${review.RV_star == 1 }">
-									<td class="col-md-7 text-left">★☆☆☆☆</td>
+									<td class="col-sm-6 text-left">★☆☆☆☆</td>
 								</c:if>
-								<c:if test="${review.RV_star == 1 }">
-									<td class="col-md-7 text-left">☆☆☆☆☆</td>
+								<c:if test="${review.RV_star == 0 }">
+									<td class="col-sm-6 text-left">☆☆☆☆☆</td>
 								</c:if>								
 																																								
 							</tr>
 							<tr>
 								<td colspan="2">
-									<textarea rows="3" cols="90" readonly="readonly" style="border: none">${review.RV_content }</textarea>
+									<pre style="border: none">${review.RV_content }</pre>
 								</td>
 							</tr>
 							<br>

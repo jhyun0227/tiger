@@ -48,7 +48,7 @@
 					<tr>
 						<td class="col-xs-4 text-center">
 							<a onclick="window.open('profileView.do?MB_nickName=${rvsList.MB_nickName }', '',
-							'width=1000,height=1000,location=no,status=no,scrollbars=yes');" class="menuTitle">${rvsList.MB_nickName }</a>
+							'width=500,height=560,location=no,status=no,scrollbars=yes');" class="menuTitle">${rvsList.MB_nickName }</a>
 						</td>
 						
 						<c:if test="${rvsList.MB_gender == '1' || rvsList.MB_gender == '3'}">

@@ -18,10 +18,6 @@
 		url=url+"&eName="+end
 		window.open(url,"실제경로검색");
 	}
-	function preUrl(){
-		var preUrl = document.referrer.split("/")[4];
-		location.href=preUrl;
-	}
 </script>
 </head>
 <body>
@@ -182,7 +178,7 @@
 				</c:if>
 				</table>
 				<div align="center">
-					<a onclick="preUrl()" class="btn_sm_stroke">뒤로가기</a>
+					<a onclick="hi" class="btn_sm_stroke">뒤로가기</a>
 					<%-- <a href="cpList.do?pageNum=${pageNum }" class="btn_sm_stroke">뒤로가기</a> --%>
 					<!-- 신청가능 인원수 다 채우면 신청 못하게 막음 -->
 					<c:if test="${carpool.CP_passNumNow < carpool.CP_passNum }">
@@ -221,8 +217,8 @@
 								</c:if>
 								<c:if test="${reservation.RSV_mConfirm == 'N' }">
 									<td class="text-center">
-										<a href="cpAcceptResult.do?MB_num=${reservation.MB_num}&CP_num=${carpool.CP_num}&preUrl=${preUrl }" class="btn btn_sm_stroke">수락</a>
-										<a href="cpDenialResult.do?MB_num=${reservation.MB_num}&CP_num=${carpool.CP_num}&preUrl=${preUrl }" class="btn btn_sm_stroke">거절</a>
+										<a href="cpAcceptResult.do?MB_num=${reservation.MB_num}&CP_num=${carpool.CP_num}&pageNum=${pageNum }" class="btn btn_sm_stroke">수락</a>
+										<a href="cpDenialResult.do?MB_num=${reservation.MB_num}&CP_num=${carpool.CP_num}&pageNum=${pageNum }" class="btn btn_sm_stroke">거절</a>
 									</td>
 								</c:if>
 							</c:if>
@@ -236,7 +232,6 @@
 				</c:if>
 				</table>
 				<div align="center">
-					<a onclick="preUrl()" <%-- href="cpList.do?pageNum=${pageNum }" --%> class="btn_sm_stroke">뒤로가기</a>
 					<a href="cpDeleteForm.do?CP_num=${carpool.CP_num}&pageNum=${pageNum }" class="btn_sm_full">삭제</a>
 					<a href="cpUpdateForm.do?CP_num=${carpool.CP_num}&pageNum=${pageNum }" class="btn_sm_full">수정</a>
 				</div>

@@ -346,7 +346,7 @@
 								required="required" maxlength="1" style="width: 15px;" class="inputline1">
 					    <span>******</span> 
 						<div class="alert alert-danger"  id="err_regNum1">미성년자는 가입할 수 없습니다</div>
-						<div  class="alert alert-danger" id="err_regNum2">유효하지 않은 정보입니다</div>
+						<div class="alert alert-danger" id="err_regNum2">유효하지 않은 정보입니다</div>
 						<div class="alert alert-success"  id="err_regNum3">유효한 정보입니다</div> 
 						<div class="alert alert-danger"  id="err_regNum4">생년월일을 확인하세요</div> 
 					</td>

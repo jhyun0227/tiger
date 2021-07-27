@@ -20,20 +20,35 @@
 		url=url+"&eName="+end
 		window.open(url,"실제경로검색");
 	}
+	// 출발일이 현재날짜보다 이전으로 설정 못하게 막는 자바스크립트
+	function Chk() {
+		if (cp.CP_startDate.value < cp.now_date.value) {
+			alert("이미 지난 날짜입니다. 출발일을 다시 설정해주세요.");
+			cp.CP_startDate.value="";
+			cp.CP_startDate.focus();
+			return false;
+		} else {// 출발일이 오늘이면서 출발시간으로 현재시간보다 이전으로 설정 못하게 막기
+			if (cp.CP_startDate.value == cp.now_date.value) {
+				if (CP_startTime.value < cp.now_time.value) {
+					alert("출발시간은 ${now_time}부터 등록가능합니다.");
+					cp.CP_startTime.value="";
+					cp.CP_startTime.focus();
+					return false;
+				}
+			}
+		}
+	}
 </script>
 </head>
 <body>
-	<!-- 컨텐츠 시작  -->
-	<div class="content-wrapper">
-		<div class="container">
-			<form action="cpUpdateResult.do" class="form-horizontal" method="post">
+<!-- 컨텐츠 시작  -->
+<h1 class="title">타세요 글 수정</h1>
+	<div class="searchDIV">
+			<form action="cpUpdateResult.do" class="form-horizontal" method="post" name="cp" role="form" onsubmit="return Chk()">
 			<input type="hidden" name="CP_num" value="${carpool.CP_num}" />
-				<!-- 컨텐츠 헤더 부분(Page header) -->
-				<section class="content-header">
-					<h1>
-						<i class="fa fa-car" aria-hidden="true"></i>타세요 수정
-					</h1>
-				</section>
+			<!-- 출발일 날짜 설정값-->
+			<input type="hidden" name="now_date" value="${now_date}" />
+			<input type="hidden" name="now_time" value="${now_time}" />
 				<!-- 메인 컨텐츠 부분 -->
 				<section class="content container-fluid">
 					<div class="box box-danger">
@@ -56,7 +71,7 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<button class="btn btn-primary" style="margin-left: 200px" onclick="find()">실제 경로보기</button>
+									<button class="btn_sm_full" style="margin-left: 200px" onclick="find()">실제 경로보기</button>
 								</div>
 								<div class="form-group">
 									<label for="CP_startDate" class="col-sm-2 control-label">출발일</label>
@@ -72,26 +87,7 @@
 									<label for="CP_startTime" class="col-sm-2 control-label">출발시간</label>
 									<div class="col-sm-4">
 										<div class="input-group">
-											<select name="CP_startTime" id="CP_startTime">
-												<option value="07:00" >07:00</option>
-												<option value="07:15" >07:15</option>
-												<option value="07:30" >07:30</option>
-												<option value="07:45" >07:45</option>
-												<option value="08:00" >08:00</option>
-												<option value="08:15" >08:15</option>
-												<option value="08:30" >08:30</option>
-												<option value="08:45" >08:45</option>
-												<option value="09:00" >09:00</option>
-												<option value="18:00" >18:00</option>
-												<option value="18:15" >18:15</option>
-												<option value="18:30" >18:30</option>
-												<option value="18:45" >18:45</option>
-												<option value="19:00" >19:00</option>
-												<option value="19:15" >19:15</option>
-												<option value="19:30" >19:30</option>
-												<option value="19:30" >19:45</option>
-												<option value="20:00" >20:00</option>
-											</select>
+											<input type="text" class="form-control" name="CP_startTime" id="CP_startTime" placeholder="18:00" required="required" value="${carpool.CP_startTime }">
 										</div>
 									</div>
 								</div>
@@ -156,16 +152,15 @@
 								</div>
 							</div>
 
-							<div class="form-group">
-								<input type="submit" class="btn btn-primary pull-right" value="수정완료">
-								<a href="cpList.do?pageNum=${pageNum }" class="btn btn-info pull-right">타세요 목록</a>
+							<div align="center">
+								<a href="cpList.do?pageNum=${pageNum }" class="btn_sm_stroke">타세요 목록</a>
+								<input type="submit" class="btn_sm_full" onclick="Chk()" value="수정완료">
 							</div>
 						</form>
 					</div>
 				</section>
 			</form>
 		</div>
-	</div>
 	<!-- 컨텐츠 끝  -->
 </body>
 </html>

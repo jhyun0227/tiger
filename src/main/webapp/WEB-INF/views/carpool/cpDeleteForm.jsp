@@ -20,38 +20,30 @@
 </head>
 <body>
 <!-- 컨텐츠 시작  -->
-<div class="content-wrapper">
-	<div class="container">
-		<!-- 컨텐츠 헤더 부분(Page header) -->
-		<section class="content-header">
-			<h1>
-				<i class="fa fa-car" aria-hidden="true"></i>타세요 게시글 삭제
-			</h1>
-		</section>
-		<section class="content container-fluid">
-			<div class="box box-danger">
-				<form action="cpDeleteResult.do" name="frm" class="form-horizontal" method="post" onsubmit="return chk()">
-					<input type="hidden" name="MB_pw" value="${member.MB_pw }">
-					<input type="hidden" name="CP_num" value="${carpool.CP_num }">
-					<input type="hidden" name="pageNum" value="${pageNum}">
-					<div class="box-body">
-						<div class="form-group">
-							<label class="col-sm-2 control-label">암호 확인</label>
-							<div class="col-sm-10">
-								<div class="input-group">
-									<input type="password" id="pwChk" name="pwChk" class="form-control" placeholder="암호 입력.." required="required" autofocus="autofocus" />
-								</div>
-								<div class="input-group">
-									<input type="button" class="btn btn-default" onclick="history.back()" value="취소">
-									<input type="submit" class="btn btn-primary" value="확인">
-								</div>
-							</div>
-						</div>
+<div class="searchDIV">
+	<!-- 컨텐츠 헤더 부분(Page header) -->
+	<h1 class="title">타세요 글 삭제</h1>
+	<div align="center">
+	<section class="content container-fluid">
+		<div class="box box-danger">
+			<form action="cpDeleteResult.do" name="frm" class="form-horizontal" method="post" onsubmit="return chk()">
+				<input type="hidden" name="MB_pw" value="${member.MB_pw }">
+				<input type="hidden" name="CP_num" value="${carpool.CP_num }">
+				<input type="hidden" name="pageNum" value="${pageNum}">
+				<div class="form-group">
+					<label>암호 확인</label>
+					<div class="input-group">
+						<input type="password" id="pwChk" name="pwChk" class="form-control" placeholder="암호 입력.." required="required" autofocus="autofocus" />
 					</div>
-				</form>	
-			</div>
-		</section>
-	</div>
+					<div class="input-group">
+						<input type="button" class="btn_sm_stroke" onclick="history.back()" value="취소">
+						<input type="submit" class="btn_sm_full" value="확인">
+					</div>
+				</div>
+			</form>	
+		</div>
+	</section>
+	</div>	
 </div>
 </body>
 </html>

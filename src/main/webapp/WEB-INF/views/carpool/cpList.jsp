@@ -77,7 +77,7 @@
 				<th class="text-center">요금</th>
 				<th class="text-center">출발일</th>
 				<th class="text-center">출발시간</th>
-				<th class="text-center">매칭완료 / 전체여석</th>
+				<th class="text-center">매칭완료 / 전체좌석</th>
 			</tr>
 			<c:if test="${empty cpList }">
 				<tr>
@@ -152,7 +152,7 @@
 			</c:if>
 		</table>
 		<div align="center">
-			<ul class="pagination bottom">
+			<ul class="pagination_bottom">
 				<!-- 시작페이지가 pagePerBlock(10)보다 크면 앞에 보여줄 페이지가 있다 -->
 				<c:if test="${pb.startPage > pb.pagePerBlock }">
 					<li><a href="cpList.do?pageNum=1&search=${carpool.search }&keyword=${carpool.keyword}" class="page_num">

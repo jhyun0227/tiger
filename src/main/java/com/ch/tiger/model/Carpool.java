@@ -13,7 +13,8 @@ public class Carpool {
 	private Date CP_startDate;			//출발일
     private String CP_startTime;		//출발시간
     private int CP_fee;					//요금
-    private int CP_passNum;				//좌석수
+    private int CP_passNum;				//총좌석수
+    private int CP_passNumNow;			//매칭완료된좌석수
     private String CP_gendertype;		//성별제한
     private String CP_option;			//참고사항(애완동물허용, 조용한카풀, 음식물섭취, 마스크착용)
     private int CP_duration;			//예상소요시간

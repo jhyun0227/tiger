@@ -74,6 +74,10 @@ public class CarpoolDaoImpl implements CarpoolDao {
 		return sst.selectList("carpoolns.adminCpList", carpool);
 	}
 
+	public int updatePassNumNow(int CP_num) {
+		return sst.update("carpoolns.updatePassNumNow", CP_num);
+	}
+	
 }
 
 

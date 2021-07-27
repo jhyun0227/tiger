@@ -80,7 +80,7 @@ public class CarpoolController {
 	
 	// 타세요 리스트 상세보기
 	@RequestMapping("cpView")
-	public String cpView(int CP_num, String pageNum, Model model, HttpSession session) {
+	public String cpView(HttpServletRequest request, int CP_num, String pageNum, Model model, HttpSession session) {
 		Reservation reservation = new Reservation();
 		reservation.setCP_num(CP_num);
 		List<Reservation> reservationList = rvs.reservationList(reservation); // reservation 테이블 정보 list로 보여줌
@@ -89,6 +89,10 @@ public class CarpoolController {
 		Carpool carpool = cps.select(CP_num); // 타세요 작성자 MB_num 조회
 		Member memberDB = null; // 타세요 작성한 회원 닉네임 같이 보여주기
 		memberDB = mbs.selectNum(carpool.getMB_num());
+		// referer 전페이지로 이동(pageNum 포함)
+		String preUrl = request.getHeader("Referer");
+		preUrl = preUrl.substring(28);
+		model.addAttribute("preUrl", preUrl);
 		model.addAttribute("memberDB", memberDB);
 		model.addAttribute("reservationList", reservationList);
 		model.addAttribute("member", member);
@@ -96,6 +100,21 @@ public class CarpoolController {
 		model.addAttribute("pageNum", pageNum);
 		return "carpool/cpView";
 	}
+	//referer 적용 전 cpView controller
+	/*
+	 * @RequestMapping("cpView") public String cpView(int CP_num, String pageNum,
+	 * Model model, HttpSession session) { Reservation reservation = new
+	 * Reservation(); reservation.setCP_num(CP_num); List<Reservation>
+	 * reservationList = rvs.reservationList(reservation); // reservation 테이블 정보
+	 * list로 보여줌 String MB_id = (String)session.getAttribute("MB_id");// 로그인한 회원의 정보
+	 * Member member = mbs.select(MB_id); // 로그인한 회원의 정보 Carpool carpool =
+	 * cps.select(CP_num); // 타세요 작성자 MB_num 조회 Member memberDB = null; // 타세요 작성한
+	 * 회원 닉네임 같이 보여주기 memberDB = mbs.selectNum(carpool.getMB_num());
+	 * model.addAttribute("memberDB", memberDB);
+	 * model.addAttribute("reservationList", reservationList);
+	 * model.addAttribute("member", member); model.addAttribute("carpool", carpool);
+	 * model.addAttribute("pageNum", pageNum); return "carpool/cpView"; }
+	 */
 	
 	// 타세요 신고하기 폼
 	@RequestMapping("cpReportForm")
@@ -185,6 +204,7 @@ public class CarpoolController {
 		reservation.setCP_num(CP_num);
 		reservation.setMB_num(MB_num);
 		int result = rvs.updateAccept(reservation);
+		int addNumResult = cps.updatePassNumNow(CP_num); // 드라이버가 수락을해서 신청한 회원이 매칭완료상태가될때마다 CP_passNumNow에 +1 해줌
 		model.addAttribute("result", result);
 		model.addAttribute("CP_num", CP_num);
 		return "carpool/cpAcceptResult";

@@ -18,6 +18,10 @@
 		url=url+"&eName="+end
 		window.open(url,"실제경로검색");
 	}
+	function preUrl(){
+		var preUrl = document.referrer.split("/")[4];
+		location.href=preUrl;
+	}
 </script>
 </head>
 <body>
@@ -127,7 +131,7 @@
 						<div class="form-group">
 							<label for="CP_comment" class="col-sm-2 control-label">기타요구사항</label>
 							<div class="col-sm-10">
-								<textarea name="CP_comment" id="CP_comment" rows="5" class="form-control" readonly="readonly">${carpool.CP_comment }</textarea>
+								<pre name="CP_comment" id="CP_comment" rows="5" class="form-control textBox" readonly="readonly">${carpool.CP_comment }</pre>
 							</div>
 						</div>
 					</form>
@@ -143,34 +147,34 @@
 				<h1 class="title">신청 현황</h1>
 				<table class="table table-striped narrowWidth40">
 				<tr>
-					<th>닉네임</th>
-					<th>성별</th>
-					<th align="center">매칭여부</th>
+					<th class="text-center">닉네임</th>
+					<th class="text-center">성별</th>
+					<th class="text-center">매칭여부</th>
 				</tr>
 				<c:if test="${empty reservationList }">
 					<tr>
-						<th colspan="3">신청한 탑승자가 없습니다</th>
+						<th colspan="3" class="text-center">신청한 탑승자가 없습니다</th>
 					</tr>
 				</c:if>
 				<c:if test="${not empty reservationList }">
 					<c:forEach var="reservation" items="${reservationList }">
 						<tr>
-							<td>${reservation.MB_nickName }</td>
-							<td>
+							<td class="text-center">${reservation.MB_nickName }</td>
+							<td class="text-center">
 								<c:if test="${reservation.MB_gender == '1' }">남</c:if>
 								<c:if test="${reservation.MB_gender == '2' }">여</c:if>
 							</td>
 							<c:if test="${reservation.RSV_confirm == 'Y' }">
 								<c:if test="${reservation.RSV_mConfirm == 'Y' }">
-									<td>매칭완료</td>
+									<td class="text-center">매칭완료</td>
 								</c:if>
 								<c:if test="${reservation.RSV_mConfirm == 'N' }">
-									<td>매칭대기</td>
+									<td class="text-center">매칭대기</td>
 								</c:if>
 							</c:if>
 							<c:if test="${reservation.RSV_confirm == 'N' }">
 								<c:if test="${reservation.RSV_mConfirm == 'N' }">
-									<td>거절</td>
+									<td class="text-center">거절</td>
 								</c:if>
 							</c:if>
 						</tr>
@@ -178,8 +182,12 @@
 				</c:if>
 				</table>
 				<div align="center">
-					<a href="cpList.do?pageNum=${pageNum }" class="btn_sm_stroke">뒤로가기</a>
-					<a href="cpRequestResult.do?CP_num=${carpool.CP_num}&MB_num=${member.MB_num}&pageNum=${pageNum}" class="btn_sm_full">신청</a>
+					<a onclick="preUrl()" class="btn_sm_stroke">뒤로가기</a>
+					<%-- <a href="cpList.do?pageNum=${pageNum }" class="btn_sm_stroke">뒤로가기</a> --%>
+					<!-- 신청가능 인원수 다 채우면 신청 못하게 막음 -->
+					<c:if test="${carpool.CP_passNumNow < carpool.CP_passNum }">
+						<a href="cpRequestResult.do?CP_num=${carpool.CP_num}&MB_num=${member.MB_num}&pageNum=${pageNum}" class="btn_sm_full">신청</a>
+					</c:if>	
 				</div>
 			</c:if>
 		</div>
@@ -190,37 +198,37 @@
 				<h1 class="title">신청 현황</h1>
 				<table class="table table-striped narrowWidth40">
 				<tr>
-					<th>닉네임</th>
-					<th>성별</th>
-					<th align="center">매칭여부</th>
+					<th class="text-center">닉네임</th>
+					<th class="text-center">성별</th>
+					<th class="text-center">매칭여부</th>
 				</tr>
 				<c:if test="${empty reservationList }">
 					<tr>
-						<th colspan="3">신청한 탑승자가 없습니다</th>
+						<th colspan="3" class="text-center">신청한 탑승자가 없습니다</th>
 					</tr>
 				</c:if>
 				<c:if test="${not empty reservationList }">
 					<c:forEach var="reservation" items="${reservationList }">
 						<tr>
-							<td>${reservation.MB_nickName }</td>
-							<td>
-								<c:if test="${reservation.MB_gender == '1' || reservation.MB_gender == '3' }">남자</c:if>
-								<c:if test="${reservation.MB_gender == '2' || reservation.MB_gender == '4' }">여자</c:if>
+							<td class="text-center">${reservation.MB_nickName }</td>
+							<td class="text-center">
+								<c:if test="${reservation.MB_gender == '1' || reservation.MB_gender == '3' }">남</c:if>
+								<c:if test="${reservation.MB_gender == '2' || reservation.MB_gender == '4' }">여</c:if>
 							</td>
 							<c:if test="${reservation.RSV_confirm == 'Y' }">
 								<c:if test="${reservation.RSV_mConfirm == 'Y' }">
-									<td>매칭완료</td>
+									<td class="text-center">매칭완료</td>
 								</c:if>
 								<c:if test="${reservation.RSV_mConfirm == 'N' }">
-									<td>
-										<a href="cpAcceptResult.do?MB_num=${reservation.MB_num}&CP_num=${carpool.CP_num}" class="btn_prev">수락</a>
-										<a href="cpDenialResult.do?MB_num=${reservation.MB_num}&CP_num=${carpool.CP_num}" class="btn_prev">거절</a>
+									<td class="text-center">
+										<a href="cpAcceptResult.do?MB_num=${reservation.MB_num}&CP_num=${carpool.CP_num}&preUrl=${preUrl }" class="btn btn_sm_full">수락</a>
+										<a href="cpDenialResult.do?MB_num=${reservation.MB_num}&CP_num=${carpool.CP_num}&preUrl=${preUrl }" class="btn btn_sm_stroke">거절</a>
 									</td>
 								</c:if>
 							</c:if>
 							<c:if test="${reservation.RSV_confirm == 'N' }">
 								<c:if test="${reservation.RSV_mConfirm == 'N' }">
-									<td>거절</td>
+									<td class="text-center">거절한 매칭</td>
 								</c:if>
 							</c:if>	
 						</tr>
@@ -228,7 +236,7 @@
 				</c:if>
 				</table>
 				<div align="center">
-					<a href="cpList.do?pageNum=${pageNum }" class="btn_sm_stroke">뒤로가기</a>
+					<a onclick="preUrl()" <%-- href="cpList.do?pageNum=${pageNum }" --%> class="btn_sm_stroke">뒤로가기</a>
 					<a href="cpDeleteForm.do?CP_num=${carpool.CP_num}&pageNum=${pageNum }" class="btn_sm_full">삭제</a>
 					<a href="cpUpdateForm.do?CP_num=${carpool.CP_num}&pageNum=${pageNum }" class="btn_sm_full">수정</a>
 				</div>

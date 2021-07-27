@@ -88,7 +88,7 @@ function deleteValue(){
 					<td class="text-center"><input type="checkbox" name="rowCheck" value="${message.MSG_num }" ></td>
 					<td class="text-center">
 						<a onclick="window.open('profileView.do?MB_nickName=${message.nicknameR }', '',
-							'width=500,height=560,location=no,status=no,scrollbars=yes');">${message.nicknameR }</a>
+							'width=500,height=560,location=no,status=no,scrollbars=yes');" class="inputLineA">${message.nicknameR }</a>
 					</td>
 					<td class="ellip">
 						<a href="msgView.do?MSG_num=${message.MSG_num }&pageNum=${pb.currentPage}">${message.MSG_content }</a>
@@ -106,7 +106,7 @@ function deleteValue(){
 	</table>
 </form>
 
-<!-- 페이지네이션 -->
+<!-- 페이징 -->
 <div align="center">
 	<ul class="pagination_bottom">
 		<c:if test="${pb.startPage > pb.pagePerBlock }">

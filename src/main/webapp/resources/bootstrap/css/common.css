@@ -131,6 +131,18 @@ body{
     border: none;
 }
 
+/* a태그 */
+
+.inputLineA{
+	color: #000000;
+}
+
+.inputLineA:hover{
+	color: #000000;
+	text-decoration: none;
+	cursor: pointer;
+}
+
 /* 첨부파일 */
 
 .filebox input[type="file"] {
@@ -193,6 +205,16 @@ body{
     width: 200px;
     height: 35px;
 } 
+
+.btn_large {
+	width: 300px;
+    height: 40px;
+    background:  #3243A8;
+    color: #eee;
+    font-size: 18px;
+    border: none;
+    margin-bottom: 30px;
+}
  
 .btn_sm {
     margin-bottom: 10px;
@@ -322,7 +344,7 @@ body{
 
 .pagination_bottom {
 	display: inline-flex;
-	margin-top: 100px;
+	margin-top: 70px;
 }
 
 .page_current_num {

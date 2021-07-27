@@ -18,7 +18,7 @@ td, th {
 <div class="narrowWidth1"  align="center">
 	<h2 class="title">로그인</h2>
 	<form action="login.do?prevUrl=${prevUrl }" method="post">
-		<table class=" ">  
+		<table>  
 			<tr>
 				<td class="inputUnderLine">
 					<input type="text" name="MB_id" required="required" 

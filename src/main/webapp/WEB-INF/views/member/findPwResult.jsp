@@ -4,14 +4,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 </head>
 <body>
 <div align="center">
 	<h2 class="title">비밀번호 찾기</h2>
 	<c:if test="${result == 1 && resultUpdatePw == 1 }">
-		<table class="table narrowWidth">
+		<table class="narrowWidth1">
 			<tr>
 				<th class="text-center">${member.MB_id }로 임시비밀번호를 전송하였습니다. 로그인 후 비밀번호를 변경해주세요.</th>
 			</tr>

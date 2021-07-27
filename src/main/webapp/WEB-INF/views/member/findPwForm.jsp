@@ -4,72 +4,55 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
 <style type="text/css">
+td, th {
+    padding: 14px 0px;	
+}
 
-	.narrowWidth1 {
-   	 	width: 35%;
-	}
-	
-	.inputline1 {
-		border: none;
-		outline: 0;
-		width: 35%;
-	}
-	
-	td, th {
-    padding: 10px 20px;
-	}
-	
-	#idBtn {
-		margin-top: 30px;
-	}
+#idBtn {
+	margin-top: 30px;
+}
 </style>
 </head>
 <body>
-<div class="container narrowWidth1"  align="center">
+<div class="narrowWidth1"  align="center">
 	<h2 class="title">비밀번호 찾기</h2>
 	<form action="findPwResult.do" method="post">
-		<table class="table " >  
+		<table>  
 			<tr>
-				<td class="col-md-2 text-center">이름</td>
-				<td class="col-md-10">
+				<td class="inputUnderLine">
 					<input type="text" name="MB_name" required="required" autofocus="autofocus"
-					 placeholder="이름" class="inputline1">
+					 placeholder="이름" class="inputLine">
 				</td>
 			</tr>
-			
-			<!-- 아이디 찾기 후 비밀번호를 찾으면 값이 자동으로 넘어가게 하기 위함 -->
+			<!-- 아이디 찾기 후 비밀번호를 찾으면 값이 자동으로 넘어옴 -->
 			<c:if test="${MB_id != null }">
-			<tr>
-				<td class="col-md-3 text-center">이메일</td>			
-				<td class="col-md-9">
+			<tr>		
+				<td class="inputUnderLine">
 					<input type="email" name="MB_id" id="email" required="required" 
-							value="${MB_id }" class="inputline1">
+							value="${MB_id }" class="inputLine">
 				</td>
 			</tr>
 			</c:if>
 			<c:if test="${MB_id == null }">
 			<tr>
-				<td class="col-md-3 text-center">이메일</td>			
-				<td class="col-md-9">
+				<td class="inputUnderLine">
 					<input type="email" name="MB_id" id="email" required="required" 
-						placeholder="이메일" class="inputline1">
+						placeholder="가입이메일" class="inputLine">
 				</td>
 			</tr>  
 			</c:if>
 			
 			<tr>
-				<td colspan="2" class="text-center">
-					<input type="submit" value="비밀번호 찾기" class="btn_sm_full" id="idBtn">
+				<td class="text-center">
+					<input type="submit" value="비밀번호 찾기" class="btn_large" id="idBtn">
 				</td>
 			</tr>
 		</table>
-		<a href="findIdForm.do">아이디 찾기</a>&nbsp;|
-		<a href="joinForm.do">회원가입</a>&nbsp; |
-		<a href="loginForm.do">로그인</a>&nbsp; |
+		<a href="findIdForm.do" class="inputLineA">아이디 찾기</a>&nbsp;|
+		<a href="joinForm.do" class="inputLineA">회원가입</a>&nbsp;|
+		<a href="loginForm.do" class="inputLineA">로그인</a>
 	</form>
 </div>
 </body>

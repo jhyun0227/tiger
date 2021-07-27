@@ -187,7 +187,7 @@
 					<!-- 신청가능 인원수 다 채우면 신청 못하게 막음 -->
 					<c:if test="${carpool.CP_passNumNow < carpool.CP_passNum }">
 						<a href="cpRequestResult.do?CP_num=${carpool.CP_num}&MB_num=${member.MB_num}&pageNum=${pageNum}" class="btn_sm_full">신청</a>
-					</c:if>	
+					</c:if>
 				</div>
 			</c:if>
 		</div>
@@ -221,7 +221,7 @@
 								</c:if>
 								<c:if test="${reservation.RSV_mConfirm == 'N' }">
 									<td class="text-center">
-										<a href="cpAcceptResult.do?MB_num=${reservation.MB_num}&CP_num=${carpool.CP_num}&preUrl=${preUrl }" class="btn btn_sm_full">수락</a>
+										<a href="cpAcceptResult.do?MB_num=${reservation.MB_num}&CP_num=${carpool.CP_num}&preUrl=${preUrl }" class="btn btn_sm_stroke">수락</a>
 										<a href="cpDenialResult.do?MB_num=${reservation.MB_num}&CP_num=${carpool.CP_num}&preUrl=${preUrl }" class="btn btn_sm_stroke">거절</a>
 									</td>
 								</c:if>

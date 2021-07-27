@@ -206,6 +206,7 @@ public class CarpoolController {
 		reservation.setMB_num(MB_num);
 		int result = rvs.updateAccept(reservation);
 		int addNumResult = cps.updatePassNumNow(CP_num); // 드라이버가 수락을해서 신청한 회원이 매칭완료상태가될때마다 CP_passNumNow에 +1 해줌
+		model.addAttribute("addNumResult", addNumResult);
 		model.addAttribute("result", result);
 		model.addAttribute("CP_num", CP_num);
 		return "carpool/cpAcceptResult";

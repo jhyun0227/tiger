@@ -157,8 +157,6 @@ body{
 }
 
 .filebox label {
-    display: inline-block;  
-    width: 100%;
     height: 25px;
     color: #3243A8;
     text-align: center; 
@@ -167,12 +165,25 @@ body{
     font-weight:bolder;
     background: initial;
     line-height: 25px;
-   /*  border: 0.5px solid #3243A8 ; */
-   margin-bottom: -1px;
+    margin-bottom: -1px;
   } 
+  
+/* .filebox label { */
+/*     display: inline-block;   */
+/*     width: 100%; */
+/*     height: 25px; */
+/*     color: #3243A8; */
+/*     text-align: center;  */
+/*     cursor: pointer; */
+/*     font-size: 15px; */
+/*     font-weight:bolder; */
+/*     background: initial; */
+/*     line-height: 25px; */
+/*     margin-bottom: -1px; */
+/*   }  */
 
 .filebox .upload-name {
-	 display: inline-block;  
+	display: inline-block;  
 	background-color: white;
 	cursor: pointer;
 	border: none;

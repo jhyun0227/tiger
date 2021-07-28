@@ -4,8 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 </head>
 <body>
 	<h1 class="title">문의내역</h1>
@@ -30,7 +28,8 @@
 		<tr>
 			<th class="col-md-2 text-center">작성일</th>
 			<th class="col-md-2 text-center">작성자</th>
-			<th class="col-md-10 text-center">제목</th>
+			<th class="col-md-6 text-center">제목</th>
+			<th class="col-md-2 text-center">삭제유무</th>
 		</tr>
 		<c:if test="${empty allQnaList}">
 			<tr>
@@ -40,28 +39,22 @@
 		<c:if test="${not empty allQnaList }">
 			<c:forEach var="qna" items="${allQnaList }">
 				<tr>
-					<c:if test="${qna.QA_del == 'Y' }">
-							<th colspan="3" class="text-center">삭제된 글 입니다</th>
-					</c:if>
-					<c:if test="${qna.QA_del != 'Y' }">
-						<!-- 답글 10px 들여쓰기 -->
-						<c:if test="${qna.QA_refLevel > 0 }">
-							<td class="col-md-2 text-center">${qna.QA_regDate }</td>
-							<td class="col-md-2 text-center">${qna.MB_nickName }</td>
-							<td class="col-md-10 text-left title_left">
+					<c:if test="${qna.QA_refLevel > 0 }">
+						<td class="col-md-2 text-center">${qna.QA_regDate }</td>
+						<td class="col-md-2 text-center">${qna.MB_nickName }</td>
+						<td class="col-md-6 text-left title_left">
 							<a href="adminQnaView.do?num=${qna.QA_num }&pageNum=${pb.currentPage}"
 								class="menuTitle">　　${qna.QA_title }</a></td>
-							<%-- <img alt="" src="" height="5" width="${qna.QA_refLevel * 10 }"> --%>
-							<!-- <img alt="" src="resources/images/re.gif"> -->
+						<td class="col-md-2 text-center">${qna.QA_del }</td>
 						</c:if>
 						<c:if test="${qna.QA_refLevel == 0 }">
 						<td class="col-md-2 text-center">${qna.QA_regDate }</td>
 						<td class="col-md-2 text-center">${qna.MB_nickName }</td>
-						<td class="col-md-10 text-left title_left">
+						<td class="col-md-6 text-left title_left">
 							<a href="adminQnaView.do?num=${qna.QA_num }&pageNum=${pb.currentPage}"
 								class="menuTitle">${qna.QA_title }</a></td>
+						<td class="col-md-2 text-center">${qna.QA_del }</td>
 						</c:if>
-					</c:if>
 				</tr>
 			</c:forEach>
 		</c:if>

@@ -21,19 +21,13 @@
 <title>타:이거</title>
 </head>
 <body>
-	<div class="container">
-		<div>
-			<tiles:insertAttribute name="admin_header"></tiles:insertAttribute>
-		</div>
-		<div>
-			<tiles:insertAttribute name="admin_menu"></tiles:insertAttribute>
-		</div>
-		<div class="body_footer">
+	<div class="narrowWidth">
+		<tiles:insertAttribute name="admin_header"></tiles:insertAttribute>
+		<tiles:insertAttribute name="admin_menu"></tiles:insertAttribute>
+		<div class="contents">
 			<tiles:insertAttribute name="body"></tiles:insertAttribute>
 		</div>
-		<div>
-			<tiles:insertAttribute name="footer"></tiles:insertAttribute>
-		</div>
+		<tiles:insertAttribute name="footer"></tiles:insertAttribute>
 	</div>
 </body>
 </html>

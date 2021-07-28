@@ -7,68 +7,59 @@
 <jsp:useBean id="now" class="java.util.Date" />
 <fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
 <fmt:formatDate value="${now}" pattern="HH:mm" var="todayTime" />
-
+<c:set var="path" value="${pageContext.request.contextPath }"></c:set>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <title>Insert title here</title>
-<!-- Core theme CSS (includes Bootstrap)-->
-<link href="./bootstrap/css/styles.css" rel="stylesheet" />
+<!-- 타세요 only CSS-->
+<link href="${path }/resources/bootstrap/css/carpool.css" rel="stylesheet" />
 </head>
 <body>
 <h1 class="title">타세요 목록</h1>
-		<!-- 검색창 -->
-		<div class="searchDIV">
-			<form action="cpList.do">
-				<input type="hidden" name="pageNum" value="1">
-				<select name="search" class="inputUnderLine">
-					<option value="CP_startPoint">출발지</option>
-					<option value="CP_endPoint">도착지</option>
-				</select>
-				<input type="text" name="keyword" value="${carpool.keyword }" class="inputUnderLine">
-				<input type="submit" value="검색" class="btn_search">
-			</form>
-			
-			<!-- 타세요 작성 버튼 -->
-			<div align="right">
-				<a href="cpWriteForm.do?CP_num=0&pageNum=1" class="btn_sm_full">타세요 작성</a>
+	<!-- 검색창 -->
+	<div class="searchDIV">
+		<form action="cpList.do">
+			<input type="hidden" name="pageNum" value="1">
+			<select name="search" class="inputUnderLine">
+				<option value="CP_startPoint">출발지</option>
+				<option value="CP_endPoint">도착지</option>
+			</select>
+			<input type="text" name="keyword" value="${carpool.keyword }" class="inputUnderLine">
+			<input type="submit" value="검색" class="btn_search">
+		</form>
+		
+		<!-- 타세요 작성 버튼 -->
+		<div align="right">
+			<a href="cpWriteForm.do?CP_num=0&pageNum=1" class="btn_sm_full">타세요 작성</a>
+		</div>
+    </div>
+
+
+
+
+	<div align="center">
+		<div class="col-sm-4">
+			<div class="power">
+			<c:if test="${empty cpList }">
+				<tr>
+					<th colspan="8" class="text-center">등록된 게시글이 없습니다</th>
+				</tr>
+			</c:if>
+				<h2 class="totaly_text">Totaly Optimised</h2>
+				<p class="making">making it look like readable English. Many
+					desktop publishing packages and web page editors now use Lorem
+					Ipsum as their default model text, and a search for 'lorem ipsum'
+					will uncover many web sites still</p>
+			<button type="button" class="read_bt"><a href="#">Read More</a></button>
 			</div>
-	    </div>
-	    <!--Content Row
-	    <div class="row gx-4 gx-lg-5">
-	        <div class="col-md-4 mb-5">
-	            <div class="card h-100">
-	                <div class="card-body">
-	                    <h2 class="card-title">출발지 </h2>
-	                    <h2 class="card-title">도착지 </h2>
-	                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
-	                </div>
-	                <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div>
-	            </div>
-	        </div>
-	        <div class="col-md-4 mb-5">
-	            <div class="card h-100">
-	                <div class="card-body">
-	                    <h2 class="card-title">Card Two</h2>
-	                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod tenetur ex natus at dolorem enim! Nesciunt pariatur voluptatem sunt quam eaque, vel, non in id dolore voluptates quos eligendi labore.</p>
-	                </div>
-	                <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div>
-	            </div>
-	        </div>
-	        <div class="col-md-4 mb-5">
-	            <div class="card h-100">
-	                <div class="card-body">
-	                    <h2 class="card-title">Card Three</h2>
-	                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
-	                </div>
-	                <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div>
-	            </div>
-	        </div>
-	    </div>
- -->
-		<table class="table">
+		</div>
+	</div>
+
+
+	<table class="table">
 			<tr>
 				<th class="text-center">등록 번호</th>
 				<th class="text-center">상세보기</th>
@@ -182,9 +173,5 @@
 				</c:if>
 			</ul>
 		</div>
-		<!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="bootstrap/js/scripts.js"></script>
 </body>
 </html>

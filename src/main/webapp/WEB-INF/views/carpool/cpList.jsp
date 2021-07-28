@@ -70,36 +70,35 @@
 						<c:if test="${today < carpool.CP_startDate}">
 							<input type="hidden" value="${CP_num}"><c:set var="CP_num" value="${CP_num - 1}"></c:set>
 							<tr>
-								<td><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></td>
-								<td><h4>출발지</h4></td>
-								<td>${carpool.CP_startPoint }</td>
+								<td class="graphic"><span class="glyphicon glyphicon-map-marker"></span></td>
+								<td><h4>출발지  </h4></td>
+								<td class="right">${carpool.CP_startPoint }</td>
 							</tr>
 							<tr>
 								<td><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span></td>
 							</tr>
-							<tr>
+							<tr class="bordered">
 								<td><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></td>
-								<td><h4>도착지</h4></td>
-								<td>${carpool.CP_endPoint }</td>
+								<td><h4>도착지  </h4></td>
+								<td class="right">${carpool.CP_endPoint }</td>
 							</tr>
 							<tr>
-								<td><h4>요금</h4></td>
-								<td colspan="2">${carpool.CP_fee } 원</td>
-								<td></td>
+								<td colspan="2"><h5>요금 </h5></td>
+								<td class="right">${carpool.CP_fee } 원</td>
 							</tr>
 							<tr>
-								<td><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span><h4>출발일  </h4></td>
-								<td>${carpool.CP_startDate }</td>
+								<td colspan="2"><h5>출발일  </h5></td>
+								<td class="right">${carpool.CP_startDate }</td>
 							</tr>
 							<tr>
-								<td><h4>출발시간  </h4></td>
-								<td>${carpool.CP_startTime }</td>
+								<td><h5>출발시간  </h5></td>
+								<td colspan="2" class="right">${carpool.CP_startTime }</td>
 							</tr>
 							<tr>
-								<td colspan="2" class="text-center">매칭완료 / 전체좌석</td>
+								<td colspan="3" class="text-center">매칭완료 / 전체좌석</td>
 							</tr>
 							<tr>
-								<td colspan="2" class="text-center">
+								<td colspan="3" class="text-center">
 									<!-- 1-1.매칭완료된 좌석수 / 총 좌석수  -->
 									<c:if test="${carpool.CP_passNumNow < carpool.CP_passNum }">
 										${carpool.CP_passNumNow } / ${carpool.CP_passNum }
@@ -111,7 +110,7 @@
 								</td>
 							</tr>
 							<tr>
-								<td colspan="2"><button type="button" class="read_bt"><a href="cpView.do?CP_num=${carpool.CP_num }&pageNum=${pageNum}">Read More</a></button></td>
+								<td colspan="3"><button type="button" class="read_bt"><a href="cpView.do?CP_num=${carpool.CP_num }&pageNum=${pageNum}">Read More</a></button></td>
 							</tr>
 						</c:if>	
 					</table>

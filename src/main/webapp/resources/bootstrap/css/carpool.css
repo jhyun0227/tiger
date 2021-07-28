@@ -24,6 +24,20 @@ button.btn.btn-primary, button.btn.btn-primary:hover, button.btn.btn-primary:foc
 	width: 100%;
 	float: center;
 }
+table {
+	width :100%
+}
+td.graphic {
+  width: 25%
+}
+
+tr.bordered {
+    border-bottom: 1px solid #000;
+}
+
+td.right {
+    text-align: right;
+}
 
 .power_full{
 	width: 100%;

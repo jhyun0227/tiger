@@ -57,7 +57,7 @@
 	});
    
 // 파일 업로드 미리보기
-	 function fileUpload(fis) {  
+	 function preView(fis) {  
 		   var str = fis.value;
 	       $('.thumb').text(fis.value.substring(str.lastIndexOf("\\")+1));
 	       // 이미지를 변경한다.

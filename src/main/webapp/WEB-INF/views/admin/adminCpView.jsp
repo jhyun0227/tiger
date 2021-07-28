@@ -13,7 +13,7 @@
 		<table class="table narrowWidth">
 			<tr>
 				<th class="col md-2 text-center">작성자</th>
-				<td class="col md-10">${MB_nickName }</td>
+				<td class="col md-10">${member.MB_nickName }</td>
 			</tr>
 			<tr>
 				<th class="col md-2 text-center">출발지</th>

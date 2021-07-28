@@ -72,7 +72,8 @@ public class CarpoolServiceImpl implements CarpoolService {
 	@Override
 	public List<Carpool> adminCpList(Carpool carpool) {
 		return cpd.adminCpList(carpool);	// 관리자 카풀 목록 - 동윤
-	
+	}
+		
 	@Override
 	public int updatePassNumNow(int CP_num) {
 		return cpd.updatePassNumNow(CP_num);

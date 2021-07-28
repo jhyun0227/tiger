@@ -71,7 +71,7 @@
 	} 
 </style>
 <script type="text/javascript">
-	// 중복체크안해도 submit 버튼 활성화
+// 중복체크안해도 submit 버튼 활성화
 	$(function() {
 		var MB_nickName = '${member.MB_nickName }';
 		if (MB_nickName == frm.MB_nickName.value || MB_nickName.equals(frm.MB_nickName.value)) {
@@ -81,7 +81,7 @@
 		}
 	});
 
-	// 닉네임 중복체크
+// 닉네임 중복체크
 	function nickChk() {
 		if(!frm.MB_nickName.value) {
 			alert("닉네임을 입력하세요")
@@ -102,7 +102,7 @@
 	}
 	
  // 파일 업로드 미리보기 완성
-	function fileUpload(fis) {  
+	function preView(fis) {  
 	   var str = fis.value;
        $('.thumbnail').text(fis.value.substring(str.lastIndexOf("\\")+1));
        // 이미지를 변경한다.
@@ -161,38 +161,38 @@
 					                          title="이미지를 선택하세요" id="nameA"> upload</label>
 					     <input class="upload-name " disabled="disabled" id="fileA" ><br> 
 				         <input type="file" name="file" id="ex_filename" class="upload-hidden"
-					              style="display:none;"  onchange="fileUpload(this);">  
+					              style="display:none;"  onchange="preView(this);">  
 	  		     </div> 
 	  
 			</div>
 			<div class="col-md-10" id="inform_box">	
 				<table class="table narrowWidth2">  
 					   <tr>
-							<td class="col-md-2 text-center">이메일</td>
+							<td class="col-md-4 text-center">이메일</td>
 							<td class="col-md-8">${member.MB_id }</td>
 						</tr>
 						<tr>
-							<td class="col-md-3 text-center">이름</td>
-							<td class="col-md-7"><input type="text" name="MB_name"
+							<td class="col-md-4 text-center">이름</td>
+							<td class="col-md-8"><input type="text" name="MB_name"
 								required="required" autofocus="autofocus"
 								value="${member.MB_name }" class="inputline1"></td>
 						</tr>
 						<tr>
-							<td class="col-md-3 text-center">주민등록번호</td>
-							<td class="col-md-7">${member.MB_regNum }
-							 <span>―</span><span>*******</span>
-					    </td>
+							<td class="col-md-4 text-center">주민등록번호</td>
+							<td class="col-md-8">${member.MB_regNum }
+							 &nbsp;&nbsp;<span>―</span>&nbsp;&nbsp;<span>*******</span>
+					   		 </td>
 						</tr>
 						<tr>
-							<td class="col md-2 text-center">닉네임</td>
-							<td class="col md-8">
+							<td class="col-md-4 text-center">닉네임</td>
+							<td class="col-md-8">
 								<input type="text" name="MB_nickName" id="nickName" required="required" 
 								        placeholder="닉네임을 입력해주세요" class="inputline1" value="${member.MB_nickName }" onchange="nickChk()"> 
 								<div id="nickChk" class="err"></div>
 							</td>
 					 	 </tr> 
 						<tr>  
-							<td class="col-md-2 text-center">연락처</td>
+							<td class="col-md-4 text-center">연락처</td>
 							<td class="col-md-8">
 							    <input type="tel" name="MB_tel" required="required" 
 							           title="전화번호 형식 3-4-4" pattern="\d{3}-\d{4}-\d{4}" 

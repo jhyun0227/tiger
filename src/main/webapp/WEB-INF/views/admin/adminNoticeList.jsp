@@ -6,6 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	#page_btn{
+		margin-top: -90px;
+	}
+</style>
 </head>
 <body>
 	<div class="container" align="center">
@@ -59,7 +64,7 @@
 				</c:forEach>
 			</c:if>
 		</table>
-		<div align="center">
+		<div align="center" id="page_btn">
 			<ul class="pagination_bottom">
 				<!-- 시작페이지가 pagePerBlock(10)보다 크면 앞에 보여줄 페이지가 있다 -->
 				<c:if test="${pb.startPage > pb.pagePerBlock }">

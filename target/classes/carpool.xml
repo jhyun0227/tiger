@@ -6,8 +6,8 @@
 	<insert id="insert" parameterType="carpool">
 		insert into CARPOOL
 		(CP_num,CP_regDate,CP_startPoint,CP_endPoint,CP_startDate,CP_startTime,CP_fee,
-		CP_passNum,CP_gendertype,CP_option,CP_duration,CP_comment,CP_del,MB_num)
-		values(#{CP_num},sysdate, #{CP_startPoint}, #{CP_endPoint}, #{CP_startDate}, #{CP_startTime}, #{CP_fee}, #{CP_passNum},
+		CP_passNum,CP_passNumNow,CP_gendertype,CP_option,CP_duration,CP_comment,CP_del,MB_num)
+		values(#{CP_num},sysdate, #{CP_startPoint}, #{CP_endPoint}, #{CP_startDate}, #{CP_startTime}, #{CP_fee}, #{CP_passNum}, 0,
 		#{CP_gendertype},#{CP_option},#{CP_duration},#{CP_comment},'N',#{MB_num})
 	</insert>
 	
@@ -93,5 +93,10 @@
 			order by c.CP_num desc) a)
 			where rn between #{startRow} and #{endRow}
 	</select>	
+	
+	<!-- 타세요 글 등록한 드라이버가 신청 수락할때마다 CP_passNumNow +1 해줌 -->
+	<update id="updatePassNumNow" parameterType="integer">
+		update carpool set CP_passNumNow = CP_passNumNow+1 where CP_num=#{CP_num}
+	</update>
 	
 </mapper>

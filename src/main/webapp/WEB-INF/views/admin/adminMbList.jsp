@@ -26,9 +26,9 @@
 			<input type="text" name="keyword" value="${member.keyword }" class="inputUnderLine">
 			<input type="submit" value="검색" class="btn_search">
 		</form>
-		</div>
+		</div>   
 		<table class="table">
-			<tr>
+			<tr>   
 				<th class="col-md-1 text-center">회원번호</th>
 				<th class="col-md-2 text-center">회원ID</th>
 				<th class="col-md-2 text-center">이름</th>
@@ -65,17 +65,17 @@
 								</c:if>
 								<c:if test="${member.MB_id != 'admin' }">
 									<td class="text-center"><a href="adminMbDelete.do?MB_id=${member.MB_id }&pageNum=${pageNum }"
-											class="btn_prev">탈퇴</a></td>
+											class="btn_delete">""</a></td>
 								</c:if>
 							</c:if>
 							<c:if test="${member.MB_del == 'Y' }">
 								<td class="text-center"><a href="adminMbRollback.do?MB_id=${member.MB_id }&pageNum=${pageNum }"
-										class="btn_prev">복구</a></td>
+										class="btn_recovery">""</a></td>
 							</c:if>
-					</tr>
-				</c:forEach>
+					</tr>  
+				</c:forEach>    
 			</c:if>
-		</table>
+		</table>   
 		<div align="center">
 			<ul class="pagination_bottom">
 				<!-- 시작페이지가 pagePerBlock(10)보다 크면 앞에 보여줄 페이지가 있다 -->

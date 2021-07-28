@@ -36,7 +36,7 @@
 			<a href="cpWriteForm.do?CP_num=0&pageNum=1" class="btn_sm_full">타세요 작성</a>
 		</div>
     </div>
-dfdf
+
 
 
 
@@ -48,20 +48,23 @@ dfdf
 					<th colspan="8" class="text-center">등록된 게시글이 없습니다</th>
 				</tr>
 			</c:if>
+			<table></table>
 				<h2 class="totaly_text">Totaly Optimised</h2>
 				<p class="making">making it look like readable English. Many
 					desktop publishing packages and web page editors now use Lorem
 					Ipsum as their default model text, and a search for 'lorem ipsum'
 					will uncover many web sites still</p>
 			<button type="button" class="read_bt"><a href="#">Read More</a></button>
+			</table>
 			</div>
 		</div>
 	</div>
 
 
 	<table class="table">
-			<tr>
+		<!-- 	<tr>
 				<th class="text-center">등록 번호</th>
+				
 				<th class="text-center">상세보기</th>
 				<th class="text-center">출발지</th>
 				<th class="text-center">도착지</th>
@@ -69,26 +72,32 @@ dfdf
 				<th class="text-center">출발일</th>
 				<th class="text-center">출발시간</th>
 				<th class="text-center">매칭완료 / 전체좌석</th>
-			</tr>
+			</tr> -->
 			<c:if test="${empty cpList }">
 				<tr>
-					<th colspan="8" class="text-center">등록된 게시글이 없습니다</th>
+					<th rowspan="6" class="text-center">등록된 게시글이 없습니다</th>
 				</tr>
 			</c:if>
 			<c:if test="${not empty cpList }">
 				<c:forEach var="carpool" items="${cpList }">
-					<tr>
-						<td class="text-center">${CP_num}<c:set var="CP_num" value="${CP_num - 1}"></c:set>
-						<%-- ${carpool.CP_num } --%></td>
 						<c:if test="${carpool.CP_del == 'Y' }">
-							<th colspan="7" class="text-center">삭제된 글 입니다</th>
+							<th rowspan="6" class="text-center">삭제된 글 입니다</th>
 						</c:if>
 						<c:if test="${carpool.CP_del != 'Y' }">
+							<tr>
+								<td>
+									<input type="hidden" value="${CP_num}"><c:set var="CP_num" value="${CP_num - 1}"></c:set>
+								</td>
+							</tr>
 							<!-- 1.현재날짜와 비교해서 출발일이 이후 일때 목록 보여줌 -->
 							<c:if test="${today < carpool.CP_startDate}">
-								<td title="상세보기" class="text-center">
+								<%-- <td title="상세보기" class="text-center">
 									<a href="cpView.do?CP_num=${carpool.CP_num }&pageNum=${pageNum}" class="btn btn-default btn-sm">상세보기</a>
-								</td>
+								</td> --%>
+								<tr>
+									<td><h4 class="title">출발지</h4></td>
+									<td></td>
+								</tr>
 								<td class="text-center">${carpool.CP_startPoint }</td>
 								<td class="text-center">${carpool.CP_endPoint }</td>
 								<td class="text-center">${carpool.CP_fee }</td>

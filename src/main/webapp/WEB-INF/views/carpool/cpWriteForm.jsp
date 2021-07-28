@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!-- 현재시간 불러와서 타세요 글 작성시 지난 날짜 입력 방지 -->
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<jsp:useBean id="now" class="java.util.Date" />
+<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
+<fmt:formatDate value="${now}" pattern="HH:mm" var="todayTime" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +14,7 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f8b456750e8b8df57944ed224806efd0"></script>
 <script>
+	// 다음지도 사용한 실제경로 찾기
 	function find(){
 		var url = "http://map.daum.net/"
 		var start=document.getElementById('CP_startPoint').value
@@ -18,6 +24,24 @@
 		url=url+"&eName="+end
 		window.open(url,"실제경로검색");
 	}
+	// 출발일이 현재날짜보다 이전으로 설정 못하게 막는 자바스크립트
+	function Chk() {
+		if (cp.CP_startDate.value < cp.now_date.value) {
+			alert("이미 지난 날짜입니다. 출발일을 다시 설정해주세요.");
+			cp.CP_startDate.value="";
+			cp.CP_startDate.focus();
+			return false;
+		} else {// 출발일이 오늘이면서 출발시간으로 현재시간보다 이전으로 설정 못하게 막기
+			if (cp.CP_startDate.value == cp.now_date.value) {
+				if (CP_startTime.value < cp.now_time.value) {
+					alert("출발시간은 ${now_time}부터 등록가능합니다.");
+					cp.CP_startTime.value="";
+					cp.CP_startTime.focus();
+					return false;
+				}
+			}
+		}
+	}
 </script>
 </head>
 <body>
@@ -26,9 +50,12 @@
 	<!-- 컨텐츠 헤더 부분(Page header) -->
 	<h1 class="title">타세요 작성</h1>
 	<!-- 메인 컨텐츠 부분 -->
-	<form action="cpWriteResult.do" class="form-horizontal" method="post">
+	<form action="cpWriteResult.do" class="form-horizontal" method="post" name="cp" role="form" onsubmit="return Chk()">
 		<!-- 로그인된 회원번호 -->
 		<input type="hidden" name="MB_num" value="${member.MB_num}" />
+		<!-- 출발일 날짜 설정값-->
+		<input type="hidden" name="now_date" value="${now_date}" />
+		<input type="hidden" name="now_time" value="${now_time}" />
 		<div class="box-body">
 			<div class="form-group">
 				<label for="CP_startPoint" class="col-sm-2 control-label">출발지</label>
@@ -48,11 +75,11 @@
 			</div>
 			<div class="form-group">
 				<label for="CP_startDate" class="col-sm-2 control-label">출발일</label>
-				<div class="col-sm-4">
+				<div class="col-sm-4" id="checkStartDate">
 					<div class="input-group">
 						<span class="input-group-addon">
 						<span class="glyphicon glyphicon-time" aria-hidden="true"></span></span>
-						<input type="date" name="CP_startDate" class="form-control form_datetime" required="required">
+						<input type="date" name="CP_startDate" id="startDate" class="form-control form_datetime" required="required">		
 					</div>
 				</div>
 			</div>
@@ -125,7 +152,7 @@
 		</div>
 		<div align="center">
 			<button class="btn_sm_stroke" onclick="history.back()">취소</button>
-			<input type="submit" class="btn_sm_full" value="등록하기">
+			<input type="submit" class="btn_sm_full" value="등록하기" onclick="Chk()">
 		</div>
 	</form>
 </div>

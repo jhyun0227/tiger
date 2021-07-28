@@ -29,7 +29,7 @@ public interface CarpoolService {
 
 	List<Carpool> adminCpList(Carpool carpool);	// 관리자 카풀 목록 - 동윤
 	
-	int updatePassNumNow(int CP_num);
+	int updatePassNumNow(int CP_num); // 타세요 목록 매칭완료된 좌석수 +1 - 병우
 
 
 }

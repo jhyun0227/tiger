@@ -1,5 +1,8 @@
 package com.ch.tiger.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -63,6 +66,18 @@ public class CarpoolController {
 	public String cpWriteForm(int CP_num, Member member, String pageNum, Model model, HttpSession session){
 		String MB_id = (String)session.getAttribute("MB_id");
 		member = mbs.select(MB_id);
+		// 출발일 설정시 현재날짜보다 이전날짜 설정 못하게 막기
+		Calendar now_date1 = Calendar.getInstance(); // 현재 날짜
+		Calendar now_time1 = Calendar.getInstance(); // 현재 시간
+		// 출발일이 오늘이면서 출발시간이 현재시간 이전으로 설정 못하게 막기
+		// now_time을 현재시간 +1함으로써 매칭 출발시간에 최소 1시간 여유가 생김
+		now_time1.set(Calendar.HOUR_OF_DAY, now_time1.get(Calendar.HOUR_OF_DAY)+1);
+		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd"); // 날짜 형식 설정
+		SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm"); // 시간 형식 설정
+		Date now_date = now_date1.getTime();
+		Date now_time = now_time1.getTime();
+		model.addAttribute("now_date", sdf1.format(now_date));
+		model.addAttribute("now_time", sdf2.format(now_time));
 		model.addAttribute("member", member);
 		model.addAttribute("pageNum", pageNum);
 		return "carpool/cpWriteForm";
@@ -90,10 +105,6 @@ public class CarpoolController {
 		Carpool carpool = cps.select(CP_num); // 타세요 작성자 MB_num 조회
 		Member memberDB = null; // 타세요 작성한 회원 닉네임 같이 보여주기
 		memberDB = mbs.selectNum(carpool.getMB_num());
-		// referer 전페이지로 이동(pageNum 포함)
-		String preUrl = request.getHeader("Referer");
-		preUrl = preUrl.substring(28);
-		model.addAttribute("preUrl", preUrl);
 		model.addAttribute("memberDB", memberDB);
 		model.addAttribute("reservationList", reservationList);
 		model.addAttribute("member", member);
@@ -101,21 +112,6 @@ public class CarpoolController {
 		model.addAttribute("pageNum", pageNum);
 		return "carpool/cpView";
 	}
-	//referer 적용 전 cpView controller
-	/*
-	 * @RequestMapping("cpView") public String cpView(int CP_num, String pageNum,
-	 * Model model, HttpSession session) { Reservation reservation = new
-	 * Reservation(); reservation.setCP_num(CP_num); List<Reservation>
-	 * reservationList = rvs.reservationList(reservation); // reservation 테이블 정보
-	 * list로 보여줌 String MB_id = (String)session.getAttribute("MB_id");// 로그인한 회원의 정보
-	 * Member member = mbs.select(MB_id); // 로그인한 회원의 정보 Carpool carpool =
-	 * cps.select(CP_num); // 타세요 작성자 MB_num 조회 Member memberDB = null; // 타세요 작성한
-	 * 회원 닉네임 같이 보여주기 memberDB = mbs.selectNum(carpool.getMB_num());
-	 * model.addAttribute("memberDB", memberDB);
-	 * model.addAttribute("reservationList", reservationList);
-	 * model.addAttribute("member", member); model.addAttribute("carpool", carpool);
-	 * model.addAttribute("pageNum", pageNum); return "carpool/cpView"; }
-	 */
 	
 	// 타세요 신고하기 폼
 	@RequestMapping("cpReportForm")
@@ -142,6 +138,18 @@ public class CarpoolController {
 		String MB_id = (String)session.getAttribute("MB_id"); // session에 저장된 MB_id를 통해 MB_num 정보 받기
 		Member member = mbs.select(MB_id);
 		Carpool carpool = cps.select(CP_num);
+		// 출발일 설정시 현재날짜보다 이전날짜 설정 못하게 막기
+		Calendar now_date1 = Calendar.getInstance(); // 현재 날짜
+		Calendar now_time1 = Calendar.getInstance(); // 현재 시간
+		// 출발일이 오늘이면서 출발시간이 현재시간 이전으로 설정 못하게 막기
+		// now_time을 현재시간 +1함으로써 매칭 출발시간에 최소 1시간 여유가 생김
+		now_time1.set(Calendar.HOUR_OF_DAY, now_time1.get(Calendar.HOUR_OF_DAY)+1);
+		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd"); // 날짜 형식 설정
+		SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm"); // 시간 형식 설정
+		Date now_date = now_date1.getTime();
+		Date now_time = now_time1.getTime();
+		model.addAttribute("now_date", sdf1.format(now_date));
+		model.addAttribute("now_time", sdf2.format(now_time));
 		model.addAttribute("member", member);
 		model.addAttribute("carpool", carpool);
 		model.addAttribute("pageNum", pageNum);
@@ -206,6 +214,7 @@ public class CarpoolController {
 		reservation.setMB_num(MB_num);
 		int result = rvs.updateAccept(reservation);
 		int addNumResult = cps.updatePassNumNow(CP_num); // 드라이버가 수락을해서 신청한 회원이 매칭완료상태가될때마다 CP_passNumNow에 +1 해줌
+		model.addAttribute("addNumResult", addNumResult);
 		model.addAttribute("result", result);
 		model.addAttribute("CP_num", CP_num);
 		return "carpool/cpAcceptResult";

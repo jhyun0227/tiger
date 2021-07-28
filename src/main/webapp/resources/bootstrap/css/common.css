@@ -131,6 +131,18 @@ body{
     border: none;
 }
 
+/* a태그 */
+
+.inputLineA{
+	color: #000000;
+}
+
+.inputLineA:hover{
+	color: #000000;
+	text-decoration: none;
+	cursor: pointer;
+}
+
 /* 첨부파일 */
 
 .filebox input[type="file"] {
@@ -145,8 +157,6 @@ body{
 }
 
 .filebox label {
-    display: inline-block;  
-    width: 100%;
     height: 25px;
     color: #3243A8;
     text-align: center; 
@@ -155,12 +165,25 @@ body{
     font-weight:bolder;
     background: initial;
     line-height: 25px;
-   /*  border: 0.5px solid #3243A8 ; */
-   margin-bottom: -1px;
+    margin-bottom: -1px;
   } 
+  
+/* .filebox label { */
+/*     display: inline-block;   */
+/*     width: 100%; */
+/*     height: 25px; */
+/*     color: #3243A8; */
+/*     text-align: center;  */
+/*     cursor: pointer; */
+/*     font-size: 15px; */
+/*     font-weight:bolder; */
+/*     background: initial; */
+/*     line-height: 25px; */
+/*     margin-bottom: -1px; */
+/*   }  */
 
 .filebox .upload-name {
-	 display: inline-block;  
+	display: inline-block;  
 	background-color: white;
 	cursor: pointer;
 	border: none;
@@ -193,6 +216,16 @@ body{
     width: 200px;
     height: 35px;
 } 
+
+.btn_large {
+	width: 300px;
+    height: 40px;
+    background:  #3243A8;
+    color: #eee;
+    font-size: 18px;
+    border: none;
+    margin-bottom: 30px;
+}
  
 .btn_sm {
     margin-bottom: 10px;
@@ -322,7 +355,7 @@ body{
 
 .pagination_bottom {
 	display: inline-flex;
-	margin-top: 100px;
+	margin-top: 70px;
 }
 
 .page_current_num {

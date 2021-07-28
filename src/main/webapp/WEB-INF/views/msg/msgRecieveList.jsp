@@ -4,8 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/tiger/resources/bootstrap/css/common.css">
 <link rel="stylesheet" type="text/css" href="/tiger/resources/bootstrap/css/msgList.css">
 <script type="text/javascript">
@@ -91,7 +89,7 @@ function deleteValue(){
 					<td class="text-center"><input type="checkbox" name="rowCheck" value="${message.MSG_num }" ></td>
 					<td class="text-center">
 						<a onclick="window.open('profileView.do?MB_nickName=${message.nicknameS }', '',
-							'width=500,height=560,location=no,status=no,scrollbars=yes');">${message.nicknameS }</a>
+							'width=500,height=560,location=no,status=no,scrollbars=yes');" class="inputLineA">${message.nicknameS }</a>
 					</td>
 					<td class="ellip">
 						<a href="msgView.do?MSG_num=${message.MSG_num }&pageNum=${pb.currentPage}">${message.MSG_content }</a>
@@ -107,9 +105,9 @@ function deleteValue(){
 		</tr>
 	</table>
 </form>
+<!-- 페이징 -->
 <div align="center">
 	<ul class="pagination_bottom">
-		<!-- 시작 페이지가 pagePerBlock 보다 크면 앞에 보여줄 페이지가 있다 -->
 		<c:if test="${pb.startPage > pb.pagePerBlock }">
 			<li><a href="msgRecieveList.do?pageNum=1" class="page_num">
 				<span class="glyphicon glyphicon-backward"></span>
@@ -128,7 +126,6 @@ function deleteValue(){
 				<li><a href="msgRecieveList.do?pageNum=${i}" class="page_num">ㅤ${i}ㅤ</a>
 			</c:if>
 		</c:forEach>
-		<!-- 보여줄 페이지가 남은 경우 / endpage보다 totalpage가 클 경우 -->
 		<c:if test="${pb.endPage < pb.totalPage }">
 			<li><a href="msgRecieveList.do?pageNum=${pb.endPage+1 }" class="page_num">
 				<span class="glyphicon glyphicon-triangle-right"></span>

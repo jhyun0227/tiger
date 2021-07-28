@@ -4,21 +4,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<style type="text/css">
+.btn_large{
+	margin: 50px 0;
+}
+</style>
 </head>
 <body>
 <div align="center">
 <h2 class="title">아이디 찾기</h2>
 <c:if test="${result == 1 }">
-	<table class="table narrowWidth">
+	<table class="narrowWidth1">
 		<tr>
 			<th class="text-center">회원님의 아이디는 '${member.MB_id }' 입니다.</th>
 		</tr>
 		<tr>
 			<td class="text-center">
 				<!-- 아이디 찾기 후 비밀번호를 찾으면 값이 자동으로 넘어가게 하기 위함 -->
-				<button onclick="location.href='findPwForm.do?MB_id=${member.MB_id }'" class="btn_small">비밀번호 찾기</button>
+				<button onclick="location.href='findPwForm.do?MB_id=${member.MB_id }'" class="btn_large">비밀번호 찾기</button>
 			</td>
 		</tr>
 	</table>

@@ -39,7 +39,7 @@
 			</tr>
 			<c:if test="${empty rpList }">
 				<tr>
-					<th colspan="4" class="text-center">신고내역이 존재하지 않습니다</th>
+					<th colspan="6" class="text-center">신고내역이 존재하지 않습니다</th>
 				</tr>
 			</c:if>
 			<c:if test="${not empty rpList }">

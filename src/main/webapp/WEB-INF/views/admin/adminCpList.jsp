@@ -88,7 +88,7 @@
 					<c:if test="${sh == carpool.search }">
 						<option value="${sh}" selected="selected">${title[i.index] }</option>
 					</c:if>
-					<c:if test="${sh != carpool.search }">
+					<c:if test="${sh != carpool.search }">  
 						<option value="${sh}">${title[i.index] }</option>
 					</c:if>
 				</c:forTokens>

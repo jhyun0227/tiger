@@ -309,6 +309,54 @@ body{
  	color: transparent;
  	margin-bottom: 0; 
  	width: 30px;
+}  
+.btn_delete{
+	background-image: url('/tiger/resources/main/delete.png');
+	background-size: 16px;
+	background-color: white;
+    background-position:  0px 0px;
+    background-repeat: no-repeat;   
+    height: 22px;
+    border: 0px;
+ 	cursor:pointer;
+ 	outline: 0;
+ 	color: transparent;
+ 	margin-bottom: 0; 
+ 	width: 30px;
+ 	padding-bottom: 4px;
+ 	padding-right: 13px;
+ }
+.btn_recovery{
+	background-image: url('/tiger/resources/main/recovery.png');
+	background-size: 16px;
+	background-color: white;
+    background-position:  0px 0px;
+    background-repeat: no-repeat;   
+    height: 22px;
+    border: 0px;
+ 	cursor:pointer;
+ 	outline: 0;
+ 	color: transparent;
+ 	margin-bottom: 0; 
+ 	width: 30px;
+ 	padding-bottom: 4px;
+ 	padding-right: 15px;
+}
+.btn_open{
+	background-image: url('/tiger/resources/main/open.png');
+	background-size: 22px;
+	background-color: white;
+    background-position:  0px 0px;
+    background-repeat: no-repeat;   
+    height: 22px;
+    border: 0px;
+ 	cursor:pointer;
+ 	outline: 0;
+ 	color: transparent;
+ 	margin-bottom: 0; 
+ 	width: 30px;  
+ 	padding-bottom: 4px;
+ 	
 }
 /* 운전면허증 upload icon */
 .btn_uploadDr{
@@ -338,6 +386,13 @@ body{
     border: 1px solid #242526;
     line-height: 40px;
     font-size: 14px;
+    color: #242526;  
+}
+.btn_prev2 {
+    padding: 1px 5px;
+   /*   border: 1px solid #242526;  */
+    line-height: 20px;
+    font-size: 15px;
     color: #242526;
 }
 

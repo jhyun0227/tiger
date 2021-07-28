@@ -10,7 +10,7 @@
 </head>
 <body>
 	<h1 class="title">타세요 관리 목록</h1>
-	<div class="searchDIV">
+	<div class=" container searchDIV">
 		<form action="adminRvList.do">
 			<input type="hidden" name="pageNum" value="1">
 			<select name="search" class="inputUnderLine">
@@ -40,7 +40,7 @@
 		</tr>
 		<c:if test="${empty adminRvAllList}">
 			<tr>
-				<td colspan="3" class="text-center">내역이 존재하지 않습니다</td>
+				<td colspan="8" class="text-center">내역이 존재하지 않습니다</td>
 			</tr>
 		</c:if>
 		<c:if test="${not empty adminRvAllList }">
@@ -50,7 +50,7 @@
 						<c:set var="num" value="${num -1 }"></c:set></td>
 					<td class="col-md-1 text-center">
 						<a href="adminCpView.do?CP_num=${reservation.CP_num }&pageNum=${pb.currentPage}"
-							class="btn_prev">상세</a></td>	
+							class="btn_open">상세</a></td>	
 					<td class="col-md-2 text-center">${reservation.MB_nickNameDv }</td>
 					<td class="col-md-2 text-center">${reservation.MB_nickName }</td>
 					<td class="col-md-2 text-center">${reservation.CP_startPoint }</td>

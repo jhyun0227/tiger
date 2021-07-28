@@ -34,7 +34,7 @@ td, th {
 				<td class="text-center">
 					<input type="submit" value="로그인" class="btn_large" id="idBtn">
 				</td>
-			</tr>
+			</tr>  
 		</table>
 		
 		<a href="findIdForm.do" class="inputLineA">아이디 찾기</a>&nbsp; |      

@@ -11,15 +11,22 @@
 	    outline: 0;
 	    width: 40%;
 	}
-	
-	#labelUp{
+	.narrowWidth1-1 {
+   	 width: 70%;  
+   	} 
+	 #labelUp{
 		text-align: left;	
-	}
+	} 
 	
 	.filebox label {
     	width: 100%;
     	padding: 0;
      } 
+     .inputline4 {
+		border: none;
+	    outline: 0;
+	    width: 35%;
+	} 
 
 </style>	
 <script type="text/javascript">
@@ -62,11 +69,11 @@
 	       $('.thumb').text(fis.value.substring(str.lastIndexOf("\\")+1));
 	       // 이미지를 변경한다.
 	       var reader = new FileReader();
-		   reader.onload = function(e){
+		   reader.onload = function(e){  
 		   $('.thumb').attr('src',e.target.result);
 	      }
 	   	 reader.readAsDataURL(fis.files[0]);
-	}
+	}  
 
 // 파일 이름 
 	$(document).ready( function(){ 
@@ -106,16 +113,16 @@
 <!-- 신청기록이 없거나 신청 후 거절당해서 다시 신청이 가능한 경우 -->
 <c:if test="${result == 1 }">
 
-<div class="narrowWidth1" align="center" >
+<div class="container narrowWidth1-1" align="center">
 	<h2 class="title">드라이버 신청</h2>
 	<form action="driverApplyResult.do" method="post" name="frm" enctype="multipart/form-data"> 
 	 	<input type="hidden" name="MB_num" value="${member.MB_num }">
-	 <div class="">
-	 	<div class="col-md-4 col-lg-3" id="img_box"  > 
+	 <div class="row">
+	 	<div class="col-md-3 " id="img_box"  > 
 	 		<c:if test="${empty AP_picture}">  
 			<img alt="" src="${path }/resources/main/none_dr.png" class="thumb" 
 					data-toggle="tooltip" data-placement="left" 
-					title="운전면허증 사진을 첨부해 주세요" id="togText">
+					title="운전면허증 앞면 사진을 첨부해 주세요">
 			</c:if>  
 			<c:if test="${not empty AP_picture}">
 				<img alt=""  class="thumb"   
@@ -129,7 +136,7 @@
 					       
 			</div>      
 	 	</div>
-	 	<div class="col-md-8 col-lg-9" id="inform_box">
+	 	<div class="col-md-9"  id="inform_box">
 	 			<h4 class="text-center">차량 정보 입력</h4>  
 			    <table class="table narrowWidth80">  
 					<tr>
@@ -141,20 +148,20 @@
 						</td>
 					</tr>
 					<tr>
-						<td class="col-md-3 text-center">차량명</td>
-						<td class="col-md-9">
+						<td class="col-md-4 text-center">차량명</td>
+						<td class="col-md-8">
 							<input type="text" name="VH_carName" required="required" placeholder="ex)아반떼AD" class="inputLine">
 						</td>
 					</tr>
 					<tr>
-						<td class="col-md-3 text-center">연식</td>
-						<td class="col-md-9">
+						<td class="col-md-4 text-center">연식</td>
+						<td class="col-md-8">
 							<input type="number" name="VH_carYear" required="required" value="2010" class="inputLine">
 						</td>
 					</tr>
 					<tr>
-						<td class="col-md-3 text-center">차종</td>
-						<td class="col-md-9">
+						<td class="col-md-4 text-center">차종</td>
+						<td class="col-md-8">
 							<input type="radio" name="VH_carType" id="small" value="1" checked="checked">
 							<label for="small">소형</label>
 							&nbsp;
@@ -169,15 +176,15 @@
 						</td>
 					</tr>
 					<tr>
-						<td class="col-md-3 text-center">주행거리</td>
-						<td class="col-md-9">
-							<input type="text" name="VH_km" required="required" class="inputline1"
-									placeholder="ex)100,000" class="inputKm">km
+						<td class="col-md-4 text-center">주행거리</td>
+						<td class="col-md-8">
+							<input type="text" name="VH_km" required="required" class="inputline4"
+									placeholder="ex)100,000" id="comma" >km
 						</td>
 					</tr>
 					<tr>
-						<td class="col-md-3 text-center">자차보험</td>
-						<td class="col-md-9">
+						<td class="col-md-4 text-center">자차보험</td>
+						<td class="col-md-8">
 							<input type="radio" name="VH_insu" id="y" value="Y" checked="checked">
 							<label for="y">있음</label>
 							&nbsp;
@@ -186,8 +193,8 @@
 						</td>
 					</tr>
 					<tr>
-						<td class="col-md-3 text-center">차량 앞면 사진</td>
-						<td class="col-md-9">
+						<td class="col-md-4 text-center">차량 앞면 사진</td>
+						<td class="col-md-8">
 							<div class="filebox" > 
 								<label for="VH_carPicture" id="labelUp">사진업로드</label> 
 								<input type="file" name="file" id="VH_carPicture" required="required"
@@ -199,7 +206,7 @@
  			 </table> 
 		 	 <div align="center">
 				<input type="submit" id="submit" value="신청하기" disabled="disabled"
-						class="btn_small">
+						class="btn_sm_full">
 		     </div>
 	 	</div>
 	 </div>	

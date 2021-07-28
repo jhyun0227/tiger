@@ -36,7 +36,7 @@
 			<a href="cpWriteForm.do?CP_num=0&pageNum=1" class="btn_sm_full">타세요 작성</a>
 		</div>
     </div>
-
+dfdf
 
 
 

@@ -45,7 +45,7 @@ public class CarpoolController {
 		if (pageNum == null || pageNum.equals(""))
 			pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
-		int rowPerPage = 10; // 한 화면에 보여주는 게시글 갯수
+		int rowPerPage = 6; // 한 화면에 보여주는 게시글 갯수
 		int total = cps.getTotal(carpool);
 		int startRow = (currentPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage - 1;

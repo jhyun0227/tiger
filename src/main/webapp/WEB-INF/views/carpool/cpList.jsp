@@ -36,6 +36,7 @@
 		<a href="cpWriteForm.do?CP_num=0&pageNum=1" class="btn_sm_full">타세요 작성</a>
 	</div>
 </div>
+
 <!-- 타세요 목록  -->
 <div align="center">
 	<c:if test="${empty cpList }">
@@ -71,150 +72,165 @@
 							<input type="hidden" value="${CP_num}"><c:set var="CP_num" value="${CP_num - 1}"></c:set>
 							<tr>
 								<td class="graphic"><span class="glyphicon glyphicon-map-marker"></span></td>
-								<td><h4>출발지  </h4></td>
-								<td class="right">${carpool.CP_startPoint }</td>
+								<td class="right"><h5>${carpool.CP_startPoint }</h5></td>
 							</tr>
 							<tr>
 								<td><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span></td>
 							</tr>
 							<tr class="bordered">
 								<td><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></td>
-								<td><h4>도착지  </h4></td>
-								<td class="right">${carpool.CP_endPoint }</td>
+								<td class="right"><h5>${carpool.CP_endPoint }</h5></td>
 							</tr>
-							<tr>
-								<td colspan="2"><h5>요금 </h5></td>
+							<tr >
+								<td><h5>요금</h5></td>
 								<td class="right">${carpool.CP_fee } 원</td>
 							</tr>
 							<tr>
-								<td colspan="2"><h5>출발일  </h5></td>
+								<td><h5>출발일</h5></td>
 								<td class="right">${carpool.CP_startDate }</td>
 							</tr>
 							<tr>
-								<td><h5>출발시간  </h5></td>
-								<td colspan="2" class="right">${carpool.CP_startTime }</td>
+								<td class="graphic"><h5>출발시간</h5></td>
+								<td class="right">${carpool.CP_startTime }</td>
+							</tr>
+							<tr class="bordered">
+								<td colspan="2">
+								<h6><span class="glyphicon glyphicon-ok"></span>${carpool.CP_option }</h6></td>
+							</tr>
+							<!-- 1-1.매칭완료된 좌석수 / 총 좌석수  -->
+							<c:if test="${carpool.CP_passNumNow < carpool.CP_passNum }">
+							<tr>
+								<td colspan="2" class="text-center"><h5>매칭완료 / 전체좌석</h5></td>
 							</tr>
 							<tr>
-								<td colspan="3" class="text-center">매칭완료 / 전체좌석</td>
+								<td colspan="2" class="text-center">${carpool.CP_passNumNow } / ${carpool.CP_passNum }</td>
 							</tr>
+							</c:if>
+							<!-- 1-2.매칭완료좌석수와 총좌석수가 같으면 "완료된 매칭"으로 띄움 -->
+							<c:if test="${carpool.CP_passNumNow == carpool.CP_passNum }">
+								<tr>
+									<td colspan="2" class="text-center"><h5>완료된 매칭</h5></td>
+								</tr>
+							</c:if>
 							<tr>
-								<td colspan="3" class="text-center">
-									<!-- 1-1.매칭완료된 좌석수 / 총 좌석수  -->
-									<c:if test="${carpool.CP_passNumNow < carpool.CP_passNum }">
-										${carpool.CP_passNumNow } / ${carpool.CP_passNum }
-									</c:if>
-									<!-- 1-2.매칭완료좌석수와 총좌석수가 같으면 "완료된 매칭"으로 띄움 -->
-									<c:if test="${carpool.CP_passNumNow == carpool.CP_passNum }">
-										완료된 매칭
-									</c:if>
+								<td colspan="2">
+									<button type="button" class="read_bt"><a href="cpView.do?CP_num=${carpool.CP_num }&pageNum=${pageNum}">Read More</a></button>
 								</td>
 							</tr>
-							<tr>
-								<td colspan="3"><button type="button" class="read_bt"><a href="cpView.do?CP_num=${carpool.CP_num }&pageNum=${pageNum}">Read More</a></button></td>
-							</tr>
-						</c:if>	
-					</table>
-				</div>
-			</div>
+						</c:if>
+			
 						<!-- 2.현재날짜와 비교해서 지난 출발일들은 목록에서 보여주지 않음 -->
-	 					
-	 					<c:if test="${today > carpool.CP_startDate}">
-	 						<tr>
-							<td>
-								<input type="hidden" value="${CP_num}"><c:set var="CP_num" value="${CP_num - 1}"></c:set>
-							</td>
-						</tr>
-	 						<th rowspan="9" class="text-center">출발시간이 지난 매칭 입니다</th>
-	 					</c:if>
-	 					<!-- 3.현재날짜와 비교해서 출발일이 같을때도 목록 보여줌 -->
-						<c:if test="${today == carpool.CP_startDate}">
-							<!-- 3-1.현재시간과 비교해서 출발시간 일때 목록 보여줌 -->
-							<c:if test="${todayTime < carpool.CP_startTime}">
-									<tr>
+						<c:if test="${today > carpool.CP_startDate}">
+							<tr>
+								<th class="text-center">출발시간이 지난 매칭 입니다.</th>
 								<td>
 									<input type="hidden" value="${CP_num}"><c:set var="CP_num" value="${CP_num - 1}"></c:set>
 								</td>
 							</tr>
+						</c:if>
+						
+	 					<!-- 3.현재날짜와 비교해서 출발일이 같을때도 목록 보여줌 -->
+						<c:if test="${today == carpool.CP_startDate}">
+							<!-- 3-1.현재시간과 비교해서 출발시간 일때 목록 보여줌 -->
+							<c:if test="${todayTime < carpool.CP_startTime}">
+								<input type="hidden" value="${CP_num}"><c:set var="CP_num" value="${CP_num - 1}"></c:set>
 								<tr>
-									<td><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span><h4 class="title">출발지  -</h4></td>
-									<td>${carpool.CP_startPoint }</td>
+									<td class="graphic"><span class="glyphicon glyphicon-map-marker"></span></td>
+									<td class="right"><h5>${carpool.CP_startPoint }</h5></td>
 								</tr>
 								<tr>
 									<td><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span></td>
 								</tr>
-								<tr>
-									<td><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span><h4 class="title">도착지  -</h4></td>
-									<td>${carpool.CP_endPoint }</td>
+								<tr class="bordered">
+									<td><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></td>
+									<td class="right"><h5>${carpool.CP_endPoint }</h5></td>
+								</tr>
+								<tr >
+									<td><h5>요금</h5></td>
+									<td class="right">${carpool.CP_fee } 원</td>
 								</tr>
 								<tr>
-									<td><span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span><h4 class="title">요금  -</h4></td>
-									<td>${carpool.CP_fee }원</td>
+									<td><h5>출발일</h5></td>
+									<td class="right">${carpool.CP_startDate }</td>
 								</tr>
 								<tr>
-									<td><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span><h4 class="title">출발일  -</h4></td>
-									<td>${carpool.CP_startDate } - ${carpool.CP_startTime }</td>
+									<td class="graphic"><h5>출발시간</h5></td>
+									<td class="right">${carpool.CP_startTime }</td>
+								</tr>
+								<tr class="bordered">
+									<td colspan="2">
+									<h6><span class="glyphicon glyphicon-ok"></span>${carpool.CP_option }</h6></td>
+								</tr>
+								<!-- 3-1-1.매칭완료된 좌석수 / 총 좌석수  -->
+								<c:if test="${carpool.CP_passNumNow < carpool.CP_passNum }">
+								<tr>
+									<td colspan="2" class="text-center"><h5>매칭완료 / 전체좌석</h5></td>
 								</tr>
 								<tr>
-									<td class="text-center">매칭완료 / 전체좌석</td>
+									<td colspan="2" class="text-center">${carpool.CP_passNumNow } / ${carpool.CP_passNum }</td>
 								</tr>
+								</c:if>
+								<!-- 3-1-2.매칭완료좌석수와 총좌석수가 같으면 "완료된 매칭"으로 띄움 -->
+								<c:if test="${carpool.CP_passNumNow == carpool.CP_passNum }">
+									<tr>
+										<td colspan="2" class="text-center"><h5>완료된 매칭</h5></td>
+									</tr>
+								</c:if>
 								<tr>
-									<td class="text-right">
-										<!-- 1-1.매칭완료된 좌석수 / 총 좌석수  -->
-										<c:if test="${carpool.CP_passNumNow < carpool.CP_passNum }">
-											${carpool.CP_passNumNow } / ${carpool.CP_passNum }
-										</c:if>
-										<!-- 1-2.매칭완료좌석수와 총좌석수가 같으면 "완료된 매칭"으로 띄움 -->
-										<c:if test="${carpool.CP_passNumNow == carpool.CP_passNum }">
-											완료된 매칭
-										</c:if>
+									<td colspan="2">
+										<button type="button" class="read_bt"><a href="cpView.do?CP_num=${carpool.CP_num }&pageNum=${pageNum}">Read More</a></button>
 									</td>
 								</tr>
-								<tr>
-									<button type="button" class="read_bt"><a href="cpView.do?CP_num=${carpool.CP_num }&pageNum=${pageNum}">Read More</a></button>
-								</tr>
 							</c:if>
-						</c:if>
-						<!-- 3-2.현재시간과 비교해서 지난 출발시간은 목록에서 보여주지 않음 -->
-	 					<c:if test="${todayTime > carpool.CP_startTime}">
-	 						<th rowspan="9" class="text-center">출발시간이 지난 매칭 입니다</th>
+					
+							<!-- 3-2.현재시간과 비교해서 지난 출발시간은 목록에서 보여주지 않음 -->
+		 					<c:if test="${todayTime > carpool.CP_startTime}">
+								<tr>
+									<th class="text-center">출발시간이 지난 매칭 입니다</th>
+								</tr>
+	 						</c:if>
 	 					</c:if>
+	 				</table>
+	 			</div>
+	 		</div>
 	 		</c:if>
 		</c:forEach>
 	</c:if>
 </div>
 
-
 <!-- Paging number button -->
 <div align="center">
-	<ul class="pagination_bottom">
-		<!-- 시작페이지가 pagePerBlock(10)보다 크면 앞에 보여줄 페이지가 있다 -->
-		<c:if test="${pb.startPage > pb.pagePerBlock }">
-			<li><a href="cpList.do?pageNum=1&search=${carpool.search }&keyword=${carpool.keyword}" class="page_num">
-				<span class="glyphicon glyphicon-backward"></span>
-			</a></li>
-			<li><a href="cpList.do?pageNum=${pb.startPage-1 }&search=${carpool.search }&keyword=${carpool.keyword}" class="page_num">
-				<span class="glyphicon glyphicon-triangle-left"></span>
-			</a></li>
-		</c:if>
-		<c:forEach var="i" begin="${pb.startPage }" end="${pb.endPage }">
-			<c:if test="${pb.currentPage == i }">
-				<li><a href="cpList.do?pageNum=${i}&search=${carpool.search }&keyword=${carpool.keyword}" class="page_num page_current_num">${i}</a></li>
+	<div class="nextLine">
+		<ul class="pagination_bottom">
+			<!-- 시작페이지가 pagePerBlock(10)보다 크면 앞에 보여줄 페이지가 있다 -->
+			<c:if test="${pb.startPage > pb.pagePerBlock }">
+				<li><a href="cpList.do?pageNum=1&search=${carpool.search }&keyword=${carpool.keyword}" class="page_num">
+					<span class="glyphicon glyphicon-backward"></span>
+				</a></li>
+				<li><a href="cpList.do?pageNum=${pb.startPage-1 }&search=${carpool.search }&keyword=${carpool.keyword}" class="page_num">
+					<span class="glyphicon glyphicon-triangle-left"></span>
+				</a></li>
 			</c:if>
-			<c:if test="${pb.currentPage != i }">
-				<li><a href="cpList.do?pageNum=${i}&search=${carpool.search }&keyword=${carpool.keyword}" class="page_num">${i}</a></li>
+			<c:forEach var="i" begin="${pb.startPage }" end="${pb.endPage }">
+				<c:if test="${pb.currentPage == i }">
+					<li><a href="cpList.do?pageNum=${i}&search=${carpool.search }&keyword=${carpool.keyword}" class="page_num page_current_num">ㅤ${i}ㅤ</a></li>
+				</c:if>
+				<c:if test="${pb.currentPage != i }">
+					<li><a href="cpList.do?pageNum=${i}&search=${carpool.search }&keyword=${carpool.keyword}" class="page_num">ㅤ${i}ㅤ</a></li>
+				</c:if>
+			</c:forEach>
+			
+			<!-- 보여줄 것이 남아있는 경우는 다음 endpage보다 totalPage가 클경우 -->
+			<c:if test="${pb.endPage < pb.totalPage}">
+				<li><a href="cpList.do?pageNum=${pb.endPage+1 }&search=${carpool.search }&keyword=${carpool.keyword}" class="page_num">
+						<span class="glyphicon glyphicon-triangle-right"></span>
+				</a></li>
+				<li><a href="cpList.do?pageNum=${pb.totalPage}&search=${carpool.search }&keyword=${carpool.keyword}" class="page_num">
+						<span class="glyphicon glyphicon-forward"></span>
+				</a></li>
 			</c:if>
-		</c:forEach>
-		
-		<!-- 보여줄 것이 남아있는 경우는 다음 endpage보다 totalPage가 클경우 -->
-		<c:if test="${pb.endPage < pb.totalPage}">
-			<li><a href="cpList.do?pageNum=${pb.endPage+1 }&search=${carpool.search }&keyword=${carpool.keyword}" class="page_num">
-					<span class="glyphicon glyphicon-triangle-right"></span>
-			</a></li>
-			<li><a href="cpList.do?pageNum=${pb.totalPage}&search=${carpool.search }&keyword=${carpool.keyword}" class="page_num">
-					<span class="glyphicon glyphicon-forward"></span>
-			</a></li>
-		</c:if>
-	</ul>
+		</ul>
+	</div>
 </div>
 </body>
 </html>

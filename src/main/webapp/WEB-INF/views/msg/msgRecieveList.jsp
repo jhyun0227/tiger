@@ -64,11 +64,28 @@ function deleteValue(){
 		}
 	}
 }
-
 </script>
 </head>
 <body>
 <h2 class="title">받은 쪽지함</h2>
+<!-- 검색 -->
+<div class="searchDIV">
+	<form action="msgRecieveList.do">
+		<input type="hidden" name="pageNum" value="1">
+		<select name="search" class="inputUnderLine">
+			<c:forTokens var="sh" items="MB_nickname, MSG_content" delims="," varStatus="i">
+				<c:if test="${sh == message.search }">
+					<option value="${sh}" selected="selected">${title[i.index] }</option>
+				</c:if>
+				<c:if test="${sh != message.search }">
+					<option value="${sh}">${title[i.index] }</option>
+				</c:if>
+			</c:forTokens>
+		</select>
+		<input type="text" name="keyword" value="${message.keyword }" class="inputUnderLine">
+		<input type="submit" value="검색" class="btn_search">
+	</form>
+</div>
 <form method="post" name="frm">
 	<table class="table" style="table-layout:fixed">
 		<tr>
@@ -88,8 +105,8 @@ function deleteValue(){
 				<c:if test="${message.MSG_delR != 'Y' }">
 					<td class="text-center"><input type="checkbox" name="rowCheck" value="${message.MSG_num }" ></td>
 					<td class="text-center">
-						<a onclick="window.open('profileView.do?MB_nickName=${message.nicknameS }', '',
-							'width=500,height=560,location=no,status=no,scrollbars=yes');" class="inputLineA">${message.nicknameS }</a>
+						<a onclick="window.open('profileView.do?MB_nickName=${message.MB_nickname }', '',
+							'width=500,height=560,location=no,status=no,scrollbars=yes');" class="inputLineA">${message.MB_nickname }</a>
 					</td>
 					<td class="ellip">
 						<a href="msgView.do?MSG_num=${message.MSG_num }&pageNum=${pb.currentPage}">${message.MSG_content }</a>

@@ -14,16 +14,6 @@
 	width: 100%;
 }
 
-/* #img_box { */
-/* 	float: left !important; */
-/* } */
-
-/* #inform_box { */
-/* 	margin-top: 15px; */
-/* 	float: right !important; */
-/* 	width: 50%; */
-/* } */
-
 .thumbnail {
 	height: 200px;
 	width: 200px;
@@ -41,7 +31,7 @@
 }
 
 .profileDiv{
-	height: 20vh;
+	height: 10vh;
 }
 
 .reviewDiv{
@@ -49,7 +39,7 @@
 	margin-top: 330px;
 }
 .glyphicon-heart{
-	font-size: 30px;
+	font-size: 22px;
 	color: red;
 }
 .glyphicon-heart:hover {
@@ -58,8 +48,8 @@
 }
 
 .glyphicon-heart-empty{
-	font-size: 30px;
-	color: red;
+	font-size: 22px;
+	color: #000000;
 }
 .glyphicon-heart-empty:hover{
 	text-decoration: none;
@@ -67,8 +57,8 @@
 }
 
 .glyphicon-envelope {
-	font-size: 30px;
-	color: black
+	font-size: 15px;
+	color: #3243A8;
 }
 
 .glyphicon-envelope:hover {
@@ -87,7 +77,24 @@
 
 	<c:if test="${result == 1 }">
 		<div align="center">
-				<h2 class="">${member.MB_nickName }님의 프로필</h2>
+				<h3 class="">${member.MB_nickName }님의 프로필
+					<span>
+						<c:if test="${favo > 0 }">
+								<td colspan="2">
+									<a class="glyphicon glyphicon-heart" 
+									aria-hidden="true"
+									href="deleteFv.do?MB_numG=${sessionScope.MB_num }&MB_numT=${member.MB_num}&MB_nickName=${member.MB_nickName}"></a>
+								</td>
+						</c:if>
+						<c:if test="${favo == 0 }">
+							<td colspan="2">
+								<a class="glyphicon glyphicon-heart-empty" aria-hidden="true"
+									href="addFv.do?MB_numG=${sessionScope.MB_num }&MB_numT=${member.MB_num}&MB_nickName=${member.MB_nickName}"></a>
+								</td>									
+							</c:if>
+						
+					</span>
+				</h3>
 			<div class="profileDiv">
 				<div class="narrowWidth1">
 					<div id="img_box">
@@ -97,7 +104,11 @@
 						<table class="table">
 							<tr>
 								<td class="col-sm-3 text-center">이메일</td>
-								<td class="col-sm-9">${member.MB_id }</td>
+								<td class="col-sm-9">${member.MB_id }&nbsp;
+									<a class="glyphicon glyphicon-envelope" aria-hidden="true"
+										onclick="window.open('msgWriteForm.do?MB_num=${member.MB_num }','쪽지 보내기',
+										'width=430,height=400,location=no,status=no,scrollbars=yes');"></a>
+								</td>
 							</tr>
 							<tr>
 								<td class="col-sm-3 text-center">닉네임</td>
@@ -123,54 +134,21 @@
 								<td class="col-sm-3 text-center">가입일</td>
 								<td class="col-sm-9">${member.MB_regDate }</td>
 							</tr>
-
-							<tr align="center">
-								<c:if test="${favo > 0 }">
-									<td colspan="2">
-										<a class="glyphicon glyphicon-heart" 
-										aria-hidden="true"
-										href="deleteFv.do?MB_numG=${sessionScope.MB_num }&MB_numT=${member.MB_num}&MB_nickName=${member.MB_nickName}"></a>
-										
-										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
-									
-										<a class="glyphicon glyphicon-envelope" aria-hidden="true"
-										onclick="window.open('msgWriteForm.do?MB_num=${member.MB_num }','쪽지 보내기',
-										'width=430,height=400,location=no,status=no,scrollbars=yes');"></a>
-								</td>
-								</c:if>
-
-								<c:if test="${favo == 0 }">
-									<td colspan="2">
-										<a class="glyphicon glyphicon-heart-empty"
-										aria-hidden="true"
-										href="addFv.do?MB_numG=${sessionScope.MB_num }&MB_numT=${member.MB_num}&MB_nickName=${member.MB_nickName}"></a>
-
-										&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
-										
-										<a class="glyphicon glyphicon-envelope" aria-hidden="true"
-										onclick="window.open('msgWriteForm.do?MB_num=${member.MB_num }','쪽지 보내기',
-										'width=430,height=400,location=no,status=no,scrollbars=yes');"></a>
-								</td>									
-								</c:if>
-							</tr>
 						</table>
 					</div>
 				</div>
 			</div>
 			<div class="reviewDiv">
 				<c:if test="${result2 == -1 }">
-					<h2 class="">
-						<img alt="" src="${path }/resources/starImg/star.png" width="50px" height="50px">&nbsp;&nbsp;
-						0.0
-					</h2>
+						<img alt="" src="${path }/resources/starImg/star.png" width="70px" height="14px">&nbsp;
+					<h4>0.0</h4>
 				</c:if>
 				<c:if test="${result2 != -1 }">
-					<h2 class="">
-						<img alt="" src="${path }/resources/starImg/star.png" width="50px" height="50px">&nbsp;&nbsp;
+					<h4>
+						<img alt="" src="${path }/resources/starImg/star.png" width="70px" height="14px">&nbsp;
 						${reviewAvg }
-					</h2>
+					</h4>
 				</c:if>
-
 				<table class="table">
 					<tr>
 						<th colspan="2" class="text-center">리뷰는 최근 5개까지만 표시됩니다.</th>

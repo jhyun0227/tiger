@@ -10,24 +10,7 @@
 		color: red;   
 		font-weight: bold;
 	}
-	
-	.narrowWidth1 {
-   	 width: 60%;
-   	}
-   	
-	.narrowWidth2 {
-   	 width: 75%;  
-   	} 
-	.narrowWidth1-1 {
-   	 width: 70%;  
-   	} 
-	
-	.inputline1{  
-	    border: none;
-	    outline: 0;
-	    width: 64%;
-     }  
-	
+ 	
 	#inform_box {
 		float: right !important;
 		/* margin-top: 15px;
@@ -50,17 +33,7 @@
 		margin-top: 0; 
 		margin-bottom: 8px; 
 	}  
-	   
-	.btn_SM {
-		width: 90%;
-		height: 40px;  
-		border: none;
-		background: #242526;
-		color: #eee;   
-		font-size: 18px;
-		text-align: center;
-	}
-	 
+		 
 	#fileA {
 		width: 100%;
 		text-align: center;
@@ -69,6 +42,14 @@
 		width: 100%;  
 		text-align: center;
 	} 
+	input:hover {
+		color: #3243A8;
+		font-size: 18px;
+		font-weight: bold;
+	}
+	input{
+		color: #637DBA;
+	}
 </style>
 <script type="text/javascript">
 	// 중복체크안해도 submit 버튼 활성화
@@ -142,13 +123,13 @@
 </script>
 </head>
 <body>   
-<div class="container narrowWidth1-1" align="center">
+<div class="container narrowWidth" align="center">
 	<h2 class="title">${member.MB_nickName }님의 프로필 설정</h2>
 	<form action="updateResult.do" method="post" enctype="multipart/form-data" 
 				name="frm" onsubmit="return chk()">
 	<input type="hidden" name="MB_id" value="${member.MB_id }">			
 		<div class="row">  
-			<div class="col-md-2" id="img_box"  > 
+			<div class="col-md-3" id="img_box"  > 
 				<c:if test="${empty member.MB_img }">
 					<img alt="" src="${path }/resources/main/none_img3.jpg" class="thumbnail" >
 				</c:if> 
@@ -165,39 +146,41 @@
 	  		     </div> 
 	  
 			</div>
-			<div class="col-md-10" id="inform_box">	
-				<table class="table narrowWidth2">  
+			<div class="col-md-9" id="inform_box">	
+				<table class="table">  
 					   <tr>
-							<td class="col-md-2 text-center">이메일</td>
+							<td class="col-md-4 text-center">이메일</td>
 							<td class="col-md-8">${member.MB_id }</td>
 						</tr>
 						<tr>
-							<td class="col-md-3 text-center">이름</td>
-							<td class="col-md-7"><input type="text" name="MB_name"
+							<td class="col-md-4 text-center">이름</td>
+							<td class="col-md-8"><input type="text" name="MB_name"
 								required="required" autofocus="autofocus"
-								value="${member.MB_name }" class="inputline1"></td>
-						</tr>
+								title="변경을 원하시면 이름을 입력해주세요" 
+								value="${member.MB_name }" class="inputLine"></td>  
+		 				</tr>
 						<tr>
-							<td class="col-md-3 text-center">주민등록번호</td>
-							<td class="col-md-7">${member.MB_regNum }
-							 <span>―</span><span>*******</span>
+							<td class="col-md-4 text-center">주민등록번호</td>
+							<td class="col-md-8">${member.MB_regNum }
+							 &nbsp; <span>―</span> &nbsp; <span>*******</span>
 					    </td>
 						</tr>
 						<tr>
-							<td class="col md-2 text-center">닉네임</td>
-							<td class="col md-8">
+							<td class="col-md-4 text-center">닉네임</td>
+							<td class="col-md-8">
 								<input type="text" name="MB_nickName" id="nickName" required="required" 
-								        placeholder="닉네임을 입력해주세요" class="inputline1" value="${member.MB_nickName }" onchange="nickChk()"> 
+								        placeholder="닉네임을 입력해주세요" class="inputLine" value="${member.MB_nickName }" onchange="nickChk()" 
+								        title="변경을 원하시면 닉네임을 입력해주세요" >
 								<div id="nickChk" class="err"></div>
 							</td>
 					 	 </tr> 
 						<tr>  
-							<td class="col-md-2 text-center">연락처</td>
+							<td class="col-md-4 text-center">연락처</td>
 							<td class="col-md-8">
 							    <input type="tel" name="MB_tel" required="required" 
 							           title="전화번호 형식 3-4-4" pattern="\d{3}-\d{4}-\d{4}" 
 							            placeholder="000-0000-0000" value="${member.MB_tel }" 
-							            class="inputline1">
+							            class="inputLine">
 							</td>
 						<tr>
 						<tr>

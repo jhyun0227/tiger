@@ -37,8 +37,8 @@ td, th {
 			</tr>
 		</table>
 		
-		<a href="findIdForm.do" class="inputLineA">아이디 찾기</a>&nbsp; |      
-		<a href="findPwForm.do" class="inputLineA">비밀번호 찾기</a>&nbsp;
+		<a href="findIdForm.do" class="inputLineA">아이디 찾기</a>&nbsp;  |  &nbsp;    
+		<a href="findPwForm.do" class="inputLineA">비밀번호 찾기</a>
 	</form>
 </div>  
 </body>

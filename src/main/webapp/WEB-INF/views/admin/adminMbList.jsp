@@ -6,6 +6,37 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<c:set var="path" value="${pageContext.request.contextPath }"></c:set>
+<style type="text/css">
+	.box {
+	   margin-top: -30px;
+	} 
+	.btn_Y {
+		border: none;
+		font-weight: bold;
+		color: gray;
+	} 
+	.btn_Y:hover {
+		font-size: 18px;
+		color: red;
+	}
+	
+	.btn_N {
+		border: none;
+		font-weight: bold;
+	} 
+	.btn_N:hover {
+		font-size: 18px;
+		color: red;
+	}  
+</style>
+<script type="text/javascript">
+/* 이전페이지 */
+	function prev(){
+		var preUrl = document.referrer.split("/")[4];
+		location.href=preUrl;
+	}
+</script>
 </head>
 <body>
 	<div class="container" align="center">
@@ -65,16 +96,23 @@
 								</c:if>
 								<c:if test="${member.MB_id != 'admin' }">
 									<td class="text-center"><a href="adminMbDelete.do?MB_id=${member.MB_id }&pageNum=${pageNum }"
-											class="btn_prev">탈퇴</a></td>
+											class="btn_N">N</a></td>
 								</c:if>
 							</c:if>
 							<c:if test="${member.MB_del == 'Y' }">
 								<td class="text-center"><a href="adminMbRollback.do?MB_id=${member.MB_id }&pageNum=${pageNum }"
-										class="btn_prev">복구</a></td>
-							</c:if>
+										class="btn_Y">Y</a></td>
+							</c:if>   
 					</tr>
 				</c:forEach>
 			</c:if>
+			<tr>
+				<td colspan="7" >
+					<div align="right" class="box">
+					   <input type="button" value="이전" class="btn_sm_stroke" onclick="prev()">
+					</div>
+				</td>  
+			</tr>		
 		</table>
 		<div align="center">
 			<ul class="pagination_bottom">

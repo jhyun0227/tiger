@@ -14,10 +14,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <title>Insert title here</title>
+
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="./bootstrap/css/styles.css" rel="stylesheet" />
 </head>
 <body>
+	
 <h1 class="title">타세요 목록</h1>
 		<!-- 검색창 -->
 		<div class="searchDIV">

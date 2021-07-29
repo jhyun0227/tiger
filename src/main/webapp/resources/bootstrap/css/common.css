@@ -203,7 +203,7 @@ body{
     font-size: 18px;
     border: none;
     margin-bottom: 30px;
-}
+ }
 
 .btn_medium {
 	margin-left: 25px;
@@ -226,41 +226,16 @@ body{
     border: none;
     margin-bottom: 30px;
 }
- 
-.btn_sm {
-    margin-bottom: 10px;
-    margin-left: 25px;  
-    padding: 5px 12px;
-    border: 1px solid #9a9ca3;
-    font-size: 14px;
-    color: #242526;
-    background: initial;
-}
 
-.btn_smt {
-    width: 50%;
-    height: 40px;
-    background:  #3243A8;
-    color: #eee;
-    font-size: 15px;  
-    border: none;
-   
-}
-.btn_ck {
-	border: none ;
-    font-size: 15px;
-    color:  #3243A8;
-    font-weight: bold;
-    background: none;
-}
 
 .btn_sm_stroke {
     margin-bottom: 10px;
     padding: 5px 12px;
     border: 1px solid #9a9ca3;
     font-size: 14px;
-    color: #242526;
+    color: #242526;   
     background: initial;
+    margin-top: 30px;
 }
 
 .btn_sm_full{
@@ -270,7 +245,7 @@ body{
     font-size: 14px;
     color: #eee;
     background: #3243A8;
-    margin-top: 17px;
+    margin-top: 15px;
 }
 
 .btn_search{

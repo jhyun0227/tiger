@@ -22,11 +22,16 @@
 			<td class="col-md-2 text-center">첨부파일</td>
 			<td><img alt="${qna.QA_fileName }" src="/tiger/resources/upload/${qna.QA_fileName }" width="300"></td>
 		</tr>
+		<tr>
+			<td colspan="2">
+				<div align="right">
+					<a href="adminQnaList.do?pageNum=${pageNum}" class="btn_sm_stroke">목록</a>
+					<a href="adminQnaReplyForm.do?num=${qna.QA_num }&pageNum=${pageNum}" class="btn_sm_full">답글 작성</a>
+					<a href="adminQnaDelete.do?num=${qna.QA_num }&pageNum=${pageNum}" class="btn_sm_stroke">삭제</a>
+				</div>
+			</td>
+		</tr>
 		</table>
-	<div align="right">
-		<a href="adminQnaList.do?pageNum=${pageNum}" class="btn_prev">목록</a>
-		<a href="adminQnaReplyForm.do?num=${qna.QA_num }&pageNum=${pageNum}" class="btn_prev">답글 작성</a>
-		<a href="adminQnaDelete.do?num=${qna.QA_num }&pageNum=${pageNum}" class="btn_prev">삭제</a>
 	</div>
 </body>
 </html>

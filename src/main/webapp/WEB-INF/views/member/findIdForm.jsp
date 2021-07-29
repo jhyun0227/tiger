@@ -39,8 +39,8 @@ td, th {
 				</td>
 			</tr>
 		</table>
-		<a href="findPwForm.do" class="inputLineA">비밀번호 찾기</a>&nbsp;|
-		<a href="joinForm.do" class="inputLineA">회원가입</a>&nbsp;|
+		<a href="findPwForm.do" class="inputLineA">비밀번호 찾기</a>&nbsp;|&nbsp;
+		<a href="joinForm.do" class="inputLineA">회원가입</a>&nbsp;|&nbsp;
 		<a href="loginForm.do" class="inputLineA">로그인</a>
 	</form>
 </div>

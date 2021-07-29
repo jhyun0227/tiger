@@ -8,49 +8,26 @@
 <title>Insert title here</title>
 <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
 <style type="text/css">
-	.filebox input[type="file"] {
-		position: absolute;
-		width: 1px;
-		height: 1px;
-		padding: 0;
-		margin: -1px;
-		overflow: hidden;
-		clip: rect(0, 0, 0, 0);
-		border: 0;
-	}
-	.filebox label {
-	    display: inline-block;
-	    width: 80px;
-	    height: 30px;
-	    border: none;
-	    background: #242526;
-	    color: #eee;
-	    font-size: 16px;
-	    text-align: center;
-	    cursor: pointer;
-	    line-height: 30px;
-	} 
-	/* named upload */
-	.filebox .upload-name {
-		display: inline-block;
-		background-color: white;
-		cursor: pointer;
-		border: none;
-		-webkit-appearance: none; /* 네이티브 외형 감추기 */
-		-moz-appearance: none;
-		appearance: none;
-	}
-	
-	.inputKm{
+	.inputKm1{
 		border: none;
 	    outline: 0;
 		width: 90px;
 	}
+	.inputKm2{
+		border: none;
+	    outline: 0;
+		width: 70px;
+	}   
 	
 	.err {
 		color: red;
 		font-weight: bold;
 	}
+	
+	td, th {
+    padding: 14px 0px;	
+}
+	
 </style>
 
 <script type="text/javascript">
@@ -85,6 +62,21 @@
 		$(this).siblings('.upload-name').val(filename);
 		}); 
 	});
+	
+// 차량주행거리에 천단위로 콤마(,) 넣기 
+	$( function () {
+	 	const input = document.querySelector('#comma');
+		input.addEventListener('keyup', function(e) {
+ 			 let value = e.target.value;
+  			 value = Number(value.replaceAll(',', ''));
+  		if(isNaN(value)) {
+   			 input.value = 0;
+ 		 }else {
+  			  const formatValue = value.toLocaleString('ko-KR');
+   			 input.value = formatValue;
+ 		 }
+		});
+	});
 </script>
 
 </head>
@@ -93,30 +85,31 @@
 	<h2 class="title">차량 정보 등록</h2>
 	<form action="vehicleInsertResult.do" method="post" name="frm" enctype="multipart/form-data">
 	<input type="hidden" name="MB_num" value="${MB_num }">
-		<table class="table narrowWidth">
+		<table class="table narrowWidth1">
 			<tr>
-				<td class="col md-2 text-center">차량번호</td>
-				<td class="col md-10">
+				<td class="col-md-4 text-center">차량번호</td>
+				<td class="col-md-8">
 					<input type="text" name="VH_carNum" id="carNum" required="required" autofocus="autofocus" 
 					 placeholder="ex)000가 0000" maxlength="9" class="inputLine">
 					 <div id="vhChk" class="err"></div>
 				</td>
 			</tr>
 			<tr>
-				<td class="col md-2 text-center">차량명</td>
-				<td class="col md-10">
+				<td class="col-md-4 text-center">차량명</td>
+				<td class="col-md-8">
 					<input type="text" name="VH_carName" required="required" placeholder="ex)아반떼AD" class="inputLine">
 				</td>
 			</tr>
 			<tr>
-				<td class="col md-2 text-center">연식</td>
-				<td class="col md-10">
-					<input type="number" name="VH_carYear" required="required" value="2010" class="inputLine">
+				<td class="col-md-4 text-center">연식</td>
+				<td class="col-md-8">
+					<input type="number" name="VH_carYear" required="required" value="2010" 
+							class="inputKm2"> 년식
 				</td>
-			</tr>
+			</tr>     
 			<tr>
-				<td class="col md-2 text-center">차종</td>
-				<td class="col md-10">
+				<td class="col-md-2 text-center">차종</td>
+				<td class="col-md-8">
 					<input type="radio" name="VH_carType" id="small" value="1" checked="checked">
 					<label for="small">소형</label>
 					&nbsp;
@@ -131,14 +124,15 @@
 				</td>
 			</tr>
 			<tr>
-				<td class="col md-2 text-center">주행거리</td>
-				<td class="col md-10">
-					<input type="text" name="VH_km" required="required" placeholder="ex)100,000" class="inputKm">km
+				<td class="col-md-2 text-center">주행거리</td>
+				<td class="col-md-8">
+					<input type="text" name="VH_km" required="required" placeholder="ex)100,000" 
+							class="inputKm1" id="comma">km
 				</td>
 			</tr>
 			<tr>
-				<td class="col md-2 text-center">자차보험</td>
-				<td class="col md-10">
+				<td class="col-md-4 text-center">자차보험</td>
+				<td class="col-md-8">
 					<input type="radio" name="VH_insu" id="y" value="Y" checked="checked">
 					<label for="y">있음</label>
 					&nbsp;
@@ -147,7 +141,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td class="col md-2 text-center">차량 앞면 사진</td>
+				<td class="col-md-2 text-center">차량 앞면 사진</td>
 				<td>
 					<div class="filebox"> 
 						<label for="ex_filename">업로드</label> 
@@ -158,7 +152,9 @@
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<input type="submit" id="submit" value="차량 등록" class="btn_small" disabled="">
+				    <div align="right">
+					<input type="submit" id="submit" value="차량 등록" class="btn_sm_full" disabled="">
+					</div>
 				</td>
 			</tr>
 		</table>

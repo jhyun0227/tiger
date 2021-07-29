@@ -32,6 +32,26 @@
 		font-weight: bolder;
 		color: #242526;
 	}
+	.row {
+		margin-top: -20px;
+	}  
+		
+	#inform_box {
+		float: right !important;
+		 margin-top: 15px; 
+		 padding-left: 0px;	
+    }  
+	   
+	#img_box {
+		float: left !important;
+		 margin-left: -40px; 
+	}  
+	
+	.thumbnail{
+		width: 130px;
+		height: 170px;
+		margin-top: 20px; 
+	}      
 </style>
 <script type="text/javascript">
 /* 이전페이지 */
@@ -42,59 +62,45 @@
 </script>
 </head>
 <body>
-<div class="container narrowWidth1" align="center">
-	<h2 class="title">드라이버 신청 내역</h2>
-	<div class="row">
-		<div class="col-md-1 title2" >
-			<h4 class="text-center">운전면허증 </h4>
-			<h4 class="text-center" id="imgTitle" >차량 번호판</h4>
-		</div>
-		<div class="col-md-2"  id="img_box">
-			<!-- <h5 class="text-center">운전면허 앞면 사진</h5> -->
-			<img alt="" src="${path }/resources/applyImg/${apply.AP_picture}" 
-					height="140px" width="115px">
-		<!-- 	<h5 class="text-center">자동차 번호판</h5> -->
-			<img alt="" src="${path }/resources/vehicleImg/${vehicle.VH_carPicture}" 
-			 		height="140px" width="115px">
-		</div>	
-		<div class="col-md-9" id="inform_box">   
-			<table class="table narrowWidth2 ">
-				<tr>
-					<th class="col-md-5 text-center">아이디</th>
-					<td class="col-md-7">${apply.MB_id }</td>
+	<div class="container narrowWidth" align="center">
+		<h2 class="title">${member.MB_nickName }님의 드라이버 신청 상세내역</h2>
+		<div class="row">
+			<%-- <div class="col-md-1"  id="title_box">
+				<h5>운전면허증</h5>
+				<h5 id="plate">차량 번호판</h5>
+			</div>
+			<div class="col-md-2"  id="img_box">
+				<img alt="" src="${path }/resources/applyImg/${apply.AP_picture}" class="thumbnail">
+				<img alt="" src="${path }/resources/vehicleImg/${vehicle.VH_carPicture}" 
+			 		class="thumbnail">
+			</div>	 --%>	     
+			<div class="col-md-3"  id="title_box">
+				<img alt="" src="${path }/resources/applyImg/${apply.AP_picture}" class="thumbnail">
+				<h5>운전면허증</h5>
+			</div>
+			<div class="col-md-3"  id="img_box">
+				<img alt="" src="${path }/resources/vehicleImg/${vehicle.VH_carPicture}" 
+			 		class="thumbnail">
+			 	<h5 id="plate">차량 번호판</h5>		
+			</div>	           
+			<div class="col-md-6" id="inform_box">
+				<!-- <h4 class="text-center">차량 정보</h4>  -->
+				<table class="table">    
+					<tr>
+						<th class="col-md-4 text-center">차량번호</th>
+						<td class="col-md-8">${vehicle.VH_carNum }</td>
 					</tr>
 					<tr>
-						<th class="col-md-5 text-center">이름</th>
-						<td class="col-md-7">${apply.MB_name }</td>  
-					</tr>
-						<%-- <tr>
-						<td class="col-md-3 text-center">연락처</td>
-						<td class="col-md-6">${member.MB_tel }</td>
-					</tr> --%>
-					<tr>
-						<th class="col-md-5 text-center">성별</th>
-						<c:if test="${apply.MB_gender == '1' || apply.MB_gender == '3'}">
-							<td class="col-md-7">남자</td>
-						</c:if>
-						<c:if test="${apply.MB_gender == '2' || apply.MB_gender == '4'}">
-							<td class="col-md-7">여자</td>
-						</c:if>	
+						<th class="col-md-4 text-center">차랑명</th>
+						<td class="col-md-8 ">${vehicle.VH_carName }</td>
 					</tr>
 					<tr>
-						<th class="col-md-5 text-center">차량 번호</th>
-						<td class="col-md-7">${vehicle.VH_carNum }</td>
+						<th class="col-md-4 text-center">연식</th>
+						<td class="col-md-8">${vehicle.VH_carYear }</td>
 					</tr>
 					<tr>
-						<th class="col-md-5 text-center">차량 이름</th>
-						<td class="col-md-7">${vehicle.VH_carName }</td>
-					</tr>
-					<tr>
-						<th class="col-md-5 text-center">차량 연식</th>
-						<td class="col-md-7">${vehicle.VH_carYear} 년식</td>
-					</tr>
-					<tr>
-						<th class="col-md-5 text-center">차종</th>
-						<td class="col-md-7">
+						<th class="col-md-4 text-center">차종</th>
+						<td class="col-md-8 ">
 							<c:if test="${vehicle.VH_carType == '1' }">소형</c:if>
 							<c:if test="${vehicle.VH_carType == '2' }">중형</c:if>
 							<c:if test="${vehicle.VH_carType == '3' }">대형</c:if>
@@ -102,23 +108,27 @@
 						</td>
 					</tr>
 					<tr>
-						<th class="col-md-5 text-center">주행거리</th>
-						<td class="col-md-7">${vehicle.VH_km } km</td>
+						<th class="col-md-4 text-center">주행거리</th>
+						<td class="col-md-8">${vehicle.VH_km } km</td>
 					</tr>
 					<tr>
-						<th class="col-md-5 text-center">보험 여부</th>
-						<td class="col-md-7">
+						<th class="col-md-4 col md-2 text-center">보험여부</th>
+						<td class="col-md-8 ">
 							<c:if test="${vehicle.VH_insu == 'Y' }">있음</c:if>
 							<c:if test="${vehicle.VH_insu == 'N' }">없음</c:if>
 						</td>
+					</tr>   
+					<tr>
+						<td  colspan="2">
+							<div align="right">
+								<input type="button" value="이전" class="btn_sm_full" 
+										onclick="prev()">
+							</div>
+						</td>
 					</tr>
-					
 				</table>
-			<div class="container narrowWidth1" align="center">
-				<input type="button" value="이전" class="btn_sm_full" onclick="prev()">
-			</div>	  
+			</div>
 		</div>
 	</div>
-</div>
 </body>
 </html>

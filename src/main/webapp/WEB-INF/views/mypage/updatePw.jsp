@@ -8,26 +8,10 @@
 <title>Insert title here</title>
 <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
 <style type="text/css">
-	
-	.narrowWidth2 {
-   	 	width: 43%;
-	}
-	
-	.btn_s {
-	width: 100px;
-    height: 30px;
-    border: none;
-    background: #242526;
-    color: #eee;
-
-	}
-	
-	.inputline3{
-	    border: none;
-	    outline: 0;
-	    width: 90%;
-	}
-	
+	td, th {
+    	padding: 14px 0px;	
+    }
+		
 	#keyShow {
 	  position: absolute;
 	  display: none;
@@ -36,6 +20,10 @@
 	  font-size: 15px;
 	  cursor: pointer;
 	  color: grey;
+	}
+	
+	#idBtn {
+		margin-top: 30px;
 	}
 </style>	
 <script type="text/javascript">
@@ -155,29 +143,26 @@
 
 </head>
 <body>
-<div class="container narrowWidth2" align="center">
+<div class=" narrowWidth1"  align="center">
 	<h2 class="title">비밀번호 변경</h2>
 	<form action="updatePwResult.do"  method="post" name="frm" onsubmit="return chk()">
 	<input type="hidden" name="MB_id" value="${member.MB_id }">
-	<table class="table ">  
+	<table>  
 			<tr>
-				<td class="col-md-4 text-center">현재 비밀번호</td>
-				<td class="col-md-8">
+				<td class="inputUnderLine">
 					<input type="password" name="MB_now_pw" id="now_pw" required="required" 
-							placeholder="현재 비밀번호" class="inputline3">
+							placeholder="현재 비밀번호" class="inputLine">
 					<br>
 					<div class="alert alert-success" id="correct">현재 비밀번호와 일치합니다.</div>
 					<div class="alert alert-danger" id="fail">현재 비밀번호와 일치하지 않습니다.</div>
 				</td>
 			</tr>
 			<tr>
-				<td class="col-md-4 text-center">변경 비밀번호</td>
-				<td class="col-md-8">
+				<td class="inputUnderLine">
 						<input type="password" name="MB_pw" id="pw" maxlength="12" autocomplete="false"
-								class="inputline3"  placeholder="비밀번호(영문자, 숫자, 4자 이상)" 
+								class="inputLine"  placeholder="변경 비밀번호(영문자, 숫자, 4자 이상)" 
 								required="required">
 							<div id="keyShow">show</div>
-				
 						<div class="alert alert-danger" id="alert1" >
 						     "숫자와 영문자를 포함해서 4자리 이상 "</div>
 						<div class="alert alert-danger" id="alert2">"공백 없이 입력"</div>
@@ -186,21 +171,20 @@
 				   </td> 
 			</tr>  
 			<tr>
-				<td class="col-md-4 text-center">변경 비밀번호 확인</td>
-				<td class="col-md-8">
+				<td class="inputUnderLine">
 					<input type="password" name="MB_pw_confirm" id="pw_confirm" 
-							placeholder="변경 비밀번호 확인" required="required" class="inputline3">
+							placeholder="변경 비밀번호 확인" required="required" class="inputLine">
 					<br>
 					<div class="alert alert-success" id="alert-success">변경 비밀번호가 일치합니다.</div>
 					<div class="alert alert-danger" id="alert-danger">변경 비밀번호가 일치하지 않습니다.</div>
 				</td>
 			</tr>
 			<tr>  
-				<td colspan="2" align="center">
-					<input type="submit" id="submit" value="비밀번호 변경" 
-							class="btn_sm_full" disabled="">
+				<td class="text-center">
+					<input type="submit"  value="비밀번호 변경"   
+							class="btn_large" id="idBtn"  disabled="">
 				</td>
-			</tr>
+			</tr>    
 	</table>
 	</form>
 </div>

@@ -24,66 +24,65 @@
 </script>
 </head>
 <body>
-	<div class="container " align="center">
-		
-		<div class="row">
-			<div class="col-md-6">
-				<h2 class="title">타세요 상세내역</h2>
-				<table class="table narrowWidth80">
-					<tr>
-						<th class="col-md-4 text-center">작성자</th>
-						<td class="col-md-8">${member.MB_nickName }</td>
-					</tr>  
-					<tr>
-						<th class="col-md-4 text-center">출발지</th>
-						<td class="col-md-8">${carpool.CP_startPoint }</td>
-					</tr>
-					<tr>
-						<th class="col-md-4 text-center">도착지</th>
-						<td class="col-md-8">${carpool.CP_endPoint }</td>
-					</tr>
-					<tr>
-						<th class="col-md-4 text-center">출발일</th>
-						<td class="col-md-8">${carpool.CP_startDate }</td>
-					</tr>
-					<tr>
-						<th class="col-md-4 text-center">출발시간</th>
-						<td class="col-md-8">${carpool.CP_startTime }</td>
-					</tr>
-					<tr>
-						<th class="col-md-4 text-center">금액</th>
-						<td class="col-md-8" >${carpool.CP_fee } 원 / 인</td>
-					</tr>
-					<tr>
-						<th class="col-md-4 text-center">소요시간</th>
-						<td class="col-md-8">${carpool.CP_duration } 분</td>
-					</tr>
-					<tr>
-						<th class="col-md-3 text-center">인원</th>
-						<td class="col-md-9">${carpool.CP_passNum } 명</td>
-					</tr>
-					<tr>
-						<th class="col-md-3 text-center">성별 제한</th>
-						<td class="col-md-9">${carpool.CP_gendertype }</td>
-					</tr>
-					<tr>
-						<th class="col-md-3 text-center">참고사항</th>
-						<td class="col-md-9">${carpool.CP_option }</td>
-					</tr>
-					<tr>
-						<th class="col-md-3 text-center">기타 요구사항</th>
-						<td class="col-md-9">${carpool.CP_comment }</td>
-					</tr>
-				</table>
-			</div>
-			<div class="col-md-6">
-				<h2 class="title">카풀 신청 현황</h2>
-					<table class="table ">  
+	<div class="container"  align="center">
+		<div class="row">    
+			<div class=" col-md-6 carFool_contents">
+				<h3 class="title">카풀 상세내역</h3>
+					<table  class="table narrowWidth80">
 						<tr>
-							<th class="col-md-2 text-center">번호</th>
-							<th class="col-md-4 text-center">신청자</th>
-							<th class="col-md-3 text-center">성별</th>					
-							<th class="col-md-3 text-center">매칭여부</th>
+							<th class="col md-2 text-center">작성자</th>
+							<td class="col md-10">${member.MB_nickName }</td>
+						</tr>
+						<tr>
+							<th class="col md-2 text-center">출발지</th>
+							<td class="col md-10">${carpool.CP_startPoint }</td>
+						</tr>
+						<tr>
+							<th class="col md-2 text-center">도착지</th>
+							<td class="col md-10">${carpool.CP_endPoint }</td>
+						</tr>
+						<tr>
+							<th class="col md-2 text-center">출발일</th>
+							<td class="col md-10">${carpool.CP_startDate }</td>
+						</tr>
+						<tr>
+							<th class="col md-2 text-center">출발시간</th>
+							<td class="col md-10">${carpool.CP_startTime }</td>
+						</tr>
+						<tr>
+							<th class="col md-2 text-center">금액</th>
+							<td class="col md-10">${carpool.CP_fee } 원 / 인</td>
+						</tr>
+						<tr>
+							<th class="col md-2 text-center">소요시간</th>
+							<td class="col md-10">${carpool.CP_duration } 분</td>
+						</tr>
+						<tr>
+							<th class="col md-2 text-center">인원</th>
+							<td class="col md-10">${carpool.CP_passNum } 명</td>
+						</tr>
+						<tr>
+							<th class="col md-2 text-center">성별 제한</th>
+							<td class="col md-10">${carpool.CP_gendertype }</td>
+						</tr>
+						<tr>
+							<th class="col md-2 text-center">참고사항</th>
+							<td class="col md-10">${carpool.CP_option }</td>
+						</tr>
+						<tr>
+							<th class="col md-2 text-center">기타 요구사항</th>
+							<td class="col md-10">${carpool.CP_comment }</td>
+						</tr>
+					</table>
+				</div>
+				<div  class=" col-md-6 carFool_apply" >
+					<h3 class="title">카풀 신청 현황</h3>
+					<table class="table ">
+						<tr>
+							<th class="col md-3 text-center">번호</th>
+							<th class="col md-3 text-center">신청자</th>
+							<th class="col md-3 text-center">성별</th>					
+							<th class="col md-3 text-center">매칭여부</th>
 						</tr>
 						<c:if test="${empty adminRvList }">
 							<th colspan="4" class="text-center">신청한 탑승자가 없습니다</th>
@@ -108,18 +107,20 @@
 									</td>
 								</tr>
 							</c:forEach>
-						</c:if>  
+						</c:if>
+						<tr>
+							<td colspan="4">
+								<div align="right">
+									<a href="adminCpList.do?pageNum=${pageNum }" class="btn_sm_full">목록</a>
+									<c:if test="${memberDB.MB_id == 'admin' }">
+										<a href="adminCpDelete.do?CP_num=${carpool.CP_num }&pageNum=${pageNum }" class="btn_sm_stroke">삭제</a>
+									</c:if>
+								</div>
+							</td>
+						</tr>
 					</table>
-				
-			</div>	
+				</div>
+			</div>
 		</div>
-		<div align="center">
-			<a href="adminCpList.do?pageNum=${pageNum }" class="btn_sm_full">목록</a>
-			<c:if test="${memberDB.MB_id == 'admin' }">
-				<a href="adminCpDelete.do?CP_num=${carpool.CP_num }&pageNum=${pageNum }" class="btn_sm_stroke">삭제</a>
-				<a href="adminCpRollback.do?CP_num=${carpool.CP_num }&pageNum=${pageNum }" class="btn_sm_stroke">복구</a>
-			</c:if>
-		</div>
-	</div>
 </body>
 </html>

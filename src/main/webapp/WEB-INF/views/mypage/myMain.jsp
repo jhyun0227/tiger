@@ -47,14 +47,14 @@
 </style>	  
 </head>
 <body>   
-<div class="container narrowWidth1-1" align="center">
+<div class="container narrowWidth" align="center">
 	<h2 class="title">${member.MB_nickName }님의 프로필</h2> 
 	<form>
 		<div class="row">
 			<div class="col-md-1 text-center">
 				 <input onclick="location.href='updateForm.do'"  
 				 		  class="btn_setting" type="button" data-toggle="tooltip" 
-				 		  data-placement="top" title="변경을 원하시면 CLICK!">	
+				 		  data-placement="top" title="프로필 변경을 원하시면 Click!">	
 			</div>
 			<div class="col-md-2" id="img_box"  > 
 				<c:if test="${empty member.MB_img }">
@@ -65,8 +65,8 @@
 				 </c:if>    
 					 
 			</div>
-			<div class="col-md-9" id="inform_box">	
-				<table class="table narrowWidth2">
+			<div class="col-md-9 " id="inform_box">	
+				<table class="table">
 					<tr >
 						<td class="col-md-4 text-center">이메일</td>
 						<td class="col-md-8">${member.MB_id }</td>
@@ -79,13 +79,13 @@
 						<td class="col-md-4 text-center">주민등록번호</td>
 						<td class="col-md-8">
 								${member.MB_regNum }
-								<span>―</span>    
-								<span>*******</span>
+								&nbsp; <span>―</span> &nbsp;
+								&nbsp;<span>*******</span>
 						</td>
-					</tr>
+					</tr>   
 					<tr>
 						<td class="col-md-4 text-center">닉네임</td>
-						<td class="col-md-8">${member.MB_nickName }</td>
+						<td class="col-md-9">${member.MB_nickName }</td>
 						</tr>
 					<tr>
 						<td class="col-md-4 text-center">연락처</td>
@@ -110,11 +110,7 @@
 					<c:if test="${member.MB_driverConfirm == 'Y'}">
 					<tr>
 						<td class="col-md-4 text-center">드라이버</td>
-						<td class="col-md-8" id="confirm">승인
-							<span>
-							 <a href="driverApplyConfirm.do?MB_id=${member.MB_id }">신청서 상세내역</a>
-							 </span>
-						</td>
+						<td class="col-md-8" id="confirm">승인</td>
 					</tr>
 					</c:if>
 					<c:if test="${member.MB_driverConfirm == 'I'}">

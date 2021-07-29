@@ -18,6 +18,7 @@
 <link href="${path }/resources/bootstrap/css/carpool.css" rel="stylesheet" />
 </head>
 <body>
+	
 <h1 class="title">타세요 목록</h1>
 
 <!-- 검색창 -->

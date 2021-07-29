@@ -118,8 +118,11 @@ function deleteValue(){
 		</c:if>
 		<!-- 삭제버튼  -->
 		<tr>
-			<td class="text-center"><input type="button" class="btn_sm_stroke" value="삭제" onclick="deleteValue();"></td>
-			<td colspan="3"></td>
+			<td colspan="4" class="text-center">
+				<div align="right">
+					<input type="button" class="btn_sm_full" value="삭제" onclick="deleteValue();"></td>
+				</div>
+			</td>
 		</tr>
 	</table>
 </form>

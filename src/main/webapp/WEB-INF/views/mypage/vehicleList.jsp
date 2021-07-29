@@ -6,10 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<link rel="stylesheet" type="text/css" href="${path }/resources/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="${path }/resources/bootstrap/css/common.css">
-	<script type="text/javascript" src="${path }/resources/bootstrap/js/jquery.js"></script>
-	<script type="text/javascript" src="${path }/resources/bootstrap/js/bootstrap.min.js"></script>
+<c:set var="path" value="${pageContext.request.contextPath }"></c:set>
+<style type="text/css">
+	#line{
+		margin-top: 15px;
+	}
+</style>
 </head>
 <body>
 <!-- 드라이버 등록을 안했을 경우 -->
@@ -65,10 +67,10 @@
 							
 							<!-- 보험여부 -->
 							<c:if test="${vehicle.VH_insu == 'Y' }">
-								<td class="col md-2 text-center">O</td>
+								<td class="col md-2 text-center">있음</td>
 							</c:if>
 							<c:if test="${vehicle.VH_insu == 'N' }">
-								<td class="col md-2 text-center">X</td>
+								<td class="col md-2 text-center">없음</td>
 							</c:if>
 							
 							<td class="col md-2 text-center"><a href="vehicleDelete.do?VH_num=${vehicle.VH_num }">삭제</a></td>
@@ -76,10 +78,17 @@
 					</tr>
 				</c:forEach>
 			</c:if>
-		</table>
-		
-		<a href="vehicleInsertForm.do" class="btn_prev">차량 등록</a>
-		
+			 <tr>
+				<th colspan="6" class="text-center">
+					<div align="right" id="line">
+						<a href="vehicleInsertForm.do" class="btn_sm_full" >차량 등록</a>
+					</div>
+			</th>
+		 </tr>
+		</table>  
+		 <!-- <div>  
+		 		<a href="vehicleInsertForm.do" class="btn_sm_full" >차량 등록</a>
+		 </div>    -->
 	</div>
 </c:if>
 </body>

@@ -28,6 +28,18 @@
 	    width: 35%;
 	} 
 
+	.inputLine_s {
+		border: none;
+		outline: 0;
+		width: 45%;  
+	}  
+	#file_len {
+		width: 100%;
+		text-align: center;
+	}
+	 #box{
+	 	margin-top: -20px;  
+	 }         
 </style>	
 <script type="text/javascript">
 
@@ -113,12 +125,12 @@
 <!-- 신청기록이 없거나 신청 후 거절당해서 다시 신청이 가능한 경우 -->
 <c:if test="${result == 1 }">
 
-<div class="container narrowWidth1-1" align="center">
+<div class="narrowWidth" align="center" >
 	<h2 class="title">드라이버 신청</h2>
 	<form action="driverApplyResult.do" method="post" name="frm" enctype="multipart/form-data"> 
 	 	<input type="hidden" name="MB_num" value="${member.MB_num }">
 	 <div class="row">
-	 	<div class="col-md-3 " id="img_box"  > 
+	 	<div class="col-md-3" id="img_box"  > 
 	 		<c:if test="${empty AP_picture}">  
 			<img alt="" src="${path }/resources/main/none_dr.png" class="thumb" 
 					data-toggle="tooltip" data-placement="left" 
@@ -128,17 +140,16 @@
 				<img alt=""  class="thumb"   
 				     src="${path }/resources/applyImg/${apply.AP_picture}">	
 			</c:if>	     		
-			<div class="filebox">   
-				<label for="AP_picture" class="btn_sm_full">운전면허증 등록</label> 
-				<input class="upload-name" disabled="disabled" >    
+			<div class="filebox" id="box">   
+				<label for="AP_picture" class="btn_sm_full">운전면허증</label> 
+				<input class="upload-name" disabled="disabled" id="file_len">    
 				<input type="file" name="fileAp" id="AP_picture" class="upload-hidden"
 					       style="display:none;" onchange="preView(this);"  required="required">
-					       
 			</div>      
 	 	</div>
-	 	<div class="col-md-9"  id="inform_box">
+	 	<div class="col-md-9 " id="inform_box">
 	 			<h4 class="text-center">차량 정보 입력</h4>  
-			    <table class="table narrowWidth80">  
+			    <table class="table narrowWidth80 ">  
 					<tr>
 						<td class="col-md-4 text-center">차량번호</td>
 						<td class="col-md-8">
@@ -156,7 +167,8 @@
 					<tr>
 						<td class="col-md-4 text-center">연식</td>
 						<td class="col-md-8">
-							<input type="number" name="VH_carYear" required="required" value="2010" class="inputLine">
+							<input type="number" name="VH_carYear" required="required" value="2010" 
+							        class="inputLine_s">연식
 						</td>
 					</tr>
 					<tr>
@@ -178,10 +190,10 @@
 					<tr>
 						<td class="col-md-4 text-center">주행거리</td>
 						<td class="col-md-8">
-							<input type="text" name="VH_km" required="required" class="inputline4"
-									placeholder="ex)100,000" id="comma" >km
+							<input type="text" name="VH_km" required="required" id="comma"
+									placeholder="ex)100,000" class="inputLine_s">km
 						</td>
-					</tr>
+					</tr>   
 					<tr>
 						<td class="col-md-4 text-center">자차보험</td>
 						<td class="col-md-8">
@@ -195,23 +207,26 @@
 					<tr>
 						<td class="col-md-4 text-center">차량 앞면 사진</td>
 						<td class="col-md-8">
-							<div class="filebox" > 
-								<label for="VH_carPicture" id="labelUp">사진업로드</label> 
+							 <div class="filebox" > 
+								<label for="VH_carPicture" id="labelUp">차량번호판</label> 
+								<input class="upload-name" disabled="disabled"> 
 								<input type="file" name="file" id="VH_carPicture" required="required"
 								       class="upload-hidden" > 
-								<input class="upload-name" disabled="disabled"> 	
-							</div>
-						 </td>	
+							</div> 
+						 </td>	 
+					 </tr>
+					 <tr >
+					 	<td colspan="2">
+					 		<div align="right">
+								<input type="submit" id="submit" value="신청하기" disabled="disabled"
+										class="btn_sm_full">
+						     </div>
+					 	</td>
 					 </tr>
  			 </table> 
-		 	 <div align="center">
-				<input type="submit" id="submit" value="신청하기" disabled="disabled"
-						class="btn_sm_full">
-		     </div>
 	 	</div>
 	 </div>	
 	</form>
-	 
 </div>
 </c:if>
 </body>

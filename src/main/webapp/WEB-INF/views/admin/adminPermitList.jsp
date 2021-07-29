@@ -6,6 +6,22 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<c:set var="path" value="${pageContext.request.contextPath }"></c:set>
+<style type="text/css">
+	#blue {
+	 	color: #637DBA;
+	}
+	.box {
+	   margin-top: -30px;
+	}   
+</style>
+<script type="text/javascript">
+/* 이전페이지 */
+	function prev(){
+		var preUrl = document.referrer.split("/")[4];
+		location.href=preUrl;
+	}
+</script>
 </head>
 <body>
 	<div class="container" align="center">
@@ -58,7 +74,7 @@
 								<td class="col-md-2 text-center">여자</td>
 							</c:if>
 							<c:if test="${apply.MB_driverConfirm == 'I' }">
-								<td class="col-md-2 text-center">심사중
+								<td class="col-md-2 text-center" id="blue">심사중
 									<%-- <a href="adminPermitResult.do?AP_num=${num }&pageNum=${pageNum }" --%>
 									<%-- <a href="adminPermitResult.do?MB_num=${apply.MB_num }&pageNum=${pageNum }"
 										class="btn btn-info">승인</a>
@@ -75,6 +91,13 @@
 					<%-- </c:if> --%>
 				</c:forEach>
 			</c:if>
+			<tr>
+				<td colspan="5" >
+					<div align="right" class="box">
+					   <input type="button" value="이전" class="btn_sm_stroke" onclick="prev()">
+					</div>
+				</td>
+			</tr>		
 		</table>
 		<div align="center">
 			<ul class="pagination_bottom">

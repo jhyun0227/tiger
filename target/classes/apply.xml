@@ -4,18 +4,21 @@
 <mapper namespace="applyns">
 	<!-- 드라이버 신청 개수 확인 -->
 	<select id="getApplyTotal" parameterType="apply" resultType="integer">
-		select count(*) from apply
+		select count(*) from (select a.*, rowNum rn from (select ap.*, m.MB_id, m.MB_name, m.MB_nickName, m.MB_gender, m.MB_driverConfirm
+				from apply ap, member m where ap.MB_num=m.MB_num
+			<if test="keyword!=null and keyword!=''">
+				and ${search} like '%'||#{keyword}||'%'
+			</if>
+		order by ap.AP_num desc) a)
 	</select>
 	
 	<!-- 드라이버 신청 목록 -->
 	<select id="applyList" parameterType="apply" resultType="apply">
-		select * from (select a.*, rowNum rn from (select ap.*, m.MB_id, m.MB_name, m.MB_gender, m.MB_driverConfirm
+		select * from (select a.*, rowNum rn from (select ap.*, m.MB_id, m.MB_name, m.MB_nickName, m.MB_gender, m.MB_driverConfirm
 						from apply ap, member m where ap.MB_num=m.MB_num
-			<where>
 				<if test="keyword!=null and keyword!=''">
-					${search} like '%' || #{keyword} || '%'
+					and ${search} like '%' || #{keyword} || '%'
 				</if>
-			</where>
 			order by AP_num desc) a)
 			where rn between #{startRow} and #{endRow}
 	</select>

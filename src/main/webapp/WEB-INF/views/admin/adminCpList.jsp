@@ -33,11 +33,11 @@
 			<th class="col-md-1 text-center">작성자</th>
 			<th class="col-md-1 text-center">출발지</th>
 			<th class="col-md-1 text-center">도착지</th>
-			<th class="col-md-2 text-center">요금</th>
+			<th class="col-md-1 text-center">요금</th>
 			<th class="col-md-2 text-center">출발일</th>
 			<th class="col-md-1 text-center">출발시간</th>
-			<th class="col-md-2 text-center">완료 / 총좌석</th>
-			
+			<th class="col-md-1 text-center">완료/전체</th>
+			<th class="col-md-1 text-center">삭제여부</th>
 		</tr>
 		<c:if test="${empty adminCpList}">
 			<tr>
@@ -58,10 +58,10 @@
 					<td class="col-md-1 text-center">${carpool.MB_nickName }</td>
 					<td class="col-md-1 text-center">${carpool.CP_startPoint }</td>
 					<td class="col-md-1 text-center">${carpool.CP_endPoint }</td>
-					<td class="col-md-2 text-center">${carpool.CP_fee }</td>
+					<td class="col-md-1 text-center">${carpool.CP_fee }</td>
 					<td class="col-md-2 text-center">${carpool.CP_startDate }</td>
 					<td class="col-md-1 text-center">${carpool.CP_startTime }</td>
-					<td class="col-md-2 text-center">
+					<td class="col-md-1 text-center">
 						<c:if test="${carpool.CP_passNumNow < carpool.CP_passNum }">
 							${carpool.CP_passNumNow } / ${carpool.CP_passNum }
 						</c:if>
@@ -69,6 +69,7 @@
 							마감
 						</c:if>
 					</td>
+					<td class="col-md-1 text-center">${carpool.CP_del }</td>
 				</tr>
 			</c:forEach>
 		</c:if>

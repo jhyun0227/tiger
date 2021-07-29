@@ -15,6 +15,7 @@ public class Apply {
     // 조인용
     private String MB_id;
     private String MB_name;
+    private String MB_nickName;
     private String MB_gender;
     private String MB_driverConfirm;
     //검색용

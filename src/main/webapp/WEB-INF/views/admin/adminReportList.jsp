@@ -31,7 +31,7 @@
 		<table class="table">
 			<tr>
 				<th class="col-md-2 text-center">번호</th>
-				<th class="col-md-2 text-center">게시글</th>
+				<th class="col-md-2 text-center">상세</th>
 				<th class="col-md-2 text-center">신고자</th>
 				<th class="col-md-2 text-center">신고사유</th>
 				<th class="col-md-2 text-center">게시글 관리</th>
@@ -48,7 +48,7 @@
 						<td class="col-md-2 text-center">${num }
 						<c:set var="num" value="${num -1 }"></c:set></td>
 						<td class="col-md-2 text-center">
-							<a href="cpView.do?CP_num=${report.CP_num}&pageNum=${pb.currentPage}" class="btn_prev">상세</a></td>
+							<a href="adminCpView.do?CP_num=${report.CP_num}&pageNum=${pb.currentPage}" class="btn_open">상세</a></td>
 						<td class="col-md-2 text-center">${report.MB_nickName}</td>
 						<c:if test="${report.RP_reason == 1 }">
 							<td class="col-md-2 text-center">광고성/홍보성</td>
@@ -71,18 +71,18 @@
 						<td class="col-md-2 text-center">
 							<c:if test="${report.CP_del == 'N' }">
 								<a href="adminCpDelete.do?CP_num=${report.CP_num }&pageNum=${pageNum}"
-									class="btn_prev">삭제</a>
+									class="btn_delete">　</a>
 							</c:if>
 							<c:if test="${report.CP_del == 'Y' }">
 								<a href="adminCpRollback.do?CP_num=${report.CP_num }&pageNum=${pageNum}"
-									class="btn_prev">복구</a>
+									class="btn_recovery">　</a>
 							</c:if>
 						</td>
 						<td class="col-md-2 text-center">
 							<c:if test="${report.CP_del == 'Y' }">
 								<c:if test="${report.RP_del == 'N' }">
 									<a href="adminRpDelete.do?RP_num=${report.RP_num }&pageNum=${pageNum}"
-										class="btn_prev">신고삭제</a>
+										class="btn_delete">삭제</a>
 								</c:if>
 								<c:if test="${report.RP_del == 'Y' }">
 									삭제 완료

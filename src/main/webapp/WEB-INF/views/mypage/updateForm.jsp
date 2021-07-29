@@ -146,6 +146,11 @@
 	<h2 class="title">${member.MB_nickName }님의 프로필 설정</h2>
 	<form action="updateResult.do" method="post" enctype="multipart/form-data" 
 				name="frm" onsubmit="return chk()">
+		<!-- 엔터키 전송 막기 -->
+		<div style="display:none">
+			<input type="submit" onclick="return false"/>
+			<input type="text"/>
+		</div>
 	<input type="hidden" name="MB_id" value="${member.MB_id }">			
 		<div class="row">  
 			<div class="col-md-2" id="img_box"  > 

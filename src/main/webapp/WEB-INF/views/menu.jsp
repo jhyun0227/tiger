@@ -12,7 +12,7 @@
 			<li class="menu1"><a href="cpList.do">타세요</a></li>
 			<li class="menu2"><a href="driverHistoryList.do">이용내역</a>
 				<ul class="menu2_s submenu">
-					<li><a href="imsi.do">임시</a></li>
+					<!-- <li><a href="imsi.do">임시</a></li> -->
 					<li><a href="driverHistoryList.do">드라이버</a></li>
 					<li><a href="PsgHistoryList.do">탑승자</a></li>
 				</ul>

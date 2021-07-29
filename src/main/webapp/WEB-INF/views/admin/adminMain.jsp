@@ -10,7 +10,7 @@
 	<div class="content">
 		<ul class="content_main">
 			<li>
-				<h3>타세요 관리</h3> <c:if test="${adminRvAllList.size() == 0}">
+				<h3>예약내역 관리</h3> <c:if test="${adminRvAllList.size() == 0}">
 					<p>내역이 존재하지 않습니다.</p>
 				</c:if> 
 				<c:if test="${adminRvAllList.size() != 0}">

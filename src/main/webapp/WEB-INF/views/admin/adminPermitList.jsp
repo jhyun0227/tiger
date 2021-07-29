@@ -14,7 +14,7 @@
 			<form action="adminPermitList.do">
 			<input type="hidden" name="pageNum" value="1">
 			<select name="search" class="inputUnderLine">
-				<c:forTokens var="sh" items="MB_id,MB_name,MB_gender,MB_driverConfirm" delims="," varStatus="i">
+				<c:forTokens var="sh" items="MB_nickName,MB_name,MB_gender,MB_driverConfirm" delims="," varStatus="i">
 					<c:if test="${sh == apply.search }">
 						<option value="${sh}" selected="selected">${title[i.index] }</option>
 					</c:if>
@@ -31,7 +31,7 @@
 		<table class="table">
 			<tr>
 				<th class="col-md-2 text-center">신청번호</th>
-				<th class="col-md-2 text-center">회원 ID</th>
+				<th class="col-md-2 text-center">신청자</th>
 				<th class="col-md-2 text-center">이름</th>
 				<th class="col-md-2 text-center">성별</th>
 				<th class="col-md-2 text-center">승인상태</th>		
@@ -49,7 +49,7 @@
 						<!-- 게시글 번호 순서 정렬 -->
 							<td class="col-md-2 text-center">
 								<%-- <a href="adminMbView.do?MB_id=${apply.MB_id }&pageNum=${pb.currentPage}">${apply.MB_id }</a></td> --%>
-								<a href="adminPermitView.do?MB_num=${apply.MB_num }&pageNum=${pb.currentPage}">${apply.MB_id }</a></td>
+								<a href="adminPermitView.do?MB_num=${apply.MB_num }&pageNum=${pb.currentPage}">${apply.MB_nickName }</a></td>
 							<td class="col-md-2 text-center">${apply.MB_name }</td>
 							<c:if test="${apply.MB_gender == 1 || apply.MB_gender == 3}">
 								<td class="col-md-2 text-center">남자</td>

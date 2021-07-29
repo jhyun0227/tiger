@@ -17,6 +17,10 @@ public class Message {
     private int startRow;
     private int endRow;
     //닉네임
+    private String MB_nickname;
     private String nicknameS;
     private String nicknameR;
+    // 검색용
+    private String search;
+    private String keyword;
 }

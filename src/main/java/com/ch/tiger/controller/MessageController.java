@@ -91,11 +91,13 @@ public class MessageController {
 		if (list.size()!=0) {
 			for (Message msg1 : list) {
 				Member member1 = mbs.selectNum(msg1.getMB_numS());
-				msg1.setNicknameS(member1.getMB_nickName());
+				msg1.setMB_nickname(member1.getMB_nickName());
 			}
 		}
 		int num = total - startRow+1;
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
+		String[] title = {"보낸사람", "내용"};
+		model.addAttribute("title", title);
 		model.addAttribute("num", num);
 		model.addAttribute("pb", pb);
 		model.addAttribute("list", list);
@@ -121,11 +123,13 @@ public class MessageController {
 		if(list.size()!=0) {
 			for (Message msg1 : list) {
 				Member member1 = mbs.selectNum(msg1.getMB_numR());
-				msg1.setNicknameR(member1.getMB_nickName());
+				msg1.setMB_nickname(member1.getMB_nickName());
 			}
 		}
 		int num = total - startRow+1;
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
+		String[] title = {"받은사람", "내용"};
+		model.addAttribute("title", title);
 		model.addAttribute("num", num);
 		model.addAttribute("pb", pb);
 		model.addAttribute("list", list);		

@@ -32,7 +32,7 @@ public class QnAController {
 		qna.setMB_num(MB_num);
 		if(pageNum == null || pageNum.equals("")) pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
-		int rowPerPage = 5;
+		int rowPerPage = 10;
 		int total  = qas.getTotal(qna);
 		int startRow = (currentPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage -1;

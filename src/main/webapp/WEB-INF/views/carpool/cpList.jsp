@@ -19,6 +19,7 @@
 </head>
 <body>
 <h1 class="title">타세요 목록</h1>
+
 <!-- 검색창 -->
 <div class="searchDIV">
 	<form action="cpList.do">
@@ -44,7 +45,7 @@
 		<div class="power">
 			<table>
 				<tr>
-					<th class="text-center">등록된 게시글이 없습니다</th>
+					<th class="text-center">등록된 게시글이 없습니다.</th>
 				</tr>
 			</table>
 		</div>
@@ -57,7 +58,7 @@
 				<div class="power">
 					<table>
 						<tr>
-							<th class="text-center">삭제된 글 입니다</th>
+							<th class="text-center">삭제된 글입니다.</th>
 						</tr>
 					</table>
 				</div>
@@ -122,7 +123,7 @@
 						<!-- 2.현재날짜와 비교해서 지난 출발일들은 목록에서 보여주지 않음 -->
 						<c:if test="${today > carpool.CP_startDate}">
 							<tr>
-								<th class="text-center">출발시간이 지난 매칭 입니다.</th>
+								<th class="text-center">출발시간이 지난 매칭입니다.</th>
 								<td>
 									<input type="hidden" value="${CP_num}"><c:set var="CP_num" value="${CP_num - 1}"></c:set>
 								</td>
@@ -131,7 +132,7 @@
 						
 	 					<!-- 3.현재날짜와 비교해서 출발일이 같을때도 목록 보여줌 -->
 						<c:if test="${today == carpool.CP_startDate}">
-							<!-- 3-1.현재시간과 비교해서 출발시간 일때 목록 보여줌 -->
+							<!-- 3-1.현재시간과 비교해서 출발시간 이후일때 목록 보여줌 -->
 							<c:if test="${todayTime < carpool.CP_startTime}">
 								<input type="hidden" value="${CP_num}"><c:set var="CP_num" value="${CP_num - 1}"></c:set>
 								<tr>
@@ -186,7 +187,7 @@
 							<!-- 3-2.현재시간과 비교해서 지난 출발시간은 목록에서 보여주지 않음 -->
 		 					<c:if test="${todayTime > carpool.CP_startTime}">
 								<tr>
-									<th class="text-center">출발시간이 지난 매칭 입니다</th>
+									<th class="text-center">출발시간이 지난 매칭입니다.</th>
 								</tr>
 	 						</c:if>
 	 					</c:if>

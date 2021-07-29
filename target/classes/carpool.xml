@@ -84,9 +84,8 @@
 	
 	<!-- 관리자 카풀 목록 - 동윤 -->
 	<select id="adminCpList" parameterType="carpool" resultType="carpool">
-		select * from (select a.*, rowNum rn from (select c.*, m.MB_nickName, rv.RSV_confirm, rv.RSV_mConfirm from carpool c
-			inner join member m on c.MB_num=m.MB_num
-			inner join reservation rv on c.CP_num=rv.CP_num
+		select * from (select a.*, rowNum rn from (select c.*, m.MB_nickName from carpool c, member m
+			where c.MB_num = m.MB_num
 			<if test="keyword!=null and keyword!=''">
 				and ${search} like '%'||#{keyword}||'%'
 			</if>

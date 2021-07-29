@@ -326,6 +326,22 @@ body{
  	padding-bottom: 4px;
  	padding-right: 13px;
  }
+ .btn_delete:hover{ /* 추가0728 관리자 회원 탈퇴 이미지 */
+	background-image: url('/tiger/resources/main/delete.png');
+	background-size: 16px;
+	background-color: white;
+    background-position:  0px 0px;
+    background-repeat: no-repeat;   
+    height: 22px;
+    border: 0px;
+ 	cursor:pointer;
+ 	outline: 0;
+ 	color: transparent;
+ 	margin-bottom: 0; 
+ 	width: 30px;
+ 	padding-bottom: 4px;
+ 	padding-right: 13px;
+ }
 .btn_recovery{
 	background-image: url('/tiger/resources/main/recovery.png');
 	background-size: 16px;
@@ -342,7 +358,39 @@ body{
  	padding-bottom: 4px;
  	padding-right: 15px;
 }
+.btn_recovery:hover{ /* 추가0728 관리자 회원 복구 이미지 */
+	background-image: url('/tiger/resources/main/recovery.png');
+	background-size: 16px;
+	background-color: white;
+    background-position:  0px 0px;
+    background-repeat: no-repeat;   
+    height: 22px;
+    border: 0px;
+ 	cursor:pointer;
+ 	outline: 0;
+ 	color: transparent;
+ 	margin-bottom: 0; 
+ 	width: 30px;
+ 	padding-bottom: 4px;
+ 	padding-right: 15px;
+}
 .btn_open{
+	background-image: url('/tiger/resources/main/open.png');
+	background-size: 22px;
+	background-color: white;
+    background-position:  0px 0px;
+    background-repeat: no-repeat;   
+    height: 22px;
+    border: 0px;
+ 	cursor:pointer;
+ 	outline: 0;
+ 	color: transparent;
+ 	margin-bottom: 0; 
+ 	width: 30px;  
+ 	padding-bottom: 4px;
+ 	
+}
+.btn_open:hover{ /* 추가0728  */
 	background-image: url('/tiger/resources/main/open.png');
 	background-size: 22px;
 	background-color: white;

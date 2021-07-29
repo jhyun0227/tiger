@@ -33,7 +33,7 @@
 		</tr>
 		<c:if test="${empty allQnaList}">
 			<tr>
-				<td colspan="3" class="text-center">문의내역이 존재하지 않습니다</td>
+				<td colspan="4" class="text-center">문의내역이 존재하지 않습니다</td>
 			</tr>
 		</c:if>
 		<c:if test="${not empty allQnaList }">

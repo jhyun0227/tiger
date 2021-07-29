@@ -64,7 +64,7 @@
 									<td class="col-md-2 text-center">관리자</td>
 								</c:if>
 								<c:if test="${member.MB_id != 'admin' }">
-									<td class="text-center"><a href="adminMbDelete.do?MB_id=${member.MB_id }&pageNum=${pageNum }"
+									<td class="text-center"><a href="adminMbDelete.do?MB_id=${member.MB_id }&pageNum=${pb.currentPage}"
 											class="btn_delete">　</a></td>
 								</c:if>
 							</c:if>

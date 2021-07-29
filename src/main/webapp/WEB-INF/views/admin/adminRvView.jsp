@@ -114,7 +114,7 @@
 			</div>	
 		</div>
 		<div align="center">
-			<a href="adminCpList.do?pageNum=${pageNum }" class="btn_sm_full">목록</a>
+			<a href="adminRvList.do?pageNum=${pageNum }" class="btn_sm_full">목록</a>
 		<c:if test="${memberDB.MB_id == 'admin' }">
 			<a href="adminCpDelete.do?CP_num=${carpool.CP_num }&pageNum=${pageNum }" class="btn_sm_stroke">삭제</a>
 			</c:if>

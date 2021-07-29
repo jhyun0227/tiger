@@ -9,7 +9,7 @@
 <link rel="stylesheet" type="text/css" href="/tiger/resources/bootstrap/css/common.css">
 </head>
 <body>
-	<h1 class="title">타세요 관리 목록</h1>
+	<h1 class="title">타세요 예약 내역</h1>
 	<div class=" container searchDIV">
 		<form action="adminRvList.do">
 			<input type="hidden" name="pageNum" value="1">
@@ -49,7 +49,7 @@
 					<td class="col-md-1 text-center">${num }
 						<c:set var="num" value="${num -1 }"></c:set></td>
 					<td class="col-md-1 text-center">
-						<a href="adminCpView.do?CP_num=${reservation.CP_num }&pageNum=${pb.currentPage}"
+						<a href="adminRvView.do?CP_num=${reservation.CP_num }&pageNum=${pb.currentPage}"
 							class="btn_open">상세</a></td>	
 					<td class="col-md-2 text-center">${reservation.MB_nickNameDv }</td>
 					<td class="col-md-2 text-center">${reservation.MB_nickName }</td>

@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:if test="${result > 0 && resultVh > 0 }">
+	<c:if test="${result > 0 && resultVh >= 0 }">
 		<script type="text/javascript">
 			alert("회원탈퇴가 완료되었습니다");
 			location.href="adminMbList.do?pageNum=${pageNum}";

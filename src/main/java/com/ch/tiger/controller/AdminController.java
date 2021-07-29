@@ -88,7 +88,7 @@ public class AdminController {
 	@RequestMapping("adminMbList")
 	public String adminMbList(Member member, String pageNum, Model model) {
 		if(pageNum == null || pageNum.equals("")) {
-			pageNum = "1";
+			pageNum = "1" ;
 		}
 		int currentPage = Integer.parseInt(pageNum);
 		int rowPerPage = 10;	// 한 화면에 보여주는 게시글 갯수
@@ -427,6 +427,24 @@ public class AdminController {
 		model.addAttribute("num", num);	//목록 번호 생성 위한 num
 		return "admin/adminRvList";	// 수정 0723
 	}
+	@RequestMapping("adminRvView")
+	public String adminRvView(int CP_num, String pageNum, Model model, HttpSession session) {
+		String MB_id = (String)session.getAttribute("MB_id");
+		Member memberDB = mbs.select(MB_id);
+		Reservation reservation = new Reservation();
+		int num = rvs.getTotal(CP_num);
+		reservation.setCP_num(CP_num);	// CP_num에 해당하는 예약내역
+		List<Reservation> adminRvList = rvs.adminRvList(reservation);
+		Carpool carpool = cps.select(CP_num);
+		Member member = mbs.selectNum(carpool.getMB_num());
+		model.addAttribute("member", member);	// 타세요 글 작성자 정보
+		model.addAttribute("memberDB", memberDB);	// 로그인한 관리자 정보
+		model.addAttribute("carpool", carpool);	// 데이터 출력을 위한 객체
+		model.addAttribute("adminRvList", adminRvList);
+		model.addAttribute("num", num);
+		model.addAttribute("pageNum", pageNum);
+		return "admin/adminRvView";
+	}
 	@RequestMapping("adminCpView")
 	public String adminCpView(int CP_num, String pageNum, Model model, HttpSession session) {
 		String MB_id = (String)session.getAttribute("MB_id");
@@ -444,5 +462,27 @@ public class AdminController {
 		model.addAttribute("num", num);
 		model.addAttribute("pageNum", pageNum);
 		return "admin/adminCpView";
+	}
+	@RequestMapping("adminCpList")
+	public String adminCpList(Carpool carpool, String pageNum, Model model) {
+		if(pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		} 
+		int currentPage = Integer.parseInt(pageNum);
+		int rowPerPage = 10;	// 한 화면에 보여주는 게시글 갯수
+		int total = cps.getTotal(carpool);	//추가 0729
+		int startRow = (currentPage -1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		carpool.setStartRow(startRow);
+		carpool.setEndRow(endRow);
+		List<Carpool> adminCpList = cps.adminCpList(carpool);
+		int num = total - startRow + 1;
+		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
+		String[] title = {"작성자", "출발지", "도착지", "출발일", "출발시간"};
+		model.addAttribute("title", title);
+		model.addAttribute("pb", pb);
+		model.addAttribute("num", num);
+		model.addAttribute("adminCpList", adminCpList);
+		return "admin/adminCpList";
 	}
 }

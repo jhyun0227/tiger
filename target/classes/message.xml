@@ -14,24 +14,42 @@
 	
 	<!-- 받은쪽지 갯수 -->
 	<select id="getTotalR" parameterType="message" resultType="integer">
-		select count(*) from message where MB_numR=#{MB_numR} and MSG_delR='N'
+		select count(*) from 
+		(select msg.*, mb.MB_nickname from message msg, member mb where msg.MB_numS = mb.MB_num) 
+		where MB_numR=#{MB_numR} and MSG_delR='N'
+		<if test="keyword!=null and keyword!=''">
+			and ${search} like '%'||#{keyword}||'%'
+		</if>
 	</select>
 	
 	<!-- 보낸쪽지 갯수 -->
 	<select id="getTotalS" parameterType="message" resultType="integer">
-		select count(*) from message where MB_numS=#{MB_numS} and MSG_delS='N'
+		select count(*) from 
+		(select msg.*, mb.MB_nickname from message msg, member mb where msg.MB_numR = mb.MB_num) 
+		where MB_numS=#{MB_numS} and MSG_delS='N'
+		<if test="keyword!=null and keyword!=''">
+			and ${search} like '%'||#{keyword}||'%'
+		</if>
 	</select>
 	
 	<!-- 받은쪽지함 -->
 	<select id="recieveList" parameterType="message" resultType="message">
-		select * from (select a.*, rowNum rn from (select * from message where MB_numR=#{MB_numR} 
+		select * from (select a.*, rowNum rn from (select msg.*, mb.MB_nickname 
+			from message msg, member mb where msg.MB_numS = mb.MB_num and MB_numR=#{MB_numR} 
 			and MSG_delR='N' order by MSG_num desc) a) where rn between #{startRow} and #{endRow}
+			<if test="keyword!=null and keyword!=''">
+				and ${search} like '%'||#{keyword}||'%'
+			</if>
 	</select>
 	
 	<!-- 보낸쪽지함 -->
 	<select id="sendList" parameterType="message" resultType="message">
-		select * from (select a.*, rowNum rn from (select * from message where MB_numS=#{MB_numS} 
+		select * from (select a.*, rowNum rn from (select msg.*, mb.MB_nickname 
+			from message msg, member mb where msg.MB_numR = mb.MB_num and MB_numS=#{MB_numS} 
 			and MSG_delS='N' order by MSG_num desc) a) where rn between #{startRow} and #{endRow}
+			<if test="keyword!=null and keyword!=''">
+				and ${search} like '%'||#{keyword}||'%'
+			</if>
 	</select>
 	
 	<!-- 받은쪽지 삭제 -->

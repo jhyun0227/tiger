@@ -4,6 +4,15 @@
 <mapper namespace="noticens">
 	<select id="getNtTotal" parameterType="notice" resultType="integer">
 		select count(*) from notice where NT_del='N'
+			<if test="keyword!=null and keyword!=''">
+				<if test="search=='subcon'">
+					and (NT_title like '%' || #{keyword} || '%' or
+					NT_content like '%' || #{keyword} || '%')
+				</if>
+				<if test="search!='subcon'">
+					and ${search} like '%' || #{keyword} || '%'
+				</if>
+			</if>
 	</select>
 	<select id="noticeList" parameterType="notice" resultType="notice">
 		select * from (select a.*, rowNum rn from (select * from notice
@@ -19,7 +28,7 @@
 				</if>
 			</where>
 			order by NT_num desc) a)
-			where rn between #{startRow} and #{endRow}
+			where NT_del = 'N' and rn between #{startRow} and #{endRow}
 	</select>
 	<select id="getMaxNum" resultType="integer">
 		select nvl(max(NT_num), 0) + 1 from notice

@@ -178,8 +178,6 @@
 				</c:if>
 				</table>
 				<div align="center">
-					<a onclick="hi" class="btn_sm_stroke">뒤로가기</a>
-					<%-- <a href="cpList.do?pageNum=${pageNum }" class="btn_sm_stroke">뒤로가기</a> --%>
 					<!-- 신청가능 인원수 다 채우면 신청 못하게 막음 -->
 					<c:if test="${carpool.CP_passNumNow < carpool.CP_passNum }">
 						<a href="cpRequestResult.do?CP_num=${carpool.CP_num}&MB_num=${member.MB_num}&pageNum=${pageNum}" class="btn_sm_full">신청</a>

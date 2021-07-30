@@ -63,4 +63,9 @@ public class VehicleDaoImpl implements VehicleDao {
 	public int rollbackAll(int MB_num) {
 		return sst.update("vehiclens.rollbackAll", MB_num);
 	}
+
+	// 관리자가 삭제된 차량정보 복구
+	public int adminVhRollback(int VH_num) {
+		return sst.update("vehiclens.adminVhRollback", VH_num);
+	}
 }

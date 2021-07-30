@@ -48,4 +48,9 @@
 	<update id="rollbackAll" parameterType="integer">
 		update vehicle set VH_del='N' where MB_num=#{MB_num}
 	</update>
+	
+	<!-- 관리자가 삭제된 차량정보 복구 -->
+	<update id="adminVhRollback" parameterType="integer">
+		update vehicle set VH_del='N' where VH_num=#{VH_num}
+	</update>
 </mapper>

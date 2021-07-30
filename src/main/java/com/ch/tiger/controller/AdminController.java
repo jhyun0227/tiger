@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -484,5 +485,14 @@ public class AdminController {
 		model.addAttribute("num", num);
 		model.addAttribute("adminCpList", adminCpList);
 		return "admin/adminCpList";
+	}
+	
+	@RequestMapping("adminVhRollback")
+	public String adminVhRollback(int VH_num, Model model, HttpServletRequest request) {
+		int result = vs.adminVhRollback(VH_num);
+		String prevUrl = request.getHeader("Referer");
+		model.addAttribute("result", result);
+		model.addAttribute("prevUrl", prevUrl);
+		return "admin/adminVhRollback";
 	}
 }

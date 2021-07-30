@@ -23,4 +23,6 @@ public interface VehicleService {
 
 	int rollbackAll(int MB_num);	// 관리자가 회원 복구 시 차량 관련 정보 모두 복구
 
+	int adminVhRollback(int VH_num); // 관리자가 삭제된 차량정보 복구
+
 }

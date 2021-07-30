@@ -4,8 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 </head>
 <body>
 	<h1 class="title">타세요 관리 목록</h1>
@@ -31,9 +29,8 @@
 			<th class="col-md-1 text-center">번호</th>
 			<th class="col-md-1 text-center">상세</th>
 			<th class="col-md-1 text-center">작성자</th>
-			<th class="col-md-1 text-center">출발지</th>
-			<th class="col-md-1 text-center">도착지</th>
-			<th class="col-md-1 text-center">요금</th>
+			<th class="col-md-2 text-center">출발지</th>
+			<th class="col-md-2 text-center">도착지</th>
 			<th class="col-md-2 text-center">출발일</th>
 			<th class="col-md-1 text-center">출발시간</th>
 			<th class="col-md-1 text-center">완료/전체</th>
@@ -56,9 +53,8 @@
 						<a href="adminCpView.do?CP_num=${carpool.CP_num }&pageNum=${pb.currentPage}"
 							class="btn_open">이동</a></td>	
 					<td class="col-md-1 text-center">${carpool.MB_nickName }</td>
-					<td class="col-md-1 text-center">${carpool.CP_startPoint }</td>
-					<td class="col-md-1 text-center">${carpool.CP_endPoint }</td>
-					<td class="col-md-1 text-center">${carpool.CP_fee }</td>
+					<td class="col-md-2 text-center">${carpool.CP_startPoint }</td>
+					<td class="col-md-2 text-center">${carpool.CP_endPoint }</td>
 					<td class="col-md-2 text-center">${carpool.CP_startDate }</td>
 					<td class="col-md-1 text-center">${carpool.CP_startTime }</td>
 					<td class="col-md-1 text-center">

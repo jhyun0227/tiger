@@ -7,8 +7,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-	.narrowWidth2 {
-   	 	width: 85%;    
+	#box {
+   	 	margin-top: 15px;	  
    	}   
 	
 	.member_box {
@@ -41,7 +41,7 @@
 	<div class="row">
 		<div class=" col-md-5" id="member_box">
 			<h2 class="title">회원정보 상세 내용</h2>
-		    <table class="table">
+		    <table class="table ">
 				<tr>
 					<th class="col-md-4 text-center">아이디</th>
 					<td class="col-md-8">${member.MB_id }</td>
@@ -78,12 +78,15 @@
 				</tr>
 				<tr>
 					<td colspan="4" align="center">
-						<a href="adminMbList.do?pageNum=${pageNum }" class="btn_sm_stroke">목록</a>
-						<a href="adminMbUpdateForm.do?MB_id=${member.MB_id }&pageNum=${pageNum }"
-						class="btn_sm_stroke">수정</a>
-						<c:if test="${member.MB_id != 'admin' }">
-							<a onclick="del()" class="btn_sm_stroke">탈퇴</a>
-						</c:if></td>
+					    <div id="box">
+							<a href="adminMbList.do?pageNum=${pageNum }" class="btn_sm_stroke">목록</a>
+							<a href="adminMbUpdateForm.do?MB_id=${member.MB_id }&pageNum=${pageNum }"
+							class="btn_sm_stroke">수정</a>
+							<c:if test="${member.MB_id != 'admin' }">
+								<a onclick="del()" class="btn_sm_stroke">탈퇴</a>
+							</c:if>
+						</div>
+					</td>
 				</tr>
 			</table>
 		</div>  

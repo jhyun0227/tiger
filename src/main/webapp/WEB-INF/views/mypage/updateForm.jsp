@@ -21,15 +21,21 @@
 		color: darkgray;
 		margin-top: -10px;
 	}
+	.delBtn:hover {
+		color: #3243A8;
+		margin-top: -10px;
+		font-size: 16px;
+		font-weight: bold;
+	}
 	
 	
 	#img_box {
 		float: left !important;
 	} 
-	 
+	   
 	.thumbnail {
-		height: 130px;  
-		width: 130px;; 
+		height: 170px;  
+		width: 140px;; 
 		margin-top: 0; 
 		margin-bottom: 8px; 
 	}  
@@ -134,7 +140,7 @@
 		</div>
 	<input type="hidden" name="MB_id" value="${member.MB_id }">			
 		<div class="row">  
-			<div class="col-md-3" id="img_box"  > 
+			<div class="col-md-4" id="img_box"  > 
 				<c:if test="${empty member.MB_img }">
 					<img alt="" src="${path }/resources/main/none_img3.jpg" class="thumbnail" >
 				</c:if> 
@@ -151,7 +157,7 @@
 	  		     </div> 
 	  
 			</div>
-			<div class="col-md-9" id="inform_box">	
+			<div class="col-md-8" id="inform_box">	
 				<table class="table">  
 					   <tr>
 							<td class="col-md-4 text-center">이메일</td>
@@ -191,12 +197,12 @@
 						<tr>
 							<td colspan="2" align="center" class="text-center">
 								<div class="text-right">
-									<a onclick="del()" class="delBtn" >회원 탈퇴</a>
+									<a onclick="del()" class="delBtn" >회원 탈퇴</a>  
 								</div>
 								<div>
 									<input type="submit" id="submit" value="정보 수정" 
-							       				class="btn_sm_full" disabled="disabled">
-							       	</div>
+							       				class="btn_sm_full" disabled="disabled" style="text-decoration: none">
+							       	</div>  
 							 </td>    
 						</tr>
 				</table>

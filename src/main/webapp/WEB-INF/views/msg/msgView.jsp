@@ -31,11 +31,13 @@ function prev(){
 	</tr>
 	<tr>
 		<td colspan="4" class="text-center">
-			<a onclick="prev()" class="btn_prev">이전</a>
-				<c:if test="${prevUrl == 'msgRecieveList'}">
-					<a onclick="window.open('msgWriteForm.do?MB_num=${message.MB_numS }','쪽지 보내기',
-					'width=430,height=400,location=no,status=no,scrollbars=yes');" class="btn_prev">답장</a>
-				</c:if>
+			<div align="right">
+				<a onclick="prev()" class="btn_prev">이전</a>
+					<c:if test="${prevUrl == 'msgRecieveList'}">
+						<a onclick="window.open('msgWriteForm.do?MB_num=${message.MB_numS }','쪽지 보내기',
+						'width=430,height=400,location=no,status=no,scrollbars=yes');" class="btn_prev">답장</a>
+					</c:if>
+			</div>	
 		</td>
 	</tr>
 </table>

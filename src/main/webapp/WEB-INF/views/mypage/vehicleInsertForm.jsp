@@ -133,10 +133,10 @@
 			<tr>
 				<td class="col-md-4 text-center">자차보험</td>
 				<td class="col-md-8">
-					<input type="radio" name="VH_insu" id="y" value="Y" checked="checked">
+					<input type="radio" name="VH_insu" id="y" value="Y">
 					<label for="y">있음</label>
 					&nbsp;
-					<input type="radio" name="VH_insu" id="n" value="N">
+					<input type="radio" name="VH_insu" id="n" value="N" checked="checked">
 					<label for="n">없음</label>
 				</td>
 			</tr>

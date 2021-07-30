@@ -18,7 +18,7 @@
 	} 
 	.btn_Y:hover {
 		font-size: 18px;
-		color: red;
+		color: #30BDDA;
 	}
 	
 	.btn_N {
@@ -27,7 +27,7 @@
 	} 
 	.btn_N:hover {
 		font-size: 18px;
-		color: red;
+		color: #30BDDA;
 	}  
 </style>
 <script type="text/javascript">
@@ -110,6 +110,8 @@
 				<td colspan="7" >
 					<div align="right" class="box">
 					   <input type="button" value="이전" class="btn_sm_stroke" onclick="prev()">
+					   <input type="button" value="관리자 메인" class="btn_sm_stroke" 
+					  		onclick="location.href='adminMain.do?MB_id=${member.MB_id }&pageNum=${pageNum }' "> 
 					</div>
 				</td>  
 			</tr>		

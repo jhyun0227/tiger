@@ -79,11 +79,16 @@
 					</td>
 				</c:if>
 				<c:if test="${today < reservation.CP_startDate }">
-					<td class="col-md-1 text-center"></td>
+					<td class="col-md-1 text-center">
+						<img alt="" src="${path }/resources/main/timer.png" width="17px" height="17px">
+					</td>
 				</c:if>
 			</tr>
 		</c:forEach>
 	</c:if>	
+	<tr>
+		<td colspan="8"></td>
+	</tr>
 </table>
 <div align="center">
 	<ul class="pagination_bottom">

@@ -8,9 +8,6 @@
 <title>Insert title here</title>
 <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
 <style type="text/css">
-	#blue {
-	 	color: #637DBA;
-	}
 	.box {
 	   margin-top: -30px;
 	}   
@@ -74,7 +71,7 @@
 								<td class="col-md-2 text-center">여자</td>
 							</c:if>
 							<c:if test="${apply.MB_driverConfirm == 'I' }">
-								<td class="col-md-2 text-center" id="blue">심사중
+								<td class="col-md-2 text-center" >심사중</td>  
 									<%-- <a href="adminPermitResult.do?AP_num=${num }&pageNum=${pageNum }" --%>
 									<%-- <a href="adminPermitResult.do?MB_num=${apply.MB_num }&pageNum=${pageNum }"
 										class="btn btn-info">승인</a>
@@ -83,19 +80,25 @@
 							</c:if>
 							<c:if test="${apply.MB_driverConfirm == 'N' }">
 								<td class="col-md-2 text-center">반려</td>
-							</c:if>
+							</c:if>  
 							<c:if test="${apply.MB_driverConfirm == 'Y' }">
-								<td class="col-md-2 text-center">승인완료</td>
+								<td class="col-md-2 text-center">		
+								<img alt="" src="${path }/resources/main/check.png" 
+										width="15px" height="15px"  ></td>
 							</c:if>
-					</tr>
+					
 					<%-- </c:if> --%>
 				</c:forEach>
 			</c:if>
+			</tr>
 			<tr>
+				
 				<td colspan="5" >
 					<div align="right" class="box">
-					   <input type="button" value="이전" class="btn_sm_stroke" onclick="prev()">
-					</div>
+					  <input type="button" value="이전" class="btn_sm_stroke" onclick="prev()"> 
+					  <input type="button" value="관리자 메인" class="btn_sm_stroke" 
+					  		onclick="location.href='adminMain.do?MB_id=${member.MB_id }&pageNum=${pageNum }' "> 
+					 </div>
 				</td>
 			</tr>		
 		</table>

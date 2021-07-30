@@ -48,6 +48,9 @@
 	  cursor: pointer;
 	  color: grey;
 	}
+	#line{
+		padding-top: 20px;
+	}
 </style>
 <script type="text/javascript">
 //안보이게 하기
@@ -291,8 +294,8 @@
 			onsubmit="return chk()">
 			<table class="table narrowWidth1">
 				<tr>
-					<td class="col-md-2 text-center">이메일</td>
-					<td class="col-md-10">
+					<td class="col-md-4 text-center" id="line">이메일</td> 
+					<td class="col-md-8">
 					 	<input type="email" name="MB_id" required="required" autofocus="autofocus"
 								placeholder="이메일을 입력해주세요" class="inputline2">
 						<input type="button" onclick="idChk()"  value="이메일 인증" class="btn_ck">
@@ -304,10 +307,10 @@
 						<div id="emailChk_success" class="err">인증번호가 일치합니다.</div>
 						<div id="emailChk_fail" class="err">인증번호가 일치하지 않습니다.</div>
 						<div id="emailChkFalse" class="err"></div></td>
-				</tr>
+				</tr>"
 				<tr>
-					<td class="col-md-2 text-center">비밀번호</td>
-					<td class="col-md-10">
+					<td class="col-md-4 text-center">비밀번호</td>
+					<td class="col-md-8">
 						<input type="password" name="MB_pw" id="pw" maxlength="12" autocomplete="false"
 								class="inputline2"  placeholder="영문자, 숫자, 4자 이상" 
 								required="required">
@@ -321,8 +324,8 @@
 				   </td> 
 				</tr>  
 				<tr>
-					<td class="col-md-2 text-center">비밀번호 확인</td>
-					<td class="col-md-10">
+					<td class="col-md-4 text-center">비밀번호 확인</td>
+					<td class="col-md-8">
 					    <input type="password" 	name="MB_pw_confirm" id="pw_confirm" 
 					           required="required"	placeholder="비밀번호 확인" class="inputline1"> <br>
 						<div class="alert alert-success" id="alert-success">
@@ -332,14 +335,14 @@
                     </td>
 				</tr>
 				<tr>
-					<td class="col-md-2 text-center">이름</td>
-					<td class="col-md-10">
+					<td class="col-md-4 text-center">이름</td>
+					<td class="col-md-8">
 						<input type="text" name="MB_name" required="required" id="name" 
 								 placeholder="이름을 입력해주세요" class="inputline1"></td>
 				</tr>
 				<tr>
-					<td class="col-md-2 text-center" >주민등록번호</td>
-					<td class="col-md-10" id="CheckRegNum">
+					<td class="col-md-4 text-center" >주민등록번호</td>
+					<td class="col-md-8" id="CheckRegNum">
 					    <input type="text" name="MB_regNum" id="regNum" required="required" maxlength="6" 
 					           style="width: 20%;" placeholder="6자리" class="inputline2" autofocus="autofocus" > 
 						<span>―</span>&nbsp&nbsp <!-- 1, 3일 경우 남자 / 2, 4일 경우 여자 -->
@@ -352,16 +355,16 @@
 					 </td>
 				</tr>
 				<tr>
-					<td class="col-md-2 text-center">닉네임</td>
-					<td class="col-md-10">
+					<td class="col-md-4 text-center">닉네임</td>
+					<td class="col-md-8">
 						<input type="text" name="MB_nickName" id="nickName" required="required" 
 						        placeholder="닉네임을 입력해주세요" class="inputline2"> 
 						<input type="button" onclick="nickChk()" id="nickNameChk" value="중복체크" class="btn_ck" disabled="disabled">
 						<div id="nickChk" class="err"></div></td>
 				</tr>
 				<tr>
-					<td class="col-md-2 text-center">연락처</td>
-					<td class="col-md-10"><input type="tel" name="MB_tel" id="tel" 	required="required"
+					<td class="col-md-4 text-center">연락처</td>
+					<td class="col-md-8"><input type="tel" name="MB_tel" id="tel" 	required="required"
 					     title="전화번호 형식 3-4-4" pattern="\d{3}-\d{4}-\d{4}" placeholder="000-0000-0000"
 						class="inputline1">
 					</td>

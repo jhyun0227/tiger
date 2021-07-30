@@ -6,8 +6,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="/tiger/resources/bootstrap/css/common.css">
-</head>
+<c:set var="path" value="${pageContext.request.contextPath }"></c:set>
+<style type="text/css">
+	.box {
+	   margin-top: -30px;
+	}   
+</style>  
+<script type="text/javascript">
+/* 이전페이지 */
+	function prev(){
+		var preUrl = document.referrer.split("/")[4];
+		location.href=preUrl;
+	}
+</script>
+</head>		
 <body>
 	<h1 class="title">타세요 예약 내역</h1>
 	<div class=" container searchDIV">
@@ -49,8 +61,9 @@
 					<td class="col-md-1 text-center">${num }
 						<c:set var="num" value="${num -1 }"></c:set></td>
 					<td class="col-md-1 text-center">
-						<a href="adminRvView.do?CP_num=${reservation.CP_num }&pageNum=${pb.currentPage}"
-							class="btn_open">상세</a></td>	
+						<a href="adminRvView.do?CP_num=${reservation.CP_num }&pageNum=${pb.currentPage}">
+						<img alt="" src="${path }/resources/main/folder.png" 
+										width="20px" height="20px"  ></a></td>	      
 					<td class="col-md-2 text-center">${reservation.MB_nickNameDv }</td>
 					<td class="col-md-2 text-center">${reservation.MB_nickName }</td>
 					<td class="col-md-2 text-center">${reservation.CP_startPoint }</td>
@@ -63,6 +76,15 @@
 				</tr>
 			</c:forEach>
 		</c:if>
+			<tr>
+				<td colspan="7" >
+					<div align="right" class="box">
+					  <input type="button" value="이전" class="btn_sm_stroke" onclick="prev()"> 
+					  <input type="button" value="관리자 메인" class="btn_sm_stroke" 
+					  		onclick="location.href='adminMain.do?MB_id=${member.MB_id }&pageNum=${pageNum }' "> 
+					 </div>
+				</td>
+			</tr>
 	</table>
 		<div align="center">
 			<ul class="pagination_bottom">

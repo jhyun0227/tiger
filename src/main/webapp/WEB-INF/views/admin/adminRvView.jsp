@@ -6,6 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	#box {
+		margin-top: 15px;
+	}
+</style>
 <script type="text/javascript">
 //차량주행거리에 천단위로 콤마(,) 넣기 
 	$( function () {
@@ -32,7 +37,7 @@
 				<table class="table narrowWidth80">
 					<tr>
 						<th class="col-md-4 text-center">작성자</th>
-						<td class="col-md-8">${member.MB_nickName }</td>
+						<td class="col-md-8">${member.MB_nickName }</td> 
 					</tr>  
 					<tr>
 						<th class="col-md-4 text-center">출발지</th>
@@ -59,20 +64,30 @@
 						<td class="col-md-8">${carpool.CP_duration } 분</td>
 					</tr>
 					<tr>
-						<th class="col-md-3 text-center">인원</th>
-						<td class="col-md-9">${carpool.CP_passNum } 명</td>
+						<th class="col-md-4 text-center">인원</th>
+						<td class="col-md-8">${carpool.CP_passNum } 명</td>
 					</tr>
 					<tr>
-						<th class="col-md-3 text-center">성별 제한</th>
-						<td class="col-md-9">${carpool.CP_gendertype }</td>
+						<th class="col-md-4 text-center">성별 제한</th>
+						<td class="col-md-8">${carpool.CP_gendertype }</td>
 					</tr>
 					<tr>
-						<th class="col-md-3 text-center">참고사항</th>
-						<td class="col-md-9">${carpool.CP_option }</td>
+						<th class="col-md-4 text-center">참고사항</th>
+						<td class="col-md-8">${carpool.CP_option }</td>
 					</tr>
 					<tr>
-						<th class="col-md-3 text-center">기타 요구사항</th>
-						<td class="col-md-9">${carpool.CP_comment }</td>
+						<th class="col-md-4 text-center">기타 요구사항</th>
+						<td class="col-md-8">${carpool.CP_comment }</td>
+					</tr>
+					<tr> 
+						<td colspan="2">  
+						<div align="right" id="box">
+							<a href="adminRvList.do?pageNum=${pageNum }" class="btn_sm_full">목록</a>
+							<c:if test="${memberDB.MB_id == 'admin' }">
+							<a href="adminCpDelete.do?CP_num=${carpool.CP_num }&pageNum=${pageNum }" class="btn_sm_stroke">삭제</a>
+							</c:if>
+						</div>
+						</td>
 					</tr>
 				</table>
 			</div>
@@ -113,12 +128,7 @@
 				
 			</div>	
 		</div>
-		<div align="center">
-			<a href="adminRvList.do?pageNum=${pageNum }" class="btn_sm_full">목록</a>
-		<c:if test="${memberDB.MB_id == 'admin' }">
-			<a href="adminCpDelete.do?CP_num=${carpool.CP_num }&pageNum=${pageNum }" class="btn_sm_stroke">삭제</a>
-			</c:if>
-		</div>
+		
 	</div>
 </body>
 </html>

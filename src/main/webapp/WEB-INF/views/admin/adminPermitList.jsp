@@ -4,52 +4,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<c:set var="path" value="${pageContext.request.contextPath }"></c:set>
-<style type="text/css">
-	#blue {
-	 	color: #637DBA;
-	}
-	.box {
-	   margin-top: -30px;
-	}   
-</style>
-<script type="text/javascript">
-/* 이전페이지 */
-	function prev(){
-		var preUrl = document.referrer.split("/")[4];
-		location.href=preUrl;
-	}
-</script>
 </head>
 <body>
-	<div class="container" align="center">
-		<h2 class="title">드라이버 신청 목록</h2>
-		<div class="searchDIV">
-			<form action="adminPermitList.do">
-			<input type="hidden" name="pageNum" value="1">
-			<select name="search" class="inputUnderLine">
-				<c:forTokens var="sh" items="MB_nickName,MB_name,MB_gender,MB_driverConfirm" delims="," varStatus="i">
-					<c:if test="${sh == apply.search }">
-						<option value="${sh}" selected="selected">${title[i.index] }</option>
-					</c:if>
-					<c:if test="${sh != apply.search }">
-						<option value="${sh}">${title[i.index] }</option>
-					</c:if>
-				</c:forTokens>
-			</select>
+<h2 class="title">드라이버 신청 목록</h2>
+	<div class="searchDIV">
+		<form action="adminPermitList.do">
+		<input type="hidden" name="pageNum" value="1">
+		<select name="search" class="inputUnderLine">
+			<c:forTokens var="sh" items="MB_id,MB_name,MB_gender,MB_driverConfirm" delims="," varStatus="i">
+				<c:if test="${sh == apply.search }">
+					<option value="${sh}" selected="selected">${title[i.index] }</option>
+				</c:if>
+				<c:if test="${sh != apply.search }">
+					<option value="${sh}">${title[i.index] }</option>
+				</c:if>
+			</c:forTokens>
+		</select>
 			<!-- 수정 필요 -->
 			<input type="text" name="keyword" value="${apply.keyword }" class="inputUnderLine">
 			<input type="submit" value="검색" class="btn_search">
 		</form>
-		</div>
+	</div>
 		<table class="table">
 			<tr>
 				<th class="col-md-2 text-center">신청번호</th>
-				<th class="col-md-2 text-center">신청자</th>
+				<th class="col-md-5 text-center">회원 ID</th>
 				<th class="col-md-2 text-center">이름</th>
-				<th class="col-md-2 text-center">성별</th>
+				<th class="col-md-1 text-center">성별</th>
 				<th class="col-md-2 text-center">승인상태</th>		
 			</tr>
 			<c:if test="${empty applyList }">
@@ -63,23 +44,17 @@
 					<tr>
 						<td class="col-md-2 text-center">${num }<c:set var="num" value="${num -1 }"></c:set></td>
 						<!-- 게시글 번호 순서 정렬 -->
-							<td class="col-md-2 text-center">
-								<%-- <a href="adminMbView.do?MB_id=${apply.MB_id }&pageNum=${pb.currentPage}">${apply.MB_id }</a></td> --%>
-								<a href="adminPermitView.do?MB_num=${apply.MB_num }&pageNum=${pb.currentPage}">${apply.MB_nickName }</a></td>
+							<td class="col-md-5 text-center">
+								<a href="adminPermitView.do?MB_num=${apply.MB_num }&pageNum=${pb.currentPage}" class="inputLineA">${apply.MB_id }</a></td>
 							<td class="col-md-2 text-center">${apply.MB_name }</td>
 							<c:if test="${apply.MB_gender == 1 || apply.MB_gender == 3}">
-								<td class="col-md-2 text-center">남자</td>
+								<td class="col-md-1 text-center">남자</td>
 							</c:if>
 							<c:if test="${apply.MB_gender == 2 || apply.MB_gender == 4}">
-								<td class="col-md-2 text-center">여자</td>
+								<td class="col-md-1 text-center">여자</td>
 							</c:if>
 							<c:if test="${apply.MB_driverConfirm == 'I' }">
-								<td class="col-md-2 text-center" id="blue">심사중
-									<%-- <a href="adminPermitResult.do?AP_num=${num }&pageNum=${pageNum }" --%>
-									<%-- <a href="adminPermitResult.do?MB_num=${apply.MB_num }&pageNum=${pageNum }"
-										class="btn btn-info">승인</a>
-									<a href="adminRejectResult.do?MB_num=${apply.MB_num }&pageNum=${pageNum }"
-										class="btn btn-danger">거절</a></td> --%>
+								<td class="col-md-2 text-center">심사중
 							</c:if>
 							<c:if test="${apply.MB_driverConfirm == 'N' }">
 								<td class="col-md-2 text-center">반려</td>
@@ -91,13 +66,6 @@
 					<%-- </c:if> --%>
 				</c:forEach>
 			</c:if>
-			<tr>
-				<td colspan="5" >
-					<div align="right" class="box">
-					   <input type="button" value="이전" class="btn_sm_stroke" onclick="prev()">
-					</div>
-				</td>
-			</tr>		
 		</table>
 		<div align="center">
 			<ul class="pagination_bottom">
@@ -134,6 +102,5 @@
 				</c:if>
 			</ul>
 		</div>
-	</div>
 </body>
 </html>

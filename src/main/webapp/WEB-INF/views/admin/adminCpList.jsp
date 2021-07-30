@@ -55,7 +55,10 @@
 					<td class="col-md-1 text-center">
 						<a href="adminCpView.do?CP_num=${carpool.CP_num }&pageNum=${pb.currentPage}"
 							class="btn_open">이동</a></td>	
-					<td class="col-md-1 text-center">${carpool.MB_nickName }</td>
+					<td class="col-md-1 text-center">
+						<a onclick="window.open('profileView.do?MB_nickName=${carpool.MB_nickName }', '',
+							'width=500,height=560,location=no,status=no,scrollbars=yes');" class="inputLineA">${carpool.MB_nickName }</a>
+					</td>
 					<td class="col-md-1 text-center">${carpool.CP_startPoint }</td>
 					<td class="col-md-1 text-center">${carpool.CP_endPoint }</td>
 					<td class="col-md-1 text-center">${carpool.CP_fee }</td>

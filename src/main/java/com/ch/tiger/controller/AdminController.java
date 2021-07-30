@@ -133,6 +133,14 @@ public class AdminController {
 		model.addAttribute("pageNum", pageNum);
 		return "admin/adminMbUpdateResult";
 	}
+	@RequestMapping("adminVehicleDelete")
+	public String adminVehicleDelete(int VH_num, String MB_id, String pageNum, Model model) {
+		int result = vs.delete(VH_num);
+		model.addAttribute("result", result);
+		model.addAttribute("MB_id", MB_id);
+		model.addAttribute("pageNum", pageNum);
+		return "admin/adminVehicleDelete";
+	}
 	@RequestMapping("adminMbDelete")
 	public String adminMbDelete(String MB_id, String pageNum, Model model) {
 		int result = mbs.adminMbDelete(MB_id);

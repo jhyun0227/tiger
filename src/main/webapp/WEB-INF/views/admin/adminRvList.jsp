@@ -51,8 +51,16 @@
 					<td class="col-md-1 text-center">
 						<a href="adminRvView.do?CP_num=${reservation.CP_num }&pageNum=${pb.currentPage}"
 							class="btn_open">상세</a></td>	
-					<td class="col-md-2 text-center">${reservation.MB_nickNameDv }</td>
-					<td class="col-md-2 text-center">${reservation.MB_nickName }</td>
+					<td class="col-md-2 text-center">
+						<a onclick="window.open('profileView.do?MB_nickName=${reservation.MB_nickNameDv }', '',
+							'width=500,height=560,location=no,status=no,scrollbars=yes');"
+							class="inputLineA">${reservation.MB_nickNameDv }</a>
+					</td>
+					<td class="col-md-2 text-center">
+						<a onclick="window.open('profileView.do?MB_nickName=${reservation.MB_nickName }', '',
+							'width=500,height=560,location=no,status=no,scrollbars=yes');"
+							class="inputLineA">${reservation.MB_nickName }</a>
+					</td>
 					<td class="col-md-2 text-center">${reservation.CP_startPoint }</td>
 					<td class="col-md-2 text-center">${reservation.CP_endPoint }</td>
 					<td class="col-md-2 text-center">

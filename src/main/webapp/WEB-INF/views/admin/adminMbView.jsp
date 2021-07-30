@@ -106,25 +106,24 @@
 					<c:if test="${not empty vcList }">
 						<c:forEach var="vehicle" items="${vcList }">
 							<tr>
-								<c:if test="${vehicle.VH_del == 'Y' }">
-									<th colspan="7" class="text-center">삭제된 차량입니다</th>
-								</c:if>
-								<c:if test="${vehicle.VH_del != 'Y' }">
-									<td class="col-md-2 text-center">${vehicle.VH_carNum }</td>
-									<td class="col-md-2 text-center">${vehicle.VH_carName }</td>
-									<td class="col-md-2 text-center">${vehicle.VH_carYear }</td>
-									<td class="col-md-2 text-center">
-										<c:if test="${vehicle.VH_carType == '1' }">소형</c:if>
-										<c:if test="${vehicle.VH_carType == '2' }">중형</c:if>
-			  							<c:if test="${vehicle.VH_carType == '3' }">대형</c:if>
-										<c:if test="${vehicle.VH_carType == '4' }">승합</c:if></td>
-									<td class="col-md-2 text-center">${vehicle.VH_km }</td>
-									<td class="col-md-1 text-center">
-										<c:if test="${vehicle.VH_insu == 'Y' }">있음</c:if>
-										<c:if test="${vehicle.VH_insu == 'N' }">없음</c:if></td>
-									<td class="col-md-1 text-center" >
-										<a href="vehicleDelete.do?VH_num=${vehicle.VH_num }" id="del">N</a></td>
-								</c:if>
+								<td class="col-md-2 text-center">${vehicle.VH_carNum }</td>
+								<td class="col-md-2 text-center">${vehicle.VH_carName }</td>
+								<td class="col-md-2 text-center">${vehicle.VH_carYear }</td>
+								<td class="col-md-2 text-center">
+									<c:if test="${vehicle.VH_carType == '1' }">소형</c:if>
+									<c:if test="${vehicle.VH_carType == '2' }">중형</c:if>
+		  							<c:if test="${vehicle.VH_carType == '3' }">대형</c:if>
+									<c:if test="${vehicle.VH_carType == '4' }">승합</c:if></td>
+								<td class="col-md-2 text-center">${vehicle.VH_km }</td>
+								<td class="col-md-1 text-center">
+									<c:if test="${vehicle.VH_insu == 'Y' }">있음</c:if>
+									<c:if test="${vehicle.VH_insu == 'N' }">없음</c:if></td>
+								<td class="col-md-1 text-center" >
+									<c:if test="${vehicle.VH_del == 'N' }">
+										<a href="adminVehicleDelete.do?VH_num=${vehicle.VH_num }&MB_id=${member.MB_id }&pageNum=${pageNum }"
+											id="del">${vehicle.VH_del }</a>
+									</c:if>
+									<c:if test="${vehicle.VH_del == 'Y' }">${vehicle.VH_del }</c:if></td>
 							</tr>
 						</c:forEach>
 					</c:if>

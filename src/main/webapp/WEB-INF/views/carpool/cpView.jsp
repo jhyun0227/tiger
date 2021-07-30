@@ -5,20 +5,6 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initialscale=1">
-<script src="<c:url value="/"/>src/main/webapp/resources/bootstrap/js/adminlte.min.js"></script>
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f8b456750e8b8df57944ed224806efd0"></script>
-<script>
-	function find(){
-		var url = "http://map.daum.net/"
-		var start=document.getElementById('CP_startPoint').value
-		var end=document.getElementById('CP_endPoint').value
-		
-		url=url+"?sName="+start
-		url=url+"&eName="+end
-		window.open(url,"실제경로검색");
-	}
-</script>
 </head>
 <body>
 	<h1 class="title">타세요 상세</h1>

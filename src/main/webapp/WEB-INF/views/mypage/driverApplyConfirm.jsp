@@ -8,18 +8,13 @@
 <title>Insert title here</title>
 <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
 <style type="text/css">
-	.narrowWidth2 {
-   	 width: 85%;  
-   	}
-   	#inform_box {  
+	#inform_box {  
 		float: right !important;
 	} 
 	#img_box {
 		float: left !important;
 	}  
-	.title2 {
-		width: 10px;
-	}  
+	
 	img {
 		margin-top: 10px;
 		margin-bottom: 20px;
@@ -51,7 +46,10 @@
 		width: 130px;
 		height: 170px;
 		margin-top: 20px; 
-	}      
+	}   
+	#line {
+		margin-top: 13px;
+	}   
 </style>
 <script type="text/javascript">
 /* 이전페이지 */
@@ -121,7 +119,7 @@
 					<tr>
 						<td  colspan="2">
 							<div align="right">
-								<input type="button" value="이전" class="btn_sm_full" 
+								<input type="button" value="이전" class="btn_sm_stroke"  id="line"
 										onclick="prev()">
 							</div>
 						</td>

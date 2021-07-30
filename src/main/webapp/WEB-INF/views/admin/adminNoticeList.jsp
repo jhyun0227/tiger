@@ -6,7 +6,7 @@
 <head>
 <style type="text/css">
 .btnDiv{
-	margin-top: 50px;
+	margin-top: 10px;
 }
 
 #page_btn{
@@ -60,11 +60,15 @@
 					</tr>
 				</c:forEach>
 			</c:if>
+			<tr>   
+				<td colspan="5">
+					<div class="btnDiv" align="right">
+						<a href="adminNoticeWriteForm.do?NT_num=0&pageNum=1" class="btn_sm_stroke">작성</a>
+					</div>
+				</td>
+			</tr>
 		</table>
-		<div class="btnDiv" align="right">
-				<a href="adminNoticeWriteForm.do?NT_num=0&pageNum=1" class="btn_sm_stroke">작성</a>
-		</div>
-		
+
 		<div align="center" id="page_btn">
 			<ul class="pagination_bottom">
 				<!-- 시작페이지가 pagePerBlock(10)보다 크면 앞에 보여줄 페이지가 있다 -->

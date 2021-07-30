@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<c:set var="path" value="${pageContext.request.contextPath }"></c:set>
 <jsp:useBean id="now" class="java.util.Date" />
 
 <fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
@@ -62,13 +63,18 @@
 								'width=430,height=400,location=no,status=no,scrollbars=yes');" class="btn_sm_stroke ">작성</a>
 						</td>
 					</c:if>
-					<c:if test="${today < carpool.CP_startDate }">
-						<td class="col-md-2 text-center"></td>
+					<c:if test="${today <= carpool.CP_startDate }">
+						<td class="col-md-2 text-center">
+							<img alt="" src="${path }/resources/main/timer.png" width="17px" height="17px">
+						</td>
 					</c:if>		
 				</c:if>
 			</tr>
 		</c:forEach>
 	</c:if>	
+	<tr>
+		<td colspan="6"></td>
+	</tr>
 </table>
 <div align="center">
 	<ul class="pagination_bottom">

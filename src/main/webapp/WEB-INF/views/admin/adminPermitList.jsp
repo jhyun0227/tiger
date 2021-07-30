@@ -58,11 +58,13 @@
 							</c:if>
 							<c:if test="${apply.MB_driverConfirm == 'N' }">
 								<td class="col-md-2 text-center">반려</td>
-							</c:if>
+							</c:if>  
 							<c:if test="${apply.MB_driverConfirm == 'Y' }">
-								<td class="col-md-2 text-center">승인완료</td>
+								<td class="col-md-2 text-center">		
+								<img alt="" src="${path }/resources/main/check.png" 
+										width="15px" height="15px"  ></td>
 							</c:if>
-					</tr>
+					
 					<%-- </c:if> --%>
 				</c:forEach>
 			</c:if>

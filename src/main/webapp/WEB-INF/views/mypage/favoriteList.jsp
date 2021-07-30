@@ -61,7 +61,10 @@
 				<td class="col-md-2 text-center">${fvList.reviewAvg }</td>			
 			</tr>
 		</c:forEach>
-	</c:if>	
+	</c:if>
+	<tr>
+		<td colspan="6"></td>
+	</tr>
 </table>
 <div align="center">
 	<ul class="pagination_bottom">

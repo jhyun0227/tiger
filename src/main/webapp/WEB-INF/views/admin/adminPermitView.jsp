@@ -8,30 +8,17 @@
 <title>Insert title here</title>
 <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
 <style type="text/css">
-	.narrowWidth2 {
-   	 width: 85%;  
-   	}
-   	#inform_box {  
+	#inform_box {  
 		float: right !important;
 	} 
 	#img_box {
 		float: left !important;
 	}  
-	.title2 {
-		width: 10px;
-	}  
+	
 	img {
 		margin-top: 10px;
 		margin-bottom: 20px;
 	}  
-	#imgTitle {
-		margin-top: 75px;
-	}
-	#ing {
-		font-size: 16px;
-		font-weight: bolder;
-		color: #242526;
-	}
 	#title_box{
 		width: 5px;
 	}  
@@ -44,9 +31,9 @@
 		margin-top: -10px;
 	} 
 	.box {
-	   margin-top: 15px;
+	   margin-top: 15px;  
 	}   
-</style>
+</style>  
 </head>
 <body>
 <div class="container narrowWidth" align="center">
@@ -74,10 +61,10 @@
 						<th class="col-md-4 text-center">이름</th>
 						<td class="col-md-8">${apply.MB_name }</td>  
 					</tr>
-						<%-- <tr>
+					<%-- <tr>
 						<td class="col-md-3 text-center">연락처</td>
 						<td class="col-md-6">${member.MB_tel }</td>
-					</tr> --%>
+					</tr>  --%>
 					<tr>
 						<th class="col-md-4 text-center">성별</th>
 						<c:if test="${apply.MB_gender == '1' || apply.MB_gender == '3'}">

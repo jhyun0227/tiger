@@ -22,8 +22,8 @@
 	} 
 	
 	.thumbnail {
-		height: 130px;  
-		width: 130px;; 
+		height: 200px;  
+		width: 175px;; 
 		margin-top: 0; 
 		margin-bottom: 8px; 
 	}
@@ -33,11 +33,11 @@
 <div class="container narrowWidth" align="center">
 	<h2 class="title">내 차 정보</h2>
 	<div class="row">  
-		<div class="col-md-3" id="img_box"  > 
+		<div class="col-md-4" id="img_box"  > 
 			<img alt="" src="${path}/resources/vehicleImg/${vehicle.VH_carPicture }" 
 				class="thumbnail" >차량 번호판
 		</div>
-		<div class="col-md-9" id="inform_box">	  
+		<div class="col-md-8" id="inform_box">	  
 			<table class="table ">  
 				<tr>  
 					<td class="col-md-4 text-center">차량 번호</td>

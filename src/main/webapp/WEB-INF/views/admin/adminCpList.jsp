@@ -4,8 +4,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<c:set var="path" value="${pageContext.request.contextPath }"></c:set>
 </head>
-<body>
+<body>  
 	<h1 class="title">타세요 관리 목록</h1>
 		<div class="searchDIV">
 			<form action="adminCpList.do">
@@ -50,8 +51,10 @@
 					<td class="col-md-1 text-center">${num }
 						<c:set var="num" value="${num -1 }"></c:set></td>
 					<td class="col-md-1 text-center">
-						<a href="adminCpView.do?CP_num=${carpool.CP_num }&pageNum=${pb.currentPage}"
-							class="btn_open">이동</a></td>	
+						<a href="adminCpView.do?CP_num=${carpool.CP_num }&pageNum=${pb.currentPage}">
+							<img alt="" src="${path }/resources/main/folder.png" width="20px" height="20px">
+						</a>
+					</td>	
 					<td class="col-md-1 text-center">
 						<a onclick="window.open('profileView.do?MB_nickName=${carpool.MB_nickName }', '',
 							'width=500,height=560,location=no,status=no,scrollbars=yes');" class="inputLineA">${carpool.MB_nickName }</a>
@@ -72,6 +75,9 @@
 				</tr>
 			</c:forEach>
 		</c:if>
+		<tr>
+			<td colspan="10"></td>
+		<tr>
 	</table>
 		<div align="center">
 			<ul class="pagination_bottom">

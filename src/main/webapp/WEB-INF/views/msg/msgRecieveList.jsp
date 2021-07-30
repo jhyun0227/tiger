@@ -115,10 +115,14 @@ function deleteValue(){
 				</c:if>
 				</tr>
 			</c:forEach>
-		</c:if>
+		</c:if>  
 		<tr>
-			<td class="text-center"><input type="button" class="btn_sm_stroke" value="삭제" onclick="deleteValue();"></td>
-			<td colspan="3"></td>
+			<td colspan="4">
+				<div align="right">
+					<input type="button" class="btn_sm_stroke" value="삭제" onclick="deleteValue();">
+				</div>	
+			</td>
+			
 		</tr>
 	</table>
 </form>

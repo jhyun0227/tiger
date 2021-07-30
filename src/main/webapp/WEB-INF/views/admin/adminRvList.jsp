@@ -4,10 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="/tiger/resources/bootstrap/css/common.css">
-</head>
+<c:set var="path" value="${pageContext.request.contextPath }"></c:set> 
+</head>		
 <body>
 	<h1 class="title">타세요 예약 내역</h1>
 	<div class=" container searchDIV">
@@ -49,8 +47,10 @@
 					<td class="col-md-1 text-center">${num }
 						<c:set var="num" value="${num -1 }"></c:set></td>
 					<td class="col-md-1 text-center">
-						<a href="adminRvView.do?CP_num=${reservation.CP_num }&pageNum=${pb.currentPage}"
-							class="btn_open">상세</a></td>	
+						<a href="adminRvView.do?CP_num=${reservation.CP_num }&pageNum=${pb.currentPage}">
+							<img alt="" src="${path }/resources/main/folder.png" width="20px" height="20px">
+						</a>
+					</td>	
 					<td class="col-md-2 text-center">
 						<a onclick="window.open('profileView.do?MB_nickName=${reservation.MB_nickNameDv }', '',
 							'width=500,height=560,location=no,status=no,scrollbars=yes');"

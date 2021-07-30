@@ -4,6 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+.btn_large{
+	margin: 50px 0;
+}
+</style>
 </head>
 <body>
 <div align="center">
@@ -14,9 +19,9 @@
 				<th class="text-center">${member.MB_id }로 임시비밀번호를 전송하였습니다. 로그인 후 비밀번호를 변경해주세요.</th>
 			</tr>
 		</table>
-		<a href="findIdForm.do">아이디 찾기</a>
+		<button onclick="location.href='findIdForm.do'" class="btn_large">아이디 찾기</button>
 		<br>
-		<a href="loginForm.do">로그인</a>
+		<button onclick="location.href='loginForm.do'" class="btn_large">로그인</button>
 	</c:if>
 	<c:if test="${result == 0 }">
 		<table class="table narrowWidth">

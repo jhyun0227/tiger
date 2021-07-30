@@ -6,40 +6,28 @@
 <head>
 <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
 <style type="text/css">
-	.inputline1{
-	    border: none;
-	    outline: 0;
-	    width: 40%;
-	}
-	.narrowWidth1-1 {
-   	 width: 70%;  
-   	} 
 	 #labelUp{
 		text-align: left;	
 	} 
 	
-	.filebox label {
-    	width: 100%;
-    	padding: 0;
-     } 
-     .inputline4 {
-		border: none;
-	    outline: 0;
-	    width: 35%;
-	} 
-
-	.inputLine_s {
+	.inputLine_s {  
 		border: none;
 		outline: 0;
-		width: 45%;  
-	}  
+		width: 35%;  
+	}    
 	#file_len {
 		width: 100%;
 		text-align: center;
 	}
 	 #box{
 	 	margin-top: -20px;  
-	 }         
+	 } 
+	 .thumbnail {
+		height: 170px;  
+		width: 140px;; 
+		margin-top: 0; 
+		margin-bottom: 8px; 
+	}          
 </style>	
 <script type="text/javascript">
 
@@ -137,7 +125,7 @@
 					title="운전면허증 앞면 사진을 첨부해 주세요">
 			</c:if>  
 			<c:if test="${not empty AP_picture}">
-				<img alt=""  class="thumb"   
+				<img alt=""  class="thumbnail"   
 				     src="${path }/resources/applyImg/${apply.AP_picture}">	
 			</c:if>	     		
 			<div class="filebox" id="box">   
@@ -208,7 +196,7 @@
 						<td class="col-md-4 text-center">차량 앞면 사진</td>
 						<td class="col-md-8">
 							 <div class="filebox" > 
-								<label for="VH_carPicture" id="labelUp">차량번호판</label> 
+								<label for="VH_carPicture" id="labelUp">차량번호판</label>&nbsp; 
 								<input class="upload-name" disabled="disabled"> 
 								<input type="file" name="file" id="VH_carPicture" required="required"
 								       class="upload-hidden" > 

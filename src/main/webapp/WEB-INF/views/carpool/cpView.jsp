@@ -182,8 +182,8 @@
 					<c:if test="${carpool.CP_passNumNow < carpool.CP_passNum }">
 						<a href="cpRequestResult.do?CP_num=${carpool.CP_num}&MB_num=${member.MB_num}&pageNum=${pageNum}" class="btn_sm_full">신청</a>
 					</c:if>
-					<c:if test="${carpool.CP_passNumNow ne carpool.CP_passNum }">
-						<c:if test="${reservation2.RSV_confirm == 'Y' || reservation2.RSV_mconfirm == 'N' }">
+					<c:if test="${carpool.CP_passNumNow != carpool.CP_passNum }">
+						<c:if test="${reservation.RSV_confirm == 'Y' || reservation.RSV_mconfirm == 'N' }">
 							<a href="cpCancelRequestResult.do?CP_num=${carpool.CP_num}&MB_num=${member.MB_num}&pageNum=${pageNum}" class="btn_sm_full">신청취소</a>
 						</c:if>
 					</c:if>

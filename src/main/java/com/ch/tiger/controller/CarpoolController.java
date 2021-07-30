@@ -105,16 +105,8 @@ public class CarpoolController {
 		Carpool carpool = cps.select(CP_num); // 타세요 작성자 MB_num 조회
 		Member memberDB = null; // 타세요 작성한 회원 닉네임 같이 보여주기
 		memberDB = mbs.selectNum(carpool.getMB_num());
-		
-		// 신청취소용 reservation2
-		Reservation reservation2 = new Reservation();
-		reservation2.setCP_num(CP_num);
-		reservation2.setMB_num(member.getMB_num());
-		reservation2 = rvs.selectRv(reservation2);
-		
 		model.addAttribute("memberDB", memberDB);
 		model.addAttribute("reservationList", reservationList);
-		model.addAttribute("reservation2", reservation2);
 		model.addAttribute("member", member);
 		model.addAttribute("carpool", carpool);
 		model.addAttribute("pageNum", pageNum);
@@ -208,7 +200,6 @@ public class CarpoolController {
 		} else {
 			result = rvs.insert(reservation); // 신청 성공/실패
 		}
-		
 		model.addAttribute("CP_num", CP_num);
 		model.addAttribute("result", result);
 		model.addAttribute("pageNum", pageNum);
@@ -222,6 +213,8 @@ public class CarpoolController {
 		reservation.setCP_num(CP_num);
 		reservation.setMB_num(MB_num);
 		int result = rvs.delete(reservation);
+		model.addAttribute("result", result);
+		model.addAttribute("CP_num", CP_num);
 		return "carpool/cpCancelRequestResult";
 	}
 	

@@ -95,7 +95,7 @@
 	</update>
 	
 	<!-- 매칭대기상태인 탑승자가 신청취소버튼 클릭시 -->
-	<delete id="delete" parameterType="reservatoin">
+	<delete id="delete" parameterType="reservation">
 		delete from reservation where CP_num=#{CP_num} and MB_num=#{MB_num} and RSV_CONFIRM='Y' and RSV_MCONFIRM='N'
 	</delete>
 	

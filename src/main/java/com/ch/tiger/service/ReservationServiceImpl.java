@@ -77,4 +77,14 @@ public class ReservationServiceImpl implements ReservationService {
 		return rvd.selectRv(reservation);
 	}
 
+	@Override
+	public int updateAllDeny(int CP_num) { // 게시글 매칭완료시 기존에 신청된 수락버튼 거절로 변환
+		return rvd.updateAllDeny(CP_num);
+	}
+
+	@Override
+	public int delete(Reservation reservation) { // 매칭대기상태인 탑승자가 신청취소버튼 클릭시
+		return rvd.delete(reservation);
+	}
+
 }

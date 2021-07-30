@@ -156,7 +156,7 @@
 							</c:if>
 							<c:if test="${reservation.RSV_confirm == 'N' }">
 								<c:if test="${reservation.RSV_mConfirm == 'N' }">
-									<td class="text-center">거절</td>
+									<td class="text-center">매칭거절</td>
 								</c:if>
 							</c:if>
 						</tr>
@@ -167,6 +167,11 @@
 					<!-- 신청가능 인원수 다 채우면 신청 못하게 막음 -->
 					<c:if test="${carpool.CP_passNumNow < carpool.CP_passNum }">
 						<a href="cpRequestResult.do?CP_num=${carpool.CP_num}&MB_num=${member.MB_num}&pageNum=${pageNum}" class="btn_sm_full">신청</a>
+					</c:if>
+					<c:if test="${carpool.CP_passNumNow != carpool.CP_passNum }">
+						<c:if test="${reservation.RSV_confirm == 'Y' || reservation.RSV_mconfirm == 'N' }">
+							<a href="cpCancelRequestResult.do?CP_num=${carpool.CP_num}&MB_num=${member.MB_num}&pageNum=${pageNum}" class="btn_sm_full">신청취소</a>
+						</c:if>
 					</c:if>
 				</div>
 			</c:if>
@@ -208,7 +213,7 @@
 								</c:if>
 								<c:if test="${reservation.RSV_confirm == 'N' }">
 									<c:if test="${reservation.RSV_mConfirm == 'N' }">
-										<td class="text-center">거절한 매칭</td>
+										<td class="text-center">매칭거절</td>
 									</c:if>
 								</c:if>	
 							</tr>

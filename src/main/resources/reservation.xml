@@ -43,7 +43,7 @@
 		select * from (select r.*, m.MB_gender, m.MB_nickName from reservation r, member m where r.MB_num=m.MB_num) where CP_num=#{CP_num} order by RSV_num
 	</select>
 	
-	<!-- 신청 중복 등록 방지 -->
+	<!-- 1.신청 중복 등록 방지, 2.탑승자 신청취소버튼(매칭대기 상태일때만 취소가능) -->
 	<select id="selectRv" parameterType="reservation" resultType="reservation">
 		select * from reservation where CP_num=#{CP_num} and MB_num=#{MB_num}
 	</select>
@@ -88,5 +88,15 @@
 			</if>
 		order by c.CP_num desc) a) where rn between #{startRow} and #{endRow}
 	</select>
+	
+	<!-- 게시글 매칭완료시 기존에 신청된 수락버튼 거절로 변환 -->
+	<update id="updateAllDeny" parameterType="integer">
+		update reservation set RSV_CONFIRM='N' where CP_num=#{CP_num} and RSV_CONFIRM='Y' and RSV_MCONFIRM='N'
+	</update>
+	
+	<!-- 매칭대기상태인 탑승자가 신청취소버튼 클릭시 -->
+	<delete id="delete" parameterType="reservatoin">
+		delete from reservation where CP_num=#{CP_num} and MB_num=#{MB_num} and RSV_CONFIRM='Y' and RSV_MCONFIRM='N'
+	</delete>
 	
 </mapper>

@@ -96,7 +96,7 @@ public class CarpoolController {
 	
 	// 타세요 리스트 상세보기
 	@RequestMapping("cpView")
-	public String cpView(HttpServletRequest request, int CP_num, String pageNum, Model model, HttpSession session) {
+	public String cpView(int CP_num, String pageNum, Model model, HttpSession session) {
 		Reservation reservation = new Reservation();
 		reservation.setCP_num(CP_num);
 		List<Reservation> reservationList = rvs.reservationList(reservation); // reservation 테이블 정보 list로 보여줌
@@ -105,8 +105,16 @@ public class CarpoolController {
 		Carpool carpool = cps.select(CP_num); // 타세요 작성자 MB_num 조회
 		Member memberDB = null; // 타세요 작성한 회원 닉네임 같이 보여주기
 		memberDB = mbs.selectNum(carpool.getMB_num());
+		
+		// 신청취소용 reservation2
+		Reservation reservation2 = new Reservation();
+		reservation2.setCP_num(CP_num);
+		reservation2.setMB_num(member.getMB_num());
+		reservation2 = rvs.selectRv(reservation2);
+		
 		model.addAttribute("memberDB", memberDB);
 		model.addAttribute("reservationList", reservationList);
+		model.addAttribute("reservation2", reservation2);
 		model.addAttribute("member", member);
 		model.addAttribute("carpool", carpool);
 		model.addAttribute("pageNum", pageNum);
@@ -200,10 +208,21 @@ public class CarpoolController {
 		} else {
 			result = rvs.insert(reservation); // 신청 성공/실패
 		}
+		
 		model.addAttribute("CP_num", CP_num);
 		model.addAttribute("result", result);
 		model.addAttribute("pageNum", pageNum);
 		return "carpool/cpRequestResult";
+	}
+	
+	//타세요 신청취소 버튼
+	@RequestMapping("cpCancelRequestResult")
+	public String cpCancelRequestResult(int CP_num, int MB_num, String pageNum, Model model) {
+		Reservation reservation = new Reservation();
+		reservation.setCP_num(CP_num);
+		reservation.setMB_num(MB_num);
+		int result = rvs.delete(reservation);
+		return "carpool/cpCancelRequestResult";
 	}
 	
 	// 타세요 드라이버 로그인 >> 매칭 여부 컬럼 "수락" 버튼 클릭시
@@ -214,7 +233,11 @@ public class CarpoolController {
 		reservation.setMB_num(MB_num);
 		int result = rvs.updateAccept(reservation);
 		int addNumResult = cps.updatePassNumNow(CP_num); // 드라이버가 수락을해서 신청한 회원이 매칭완료상태가될때마다 CP_passNumNow에 +1 해줌
-		model.addAttribute("addNumResult", addNumResult);
+		// 게시글 매칭완료시 기존에 신청된 수락버튼 거절로 변환(매칭완료된 좌석수가 총 좌석수와 일치할때 '매칭대기'였던 상태를 '거절'로 바꿔줌)
+		Carpool carpool = cps.select(CP_num);
+		if (carpool.getCP_passNumNow() == carpool.getCP_passNum()) {
+			int allDeny = rvs.updateAllDeny(CP_num);
+		}
 		model.addAttribute("result", result);
 		model.addAttribute("CP_num", CP_num);
 		return "carpool/cpAcceptResult";

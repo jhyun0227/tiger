@@ -16,7 +16,7 @@
 	</c:if>
 	<c:if test="${result == 0 }">
 		<script type="text/javascript">
-			alert("매칭완료 상태에서는 취소가 불가합니다.");
+			alert("매칭완료 / 매칭거절 상태에서는 취소가 불가합니다.");
 			history.back();
 		</script>
 	</c:if>

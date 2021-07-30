@@ -26,97 +26,95 @@
 			<!-- 메인 컨텐츠 부분 -->
 			<section class="content container-fluid">
 				<div class="box box-danger">
-					<form class="form-horizontal" method="post">
-						<div class="box-body">
-							<div class="form-group">
-								<label class="col-sm-2 control-label">작성자 닉네임</label>
-								<div class="col-sm-10">
-									<div class="input-group">
-										<input type="text" class="form-control" readonly="readonly" value="${memberDB.MB_nickName}" />
-									</div>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="CP_startPoint" class="col-sm-2 control-label">출발지</label>
-								<div class="col-sm-10">
-									<div class="input-group">
-										<input type="text" id="CP_startPoint" name="CP_startPoint" class="form-control" readonly="readonly" value="${carpool.CP_startPoint }" />
-									</div>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="endPoint" class="col-sm-2 control-label">도착지</label>
-								<div class="col-sm-10">
-									<div class="input-group">
-										<input type="text" id="CP_endPoint" name="CP_endPoint" class="form-control" readonly="readonly" value="${carpool.CP_endPoint }" />
-									</div>
-								</div>
-							</div>
-							<div class="form-group">
-								<button class="btn_sm_full" style="margin-left: 200px" onclick="find()">실제 경로보기</button>
-							</div>
-							<div class="form-group">
-								<label for="CP_startDate" class="col-sm-2 control-label">출발일</label>
-								<div class="col-sm-4">
-									<div class="input-group">
-										<span class="input-group-addon">
-										<span class="glyphicon glyphicon-time" aria-hidden="true"></span></span>
-										<input type="date" name="CP_startDate" class="form-control form_datetime" readonly="readonly" value="${carpool.CP_startDate }">
-									</div>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="CP_startTime" class="col-sm-2 control-label">출발시간</label>
-								<div class="col-sm-4">
-									<div class="input-group">${carpool.CP_startTime }</div>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="CP_fee" class="col-sm-2 control-label">금액</label>
-								<div class="col-sm-3">
-									<div class="input-group">
-										<input type="text" class="form-control" name="CP_fee" id="CP_fee" readonly="readonly" value="${carpool.CP_fee }">
-										<span class="input-group-addon">원/인당</span>
-									</div>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="CP_duration" class="col-sm-2 control-label">소요시간</label>
-								<div class="col-sm-3">
-									<div class="input-group">
-										<input type="text" class="form-control" name="CP_duration" id="CP_duration" readonly="readonly" value="${carpool.CP_duration }">
-										<span class="input-group-addon">분</span>
-									</div>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="CP_passNum" class="col-sm-2 control-label">카풀 인원</label>
-								<div class="col-sm-3">${carpool.CP_passNum } 명</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">성별제한</label>
-								<div class="col-sm-10 mt-3">
-									<div>${carpool.CP_gendertype }</div>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">참고사항</label>
-								<div class="col-sm-10 mt-3">
-									<div>${carpool.CP_option }</div>
-								</div>
-							</div>
-						</div>
-
-						<!-- 지도 표시 -->
-						<!-- <div id="map" style="width: 90%; height: 400px; margin: 10px auto;"></div> -->
-
+					<div class="box-body">
 						<div class="form-group">
-							<label for="CP_comment" class="col-sm-2 control-label">기타요구사항</label>
+							<label class="col-sm-2 control-label">작성자 닉네임</label>
 							<div class="col-sm-10">
-								<pre name="CP_comment" id="CP_comment" rows="5" class="form-control textBox" readonly="readonly">${carpool.CP_comment }</pre>
+								<div class="input-group">
+									<input type="text" class="form-control" readonly="readonly" value="${memberDB.MB_nickName}" />
+								</div>
 							</div>
 						</div>
-					</form>
+						<div class="form-group">
+							<label for="CP_startPoint" class="col-sm-2 control-label">출발지</label>
+							<div class="col-sm-10">
+								<div class="input-group">
+									<input type="text" id="CP_startPoint" name="CP_startPoint" class="form-control" readonly="readonly" value="${carpool.CP_startPoint }" />
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="endPoint" class="col-sm-2 control-label">도착지</label>
+							<div class="col-sm-10">
+								<div class="input-group">
+									<input type="text" id="CP_endPoint" name="CP_endPoint" class="form-control" readonly="readonly" value="${carpool.CP_endPoint }" />
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<button class="btn_sm_full" style="margin-left: 200px" onclick="find()">실제 경로보기</button>
+						</div>
+						<div class="form-group">
+							<label for="CP_startDate" class="col-sm-2 control-label">출발일</label>
+							<div class="col-sm-4">
+								<div class="input-group">
+									<span class="input-group-addon">
+									<span class="glyphicon glyphicon-time" aria-hidden="true"></span></span>
+									<input type="date" name="CP_startDate" class="form-control form_datetime" readonly="readonly" value="${carpool.CP_startDate }">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="CP_startTime" class="col-sm-2 control-label">출발시간</label>
+							<div class="col-sm-4">
+								<div class="input-group">${carpool.CP_startTime }</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="CP_fee" class="col-sm-2 control-label">금액</label>
+							<div class="col-sm-3">
+								<div class="input-group">
+									<input type="text" class="form-control" name="CP_fee" id="CP_fee" readonly="readonly" value="${carpool.CP_fee }">
+									<span class="input-group-addon">원/인당</span>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="CP_duration" class="col-sm-2 control-label">소요시간</label>
+							<div class="col-sm-3">
+								<div class="input-group">
+									<input type="text" class="form-control" name="CP_duration" id="CP_duration" readonly="readonly" value="${carpool.CP_duration }">
+									<span class="input-group-addon">분</span>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="CP_passNum" class="col-sm-2 control-label">카풀 인원</label>
+							<div class="col-sm-3">${carpool.CP_passNum } 명</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">성별제한</label>
+							<div class="col-sm-10 mt-3">
+								<div>${carpool.CP_gendertype }</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">참고사항</label>
+							<div class="col-sm-10 mt-3">
+								<div>${carpool.CP_option }</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- 지도 표시 -->
+					<!-- <div id="map" style="width: 90%; height: 400px; margin: 10px auto;"></div> -->
+
+					<div class="form-group">
+						<label for="CP_comment" class="col-sm-2 control-label">기타요구사항</label>
+						<div class="col-sm-10">
+							<pre name="CP_comment" id="CP_comment" rows="5" class="form-control textBox" readonly="readonly">${carpool.CP_comment }</pre>
+						</div>
+					</div>
 				</div>
 			</section>
 		</form>
@@ -168,8 +166,9 @@
 					<c:if test="${carpool.CP_passNumNow < carpool.CP_passNum }">
 						<a href="cpRequestResult.do?CP_num=${carpool.CP_num}&MB_num=${member.MB_num}&pageNum=${pageNum}" class="btn_sm_full">신청</a>
 					</c:if>
+					<!-- 매칭완료전 매칭대기상태인 탑승자 신청취소 기능 -->
 					<c:if test="${carpool.CP_passNumNow != carpool.CP_passNum }">
-						<c:if test="${reservation.RSV_confirm == 'Y' || reservation.RSV_mconfirm == 'N' }">
+						<c:if test="${reservation2.RSV_confirm == 'Y' || reservation2.RSV_mConfirm == 'N'}">
 							<a href="cpCancelRequestResult.do?CP_num=${carpool.CP_num}&MB_num=${member.MB_num}&pageNum=${pageNum}" class="btn_sm_full">신청취소</a>
 						</c:if>
 					</c:if>

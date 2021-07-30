@@ -105,6 +105,14 @@ public class CarpoolController {
 		Carpool carpool = cps.select(CP_num); // 타세요 작성자 MB_num 조회
 		Member memberDB = null; // 타세요 작성한 회원 닉네임 같이 보여주기
 		memberDB = mbs.selectNum(carpool.getMB_num());
+		
+		//신청취소 버튼용
+		Reservation reservation2 = new Reservation();
+		reservation2.setCP_num(CP_num);
+		reservation2.setMB_num(member.getMB_num()); // 세션으로 받아온 MB_num으로 조회
+		reservation2 = rvs.selectRv(reservation2);
+		model.addAttribute("reservation2", reservation2);
+		
 		model.addAttribute("memberDB", memberDB);
 		model.addAttribute("reservationList", reservationList);
 		model.addAttribute("member", member);

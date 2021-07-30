@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<c:set var="path" value="${pageContext.request.contextPath }"></c:set>
 </head>
 <body>
 <h2 class="title">드라이버 신청 목록</h2>
@@ -62,7 +63,7 @@
 							<c:if test="${apply.MB_driverConfirm == 'Y' }">
 								<td class="col-md-2 text-center">		
 								<img alt="" src="${path }/resources/main/check.png" 
-										width="15px" height="15px"  ></td>
+										width="15px" height="15px"></td>
 							</c:if>
 					
 					<%-- </c:if> --%>

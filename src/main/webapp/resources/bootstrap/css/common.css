@@ -143,9 +143,10 @@ body{
 }
 
 .inputLineA:hover{
-	color: #000000;
+	color: #3243A8;
 	text-decoration: none;
 	cursor: pointer;
+	font-weight:bolder;
 }
 
 /* 첨부파일 */
@@ -310,7 +311,7 @@ body{
  	margin-bottom: 0; 
  	width: 30px;
 }  
-/* .btn_delete{
+.btn_delete{
 	background-image: url('/tiger/resources/main/delete.png');
 	background-size: 14px;
 	background-color: white;
@@ -326,7 +327,7 @@ body{
  	padding-bottom: 4px;
  	padding-right: 13px;
  }
- .btn_delete:hover{ 추가0728 관리자 회원 탈퇴 이미지
+ .btn_delete:hover{ /* 추가0728 관리자 회원 탈퇴 이미지 */
 	background-image: url('/tiger/resources/main/delete.png');
 	background-size: 14px;
 	background-color: white;
@@ -358,7 +359,7 @@ body{
  	padding-bottom: 4px;
  	padding-right: 15px;
 }
-.btn_recovery:hover{ 추가0728 관리자 회원 복구 이미지
+.btn_recovery:hover{ /* 추가0728 관리자 회원 복구 이미지 */
 	background-image: url('/tiger/resources/main/recovery.png');
 	background-size: 16px;
 	background-color: white;
@@ -373,7 +374,7 @@ body{
  	width: 30px;
  	padding-bottom: 4px;
  	padding-right: 15px;
-} */
+}
 .btn_open{
 	background-image: url('/tiger/resources/main/open.png');
 	background-size: 22px;

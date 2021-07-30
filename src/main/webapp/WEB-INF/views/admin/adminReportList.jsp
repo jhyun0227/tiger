@@ -4,8 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<c:set var="path" value="${pageContext.request.contextPath }"></c:set>
 </head>
 <body>
 	<div class="container" align="center">
@@ -48,7 +47,8 @@
 						<td class="col-md-2 text-center">${num }
 						<c:set var="num" value="${num -1 }"></c:set></td>
 						<td class="col-md-2 text-center">
-							<a href="adminCpView.do?CP_num=${report.CP_num}&pageNum=${pb.currentPage}" class="btn_open">상세</a></td>
+							<a href="adminCpView.do?CP_num=${report.CP_num}&pageNum=${pb.currentPage}">
+								<img alt="" src="${path }/resources/main/folder.png" width="20px" height="20px"></a></td>
 						<td class="col-md-2 text-center">${report.MB_nickName}</td>
 						<c:if test="${report.RP_reason == 1 }">
 							<td class="col-md-2 text-center">광고성/홍보성</td>
@@ -70,19 +70,19 @@
 						</c:if>
 						<td class="col-md-2 text-center">
 							<c:if test="${report.CP_del == 'N' }">
-								<a href="adminCpDelete.do?CP_num=${report.CP_num }&pageNum=${pageNum}"
-									class="btn_delete">　</a>
+								<a href="adminCpDelete.do?CP_num=${report.CP_num }&pageNum=${pageNum}">
+								<img alt="" src="${path }/resources/main/delete.png" width="17px" height="17px"></a>
 							</c:if>
 							<c:if test="${report.CP_del == 'Y' }">
-								<a href="adminCpRollback.do?CP_num=${report.CP_num }&pageNum=${pageNum}"
-									class="btn_recovery">　</a>
+								<a href="adminCpRollback.do?CP_num=${report.CP_num }&pageNum=${pageNum}">
+									<img alt="" src="${path }/resources/main/recovery.png" width="17px" height="17px"></a>
 							</c:if>
 						</td>
 						<td class="col-md-2 text-center">
 							<c:if test="${report.CP_del == 'Y' }">
 								<c:if test="${report.RP_del == 'N' }">
-									<a href="adminRpDelete.do?RP_num=${report.RP_num }&pageNum=${pageNum}"
-										class="btn_delete">삭제</a>
+									<a href="adminRpDelete.do?RP_num=${report.RP_num }&pageNum=${pageNum}">
+										<img alt="" src="${path }/resources/main/delete.png" width="17px" height="17px"></a>
 								</c:if>
 								<c:if test="${report.RP_del == 'Y' }">
 									삭제 완료

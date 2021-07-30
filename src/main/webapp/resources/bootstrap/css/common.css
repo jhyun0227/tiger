@@ -243,6 +243,17 @@ body{
     margin-top: 30px;
 }
 
+.btn_sm_stroke:hover {
+    margin-bottom: 10px;
+    padding: 5px 12px;
+    border: 1px solid #9a9ca3;
+    font-size: 14px;
+    color: #3243A8;   
+    background: initial;
+    margin-top: 30px;
+    text-decoration: none;
+}
+
 .btn_sm_full{
     margin-bottom: -22px;
     padding: 6px 13px;
@@ -292,7 +303,7 @@ body{
 }  
 .btn_delete{
 	background-image: url('/tiger/resources/main/delete.png');
-	background-size: 16px;
+	background-size: 14px;
 	background-color: white;
     background-position:  0px 0px;
     background-repeat: no-repeat;   
@@ -308,7 +319,7 @@ body{
  }
  .btn_delete:hover{ /* 추가0728 관리자 회원 탈퇴 이미지 */
 	background-image: url('/tiger/resources/main/delete.png');
-	background-size: 16px;
+	background-size: 14px;
 	background-color: white;
     background-position:  0px 0px;
     background-repeat: no-repeat;   

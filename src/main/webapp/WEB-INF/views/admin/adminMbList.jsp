@@ -4,70 +4,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<c:set var="path" value="${pageContext.request.contextPath }"></c:set>
-<style type="text/css">
-	.box {
-	   margin-top: -30px;
-	} 
-	.btn_Y {
-		border: none;
-		font-weight: bold;
-		color: gray;
-	} 
-	.btn_Y:hover {
-		font-size: 18px;
-		color: red;
-	}
-	
-	.btn_N {
-		border: none;
-		font-weight: bold;
-	} 
-	.btn_N:hover {
-		font-size: 18px;
-		color: red;
-	}  
-</style>
-<script type="text/javascript">
-/* 이전페이지 */
-	function prev(){
-		var preUrl = document.referrer.split("/")[4];
-		location.href=preUrl;
-	}
-</script>
 </head>
 <body>
-	<div class="container" align="center">
-		<h2 class="title">회원정보</h2>
-		<div class="searchDIV">
-			<form action="adminMbList.do">
-			<input type="hidden" name="pageNum" value="1">
-			<select name="search" class="inputUnderLine">
-				<c:forTokens var="sh" items="MB_id,MB_name,MB_nickName,MB_gender,MB_regDate" delims="," varStatus="i">
-					<c:if test="${sh == member.search }">
-						<option value="${sh}" selected="selected">${title[i.index] }</option>
-					</c:if>
-					<c:if test="${sh != member.search }">
-						<option value="${sh}">${title[i.index] }</option>
-					</c:if>
-				</c:forTokens>
-			</select>
-			<input type="text" name="keyword" value="${member.keyword }" class="inputUnderLine">
-			<input type="submit" value="검색" class="btn_search">
-		</form>
-		</div>   
-		<table class="table">
-			<tr>   
-				<th class="col-md-1 text-center">회원번호</th>
-				<th class="col-md-2 text-center">회원ID</th>
-				<th class="col-md-2 text-center">이름</th>
-				<th class="col-md-2 text-center">닉네임</th>
-				<th class="col-md-2 text-center">성별</th>
-				<th class="col-md-2 text-center">가입일</th>
-				<th class="col-md-1 text-center">탈퇴 여부</th>				
-			</tr>
+<h2 class="title">회원정보</h2>
+	<div class="searchDIV">
+	<form action="adminMbList.do">
+		<input type="hidden" name="pageNum" value="1">
+		<select name="search" class="inputUnderLine">
+			<c:forTokens var="sh" items="MB_id,MB_name,MB_nickName,MB_gender,MB_regDate" delims="," varStatus="i">
+				<c:if test="${sh == member.search }">
+					<option value="${sh}" selected="selected">${title[i.index] }</option>
+				</c:if>
+				<c:if test="${sh != member.search }">
+					<option value="${sh}">${title[i.index] }</option>
+				</c:if>
+			</c:forTokens>
+		</select>
+		<input type="text" name="keyword" value="${member.keyword }" class="inputUnderLine">
+		<input type="submit" value="검색" class="btn_search">
+	</form>
+	</div>   
+	<table class="table">
+		<tr>   
+			<th class="col-md-1 text-center">회원번호</th>
+			<th class="col-md-3 text-center">회원ID</th>
+			<th class="col-md-2 text-center">이름</th>
+			<th class="col-md-2 text-center">닉네임</th>
+			<th class="col-md-1 text-center">성별</th>
+			<th class="col-md-2 text-center">가입일</th>
+			<th class="col-md-1 text-center">탈퇴 여부</th>				
+		</tr>
 			<c:if test="${empty mbList }">
 				<tr>
 					<th colspan="7">회원 정보가 없습니다</th>
@@ -79,15 +45,15 @@
 						<td class="col-md-1 text-center">${num }
 							<c:set var="num" value="${num -1 }"></c:set></td>
 						<!-- 게시글 번호 순서 정렬 -->
-							<td class="text-center">
-								<a href="adminMbView.do?MB_id=${member.MB_id }&pageNum=${pb.currentPage}">${member.MB_id }</a></td>
+							<td class="text-center col-md-3">
+								<a href="adminMbView.do?MB_id=${member.MB_id }&pageNum=${pb.currentPage}" class="inputLineA">${member.MB_id }</a></td>
 							<td class="col-md-2 text-center">${member.MB_name }</td>
 							<td class="col-md-2 text-center">${member.MB_nickName }</td>
 							<c:if test="${member.MB_gender == 1 || member.MB_gender == 3}">
-								<td class="col-md-2 text-center">남자</td>
+								<td class="col-md-1 text-center">남자</td>
 							</c:if>
 							<c:if test="${member.MB_gender == 2 || member.MB_gender == 4}">
-								<td class="col-md-2 text-center">여자</td>
+								<td class="col-md-1 text-center">여자</td>
 							</c:if>
 							<td class="col-md-2 text-center">${member.MB_regDate }</td>
 							<c:if test="${member.MB_del == 'N' }">
@@ -95,25 +61,20 @@
 									<td class="col-md-2 text-center">관리자</td>
 								</c:if>
 								<c:if test="${member.MB_id != 'admin' }">
-									<td class="text-center"><a href="adminMbDelete.do?MB_id=${member.MB_id }&pageNum=${pageNum }"
-											class="btn_N">N</a></td>
+									<td class="text-center">
+										<a href="adminMbDelete.do?MB_id=${member.MB_id }&pageNum=${pageNum }" class="btn_delete"></a>
+									</td>
 								</c:if>
 							</c:if>
 							<c:if test="${member.MB_del == 'Y' }">
-								<td class="text-center"><a href="adminMbRollback.do?MB_id=${member.MB_id }&pageNum=${pageNum }"
-										class="btn_Y">Y</a></td>
-							</c:if>   
-					</tr>
-				</c:forEach>
+								<td class="text-center">
+									<a href="adminMbRollback.do?MB_id=${member.MB_id }&pageNum=${pageNum }" class="btn_recovery">　　</a>
+								</td>
+							</c:if>
+					</tr>  
+				</c:forEach>    
 			</c:if>
-			<tr>
-				<td colspan="7" >
-					<div align="right" class="box">
-					   <input type="button" value="이전" class="btn_sm_stroke" onclick="prev()">
-					</div>
-				</td>  
-			</tr>		
-		</table>
+		</table>   
 		<div align="center">
 			<ul class="pagination_bottom">
 				<!-- 시작페이지가 pagePerBlock(10)보다 크면 앞에 보여줄 페이지가 있다 -->

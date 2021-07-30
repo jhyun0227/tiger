@@ -23,4 +23,6 @@ public interface VehicleDao {
 
 	int rollbackAll(int MB_num);	// 관리자가 회원 복구 시 회원 차량 정보도 복구
 
+	int adminVhRollback(int VH_num);  // 관리자가 삭제된 차량정보 복구
+
 }

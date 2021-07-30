@@ -64,4 +64,9 @@ public class VehicleServiceImpl implements VehicleService {
 		return vd.rollbackAll(MB_num);
 	}
 
+	// 관리자가 삭제된 차량정보 복구
+	public int adminVhRollback(int VH_num) {
+		return vd.adminVhRollback(VH_num);
+	}
+
 }

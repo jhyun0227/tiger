@@ -35,4 +35,6 @@ public interface ReservationService {
 
 	int delete(Reservation reservation); // 매칭대기상태인 탑승자가 신청취소버튼 클릭시
 
+	List<Reservation> rvAllList(Reservation reservation);  // 전체 예약내역 리스트 - 관리자메인
+
 }

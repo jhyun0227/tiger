@@ -99,4 +99,10 @@
 		delete from reservation where CP_num=#{CP_num} and MB_num=#{MB_num} and RSV_CONFIRM='Y' and RSV_MCONFIRM='N'
 	</delete>
 	
+	<!-- 전체 예약내역 리스트 - 관리자메인 -->
+	<select id="rvAllList" parameterType="reservation" resultType="reservation">
+		select * from (select a.*, rowNum rn from (select rv.*, c.CP_startPoint, c.CP_endPoint from reservation rv, carpool c
+			where rv.CP_num=c.CP_num order by c.CP_num desc) a) where rn between 1 and 6
+	</select>
+	
 </mapper>

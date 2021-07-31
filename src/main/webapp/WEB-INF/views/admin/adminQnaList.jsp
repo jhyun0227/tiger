@@ -4,18 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style type="text/css">
-	.box {
-	   margin-top: -30px;
-	}   
-</style>
-<script type="text/javascript">
-/* 이전페이지 */
-	function prev(){
-		var preUrl = document.referrer.split("/")[4];
-		location.href=preUrl;
-	}
-</script>
 </head>
 <body>
 	<h1 class="title">문의내역</h1>
@@ -70,15 +58,6 @@
 				</tr>
 			</c:forEach>
 		</c:if>
-		    <tr>
-				<td colspan="5" >
-					<div align="right" class="box">
-					  <input type="button" value="이전" class="btn_sm_stroke" onclick="prev()"> 
-					  <input type="button" value="관리자 메인" class="btn_sm_stroke" 
-					  		onclick="location.href='adminMain.do?MB_id=${member.MB_id }&pageNum=${pageNum }' "> 
-					 </div>
-				</td>
-			</tr>
 	</table>
 		<div align="center">
 			<ul class="pagination_bottom">

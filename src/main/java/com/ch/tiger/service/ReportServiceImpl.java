@@ -23,19 +23,24 @@ public class ReportServiceImpl implements ReportService {
 		return rpd.getMaxNum();
 	}
 
-	@Override
+	// 전체 신고내역 갯수
 	public int getRpTotal(Report report) {
 		return rpd.getRpTotal(report);
 	}
 
-	@Override
+	// 관리자 신고 목록
 	public List<Report> rpList(Report report) {
 		return rpd.rpList(report);
 	}
 
-	@Override
+	// 관리자 신고 내역 삭제
 	public int adminRpDelete(int RP_num) {
-		return rpd.adminRpDelete(RP_num);	// 관리자 신고 내역 삭제 - 동윤
+		return rpd.adminRpDelete(RP_num);	
+	}
+
+	// 전체 신고 리스트 - 관리자메인
+	public List<Report> rpAllList(Report report) {
+		return rpd.rpAllList(report);
 	}
 
 }

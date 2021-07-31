@@ -3,6 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="qnans">
 
+	<!-- 회원별 qna 총 갯수 -->
  	<select id="getTotal" parameterType="qna" resultType="integer">
 		select count(*) from qna 
 		where QA_ref in (select QA_ref from qna where MB_num=#{MB_num}) and QA_del='N' 
@@ -16,6 +17,7 @@
 		</if>
 	</select>
 	
+	<!-- 회원별 qna 리스트 -->
  	<select id="list" parameterType="qna" resultType="qna">
 		select * from (select a.*, rowNum rn from (select * from qna where QA_ref in (select QA_ref from qna where MB_num=${MB_num})
 			order by QA_ref desc, QA_refStep) a)
@@ -30,32 +32,39 @@
 			</if>
 	</select>
 	
+	<!-- qna 선택 -->
 	<select id="select" parameterType="integer" resultType="qna">
 		select * from qna where QA_num=#{num}
 	</select>
 	
+	<!-- qna 마지막 번호 -->
 	<select id="getMaxNum" resultType="integer">
 		select nvl(max(QA_num),0)+1 from qna
 	</select>
 	
+	<!-- qna 답변 작성 -->
 	<update id="updateStep" parameterType="qna">
 		update qna set QA_refStep=QA_refStep+1 where QA_ref=#{QA_ref} and QA_refStep>#{QA_refStep}
 	</update>
 	
+	<!-- qna 작성 -->
 	<insert id="insert" parameterType="qna">
 		insert into qna values (#{QA_num}, #{QA_title}, sysdate, #{QA_content}, null,
 			#{QA_ref}, #{QA_refStep}, #{QA_refLevel}, 'N', #{MB_num})
 	</insert>
 	
+	<!-- qna 첨부파일 작성 -->
 	<insert id="insertFile" parameterType="qna">
 		insert into qna values (#{QA_num}, #{QA_title}, sysdate, #{QA_content}, #{QA_fileName},
 			#{QA_ref}, #{QA_refStep}, #{QA_refLevel}, 'N', #{MB_num})
 	</insert>
 	
+	<!-- 게시글 삭제 -->
 	<update id="delete" parameterType="qna">
 		update qna set QA_del='Y' where QA_ref=#{num}
 	</update>
 	
+	<!-- qna 리스트 - 관리자 -->
 	<select id="allQnaList" parameterType="qna" resultType="qna">
 		select * from (select a.*, rowNum rn from (select q.*, m.MB_id, m.MB_nickName from qna q, member m where q.MB_num=m.MB_num
 			<if test="keyword!=null and keyword!=''">
@@ -71,7 +80,14 @@
 			where rn between #{startRow} and #{endRow}
 	</select>
 	
+	<!-- qna 전체 갯수 - 관리자 -->
 	<select id="getAllTotal" parameterType="qna" resultType="integer">
 		select count(*) from qna
+	</select>
+	
+	<!-- qna 리스트 - 관리자메인 -->
+	<select id="qnaAllList" parameterType="qna" resultType="qna">
+		select * from (select a.*, rowNum rn from (select q.*, m.MB_id, m.MB_nickName from qna q, member m where q.MB_num=m.MB_num
+		order by QA_ref desc ) a) where QA_refStep=0 and rn between 1 and 6
 	</select>
 </mapper>

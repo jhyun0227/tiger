@@ -39,11 +39,11 @@
 				if (MB_pw_db == MB_pw_now) {
 					$("#correct").show();
 					$("#fail").hide();
-					$("#submit").attr('disabled', false)
+					/* $("#submit").attr('disabled', false) */
 				} else {
 					$("#correct").hide();
 					$("#fail").show();
-					$("#submit").attr('disabled', true)
+					/* $("#submit").attr('disabled', true) */
 				}
 			}
 		});
@@ -65,7 +65,7 @@
 				} else {
 					$("#alert-success").hide();
 					$("#alert-danger").show();
-					$("#submit").attr('disabled', true);
+					/* $("#submit").attr('disabled', true); */
 				}
 		    }
        });
@@ -87,29 +87,29 @@
 				 $("#alert2").toggle();
 				 $("#alert3").hide();
 				 $("#alert4").hide();
-				 $("#submit").attr('disabled', true);
+				/*  $("#submit").attr('disabled', true); */
 			 } else {
 			 	 if (pw.length < 4 ) {  
 					$("#alert1").toggle();
 					$("#alert2").hide();
 					$("#alert3").hide();
 				    $("#alert4").hide();
-				    $("#submit").attr('disabled', true);
+				    /* $("#submit").attr('disabled', true); */
 	   			 } else if (num >= 0 && eng >= 0){
 	    			$(".alert").hide(); 
-	    			$("#submit").attr('disabled', false);
+	    			/* $("#submit").attr('disabled', false); */
 	 	  		 } else if (num < 0 && eng >= 0   ) {
 				    $("#alert1").hide();
 			        $("#alert2").hide();
 			  	    $("#alert3").toggle();    
 			   	    $("#alert4").hide();
-			   	    $("#submit").attr('disabled', true);
+			   	    /* $("#submit").attr('disabled', true); */
 		   		 } else if ( num >= 0 && eng < 0  ){  
 				    $("#alert1").hide();
 					$("#alert2").hide();
 					$("#alert3").hide();
 					$("#alert4").toggle();
-					$("#submit").attr('disabled', true);
+					/* $("#submit").attr('disabled', true); */
 			 	 }	
 	        } 
 		  });	
@@ -132,7 +132,7 @@
 		    $("#keyShow").on("click", function() {
 		  		if ($("#pw").attr("type") == "password") {
 					$("#pw").attr("type", "text");
-					$($(this)).text("H I D E");
+					$($(this)).text("HIDE");
 				} else {
 					$("#pw").attr("type", "password");
 					$($(this)).text("SHOW");
@@ -182,7 +182,7 @@
 			<tr>  
 				<td class="text-center">
 					<input type="submit"  value="비밀번호 변경"   
-							class="btn_large" id="idBtn"  disabled="">
+							class="btn_large" id="submit"  disabled="disabled">
 				</td>
 			</tr>    
 	</table>

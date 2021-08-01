@@ -5,8 +5,12 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initialscale=1">
+<c:set var="path" value="${pageContext.request.contextPath }"></c:set>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xxb7514833e4e14e1492e2da0675e6772f"></script>
+<script type="text/javascript" src="${path }/resources/bootstrap/js/tmap_view.js"></script>
 </head>
-<body>
+<body onload="initTmap();">
 	<h1 class="title">타세요 상세</h1>
 	<!-- 컨텐츠 시작  -->
 	<div class="searchDIV">
@@ -25,6 +29,38 @@
 			</section>
 			<!-- 메인 컨텐츠 부분 -->
 			<section class="content container-fluid">
+			
+					<div class="ft_area">
+			<div class="ft_select_wrap">
+				<div class="ft_select">
+					<select id="selectLevel">
+						<option value="0" selected="selected">교통최적+추천</option>
+						<option value="1">교통최적+무료우선</option>
+						<option value="2">교통최적+최소시간</option>
+						<option value="3">교통최적+초보</option>
+						<option value="4">교통최적+고속도로우선</option>
+						<option value="10">최단거리+유/무료</option>
+						<option value="12">이륜차도로우선</option>
+						<option value="19">교통최적+어린이보호구역 회피</option>
+					</select> <select id="year">
+						<option value="N" selected="selected">교통정보 표출 옵션</option>
+						<option value="Y">Y</option>
+						<option value="N">N</option>
+					</select>
+					<button id="btn_select">적용하기</button>
+				</div>
+			</div>
+			<div class="map_act_btn_wrap clear_box"></div>
+			<div class="clear"></div>
+		</div>
+	
+		<div id="map_wrap" class="map_wrap">
+			<div id="map_div"></div>
+		</div>
+		<div class="map_act_btn_wrap clear_box"></div>
+		<p id="result"></p>
+		<br />
+			
 				<div class="box box-danger">
 					<div class="box-body">
 						<div class="form-group">

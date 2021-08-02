@@ -42,4 +42,11 @@
 	<delete id="deleteAp" parameterType="integer">
 		delete from apply where MB_num=#{MB_num}
 	</delete>
+	
+	<!-- 전체 신청 리스트 - 관리자메인 -->
+	<select id="applyAllList" parameterType="apply" resultType="apply">
+		select * from (select a.*, rowNum rn from (select ap.*, m.MB_id, m.MB_name, m.MB_nickName, m.MB_gender, m.MB_driverConfirm
+		from apply ap, member m where ap.MB_num=m.MB_num order by ap.AP_num desc) a) where rn between 1 and 6
+	</select>
+	
 </mapper>

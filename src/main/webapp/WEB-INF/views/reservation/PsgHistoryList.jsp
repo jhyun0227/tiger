@@ -93,14 +93,15 @@
 				<!-- 오늘날과  시작날짜를 비교해서 후기 작성 활성화 비활성화 -->
 				<c:if test="${today > reservation.CP_startDate }">
 					<td class="col-md-1 text-center">
-																								<!-- DMB_num에는 후기테이블에 작성자 컬럼에 들어가기 위해 카풀 게시글 등록자의 이름을 보냄 -->
-						<a onclick="window.open('psgReviewWriteForm.do?RSV_num=${reservation.RSV_num }&RV_writer=${reservation.MB_num }&RV_reader=${reservation.MB_numDv }&MB_nickName=${reservation.MB_nickNameDv }', '',
+						<!-- DMB_num에는 후기테이블에 작성자 컬럼에 들어가기 위해 카풀 게시글 등록자의 이름을 보냄 -->
+						<a onclick="window.open('psgReviewWriteForm.do?RSV_num=${reservation.RSV_num }&RV_writer=${reservation.MB_num }
+							&RV_reader=${reservation.MB_numDv }&MB_nickName=${reservation.MB_nickNameDv }', '',
 							'width=430,height=400,location=no,status=no,scrollbars=yes');">
 								<img alt="" src="${path }/resources/main/review.png" width="17px" height="17px">
 							</a>
 					</td>
 				</c:if>
-				<c:if test="${today < reservation.CP_startDate }">
+				<c:if test="${today < reservation.CP_startDate && reservation.RSV_confirm == 'Y' && reservation.RSV_mConfirm == 'Y' }">
 					<td class="col-md-1 text-center">
 						<img alt="" src="${path }/resources/main/timer.png" width="17px" height="17px">
 					</td>

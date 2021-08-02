@@ -94,6 +94,9 @@
 				</td>
 			</tr>
 		</c:forEach>
+		<tr>
+			<td colspan="6"></td>
+		</tr>
 	</c:if>
 </table>
 	

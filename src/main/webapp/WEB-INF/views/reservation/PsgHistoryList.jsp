@@ -84,6 +84,11 @@
 						<img alt="" src="${path }/resources/main/timer.png" width="17px" height="17px">
 					</td>
 				</c:if>
+				<c:if test="${reservation.RSV_confirm == 'N' && reservation.RSV_mConfirm == 'N' }">
+					<td class="col-md-1 text-center">
+						X
+					</td>
+				</c:if>
 			</tr>
 		</c:forEach>
 	</c:if>	

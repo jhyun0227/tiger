@@ -52,7 +52,7 @@
 					<c:set var="num" value="${num -1 }"></c:set></td>
 					<td class="col-md-1 text-center">
 						<a href="cpView.do?CP_num=${carpool.CP_num }&pageNum=${pageNum}" class="">
-							<img alt="" src="${path }/resources/main/open.png" width="17px" height="17px">
+							<img alt="" src="${path }/resources/main/folder.png" width="17px" height="17px">
 						</a>
 					</td>
 					<td class="col-md-2 text-center">${carpool.CP_startDate }</td>

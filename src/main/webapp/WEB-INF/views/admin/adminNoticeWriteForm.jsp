@@ -20,7 +20,7 @@
 				</tr>
 				<tr>
 					<td class="col-md-1 text-center">작성자</td>
-					<td>${sessionScope.MB_id }</td>
+					<td>${sessionScope.MB_nickName }</td>
 				</tr>
 				<tr>
 					<td class="col-md-1 text-center">내용</td>
@@ -28,7 +28,7 @@
 							required="required"></textarea></td>
 				</tr>
 				<tr>
-					<td colspan="2" align="center"><input type="submit" value="작성" class="btn_sm"></td>
+					<td colspan="2" align="center"><input type="submit" value="작성" class="btn_sm_full"></td>
 				</tr>
 			</table>
 		</form>

@@ -74,4 +74,8 @@
 	<select id="getAllTotal" parameterType="qna" resultType="integer">
 		select count(*) from qna
 	</select>
+	
+	<update id="adminQnaDelete" parameterType="integer">
+		update qna set QA_del='Y' where QA_num=#{num}
+	</update>
 </mapper>

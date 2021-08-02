@@ -45,11 +45,9 @@
 		</div>
 		<div class="col-md-2"  id="img_box">
 			<h5 class="text-center"></h5>
-			<img alt="" src="${path }/resources/applyImg/${apply.AP_picture}" class="thumbnail"
-					>
+			<img alt="" src="${path }/resources/applyImg/${apply.AP_picture}" class="thumbnail">
 			<h5 class="text-center"></h5>
-			<img alt="" src="${path }/resources/vehicleImg/${vehicle.VH_carPicture}" 
-			 	class="thumbnail"	>
+			<img alt="" src="${path }/resources/vehicleImg/${vehicle.VH_carPicture}" class="thumbnail">
 		</div>	
 		<div class="col-md-9">
 			<table class="table narrowWidth80 ">   

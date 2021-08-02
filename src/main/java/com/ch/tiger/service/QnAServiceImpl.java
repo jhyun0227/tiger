@@ -52,4 +52,8 @@ public class QnAServiceImpl implements QnAService {
 	public int getAllTotal(QnA qna) {
 		return qad.getAllTotal(qna);
 	}
+
+	public int adminQnaDelete(int num) {
+		return qad.adminQnaDelete(num);
+	}
 }

@@ -8,7 +8,7 @@
 </head>		
 <body>
 	<h1 class="title">타세요 예약 내역</h1>
-	<div class=" container searchDIV">
+	<div class="searchDIV">
 		<form action="adminRvList.do">
 			<input type="hidden" name="pageNum" value="1">
 			<select name="search" class="inputUnderLine">
@@ -70,6 +70,7 @@
 					</td>
 				</tr>
 			</c:forEach>
+			<tr><td colspan="7" ></td></tr>
 		</c:if>
 	</table>
 		<div align="center">

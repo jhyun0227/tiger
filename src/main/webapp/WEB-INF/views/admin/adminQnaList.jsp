@@ -71,13 +71,7 @@
 			</c:forEach>
 		</c:if>
 		    <tr>
-				<td colspan="5" >
-					<div align="right" class="box">
-					  <input type="button" value="이전" class="btn_sm_stroke" onclick="prev()"> 
-					  <input type="button" value="관리자 메인" class="btn_sm_stroke" 
-					  		onclick="location.href='adminMain.do?MB_id=${member.MB_id }&pageNum=${pageNum }' "> 
-					 </div>
-				</td>
+				<td colspan="5" ></td>
 			</tr>
 	</table>
 		<div align="center">

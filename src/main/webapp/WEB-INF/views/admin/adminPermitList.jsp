@@ -4,8 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<c:set var="path" value="${pageContext.request.contextPath }"></c:set>
 </head>
+<c:set var="path" value="${pageContext.request.contextPath }"></c:set>
 <body>
 <h2 class="title">드라이버 신청 목록</h2>
 	<div class="searchDIV">
@@ -68,6 +68,7 @@
 					
 					<%-- </c:if> --%>
 				</c:forEach>
+				<tr><td colspan="5"></td></tr>
 			</c:if>
 		</table>
 		<div align="center">

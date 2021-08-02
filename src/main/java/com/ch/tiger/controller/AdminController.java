@@ -240,6 +240,13 @@ public class AdminController {
 		model.addAttribute("pageNum", pageNum);
 		return "admin/adminQnaView";
 	}
+	@RequestMapping("adminQnaDelete")
+	public String adminQnaDelete(int num, String pageNum, Model model) {
+		int result = qas.adminQnaDelete(num);
+		model.addAttribute("result", result);
+		model.addAttribute("pageNum", pageNum);
+		return "admin/adminQnaDelete";
+	}
 	@RequestMapping("adminQnaReplyForm")
 	public String adminQnaReplyForm(int num, String pageNum, Model model) {
 		int QA_ref = 0, QA_refLevel = 0, QA_refStep = 0;

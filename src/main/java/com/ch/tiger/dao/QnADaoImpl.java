@@ -51,4 +51,8 @@ public class QnADaoImpl implements QnADao {
 	public int getAllTotal(QnA qna) {
 		return sst.selectOne("qnans.getAllTotal", qna);
 	}
+
+	public int adminQnaDelete(int num) {
+		return sst.update("qnans.adminQnaDelete", num);
+	}
 }

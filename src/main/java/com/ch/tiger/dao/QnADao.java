@@ -24,4 +24,6 @@ public interface QnADao {
 	List<QnA> allQnaList(QnA qna);
 	
 	int getAllTotal(QnA qna);
+
+	int adminQnaDelete(int num);
 }

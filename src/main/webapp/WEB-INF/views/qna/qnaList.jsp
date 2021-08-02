@@ -38,6 +38,9 @@
 	<c:if test="${not empty list }">
 		<c:forEach var="qna" items="${list }">
 			<tr>
+			<c:if test="${qna.QA_del == 'Y' }">
+				<th colspan="3" class="text-center">삭제된 게시글입니다</th>
+			</c:if>
 			<c:if test="${qna.QA_del != 'Y' }">
 				<c:if test="${qna.QA_refLevel > 0 }">
 					<td class="col-md-2 text-center">${qna.QA_regDate }</td>

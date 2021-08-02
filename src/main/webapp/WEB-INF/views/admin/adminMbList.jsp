@@ -5,6 +5,7 @@
 <html>
 <head>
 </head>
+<c:set var="path" value="${pageContext.request.contextPath }"></c:set>
 <body>
 <h2 class="title">회원정보</h2>
 	<div class="searchDIV">
@@ -62,17 +63,20 @@
 								</c:if>
 								<c:if test="${member.MB_id != 'admin' }">
 									<td class="text-center">
-										<a href="adminMbDelete.do?MB_id=${member.MB_id }&pageNum=${pageNum }" class="btn_delete"></a>
+										<a href="adminMbDelete.do?MB_id=${member.MB_id }&pageNum=${pageNum }">
+											<img alt="" src="${path }/resources/main/delete.png" width="17px" height="17px"></a>
 									</td>
 								</c:if>
 							</c:if>
 							<c:if test="${member.MB_del == 'Y' }">
 								<td class="text-center">
-									<a href="adminMbRollback.do?MB_id=${member.MB_id }&pageNum=${pageNum }" class="btn_recovery">　　</a>
+									<a href="adminMbRollback.do?MB_id=${member.MB_id }&pageNum=${pageNum }">
+										<img alt="" src="${path }/resources/main/recovery.png" width="17px" height="17px"></a>
 								</td>
 							</c:if>
 					</tr>  
-				</c:forEach>    
+				</c:forEach>
+				<tr><td colspan="7"></td></tr>
 			</c:if>
 		</table>   
 		<div align="center">
@@ -91,10 +95,10 @@
 				<c:forEach var="i" begin="${pb.startPage }" end="${pb.endPage }">
 					<!-- 현재 머물고 있는 페이지가 몇 페이지인지 구별할 때 -->
 					<c:if test="${pb.currentPage == i }">
-						<li class="active"><a href="adminMbList.do?pageNum=${i }&search=${member.search }&keyword=${member.keyword }">${i }</a></li>
+						<li class="active"><a href="adminMbList.do?pageNum=${i }&search=${member.search }&keyword=${member.keyword }">　${i }　</a></li>
 					</c:if>
 					<c:if test="${pb.currentPage != i }">
-						<li><a href="adminMbList.do?pageNum=${i }&search=${member.search }&keyword=${member.keyword }">${i }</a></li>
+						<li><a href="adminMbList.do?pageNum=${i }&search=${member.search }&keyword=${member.keyword }">　${i }　</a></li>
 					</c:if>
 				</c:forEach>
 				<!-- 보여줄 페이지가 뒤에 남아있는 경우(다음 버튼 활성화)=> endPage < totalPage인 경우 -->

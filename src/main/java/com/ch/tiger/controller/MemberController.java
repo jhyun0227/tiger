@@ -89,7 +89,7 @@ public class MemberController {
 			mmh.setText("인증번호 : " + msg);
 			System.out.println("msg"+msg);
 			mmh.setTo(MB_id);
-			mmh.setFrom("email@Email.com");
+			mmh.setFrom("email@email.com");
 			jMailSender.send(mm);
 			model.addAttribute("msg", msg);
 		} catch (Exception e) {
@@ -240,7 +240,7 @@ public class MemberController {
 				mmh.setSubject("타이거 임시비밀번호 입니다.");
 				mmh.setText("임시비밀번호 : " + msg);
 				mmh.setTo(member.getMB_id());
-				mmh.setFrom("jhyun0227@naver.com");
+				mmh.setFrom("email@email.com");
 				jMailSender.send(mm);
 				
 				// 이메일이 성공적으로 보내졌으면 멤버 비밀번호를 변경

@@ -67,7 +67,7 @@
 						<td class="col-md-2 text-center">
 							<img alt="" src="${path }/resources/main/timer.png" width="17px" height="17px">
 						</td>
-					</c:if>		
+					</c:if>
 				</c:if>
 			</tr>
 		</c:forEach>

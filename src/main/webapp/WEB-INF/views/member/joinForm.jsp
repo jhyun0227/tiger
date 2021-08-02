@@ -184,7 +184,7 @@
 		    $("#keyShow").on("click", function() {
 		  		if ($("#pw").attr("type") == "password") {
 					$("#pw").attr("type", "text");
-					$($(this)).text("H I D E");
+					$($(this)).text("HIDE");
 				} else {
 					$("#pw").attr("type", "password");
 					$($(this)).text("SHOW");
@@ -307,7 +307,7 @@
 						<div id="emailChk_success" class="err">인증번호가 일치합니다.</div>
 						<div id="emailChk_fail" class="err">인증번호가 일치하지 않습니다.</div>
 						<div id="emailChkFalse" class="err"></div></td>
-				</tr>"
+				</tr>
 				<tr>
 					<td class="col-md-4 text-center">비밀번호</td>
 					<td class="col-md-8">

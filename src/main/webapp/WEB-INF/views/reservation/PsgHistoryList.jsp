@@ -51,7 +51,9 @@
 			<tr>
 				<td class="col-md-1 text-center">${num }<c:set var="num" value="${num -1 }"></c:set></td>
 				<td class="col-md-1 text-center">
-					<a href="cpView.do?CP_num=${reservation.CP_num }&pageNum=${pageNum}" class="">이동</a>
+					<a href="cpView.do?CP_num=${reservation.CP_num }&pageNum=${pageNum}" class="">
+						<img alt="" src="${path }/resources/main/open.png" width="17px" height="17px">
+					</a>
 				</td>
 				<td class="col-md-2 text-center">${reservation.CP_startDate }</td>
 				<td class="col-md-2 text-center">${reservation.CP_startPoint }</td>

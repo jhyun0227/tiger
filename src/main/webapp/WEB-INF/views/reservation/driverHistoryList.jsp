@@ -11,7 +11,7 @@
 <fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
 </head>
 <body>
-<h1 class="title">나의 드라이버 이용내역</h1>
+<h1 class="title">나의 운행내역</h1>
 <div class="searchDIV">
 	<form action="driverHistoryList.do">
 		<input type="hidden" name="pageNum" value="1">
@@ -80,7 +80,7 @@
 						<td class="col-md-1 text-center">																	
 							<!-- DMB_num에는 후기테이블에 작성자 컬럼에 들어가기 위해 카풀 게시글 등록자의 이름을 보냄 -->
 							<a onclick="window.open('driverReservationList.do?CP_num=${carpool.CP_num}', '',
-								'width=430,height=400,location=no,status=no,scrollbars=yes');">
+								'width=430,height=500,location=no,status=no,scrollbars=yes');">
 								<img alt="" src="${path }/resources/main/review.png" width="17px" height="17px">
 							</a>
 						</td>

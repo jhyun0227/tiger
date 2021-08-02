@@ -11,7 +11,7 @@
 <fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
 </head>
 <body>
-<h1 class="title">나의 탑승자 이용내역</h1>
+<h1 class="title">나의 탑승내역</h1>
 <div class="searchDIV">
 	<form action="PsgHistoryList.do">
 		<input type="hidden" name="pageNum" value="1">
@@ -61,7 +61,7 @@
 				
 				<td class="col-md-1 text-center">
 					<a onclick="window.open('profileView.do?MB_nickName=${reservation.MB_nickNameDv }', '',
-						'width=500,height=560,location=no,status=no,scrollbars=yes');" class="">${reservation.MB_nickNameDv }</a>
+						'width=500,height=560,location=no,status=no,scrollbars=yes');" class="inputLineA">${reservation.MB_nickNameDv }</a>
 				</td>
 				
 				<c:if test="${reservation.RSV_confirm == 'Y' && reservation.RSV_mConfirm == 'N' }">

@@ -32,6 +32,16 @@ td.graphic {
   width: 23%
 }
 
+td.matching {
+	font-weight: bold;
+	color: #3243A8;
+	padding-top: 19px;
+	padding-bottom: 10px;
+}
+td.margintop {
+	padding-top: 11px;
+}
+
 tr.bordered {
     border-bottom: 1px solid #000;
 }
@@ -57,8 +67,6 @@ td.right {
     padding: 20px;
     /* box-shadow: 0px 0px 8px 0px; */
     margin-bottom: 65px;
-}
-
 }
 
 .icon{
@@ -155,3 +163,10 @@ div.nextLine {
 	clear: both;
 }
 
+form.searchtag {
+	padding: 0px 0px 0px 40px;
+}
+
+div.formtag {
+	padding: 0px 40px 0px 0px;
+}

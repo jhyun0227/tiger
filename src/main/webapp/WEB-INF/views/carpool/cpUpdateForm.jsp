@@ -44,7 +44,7 @@
 <!-- 컨텐츠 시작  -->
 <h1 class="title">타세요 글 수정</h1>
 	<div class="searchDIV">
-			<form action="cpUpdateResult.do" class="form-horizontal" method="post" name="cp" role="form" onsubmit="return Chk()">
+		<form action="cpUpdateResult.do" class="form-horizontal" method="post" name="cp" role="form" onsubmit="return Chk()">
 			<input type="hidden" name="CP_num" value="${carpool.CP_num}" />
 			<!-- 출발일 날짜 설정값-->
 			<input type="hidden" name="now_date" value="${now_date}" />
@@ -52,115 +52,109 @@
 				<!-- 메인 컨텐츠 부분 -->
 				<section class="content container-fluid">
 					<div class="box box-danger">
-						<form class="form-horizontal" method="post">
-							<div class="box-body">
-								<div class="form-group">
-									<label for="CP_startPoint" class="col-sm-2 control-label">출발지</label>
-									<div class="col-sm-10">
-										<div class="input-group">
-											<input type="text" id="CP_startPoint" name="CP_startPoint" class="form-control" value="${carpool.CP_startPoint }" />
-										</div>
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="endPoint" class="col-sm-2 control-label">도착지</label>
-									<div class="col-sm-10">
-										<div class="input-group">
-											<input type="text" id="CP_endPoint" name="CP_endPoint" class="form-control" value="${carpool.CP_endPoint }" />
-										</div>
-									</div>
-								</div>
-								<div class="form-group">
-									<button class="btn_sm_full" style="margin-left: 200px" onclick="find()">실제 경로보기</button>
-								</div>
-								<div class="form-group">
-									<label for="CP_startDate" class="col-sm-2 control-label">출발일</label>
-									<div class="col-sm-4">
-										<div class="input-group">
-											<span class="input-group-addon">
-											<span class="glyphicon glyphicon-time" aria-hidden="true"></span></span>
-											<input type="date" name="CP_startDate" class="form-control form_datetime" value="${carpool.CP_startDate }">
-										</div>
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="CP_startTime" class="col-sm-2 control-label">출발시간</label>
-									<div class="col-sm-4">
-										<div class="input-group">
-											<input type="text" class="form-control" name="CP_startTime" id="CP_startTime" placeholder="18:00" required="required" value="${carpool.CP_startTime }">
-										</div>
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="CP_fee" class="col-sm-2 control-label">금액</label>
-									<div class="col-sm-3">
-										<div class="input-group">
-											<input type="text" class="form-control" name="CP_fee" id="CP_fee" value="${carpool.CP_fee }">
-											<span class="input-group-addon">원/인당</span>
-										</div>
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="CP_duration" class="col-sm-2 control-label">소요시간</label>
-									<div class="col-sm-3">
-										<div class="input-group">
-											<input type="text" class="form-control" name="CP_duration" id="CP_duration" value="${carpool.CP_duration }">
-											<span class="input-group-addon">분</span>
-										</div>
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="CP_passNum" class="col-sm-2 control-label">카풀 인원</label>
-									<div class="col-sm-3">
-								   		<select name="CP_passNum" class="form-control">
-							                <c:forEach var="val" begin="1" end="7">
-							                	<option value="${val}">${val} 명</option>
-							                </c:forEach>
-						                </select>
-		                  			</div>           
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">성별제한</label>
-									<div class="col-sm-10 mt-3">
-										<div>
-											<label class="radio-inline"><input type="radio" name="CP_gendertype" id="CP_gendertype1" value=" 무관"> 무관 </label>
-											<label class="radio-inline"><input type="radio" name="CP_gendertype" id="CP_gendertype2" value=" 남자"> 남자 </label>
-											<label class="radio-inline"><input type="radio" name="CP_gendertype" id="CP_gendertype2" value=" 여자"> 여자 </label>
-										</div>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">참고사항</label>
-									<div class="col-sm-10 mt-3">
-										<div>
-											<label class="radio-inline"> <input type="checkbox" name="CP_option" id="CP_option1" value=" 애완동물 허용"> 애완동물 허용 </label>
-											<label class="radio-inline"> <input type="checkbox" name="CP_option" id="CP_option2" value=" 조용한 카풀"> 조용한 카풀 </label>
-											<label class="radio-inline"> <input type="checkbox" name="CP_option" id="CP_option3" value=" 음식물 섭취"> 음식물 섭취 </label>
-											<label class="radio-inline"> <input type="checkbox" name="CP_option" id="CP_option4" value=" 마스크 착용" checked="checked"> 마스크 착용 </label>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<!-- 지도 표시 -->
-							<!-- <div id="map" style="width: 90%; height: 400px; margin: 10px auto;"></div> -->
-
+						<div class="box-body">
 							<div class="form-group">
-								<label for="CP_comment" class="col-sm-2 control-label">기타요구사항</label>
+								<label for="CP_startPoint" class="col-sm-2 control-label">출발지</label>
 								<div class="col-sm-10">
-									<textarea name="CP_comment" id="CP_comment" rows="5" class="form-control">${carpool.CP_comment }</textarea>
+									<div class="input-group">
+										<input type="text" id="CP_startPoint" name="CP_startPoint" class="form-control" value="${carpool.CP_startPoint }" />
+									</div>
 								</div>
 							</div>
-
-							<div align="center">
-								<a href="cpList.do?pageNum=${pageNum }" class="btn_sm_stroke">타세요 목록</a>
-								<input type="submit" class="btn_sm_full" onclick="Chk()" value="수정완료">
+							<div class="form-group">
+								<label for="endPoint" class="col-sm-2 control-label">도착지</label>
+								<div class="col-sm-10">
+									<div class="input-group">
+										<input type="text" id="CP_endPoint" name="CP_endPoint" class="form-control" value="${carpool.CP_endPoint }" />
+									</div>
+								</div>
 							</div>
-						</form>
+							<div class="form-group">
+								<button class="btn_sm_full" style="margin-left: 200px" onclick="find()">실제 경로보기</button>
+							</div>
+							<div class="form-group">
+								<label for="CP_startDate" class="col-sm-2 control-label">출발일</label>
+								<div class="col-sm-4">
+									<div class="input-group">
+										<span class="input-group-addon">
+										<span class="glyphicon glyphicon-time" aria-hidden="true"></span></span>
+										<input type="date" name="CP_startDate" class="form-control form_datetime" value="${carpool.CP_startDate }">
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="CP_startTime" class="col-sm-2 control-label">출발시간</label>
+								<div class="col-sm-4">
+									<div class="input-group">
+										<input type="text" class="form-control" name="CP_startTime" id="CP_startTime" placeholder="18:00" required="required" value="${carpool.CP_startTime }">
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="CP_fee" class="col-sm-2 control-label">금액</label>
+								<div class="col-sm-3">
+									<div class="input-group">
+										<input type="text" class="form-control" name="CP_fee" id="CP_fee" value="${carpool.CP_fee }">
+										<span class="input-group-addon">원/인당</span>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="CP_duration" class="col-sm-2 control-label">소요시간</label>
+								<div class="col-sm-3">
+									<div class="input-group">
+										<input type="text" class="form-control" name="CP_duration" id="CP_duration" value="${carpool.CP_duration }">
+										<span class="input-group-addon">분</span>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="CP_passNum" class="col-sm-2 control-label">카풀 인원</label>
+								<div class="col-sm-3">
+							   		<select name="CP_passNum" class="form-control">
+						                <c:forEach var="val" begin="1" end="7">
+						                	<option value="${val}">${val} 명</option>
+						                </c:forEach>
+					                </select>
+	                  			</div>           
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">성별제한</label>
+								<div class="col-sm-10 mt-3">
+									<div>
+										<label class="radio-inline"><input type="radio" name="CP_gendertype" id="CP_gendertype1" value=" 무관"> 무관 </label>
+										<label class="radio-inline"><input type="radio" name="CP_gendertype" id="CP_gendertype2" value=" 남자"> 남자 </label>
+										<label class="radio-inline"><input type="radio" name="CP_gendertype" id="CP_gendertype2" value=" 여자"> 여자 </label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">참고사항</label>
+								<div class="col-sm-10 mt-3">
+									<div>
+										<label class="radio-inline"> <input type="checkbox" name="CP_option" id="CP_option1" value=" 애완동물 허용"> 애완동물 허용 </label>
+										<label class="radio-inline"> <input type="checkbox" name="CP_option" id="CP_option2" value=" 조용한 카풀"> 조용한 카풀 </label>
+										<label class="radio-inline"> <input type="checkbox" name="CP_option" id="CP_option3" value=" 음식물 섭취"> 음식물 섭취 </label>
+										<label class="radio-inline"> <input type="checkbox" name="CP_option" id="CP_option4" value=" 마스크 착용" checked="checked"> 마스크 착용 </label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="CP_comment" class="col-sm-2 control-label">기타요구사항</label>
+							<div class="col-sm-10">
+								<textarea name="CP_comment" id="CP_comment" rows="5" class="form-control">${carpool.CP_comment }</textarea>
+							</div>
+						</div>
+
+						<div align="center">
+							<a href="cpList.do?pageNum=${pageNum }" class="btn_sm_stroke">타세요 목록</a>
+							<input type="submit" class="btn_sm_full" onclick="Chk()" value="수정완료">
+						</div>
 					</div>
 				</section>
-			</form>
-		</div>
+		</form>
+	</div>
 	<!-- 컨텐츠 끝  -->
 </body>
 </html>

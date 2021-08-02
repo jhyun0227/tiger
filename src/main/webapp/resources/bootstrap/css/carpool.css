@@ -36,7 +36,7 @@ td.matching {
 	font-weight: bold;
 	color: #3243A8;
 	padding-top: 19px;
-	padding-bottom: 17px;
+	padding-bottom: 10px;
 }
 td.margintop {
 	padding-top: 11px;
@@ -67,8 +67,6 @@ td.right {
     padding: 20px;
     /* box-shadow: 0px 0px 8px 0px; */
     margin-bottom: 65px;
-}
-
 }
 
 .icon{

@@ -53,9 +53,6 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<button class="btn_sm_full" style="margin-left: 200px" onclick="find()">실제 경로보기</button>
-						</div>
-						<div class="form-group">
 							<label for="CP_startDate" class="col-sm-2 control-label">출발일</label>
 							<div class="col-sm-4">
 								<div class="input-group">
@@ -106,10 +103,6 @@
 							</div>
 						</div>
 					</div>
-
-					<!-- 지도 표시 -->
-					<!-- <div id="map" style="width: 90%; height: 400px; margin: 10px auto;"></div> -->
-
 					<div class="form-group">
 						<label for="CP_comment" class="col-sm-2 control-label">기타요구사항</label>
 						<div class="col-sm-10">

@@ -49,7 +49,7 @@
 </head>
 <body onload="initTmap();">
 	<h1 class="title">타세요 작성</h1>
-<div class="searchDIV">	
+<div class="searchDIV">
 	<form action="cpWriteResult.do" class="form-horizontal" method="post" name="cp" role="form" onsubmit="return Chk()">
 		<!-- 로그인된 회원번호 -->
 		<input type="hidden" name="MB_num" value="${member.MB_num}" />
@@ -64,12 +64,12 @@
 					<input type="button" class="btn" id="selectSP" value="출발지 등록">
 				</td>
 				<th>도착지</th>
-				<td>
+				<td colspan="4">
 					<input type="text" id="CP_endPoint" name="CP_endPoint" placeholder="도착지" required="required" class="inputLine">
 					<input type="button" class="btn" id="selectEP" value="도착지 등록">
 			</tr>
 			<tr>
-				<td colspan="4">
+				<td colspan="6">
 					<div class="ft_area">
 						<div class="ft_select_wrap">
 							<div class="ft_select">
@@ -96,7 +96,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td colspan="4">
+				<td colspan="6">
 					<div id="map_div"></div>
 					<p id="resultInfo"></p>
 				</td>
@@ -110,27 +110,23 @@
 				<td>
 					<input type="text" name="CP_startTime" id="CP_startTime" placeholder="00:00" required="required" class="inputLine">
 				</td>
-			</tr>
-			<tr>
-				<th>금액</th>
-				<td colspan="3">
-					<input type="number" name="CP_fee" id="CP_fee" placeholder="금액입력.." required="required" class="inputLine">원/인당
-				</td>
-			</tr>
-			<tr>
-				<th>소요시간</th>
-				<td colspan="3">
-					<input type="number" name="CP_duration" id="CP_duration" placeholder="소요시간 입력.." required="required" class="inputLine">분
-				</td>
-			</tr>
-			<tr>
 				<th>카풀 인원</th>
-				<td colspan="3">
+				<td>
 				   	<select name="CP_passNum">
 				   		<c:forEach var="val" begin="1" end="7">
 				   			<option value="${val}">${val} 명</option>
 			            </c:forEach>
 		            </select>
+				</td>
+			</tr>
+			<tr>
+				<th>금액</th>
+				<td>
+					<input type="number" name="CP_fee" id="CP_fee" placeholder="금액입력.." required="required" class="inputLine">원/인당
+				</td>
+				<th>소요시간</th>
+				<td colspan="3">
+					<input type="number" name="CP_duration" id="CP_duration" placeholder="소요시간 입력.." required="required" class="inputLine">분
 				</td>
 			</tr>
 			<tr>
@@ -141,23 +137,21 @@
 					<label class="radio-inline"><input type="radio" name="CP_gendertype" id="CP_gendertype2" value=" 여자"> 여자 </label>
 				</td>
 				<th>참고사항</th>
-				<td>
-					<div>
-						<label class="radio-inline"> <input type="checkbox" name="CP_option" id="CP_option1" value=" 애완동물 허용"> 애완동물 허용 </label>
-						<label class="radio-inline"> <input type="checkbox" name="CP_option" id="CP_option2" value=" 조용한 카풀"> 조용한 카풀 </label>
-						<label class="radio-inline"> <input type="checkbox" name="CP_option" id="CP_option3" value=" 음식물 섭취"> 음식물 섭취 </label>
-						<label class="radio-inline"> <input type="checkbox" name="CP_option" id="CP_option4" value=" 마스크 착용" checked="checked"> 마스크 착용 </label>
-					</div>
+				<td colspan="3">
+					<label class="radio-inline"> <input type="checkbox" name="CP_option" id="CP_option1" value=" 애완동물 허용"> 애완동물 허용 </label>
+					<label class="radio-inline"> <input type="checkbox" name="CP_option" id="CP_option2" value=" 조용한 카풀"> 조용한 카풀 </label>
+					<label class="radio-inline"> <input type="checkbox" name="CP_option" id="CP_option3" value=" 음식물 섭취"> 음식물 섭취 </label>
+					<label class="radio-inline"> <input type="checkbox" name="CP_option" id="CP_option4" value=" 마스크 착용" checked="checked"> 마스크 착용 </label>
 				</td>
 			</tr>
 			<tr>
 				<th>기타 요구사항</th>
-				<td colspan="3">
-					<textarea name="CP_comment" id="CP_comment" rows="5" cols="100"></textarea>
+				<td colspan="5">
+					<textarea name="CP_comment" id="CP_comment" rows="5" cols="115"></textarea>
 				</td>
 			</tr>
 			<tr>
-				<td colspan="4" class="text-center">
+				<td colspan="6" class="text-center">
 					<button class="btn_sm_stroke" onclick="history.back()">취소</button>
 					<input type="submit" class="btn_sm_full" value="등록하기" onclick="Chk()">
 				</td>

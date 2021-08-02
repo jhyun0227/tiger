@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath }"></c:set>
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,7 +49,7 @@
 					<tr>
 						<td class="col-xs-4 text-center">
 							<a onclick="window.open('profileView.do?MB_nickName=${rvsList.MB_nickName }', '',
-							'width=500,height=560,location=no,status=no,scrollbars=yes');" class="">${rvsList.MB_nickName }</a>
+							'width=500,height=560,location=no,status=no,scrollbars=yes');" class="inputLineA">${rvsList.MB_nickName }</a>
 						</td>
 						
 						<c:if test="${rvsList.MB_gender == '1' || rvsList.MB_gender == '3'}">
@@ -60,7 +61,9 @@
 						
 						<td class="col-xs-4 text-center">
 															                            <!-- 글게시자(나)					이용자 -->
-							<a href="dvReviewWriteForm.do?RSV_num=${rvsList.RSV_num }&RV_writer=${sessionScope.MB_num }&RV_reader=${rvsList.MB_num }&MB_nickName=${rvsList.MB_nickName}">작성하기</a>
+							<a href="dvReviewWriteForm.do?RSV_num=${rvsList.RSV_num }&RV_writer=${sessionScope.MB_num }&RV_reader=${rvsList.MB_num }&MB_nickName=${rvsList.MB_nickName}">
+								<img alt="" src="${path }/resources/main/review.png" width="17px" height="17px">
+							</a>
 						</td>				
 					</tr>
 				</c:forEach>

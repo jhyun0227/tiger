@@ -11,7 +11,7 @@
 <fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
 </head>
 <body>
-<h1 class="title">드라이버 이용내역</h1>
+<h1 class="title">나의 운행내역</h1>
 <div class="searchDIV">
 	<form action="driverHistoryList.do">
 		<input type="hidden" name="pageNum" value="1">
@@ -36,11 +36,12 @@
 		<th class="col-md-2 text-center">출발일</th>
 		<th class="col-md-3 text-center">출발지</th>
 		<th class="col-md-3 text-center">도착지</th>
-		<th class="col-md-2 text-center">후기 작성</th>
+		<th class="col-md-1 text-center">운행상태</th>
+		<th class="col-md-1 text-center">후기 작성</th>
 	</tr>
 	<c:if test="${empty myCarpoolList}">
 		<tr>
-			<th colspan="6" class="text-center">이용내역이 존재하지 않습니다</th>
+			<th colspan="7" class="text-center">이용내역이 존재하지 않습니다</th>
 		</tr>
 	</c:if>
 	<c:if test="${not empty myCarpoolList }">
@@ -50,21 +51,42 @@
 					<td class="col-md-1 text-center">${num }
 					<c:set var="num" value="${num -1 }"></c:set></td>
 					<td class="col-md-1 text-center">
-						<a href="cpView.do?CP_num=${carpool.CP_num }&pageNum=${pageNum}" class="">이동</a></td>
+						<a href="cpView.do?CP_num=${carpool.CP_num }&pageNum=${pageNum}" class="">
+							<img alt="" src="${path }/resources/main/folder.png" width="17px" height="17px">
+						</a>
+					</td>
 					<td class="col-md-2 text-center">${carpool.CP_startDate }</td>
 					<td class="col-md-3 text-center">${carpool.CP_startPoint }</td>
 					<td class="col-md-3 text-center">${carpool.CP_endPoint }</td>
 					
+					<c:if test="${today < carpool.CP_startDate }">
+						<td class="col-md-1 text-center">
+							운행전
+						</td>
+					</c:if>
+					<c:if test="${today == carpool.CP_startDate }">
+						<td class="col-md-1 text-center">
+							운행 당일
+						</td>
+					</c:if>
+					<c:if test="${today > carpool.CP_startDate }">
+						<td class="col-md-1 text-center">
+							운행완료
+						</td>
+					</c:if>										
+					
 					<!-- 오늘날과  시작날짜를 비교해서 후기 작성 활성화 비활성화 -->
 					<c:if test="${today > carpool.CP_startDate }">					
-						<td class="col-md-2 text-center">																	
+						<td class="col-md-1 text-center">																	
 							<!-- DMB_num에는 후기테이블에 작성자 컬럼에 들어가기 위해 카풀 게시글 등록자의 이름을 보냄 -->
 							<a onclick="window.open('driverReservationList.do?CP_num=${carpool.CP_num}', '',
-								'width=430,height=400,location=no,status=no,scrollbars=yes');" class="btn_sm_stroke ">작성</a>
+								'width=430,height=500,location=no,status=no,scrollbars=yes');">
+								<img alt="" src="${path }/resources/main/review.png" width="17px" height="17px">
+							</a>
 						</td>
 					</c:if>
 					<c:if test="${today <= carpool.CP_startDate }">
-						<td class="col-md-2 text-center">
+						<td class="col-md-1 text-center">
 							<img alt="" src="${path }/resources/main/timer.png" width="17px" height="17px">
 						</td>
 					</c:if>
@@ -73,7 +95,7 @@
 		</c:forEach>
 	</c:if>	
 	<tr>
-		<td colspan="6"></td>
+		<td colspan="7"></td>
 	</tr>
 </table>
 <div align="center">

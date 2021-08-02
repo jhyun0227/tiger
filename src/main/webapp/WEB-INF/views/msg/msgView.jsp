@@ -31,7 +31,7 @@ function prev(){
 	</tr>
 	<tr>
 		<td colspan="4" class="text-center">
-			<div align="right">
+			<div align="center">
 				<a onclick="prev()" class="btn_prev">이전</a>
 					<c:if test="${prevUrl == 'msgRecieveList'}">
 						<a onclick="window.open('msgWriteForm.do?MB_num=${message.MB_numS }','쪽지 보내기',

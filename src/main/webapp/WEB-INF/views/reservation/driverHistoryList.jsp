@@ -51,7 +51,7 @@
 					<td class="col-md-1 text-center">${num }
 					<c:set var="num" value="${num -1 }"></c:set></td>
 					<td class="col-md-1 text-center">
-						<a href="cpView.do?CP_num=${carpool.CP_num }&pageNum=${pageNum}" class="">
+						<a href="cpView.do?CP_num=${carpool.CP_num }&pageNum=${pageNum}">
 							<img alt="" src="${path }/resources/main/folder.png" width="17px" height="17px">
 						</a>
 					</td>
@@ -87,7 +87,7 @@
 					</c:if>
 					<c:if test="${today <= carpool.CP_startDate }">
 						<td class="col-md-1 text-center">
-							<img alt="" src="${path }/resources/main/timer.png" width="17px" height="17px">
+							<img title="후기 작성은 출발일 다음 날부터 가능합니다" src="${path }/resources/main/timer.png" width="17px" height="17px">
 						</td>
 					</c:if>
 				</c:if>

@@ -52,8 +52,11 @@
 						<td class="col-md-1 text-center">${num }
 						<c:set var="num" value="${num -1 }"></c:set></td>
 						<td class="col-md-6 text-center">
-							<a href="adminNoticeView.do?NT_num=${notice.NT_num}&pageNum=${pb.currentPage}"
-								class="menuTitle">${notice.NT_title }</a></td>
+							<a href="adminNoticeView.do?NT_num=${notice.NT_num}&pageNum=${pb.currentPage}" class="menuTitle">${notice.NT_title }</a>
+							<c:if test="${notice.NT_regDate >= nowday }">
+								<img alt="" src="/tiger/resources/icon/new.png" width="22px" height="22px">
+							</c:if>
+						</td>
 						<td class="col-md-2 text-center">관리자</td>
 						<td class="col-md-2 text-center">${notice.NT_regDate }</td>
 						<td class="col-md-1 text-center">${notice.NT_del }</td>

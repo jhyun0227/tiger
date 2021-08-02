@@ -14,4 +14,6 @@ public interface ApplyDao {
 	Apply selectAll(int MB_num);	// 관리자가 운전면허사진, 회원정보 조회
 
 	int deleteAp(int MB_num);
+
+	List<Apply> applyAllList(Apply apply); // 전체 신청 리스트 - 관리자메인
 }

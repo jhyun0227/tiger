@@ -46,6 +46,9 @@
 					<td class="col-md-2 text-center">${qna.QA_regDate }</td>
 					<td class="col-md-8 text-left title_left">
 						<a href="qnaView.do?num=${qna.QA_num }&pageNum=${pb.currentPage}" class="menuTitle">　${qna.QA_title }</a>
+						<c:if test="${qna.QA_regDate >= nowday }">
+							<img alt="" src="/tiger/resources/icon/new.png" width="22px" height="22px">
+						</c:if>
 					</td>
 					<td class="col-md-2 text-center">${qna.MB_nickName }</td>
 				</c:if>
@@ -53,6 +56,9 @@
 					<td class="col-md-2 text-center">${qna.QA_regDate }</td>
 					<td class="col-md-8 text-left title_left">
 						<a href="qnaView.do?num=${qna.QA_num }&pageNum=${pb.currentPage}" class="menuTitle">${qna.QA_title }</a>
+						<c:if test="${qna.QA_regDate >= nowday }">
+							<img alt="" src="/tiger/resources/icon/new.png" width="22px" height="22px">
+						</c:if>
 					</td>
 					<td class="col-md-2 text-center">${qna.MB_nickName}</td>
 				</c:if>

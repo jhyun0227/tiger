@@ -1,24 +1,27 @@
 package com.ch.tiger.controller;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
-import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.ch.tiger.model.Member;
 import com.ch.tiger.model.Notice;
-import com.ch.tiger.service.MemberService;
 import com.ch.tiger.service.NoticeService;
 import com.ch.tiger.service.PagingBean;
 @Controller
 public class NoticeController {
 	@Autowired
 	private NoticeService ns;
-	@Autowired
-	private MemberService mbs;	//임시 추가
+
 	@RequestMapping("noticeList")	// 비회원 접근 로직 구현x
 	public String noticeList(Model model, Notice notice, String pageNum) {
+		SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.DAY_OF_MONTH, -3); //3일간 보이기
+		String nowday = simpleDate.format(cal.getTime());
 		// 처음 notice에는 null로 받아오고, startRow, endRow 보내주기 위한 용도
 		if(pageNum == null || pageNum.equals("")) {
 			pageNum = "1";
@@ -34,6 +37,7 @@ public class NoticeController {
 		int num = total - startRow + 1;		// 번호 순서대로 정렬
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
 		String[] title = {"제목", "내용", "제목+내용"};	// 작성자는 관리자뿐이므로 제외
+		model.addAttribute("nowday", nowday);
 		model.addAttribute("title", title);	// 검색 기능
 		model.addAttribute("pb", pb);	// paginbean pb
 		model.addAttribute("noticeList", noticeList);		// 공지사항 검색 시 공지사항번호 발생

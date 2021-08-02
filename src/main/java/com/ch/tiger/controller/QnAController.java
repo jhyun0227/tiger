@@ -3,6 +3,8 @@ package com.ch.tiger.controller;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,6 +32,10 @@ public class QnAController {
 		Member member = mbs.select(MB_id);
 		int MB_num = member.getMB_num();
 		qna.setMB_num(MB_num);
+		SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.DAY_OF_MONTH, -3); //3일간 보이기
+		String nowday = simpleDate.format(cal.getTime());
 		if(pageNum == null || pageNum.equals("")) pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
 		int rowPerPage = 10;
@@ -47,6 +53,7 @@ public class QnAController {
 		int num = total - startRow+1;
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
 		String[] title = {"제목", "내용", "제목+내용"};
+		model.addAttribute("nowday", nowday);
 		model.addAttribute("title", title);
 		model.addAttribute("num", num);
 		model.addAttribute("pb", pb);

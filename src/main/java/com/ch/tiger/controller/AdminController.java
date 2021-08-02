@@ -2,6 +2,8 @@ package com.ch.tiger.controller;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
 
@@ -51,6 +53,10 @@ public class AdminController {
 	
 	@RequestMapping("adminNoticeList")
 	public String adminNoticeList(Member member, Model model, Notice notice, HttpSession session, String pageNum) {
+		SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.DAY_OF_MONTH, -3); //3일간 보이기
+		String nowday = simpleDate.format(cal.getTime());
 		// 처음 notice에는 null로 받아오고, startRow, endRow 보내주기 위한 용도
 		if(pageNum == null || pageNum.equals("")) {
 			pageNum = "1";
@@ -68,6 +74,7 @@ public class AdminController {
 		String[] title = {"제목", "내용", "제목+내용"};	// 작성자는 관리자뿐이므로 제외
 		String MB_id = (String)session.getAttribute("MB_id");
 		Member memberDB = mbs.select(MB_id);
+		model.addAttribute("nowday", nowday);
 		model.addAttribute("memberDB", memberDB);	// 아이디로 DB에 있는 회원정보 조회
 		model.addAttribute("title", title);	// 검색 기능
 		model.addAttribute("MB_id", MB_id);
@@ -213,6 +220,10 @@ public class AdminController {
 	}
 	@RequestMapping("adminQnaList")
 	public String adminQnaList(QnA qna, String pageNum, Model model) {
+		SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.DAY_OF_MONTH, -3); //3일간 보이기
+		String nowday = simpleDate.format(cal.getTime());
 		if(pageNum == null || pageNum.equals("")) {
 			pageNum = "1";
 		}
@@ -231,6 +242,7 @@ public class AdminController {
 		model.addAttribute("num", num);
 		model.addAttribute("pb", pb);
 		model.addAttribute("allQnaList", allQnaList);
+		model.addAttribute("nowday", nowday);
 		return "admin/adminQnaList";
 	}
 	@RequestMapping("adminQnaView")

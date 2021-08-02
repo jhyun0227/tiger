@@ -11,7 +11,7 @@
 		select nvl(max(RP_num),0) + 1 from report
 	</select>
 	
-	<!-- 관리자가 모든 신고 내역 갯수 조회 -->
+	<!-- 전체 신고내역 갯수 -->
 	<select id="getRpTotal" parameterType="report" resultType="integer">
 		select count(*) from report
 			<!-- <where>
@@ -33,8 +33,17 @@
 			where rn between #{startRow} and #{endRow}
 	</select>
 	
-	<!-- 관리자 신고 내역 삭제 - 동윤 -->
+	<!-- 관리자 신고 내역 삭제 -->
 	<update id="adminRpDelete" parameterType="integer">
 		update report set RP_del='Y' where RP_num=#{RP_num}
 	</update>
+	
+	<!-- 전체 신고 리스트 - 관리자메인 -->
+	<select id="rpAllList" parameterType="report" resultType="report">
+		select * from (select a.*, rowNum rn from (select r.*, m.MB_nickName, c.CP_del from report r
+			inner join member m on r.MB_numR=m.MB_num
+			inner join carpool c on r.CP_num=c.CP_num
+			order by r.RP_num desc) a)
+			where rn between 1 and 6
+	</select>
 </mapper>

@@ -52,7 +52,7 @@
 						</a>
 					</td>	
 					<td class="col-md-2 text-center">
-						<a onclick="window.open('profileView.do?MB_nickName=${reservation.MB_nickNameDv }', '',
+						<a onclick="window.open('profileView.do?MB_nickName=${reservation.MB_nickNameDv }', '프로필',
 							'width=500,height=560,location=no,status=no,scrollbars=yes');"
 							class="inputLineA">${reservation.MB_nickNameDv }</a>
 					</td>

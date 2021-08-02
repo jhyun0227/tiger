@@ -23,20 +23,26 @@ public class ReportDaoImpl implements ReportDao {
 		return sst.insert("reportns.RPinsert", report);
 	}
 
-	@Override
+	// 전체 신고내역 갯수
 	public int getRpTotal(Report report) {
 		return sst.selectOne("reportns.getRpTotal", report);
 	}
 
-	@Override
+	// 관리자 신고 목록
 	public List<Report> rpList(Report report) {
 		return sst.selectList("reportns.rpList", report);
 	}
 
-	@Override
-	public int adminRpDelete(int RP_num) {	// 관리자 신고 내역 삭제 - 동윤
+	// 관리자 신고 내역 삭제
+	public int adminRpDelete(int RP_num) {	
 		return sst.update("reportns.adminRpDelete", RP_num);
 	}
+
+	// 전체 신고 리스트 - 관리자메인
+	public List<Report> rpAllList(Report report) {
+		return sst.selectList("reportns.rpAllList", report);
+	}
+	
 
 
 }

@@ -16,7 +16,7 @@
 				<li class="menu2"><a href="adminRvList.do">예약내역 관리</a></li>
 				<li class="menu2"><a href="adminMbList.do">회원관리</a></li>
 				<li class="menu3"><a href="adminPermitList.do">드라이버 승인</a></li>
-				<li class="menu4"><a href="#">고객센터</a>
+				<li class="menu4"><a href="adminNoticeList.do">고객센터</a>
 					<ul class="menu4_s submenu">
 						<li><a href="adminNoticeList.do">공지사항</a></li>
 						<li><a href="adminQnaList.do">문의내역</a></li>

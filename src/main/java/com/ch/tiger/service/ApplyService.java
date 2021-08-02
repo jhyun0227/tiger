@@ -15,4 +15,6 @@ public interface ApplyService {
 
 	int deleteAp(int MB_num);
 
+	List<Apply> applyAllList(Apply apply); // 전체 신청 리스트 - 관리자메인
+
 }

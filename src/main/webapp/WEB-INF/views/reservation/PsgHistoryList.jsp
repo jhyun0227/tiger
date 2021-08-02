@@ -11,7 +11,7 @@
 <fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
 </head>
 <body>
-<h1 class="title">탑승자 이용내역</h1>
+<h1 class="title">나의 탑승자 이용내역</h1>
 <div class="searchDIV">
 	<form action="PsgHistoryList.do">
 		<input type="hidden" name="pageNum" value="1">
@@ -36,13 +36,14 @@
 				<th class="col-md-2 text-center">출발일</th>
 				<th class="col-md-2 text-center">출발지</th>
 				<th class="col-md-2 text-center">도착지</th>
-				<th class="col-md-2 text-center">작성자</th>
+				<th class="col-md-1 text-center">작성자</th>
 				<th class="col-md-1 text-center">매칭상태</th>
+				<th class="col-md-1 text-center">운행상태</th>
 				<th class="col-md-1 text-center">후기 작성</th>
 	</tr>
 	<c:if test="${empty myRvList}">
 		<tr>
-			<th colspan="8" class="text-center">이용내역이 존재하지 않습니다</th>
+			<th colspan="9" class="text-center">이용내역이 존재하지 않습니다</th>
 		</tr>
 	</c:if>
 	<c:if test="${not empty myRvList }">
@@ -56,7 +57,7 @@
 				<td class="col-md-2 text-center">${reservation.CP_startPoint }</td>
 				<td class="col-md-2 text-center">${reservation.CP_endPoint }</td>
 				
-				<td class="col-md-2 text-center">
+				<td class="col-md-1 text-center">
 					<a onclick="window.open('profileView.do?MB_nickName=${reservation.MB_nickNameDv }', '',
 						'width=500,height=560,location=no,status=no,scrollbars=yes');" class="">${reservation.MB_nickNameDv }</a>
 				</td>
@@ -69,14 +70,32 @@
 				</c:if>
 				<c:if test="${reservation.RSV_confirm == 'N' && reservation.RSV_mConfirm == 'N' }">
 					<td class="col-md-1 text-center">매칭거절</td>
-				</c:if>							
+				</c:if>
+				
+				<c:if test="${today < reservation.CP_startDate }">
+					<td class="col-md-1 text-center">
+						운행전
+					</td>
+				</c:if>
+				<c:if test="${today == reservation.CP_startDate }">
+					<td class="col-md-1 text-center">
+						운행 당일
+					</td>
+				</c:if>
+				<c:if test="${today > reservation.CP_startDate }">
+					<td class="col-md-1 text-center">
+						운행완료
+					</td>
+				</c:if>						
 				
 				<!-- 오늘날과  시작날짜를 비교해서 후기 작성 활성화 비활성화 -->
 				<c:if test="${today > reservation.CP_startDate }">
 					<td class="col-md-1 text-center">
 																								<!-- DMB_num에는 후기테이블에 작성자 컬럼에 들어가기 위해 카풀 게시글 등록자의 이름을 보냄 -->
 						<a onclick="window.open('psgReviewWriteForm.do?RSV_num=${reservation.RSV_num }&RV_writer=${reservation.MB_num }&RV_reader=${reservation.MB_numDv }&MB_nickName=${reservation.MB_nickNameDv }', '',
-							'width=430,height=400,location=no,status=no,scrollbars=yes');" class="btn_sm_stroke">작성</a>
+							'width=430,height=400,location=no,status=no,scrollbars=yes');">
+								<img alt="" src="${path }/resources/main/review.png" width="17px" height="17px">
+							</a>
 					</td>
 				</c:if>
 				<c:if test="${today < reservation.CP_startDate }">
@@ -86,14 +105,14 @@
 				</c:if>
 				<c:if test="${reservation.RSV_confirm == 'N' && reservation.RSV_mConfirm == 'N' }">
 					<td class="col-md-1 text-center">
-						X
+						<img alt="" src="${path }/resources/main/x.png" width="17px" height="17px">
 					</td>
 				</c:if>
 			</tr>
 		</c:forEach>
 	</c:if>	
 	<tr>
-		<td colspan="8"></td>
+		<td colspan="9"></td>
 	</tr>
 </table>
 <div align="center">

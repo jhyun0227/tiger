@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>simpleMap</title>
 <script 
-	src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+	src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script
 	src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xxb7514833e4e14e1492e2da0675e6772f"></script>
 <script type="text/javascript">									
@@ -22,6 +22,9 @@
 	var endAddress = end.split(" ");
 	
 	var markerPosition;
+	
+	var startLon;
+	var startLat;
 	
 	// 페이지가 로딩이 된 후 호출하는 함수입니다.
 	function initTmap(){
@@ -47,9 +50,11 @@
 			onError:onError             //데이터 로드가 실패했을때 실행하는 함수 입니다.
 		};
 		
+		console.log("length: "+startAddress.length);
+		
 		// TData 객체의 지오코딩 함수
 		if (startAddress.length == 5) {
-			tData_s.getGeoFromAddressJson(startAddress[1], startAddress[2], startAddress[3], startAddress[4], optionObj, params);
+			tData_s.getGeoFromAddressJson(startAddress[0]+startAddress[1], startAddress[2], startAddress[3], startAddress[4], optionObj, params);
 		} else {
 			tData_s.getGeoFromAddressJson(startAddress[0], startAddress[1], startAddress[2], startAddress[3], optionObj, params);
 		}
@@ -62,21 +67,22 @@
  	 
 		/* console.log(tData_s._responseData.coordinateInfo.lon);
 		console.log(tData_e._responseData.coordinateInfo.lat); */
+		console.log("err");
+		startLon = tData_s._responseData.coordinateInfo.lon;
+		startLat = tData_s._responseData.coordinateInfo.lat;
 		
-		var startLon = tData_s._responseData.coordinateInfo.lon;
-		var startLat = tData_s._responseData.coordinateInfo.lat;
-		console.log(startLon);
-		console.log(startLat);
+		console.log("2: "+startLon);
+		console.log("3: "+startLat);
 		
 		var endLon = tData_e._responseData.coordinateInfo.lon;
 		var endLat = tData_e._responseData.coordinateInfo.lat;
-		console.log(endLon);
-		console.log(endLat);
+		console.log("4: "+endLon);
+		console.log("5: "+endLat);
 	}
 	
 	//지오코딩
 	function onComplete() {
-		console.log(this._responseData); //json으로 데이터를 받은 정보들을 콘솔창에서 확인할 수 있습니다.
+		console.log("1: "+this._responseData); //json으로 데이터를 받은 정보들을 콘솔창에서 확인할 수 있습니다.
 
 		lon = this._responseData.coordinateInfo.lon;//json으로 데이터를 받은 정보에서 경도정보를 추출합니다.
 		lat = this._responseData.coordinateInfo.lat;//json으로 데이터를 받은 정보에서 위도정보를 추출합니다.

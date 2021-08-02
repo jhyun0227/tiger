@@ -43,18 +43,24 @@
 						<td class="col-md-2 text-center">${qna.QA_regDate }</td>
 						<td class="col-md-2 text-center">${qna.MB_nickName }</td>
 						<td class="col-md-6 text-left title_left">
-							<a href="adminQnaView.do?num=${qna.QA_num }&pageNum=${pb.currentPage}"
-								class="menuTitle">　　${qna.QA_title }</a></td>
+							<a href="adminQnaView.do?num=${qna.QA_num }&pageNum=${pb.currentPage}" class="menuTitle">　　${qna.QA_title }</a>
+							<c:if test="${qna.QA_regDate >= nowday }">
+								<img alt="" src="/tiger/resources/icon/new.png" width="22px" height="22px">
+							</c:if>
+						</td>
 						<td class="col-md-2 text-center">${qna.QA_del }</td>
-						</c:if>
-						<c:if test="${qna.QA_refLevel == 0 }">
+					</c:if>
+					<c:if test="${qna.QA_refLevel == 0 }">
 						<td class="col-md-2 text-center">${qna.QA_regDate }</td>
 						<td class="col-md-2 text-center">${qna.MB_nickName }</td>
 						<td class="col-md-6 text-left title_left">
-							<a href="adminQnaView.do?num=${qna.QA_num }&pageNum=${pb.currentPage}"
-								class="menuTitle">${qna.QA_title }</a></td>
+							<a href="adminQnaView.do?num=${qna.QA_num }&pageNum=${pb.currentPage}" class="menuTitle">${qna.QA_title }</a>
+							<c:if test="${qna.QA_regDate >= nowday }">
+								<img alt="" src="/tiger/resources/icon/new.png" width="22px" height="22px">
+							</c:if>
+						</td>
 						<td class="col-md-2 text-center">${qna.QA_del }</td>
-						</c:if>
+					</c:if>
 				</tr>
 			</c:forEach>
 		</c:if>

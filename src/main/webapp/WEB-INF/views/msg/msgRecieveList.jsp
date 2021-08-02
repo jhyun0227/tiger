@@ -6,6 +6,11 @@
 <head>
 <link rel="stylesheet" type="text/css" href="/tiger/resources/bootstrap/css/common.css">
 <link rel="stylesheet" type="text/css" href="/tiger/resources/bootstrap/css/msgList.css">
+<style type="text/css">
+.btn_sm_stroke{
+	margin: 0 20px;
+}
+</style>
 <script type="text/javascript">
 /* 체크박스 */
 $(function(){
@@ -118,7 +123,7 @@ function deleteValue(){
 		</c:if>  
 		<tr>
 			<td colspan="4">
-				<div align="right">
+				<div align="left">
 					<input type="button" class="btn_sm_stroke" value="삭제" onclick="deleteValue();">
 				</div>	
 			</td>

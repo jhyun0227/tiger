@@ -65,7 +65,7 @@
 					</c:if>
 					<c:if test="${today <= carpool.CP_startDate }">
 						<td class="col-md-2 text-center">
-							<img alt="" src="${path }/resources/main/timer.png" width="17px" height="17px">
+							<img title="후기 작성은 출발일 다음 날부터 가능합니다" src="${path }/resources/main/timer.png" width="17px" height="17px">
 						</td>
 					</c:if>		
 				</c:if>

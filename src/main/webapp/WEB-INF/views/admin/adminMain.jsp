@@ -10,7 +10,8 @@
 	<div class="content">
 		<ul class="content_main">
 			<li>
-				<h3>예약내역 관리</h3> <c:if test="${rvAllList.size() == 0}">
+				<h3>타세요 관리</h3> 
+				<c:if test="${rvAllList.size() == 0}">
 					<p>내역이 존재하지 않습니다.</p>
 				</c:if> 
 				<c:if test="${rvAllList.size() != 0}">
@@ -31,6 +32,73 @@
 					</table>
 				</c:if>
 			</li>
+			<li>
+				<h3>공지사항 관리</h3> 
+				<c:if test="${rvAllList.size() == 0}">
+					<p>내역이 존재하지 않습니다.</p>
+				</c:if> 
+				<c:if test="${rvAllList.size() != 0}">
+					<a href="adminRvList.do">+ 자세히</a>
+					<table>
+						<tr>
+							<th class="col-md-3">작성자</th>
+							<th class="col-md-3">신청자</th>
+							<th class="col-md-6">출발지</th>
+						</tr>
+						<c:forEach items="${rvAllList }" var="reservation">
+							<tr>
+								<td class="text-center">${reservation.MB_nickNameDv }</td>
+								<td class="text-center">${reservation.MB_nickName }</td>
+								<td>${reservation.CP_startPoint }</td>
+							</tr>
+						</c:forEach>
+					</table>
+				</c:if>
+			</li>
+			<li>
+				<h3>예약내역 관리</h3> 
+				<c:if test="${rvAllList.size() == 0}">
+					<p>내역이 존재하지 않습니다.</p>
+				</c:if> 
+				<c:if test="${rvAllList.size() != 0}">
+					<a href="adminRvList.do">+ 자세히</a>
+					<table>
+						<tr>
+							<th class="col-md-3">작성자</th>
+							<th class="col-md-3">신청자</th>
+							<th class="col-md-6">출발지</th>
+						</tr>
+						<c:forEach items="${rvAllList }" var="reservation">
+							<tr>
+								<td class="text-center">${reservation.MB_nickNameDv }</td>
+								<td class="text-center">${reservation.MB_nickName }</td>
+								<td>${reservation.CP_startPoint }</td>
+							</tr>
+						</c:forEach>
+					</table>
+				</c:if>
+			</li>
+			<li>
+				<h3>문의내역</h3> 
+				<c:if test="${qnaAllList.size() == 0}">
+					<p>등록된 문의내역이 없습니다.</p>
+				</c:if> <c:if test="${qnaAllList.size() != 0}">
+					<a href="adminQnaList.do">+ 자세히</a>
+					<table>
+						<tr>
+							<th class="col-md-8">제목</th>
+							<th class="col-md-4">작성자</th>
+						</tr>
+						<c:forEach items="${qnaAllList}" var="qna">
+							<tr>
+								<td>${qna.QA_title}</td>
+								<td class="text-center">${qna.MB_nickName}</td>
+							</tr>
+						</c:forEach>
+					</table>
+				</c:if>
+			</li>
+			
 			<li>
 				<h3>드라이버 승인</h3> 
 				<c:if test="${applyAllList.size() == 0}">
@@ -59,26 +127,8 @@
 						</c:forEach>
 					</table>
 				</c:if>
-			<li>
-				<h3>문의내역</h3> 
-				<c:if test="${qnaAllList.size() == 0}">
-					<p>등록된 문의내역이 없습니다.</p>
-				</c:if> <c:if test="${qnaAllList.size() != 0}">
-					<a href="adminQnaList.do">+ 자세히</a>
-					<table>
-						<tr>
-							<th class="col-md-8">제목</th>
-							<th class="col-md-4">작성자</th>
-						</tr>
-						<c:forEach items="${qnaAllList}" var="qna">
-							<tr>
-								<td>${qna.QA_title}</td>
-								<td class="text-center">${qna.MB_nickName}</td>
-							</tr>
-						</c:forEach>
-					</table>
-				</c:if>
 			</li>
+			
 			<li>
 				<h3>신고내역</h3> 
 				<c:if test="${rpAllList.size() == 0}">
@@ -116,7 +166,7 @@
 						</c:forEach>
 					</table>
 				</c:if>
-			<li>
+			</li>
 		</ul>
 	</div>
 </body>

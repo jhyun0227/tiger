@@ -40,8 +40,7 @@
 		select * from notice where NT_num=#{NT_num}
 	</select>
 	<update id="noticeUpdate" parameterType="notice">
-		update notice set NT_title=#{NT_title}, NT_content=#{NT_content}, NT_regDate=sysdate
-		where NT_num=#{NT_num}
+		update notice set NT_title=#{NT_title}, NT_content=#{NT_content} where NT_num=#{NT_num}
 	</update>
 	<update id="noticeDelete" parameterType="integer">
 		update notice set NT_del='Y' where NT_num=#{NT_num}

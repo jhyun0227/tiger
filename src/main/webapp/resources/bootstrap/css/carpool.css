@@ -32,6 +32,16 @@ td.graphic {
   width: 23%
 }
 
+td.matching {
+	font-weight: bold;
+	color: #3243A8;
+	padding-top: 19px;
+	padding-bottom: 17px;
+}
+td.margintop {
+	padding-top: 11px;
+}
+
 tr.bordered {
     border-bottom: 1px solid #000;
 }
@@ -155,3 +165,10 @@ div.nextLine {
 	clear: both;
 }
 
+form.searchtag {
+	padding: 0px 0px 0px 40px;
+}
+
+div.formtag {
+	padding: 0px 40px 0px 0px;
+}

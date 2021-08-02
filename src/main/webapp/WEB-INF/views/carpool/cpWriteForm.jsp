@@ -116,12 +116,11 @@
 				<td colspan="3">
 					<input type="number" name="CP_fee" id="CP_fee" placeholder="금액입력.." required="required" class="inputLine">원/인당
 				</td>
-				
 			</tr>
 			<tr>
 				<th>소요시간</th>
 				<td colspan="3">
-					<input type="number" name="CP_duration" id="CP_duration" placeholder="소요시간" required="required" class="inputLine">분
+					<input type="number" name="CP_duration" id="CP_duration" placeholder="소요시간 입력.." required="required" class="inputLine">분
 				</td>
 			</tr>
 			<tr>

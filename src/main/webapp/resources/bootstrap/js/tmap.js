@@ -15,7 +15,7 @@ function initTmap() {
 	// Tmapv2.Map을 이용하여, 지도가 들어갈 div, 넓이, 높이를 설정합니다.
 	map = new Tmapv2.Map("map_div", { // 지도가 생성될 div
 		center : new Tmapv2.LatLng(37.566481622437934, 126.98502302169841), // 지도 초기 좌표
-		width : "70%", // 지도의 너비
+		width : "100%", // 지도의 너비
 		height : "400px" // 지도의 높이
 	});
 

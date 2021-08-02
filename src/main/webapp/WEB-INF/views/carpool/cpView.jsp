@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -74,7 +75,7 @@
 							<label for="CP_fee" class="col-sm-2 control-label">금액</label>
 							<div class="col-sm-3">
 								<div class="input-group">
-									<input type="text" class="form-control" name="CP_fee" id="CP_fee" readonly="readonly" value="${carpool.CP_fee }">
+									<input type="text" class="form-control" name="CP_fee" id="CP_fee" readonly="readonly" value="<fmt:formatNumber value="${carpool.CP_fee }" groupingUsed="true" />">
 									<span class="input-group-addon">원/인당</span>
 								</div>
 							</div>

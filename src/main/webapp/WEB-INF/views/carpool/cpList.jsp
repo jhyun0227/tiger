@@ -18,12 +18,12 @@
 <link href="${path }/resources/bootstrap/css/carpool.css" rel="stylesheet" />
 </head>
 <body>
-	
+
 <h1 class="title">타세요 목록</h1>
 
 <!-- 검색창 -->
 <div class="searchDIV">
-	<form action="cpList.do">
+	<form action="cpList.do" class="searchtag">
 		<input type="hidden" name="pageNum" value="1">
 		<select name="search" class="inputUnderLine">
 			<option value="CP_startPoint">출발지</option>
@@ -34,8 +34,8 @@
 	</form>
 	
 	<!-- 타세요 작성 버튼 -->
-	<div align="right">
-		<a href="cpWriteForm.do?CP_num=0&pageNum=1" class="btn_sm_full">타세요 작성</a>
+	<div align="right" class="formtag">
+		<a href="cpWriteForm.do?CP_num=0&pageNum=1" class="btn_sm_full formtag">타세요 작성</a>
 	</div>
 </div>
 
@@ -73,45 +73,58 @@
 						<c:if test="${today < carpool.CP_startDate}">
 							<input type="hidden" value="${CP_num}"><c:set var="CP_num" value="${CP_num - 1}"></c:set>
 							<tr>
-								<td class="graphic"><span class="glyphicon glyphicon-map-marker"></span></td>
+								<td colspan="2">
+									<c:if test="${carpool.CP_gendertype eq ' 남자'}">
+										<h6><img alt="" src="/tiger/resources/main/man.png" width="35px" height="35px">ㅤ${carpool.CP_gendertype }</h6>
+									</c:if>
+									<c:if test="${carpool.CP_gendertype == ' 여자'}">
+										<h6><img alt="" src="/tiger/resources/main/woman.png" width="35px" height="35px">ㅤ${carpool.CP_gendertype }</h6>
+									</c:if>
+									<c:if test="${carpool.CP_gendertype == ' 무관'}">
+										<h6><img alt="" src="/tiger/resources/main/manwoman.png" width="35px" height="35px">ㅤ${carpool.CP_gendertype }</h6>
+									</c:if>
+								</td>
+							</tr>
+							<tr>
+								<td class="graphic"><span><img alt="" src="/tiger/resources/main/startpoint.png" width="20px" height="20px"></span></td>
 								<td class="right"><h5>${carpool.CP_startPoint }</h5></td>
 							</tr>
 							<tr>
-								<td><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span></td>
+								<td><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"> </span></td>
 							</tr>
 							<tr class="bordered">
-								<td><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></td>
+								<td><span><img alt="" src="/tiger/resources/main/endpoint.png" width="20px" height="20px"></span></td>
 								<td class="right"><h5>${carpool.CP_endPoint }</h5></td>
 							</tr>
 							<tr >
 								<td><h5>요금</h5></td>
-								<td class="right">${carpool.CP_fee } 원</td>
+								<td class="right">
+									<!-- 요금 출력시 천단위마다 콤마(,) 찍기 -->
+									<fmt:formatNumber value="${carpool.CP_fee }" groupingUsed="true" /> 원
+								</td>
 							</tr>
 							<tr>
-								<td><h5>출발일</h5></td>
-								<td class="right">${carpool.CP_startDate }</td>
-							</tr>
-							<tr>
-								<td class="graphic"><h5>출발시간</h5></td>
-								<td class="right">${carpool.CP_startTime }</td>
+								<!-- 출발일에 맞는 요일 출력  -->
+								<td colspan="2" class="right"><fmt:formatDate pattern ="yyyy-MM-dd (E)" value="${carpool.CP_startDate }"/>ㅤ${carpool.CP_startTime }</td>
 							</tr>
 							<tr class="bordered">
 								<td colspan="2">
-								<h6><span class="glyphicon glyphicon-ok"></span>${carpool.CP_option }</h6></td>
+									<h6><span class="glyphicon glyphicon-ok"></span>${carpool.CP_option }</h6>
+								</td>
 							</tr>
 							<!-- 1-1.매칭완료된 좌석수 / 총 좌석수  -->
 							<c:if test="${carpool.CP_passNumNow < carpool.CP_passNum }">
-							<tr>
-								<td colspan="2" class="text-center"><h5>매칭완료 / 전체좌석</h5></td>
-							</tr>
-							<tr>
-								<td colspan="2" class="text-center">${carpool.CP_passNumNow } / ${carpool.CP_passNum }</td>
-							</tr>
+								<tr>
+									<td colspan="2" class="text-center margintop">매칭완료 / 전체좌석</td>
+								</tr>
+								<tr>
+									<td colspan="2" class="text-center">${carpool.CP_passNumNow } / ${carpool.CP_passNum }</td>
+								</tr>
 							</c:if>
 							<!-- 1-2.매칭완료좌석수와 총좌석수가 같으면 "완료된 매칭"으로 띄움 -->
 							<c:if test="${carpool.CP_passNumNow == carpool.CP_passNum }">
 								<tr>
-									<td colspan="2" class="text-center"><h5>완료된 매칭</h5></td>
+									<td colspan="2" class="text-center matching">완료된 매칭</td>
 								</tr>
 							</c:if>
 							<tr>
@@ -137,27 +150,39 @@
 							<c:if test="${todayTime < carpool.CP_startTime}">
 								<input type="hidden" value="${CP_num}"><c:set var="CP_num" value="${CP_num - 1}"></c:set>
 								<tr>
-									<td class="graphic"><span class="glyphicon glyphicon-map-marker"></span></td>
+									<td colspan="2">
+										<c:if test="${carpool.CP_gendertype eq ' 남자'}">
+											<h6><img alt="" src="/tiger/resources/main/man.png" width="35px" height="35px">ㅤ${carpool.CP_gendertype }</h6>
+										</c:if>
+										<c:if test="${carpool.CP_gendertype == ' 여자'}">
+											<h6><img alt="" src="/tiger/resources/main/woman.png" width="35px" height="35px">ㅤ${carpool.CP_gendertype }</h6>
+										</c:if>
+										<c:if test="${carpool.CP_gendertype == ' 무관'}">
+											<h6><img alt="" src="/tiger/resources/main/manwoman.png" width="35px" height="35px">ㅤ${carpool.CP_gendertype }</h6>
+										</c:if>
+									</td>
+								</tr>
+								<tr>
+									<td class="graphic"><span><img alt="" src="/tiger/resources/main/startpoint.png" width="20px" height="20px"></span></td>
 									<td class="right"><h5>${carpool.CP_startPoint }</h5></td>
 								</tr>
 								<tr>
 									<td><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span></td>
 								</tr>
 								<tr class="bordered">
-									<td><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></td>
+									<td><span><img alt="" src="/tiger/resources/main/endpoint.png" width="20px" height="20px"></span></td>
 									<td class="right"><h5>${carpool.CP_endPoint }</h5></td>
 								</tr>
 								<tr >
 									<td><h5>요금</h5></td>
-									<td class="right">${carpool.CP_fee } 원</td>
+									<td class="right">
+										<!-- 요금 출력시 천단위마다 콤마(,) 찍기 -->
+										<fmt:formatNumber value="${carpool.CP_fee }" groupingUsed="true" /> 원
+									</td>
 								</tr>
 								<tr>
-									<td><h5>출발일</h5></td>
-									<td class="right">${carpool.CP_startDate }</td>
-								</tr>
-								<tr>
-									<td class="graphic"><h5>출발시간</h5></td>
-									<td class="right">${carpool.CP_startTime }</td>
+									<!-- 출발일에 맞는 요일 출력  -->
+									<td colspan="2" class="right"><fmt:formatDate pattern ="yyyy-MM-dd (E)" value="${carpool.CP_startDate }"/>ㅤ${carpool.CP_startTime }</td>
 								</tr>
 								<tr class="bordered">
 									<td colspan="2">
@@ -165,17 +190,17 @@
 								</tr>
 								<!-- 3-1-1.매칭완료된 좌석수 / 총 좌석수  -->
 								<c:if test="${carpool.CP_passNumNow < carpool.CP_passNum }">
-								<tr>
-									<td colspan="2" class="text-center"><h5>매칭완료 / 전체좌석</h5></td>
-								</tr>
-								<tr>
-									<td colspan="2" class="text-center">${carpool.CP_passNumNow } / ${carpool.CP_passNum }</td>
-								</tr>
+									<tr>
+										<td colspan="2" class="text-center margintop">매칭완료 / 전체좌석</td>
+									</tr>
+									<tr>
+										<td colspan="2" class="text-center">${carpool.CP_passNumNow } / ${carpool.CP_passNum }</td>
+									</tr>
 								</c:if>
 								<!-- 3-1-2.매칭완료좌석수와 총좌석수가 같으면 "완료된 매칭"으로 띄움 -->
 								<c:if test="${carpool.CP_passNumNow == carpool.CP_passNum }">
 									<tr>
-										<td colspan="2" class="text-center"><h5>완료된 매칭</h5></td>
+										<td colspan="2" class="text-center matching">완료된 매칭</td>
 									</tr>
 								</c:if>
 								<tr>

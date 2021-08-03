@@ -22,7 +22,7 @@
 
   <!-- navigation buttons -->
   <div class="swiper-button-prev"></div>
-  <div class="swiper-button-next"></div>
+  <div class="swiper-button-next"></div>   
 </div>
 <script type="text/javascript">
 const swiper = new Swiper('.swiper-container', {

@@ -113,6 +113,5 @@
 				</c:if>
 			</ul>
 		</div>
-	</div>
 </body>
 </html>

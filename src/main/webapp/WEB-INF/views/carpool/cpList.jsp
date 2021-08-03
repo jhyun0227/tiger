@@ -14,13 +14,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <title>Insert title here</title>
+<script type="text/javascript">
+	$("#myModal").on('show.'("/")
+</script>
 <!-- 타세요 only CSS-->
 <link href="${path }/resources/bootstrap/css/carpool.css" rel="stylesheet" />
 </head>
 <body>
-
 <h1 class="title">타세요 목록</h1>
-
 <!-- 검색창 -->
 <div class="searchDIV">
 	<form action="cpList.do" class="searchtag">
@@ -35,10 +36,13 @@
 	
 	<!-- 타세요 작성 버튼 -->
 	<div align="right" class="formtag">
-		<a href="cpWriteForm.do?CP_num=0&pageNum=1" class="btn_sm_full formtag">타세요 작성</a>
+		<a href="cpWriteForm.do?CP_num=0&pageNum=1" class="btn_sm_full">타세요 작성</a>
+		
+	<!-- Button trigger modal -->
+		<button type="button" class="btn_sm_stroke" data-toggle="modal" data-target="#myModal">
+		서비스 이용약관
+		</button>
 	</div>
-</div>
-
 <!-- 타세요 목록  -->
 <div align="center">
 	<c:if test="${empty cpList }">
@@ -103,6 +107,10 @@
 									<fmt:formatNumber value="${carpool.CP_fee }" groupingUsed="true" /> 원
 								</td>
 							</tr>
+							<tr>
+								<td><h5>출발일</h5></td>
+								<td class="right">${carpool.CP_startDate }</td>
+							</tr>   
 							<tr>
 								<!-- 출발일에 맞는 요일 출력  -->
 								<td colspan="2" class="right"><fmt:formatDate pattern ="yyyy-MM-dd (E)" value="${carpool.CP_startDate }"/>ㅤ${carpool.CP_startTime }</td>
@@ -259,5 +267,68 @@
 		</ul>
 	</div>
 </div>
+
+<!-- Modal -->
+	<div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	 	<div class="modal-dialog ">
+	 	   <div class="modal-content ">
+			    <div class="modal-header">
+		 	      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		 	      <h4 class="modal-title" id="myModalLabel" align="center">타세요 이용 약관</h4>
+		   		  </div>
+		 		<div class="modal-body " align="left">
+		      		<p4>■ 환영합니다</p4>  <br>
+		      	<p5>&nbsp;&nbsp;&nbsp; 주식회사 타세요(이하 ‘회사’)가 제공하는 서비스를 이용해 주셔서 감사합니다. 
+		      		본 약관은 여러분이 타세요 서비스를 이용하는 데 필요한 권리, 의무 및 책임사항, 
+		      		이용조건 및 절차 등 기본적인 사항을 규정하고 있으므로 
+		      		조금만 시간을 내서 주의 깊게 읽어주시기 바랍니다. </p5>
+		        <br>
+		      	<p4>■ 타세요 이용계약 </p4>  
+		      	<br>
+		      	<p5>&nbsp;&nbsp;&nbsp;타세요 계정신청은 여러분이 타세요 정보에 일정 정보를 입력하는 
+		      	방식으로 이루어집니다. 회사는 입력된 일정 정보를 인증한 후 가입을 승낙함으로써 체결됩니다. </p5>
+		        <br>
+		       	<p4>■  타세요 이용의 제한</p4> 
+		       	 <br>
+		      	<p5>&nbsp;&nbsp;&nbsp;미성년자(만19세 미만)는 회사의 서비스를 이용할 수 없습니다. 
+		      	또한 회사는 여러분의 서비스 이용을 정지, 삭제 등 적절한 제한을 할 수 있습니다.</p5>
+		        <br>
+		       	<p4>■  타세요 이용의 해지</p4> 
+		       	 <br>
+		      	<p5>&nbsp;&nbsp;&nbsp; 여러분이 타세요계정 이용을 더이상 원하지 않는 때에는 언제든지
+		      	서비스를 내 제공되는 메뉴를 이용하여 이용계약의 해지 신청을 할 수 있으며, 
+		      	회사는 법령이 정하는 바에 따라 신속하게 처리하겠습니다. </p5>
+		        <br>
+		       	<p4>■ 손해배상  </p4> 
+		       	 <br>
+		      	<p5>&nbsp;&nbsp;&nbsp;회사는 법령상 허용되는 한도 내에서 서비스와 관령하여 본 약관에 명시되지 않은 어떠한
+		      	구체적인 사항에 대한 약정이나 보증을 하지 않습니다. 또한 회사는 회원이 작성하는 방법으로 서비스에 게재된 
+		      	정보, 자료, 사실의 신뢰도, 정확성 등에 대해서는 보증을 하지 않으며, 회사의 과실없이 발생된 
+		      	여러분의 손해에 대해서는 어떠한 책임을 부담하지 아니합니다.  </p5>
+		        <br>
+		       	<p4>■ 타세요 신청건 철회 </p4> 
+		       	 <br>
+		      	<p5>&nbsp;&nbsp;&nbsp;철회는 아래과 같이 가능합니다. 이 이후 발생하는 위약건에 대해서는 위약금이 발생합니다. </p5><br>
+		      	<p5>&nbsp;&nbsp;&nbsp; - 작성하신 타세요의 운행건에 대한 취소는 최소 출발시간의 30분전까지 가능합니다. </p5><br>
+		      	<p5>&nbsp;&nbsp;&nbsp; - 신청하신 타세요의 탑승건에 대한 취소는 최소 출발시간의 10분전까지 가능합니다. </p5>
+		        <br>
+		       	<p4>■ 여러분의 쾌적한 서비시 이용을 위한 운영정책을 적용하고 있습니다.  </p4> 
+		       	 <br>
+		      	<p5>&nbsp;&nbsp;&nbsp;서비스 이용 중 다른 이용자의 운영정책 위반 행위로 인한 피해를 입으신 경우,
+		      	여러분은 이를 회사에 제보하여 운영정책의 적용을 요청할 수 있으며, 회사는 신고내용을 확인하여
+		      	제재 조치를 취할 수 있습니다. 또한 신고가 없더라도 회사는 관련 법령 또는 약관에 위배되거나
+		      	 본 운영정책에서 금지하는 활동이 발견된 경우, 운영정책에 따른 제재 조치를 취할 수 있습니다. 
+		      	  그러나 서비스 내 이용자들 간에 발생하는 분쟁 및 이용자 스스로의 과실로 일어난 피해에 대해서는 
+		      	  개입하거나 조치하지 않습니다. 
+		      	  </p5>
+		        <br>  
+ 		  </div>
+ 		   		</div>
+	       		 <div class="modal-footer">
+	      			<button type="button" class="btn_sm_full" data-dismiss="modal">확인</button>
+	  			</div>
+	   		</div>
+	 	</div>
+	</div>  
 </body>
 </html>

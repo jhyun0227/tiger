@@ -38,7 +38,6 @@
 			<th class="col-xs-4 text-center">성별</th>
 			<th class="col-xs-4 text-center">후기</th>
 		</tr>
-			
 			<c:if test="${empty rvsList }">
 				<tr>
 					<th colspan="3" class="text-center">이용자가 없습니다.</th>

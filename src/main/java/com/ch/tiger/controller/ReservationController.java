@@ -28,8 +28,10 @@ public class ReservationController {
 	
 	// 예약내역에서 드라이버로서 본인이 작성한 글들을 확인하기 위해서 가져옴
 	@RequestMapping("driverHistoryList")
-	public String driveHistoryList(Carpool carpool, String pageNum, Model model, HttpSession session) {
 		// 세션 값 가져오기
+		
+		 public String driveHistoryList(Carpool carpool, String pageNum, Model model,HttpSession session) {
+			
 		String MB_id = (String) session.getAttribute("MB_id");
 		Member member = mbs.select(MB_id);
 		int MB_num = member.getMB_num();
@@ -49,14 +51,14 @@ public class ReservationController {
 		carpool.setStartRow(startRow);
 		carpool.setEndRow(endRow);
 		List<Carpool> myCarpoolList = cps.myCarpoolList(carpool); // 내가 올린 글 들만 담아서 받아옴
-		
 		int num = total - startRow + 1; // 번호 순서대로 정렬
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
-		String[] title = {"출발일", "출발지", "도착지"};
+		String[] title = {"출발일", "출발지", "도착지"}; 
 		model.addAttribute("title", title);
 		model.addAttribute("pb", pb);
 		model.addAttribute("myCarpoolList", myCarpoolList);
 		model.addAttribute("num", num);
+		
 		return "reservation/driverHistoryList";
 	}
 	

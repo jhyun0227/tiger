@@ -29,7 +29,7 @@
 				<input type="submit" value="검색" class="btn_search">
 			</form>
 		</div>
-<table class="table">
+<table class="table">   
 	<tr>
 		<th class="col-md-1 text-center">번호</th>
 		<th class="col-md-1 text-center">상세페이지</th>
@@ -48,7 +48,7 @@
 		<c:forEach var="carpool" items="${myCarpoolList }">
 			<tr>
 				<c:if test="${carpool.CP_del != 'Y' }">
-					<td class="col-md-1 text-center">${num }
+					<td class="col-md-1 text-center">${num }   
 					<c:set var="num" value="${num -1 }"></c:set></td>
 					<td class="col-md-1 text-center">
 						<a href="cpView.do?CP_num=${carpool.CP_num }&pageNum=${pageNum}">

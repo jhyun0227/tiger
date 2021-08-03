@@ -31,7 +31,7 @@
 					<li><a href="vehicleList.do">차량정보 관리</a></li>
 					<li><a href="favoriteList.do">좋아요</a></li>
 				</ul>
-			</li>
+			</li>   
 			<li class="menu5"><a href="noticeList.do">고객센터</a>
 				<ul class="menu5_s submenu">
 					<li><a href="noticeList.do">공지사항</a></li>

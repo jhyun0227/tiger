@@ -5,7 +5,6 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="/tiger/resources/bootstrap/css/common.css">
-<link rel="stylesheet" type="text/css" href="/tiger/resources/bootstrap/css/msgList.css">
 <style type="text/css">
 .btn_sm_stroke{
 	margin: 0 20px;

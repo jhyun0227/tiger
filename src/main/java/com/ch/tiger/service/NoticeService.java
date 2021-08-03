@@ -3,11 +3,19 @@ import java.util.List;
 
 import com.ch.tiger.model.Notice;
 public interface NoticeService {
-	int getNtTotal(Notice notice);
-	List<Notice> noticeList(Notice notice);
-	int getMaxNum();
-	int noticeWrite(Notice notice);
-	Notice select(int num);
-	int noticeUpdate(Notice notice);
-	int noticeDelete(int num);	
+	int getNtTotal(Notice notice); //공지사항 갯수 
+	
+	List<Notice> noticeList(Notice notice); //공지사항 목록
+	
+	int getMaxNum(); //최신글 번호 
+	
+	int noticeWrite(Notice notice); //공지사항 작성
+	
+	Notice select(int num); //공지사항 선택
+	
+	int noticeUpdate(Notice notice); //공지사항 수정
+	
+	int noticeDelete(int num); //공지사항 삭제
+	
+	List<Notice> noticeAllList(Notice notice); //관리자 메인 공지사항 목록
 }

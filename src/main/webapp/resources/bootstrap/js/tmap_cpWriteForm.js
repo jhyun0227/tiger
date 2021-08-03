@@ -16,7 +16,10 @@ function initTmap() {
 	map = new Tmapv2.Map("map_div", { // 지도가 생성될 div
 		center : new Tmapv2.LatLng(37.566481622437934, 126.98502302169841), // 지도 초기 좌표
 		width : "100%", // 지도의 너비
-		height : "400px" // 지도의 높이
+		height : "400px", // 지도의 높이
+		zoom: 15,
+	    zoomControl: true,
+	    scrollwheel: true
 	});
 
 	//마커 초기화
@@ -162,8 +165,10 @@ function initTmap() {
 						 result += "mappingDistance: " + '"'+ arrResult.mappingDistance+'"'+"</br>";
 						 result += "roadCode: " + '"'+ arrResult.roadCode+'"'+"</br>"; */
 
+				/*result = arrResult.city_do + ' ' + arrResult.gu_gun
+						+ ' ' + arrResult.legalDong + ' ' + arrResult.bunji;*/
 				result = arrResult.city_do + ' ' + arrResult.gu_gun
-						+ ' ' + arrResult.legalDong + ' ' + arrResult.bunji;
+				+ ' ' + arrResult.roadName + ' ' + arrResult.buildingName;
 
 				var resultDiv = document.getElementById("result");
 				//				resultDiv.innerHTML = result;
@@ -214,8 +219,10 @@ function initTmap() {
 						+ resultData[0].properties.totalFare + "원,";
 				var taxiFare = " 예상 택시 요금 : "
 						+ resultData[0].properties.taxiFare + "원";
+				var duration = (resultData[0].properties.totalTime / 60).toFixed(0);
 
 				$("#resultInfo").text(tDistance + tTime + tFare	+ taxiFare);
+				$("#CP_duration").val(duration); //소요시간 값 전송
 
 				//교통정보 표출 옵션값을 체크
 				if (trafficInfochk == "Y") {

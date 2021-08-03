@@ -25,7 +25,7 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script
 	src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xxb7514833e4e14e1492e2da0675e6772f"></script>
-<script type="text/javascript" src="${path }/resources/bootstrap/js/tmap.js"></script>
+<script type="text/javascript" src="${path }/resources/bootstrap/js/tmap_cpWriteForm.js"></script>
 <script>
 	// 출발일이 현재날짜보다 이전으로 설정 못하게 막는 자바스크립트
 	function Chk() {
@@ -49,7 +49,6 @@
 </head>
 <body onload="initTmap();">
 	<h1 class="title">타세요 작성</h1>
-<div class="searchDIV">
 	<form action="cpWriteResult.do" class="form-horizontal" method="post" name="cp" role="form" onsubmit="return Chk()">
 		<!-- 로그인된 회원번호 -->
 		<input type="hidden" name="MB_num" value="${member.MB_num}" />
@@ -158,6 +157,5 @@
 			</tr>
 		</table>
 	</form>
-</div>
 </body>
 </html>

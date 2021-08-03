@@ -8,10 +8,13 @@
 <title>Insert title here</title>
 <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
 <style type="text/css">
-
 	.err {
 		color: red;
 		font-weight: bold;
+	}
+	
+	.table>tbody>tr>td{
+		vertical-align: middle;
 	}
 	
 	.alert {
@@ -21,6 +24,14 @@
 	    border: none;
 	    border-radius: 4px;
 	    background-color: none;
+	}
+	
+	.btn_sm_full2{
+	    padding: 5px 10px;
+	    border: none;
+	    font-size: 14px;
+	    color: #eee;
+	    background: #3243A8;
 	}
 	
 	.inputline1 {
@@ -48,9 +59,7 @@
 	  cursor: pointer;
 	  color: grey;
 	}
-	#line{
-		padding-top: 20px;
-	}
+
 </style>
 <script type="text/javascript">
 //안보이게 하기
@@ -294,12 +303,12 @@
 			onsubmit="return chk()">
 			<table class="table narrowWidth1">
 				<tr>
-					<td class="col-md-4 text-center" id="line">이메일</td> 
+					<td class="col-md-4 text-center">이메일</td> 
 					<td class="col-md-8">
 					 	<input type="email" name="MB_id" required="required" autofocus="autofocus"
 								placeholder="이메일을 입력해주세요" class="inputline2">
-						<input type="button" onclick="idChk()"  value="이메일 인증" class="btn_ck">
-						<div id="idChk" class="err"></div> <br>
+						<input type="button" onclick="idChk()"  value="이메일 인증" class="btn_sm_full2">
+						<div id="idChk" class="err"></div>
 						<div id="emailChk">
 							<input type="text" name="emailChk" id="emailChk" 
 								class="inputline1" placeholder="인증번호 입력"> 
@@ -331,7 +340,7 @@
 						<div class="alert alert-success" id="alert-success">
 						      비밀번호가 일치합니다.</div>
 						<div class="alert alert-danger" id="alert-danger">
-                             비밀번호가 일치하지 않습니다.</div>
+                                                           비밀번호가 일치하지 않습니다.</div>
                     </td>
 				</tr>
 				<tr>
@@ -359,7 +368,7 @@
 					<td class="col-md-8">
 						<input type="text" name="MB_nickName" id="nickName" required="required" 
 						        placeholder="닉네임을 입력해주세요" class="inputline2"> 
-						<input type="button" onclick="nickChk()" id="nickNameChk" value="중복체크" class="btn_ck" disabled="disabled">
+						<input type="button" onclick="nickChk()" id="nickNameChk" value="중복체크" class="btn_sm_full2" disabled="disabled">
 						<div id="nickChk" class="err"></div></td>
 				</tr>
 				<tr>
@@ -371,7 +380,7 @@
 				</tr>
 				<tr>
 					<td colspan="2" align="center" class="text-center">
-					    <input type="submit" id="submit" value="회원가입"  disabled="" class="btn_sm_full">
+					    <input type="submit" id="submit" value="회원가입"  disabled="disabled" class="btn_sm_full">
 					    <input type="button"  onclick="location.href='loginForm.do'" 
 					    	    value="로그인" class="btn_sm_stroke">    
 					 </td>

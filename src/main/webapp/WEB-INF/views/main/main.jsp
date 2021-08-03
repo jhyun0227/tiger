@@ -12,10 +12,11 @@
 <div class="swiper-container">
   <!-- wrapper -->
   <div class="swiper-wrapper">
-    <!-- Slides -->
+    <!-- Slides -->     
     <div class="slide1 swiper-slide"></div>
     <div class="slied2 swiper-slide"></div>
     <div class="slied3 swiper-slide"></div>
+    <div class="slied4 swiper-slide"></div>
   </div>
   <!-- pagination -->
   <div class="swiper-pagination"></div>
@@ -28,7 +29,7 @@
 const swiper = new Swiper('.swiper-container', {
 	  /* 자동재생 */
 	  autoplay: {
-		  delay: 3000,
+		  delay: 2000,
 	  },
 	  loop: true,
 	  pagination: {
@@ -40,5 +41,5 @@ const swiper = new Swiper('.swiper-container', {
 	  },
 	});
 </script>
-</body>
+</body>  
 </html>

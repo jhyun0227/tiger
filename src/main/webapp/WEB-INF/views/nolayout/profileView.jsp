@@ -39,15 +39,15 @@
 }
 .glyphicon-heart:hover {
 	text-decoration: none;
-	color: red;
+	color: pink;
 }
 .glyphicon-heart-empty{
 	font-size: 22px;
-	color: #000000;
+	color: red;
 }
 .glyphicon-heart-empty:hover{
 	text-decoration: none;
-	color: red;
+	color: pink
 }
 .glyphicon-envelope {
 	font-size: 15px;
@@ -57,6 +57,13 @@
 	text-decoration: none;
 	color: black
 }
+#send {
+	width: 20px;
+	height: 20px;
+	margin-bottom: 11px;
+	color: #3243A8;	
+}  
+ 
 </style>
 </head>
 <body>
@@ -70,7 +77,7 @@
 	<c:if test="${result == 1 }">
 		<div align="center">
 				<h3 class="">${member.MB_nickName }님의 프로필
-					<span>
+					<%-- <span>
 						<c:if test="${favo > 0 }">
 								<td colspan="2">
 									<a class="glyphicon glyphicon-heart" 
@@ -85,28 +92,61 @@
 								</td>									
 							</c:if>
 						
-					</span>
+					</span> --%>
 				</h3>
 			<div class="profileDiv">
 				<div class="narrowWidth1">
 					<div id="img_box">
-						<img alt="" src="${path }/resources/memberImg/${member.MB_img }" class="thumbnail">
+					   <div>
+							<c:if test="${empty member.MB_img }">
+								<img alt="" src="${path }/resources/main/none_img3.jpg" class="thumbnail" >
+							</c:if> 
+							<c:if test="${not empty member.MB_img  }">  
+								<img alt="" src="${path }/resources/memberImg/${member.MB_img }" class="thumbnail" >  
+							 </c:if>  
+					</div>
+					<div >
+						 <span> 
+							<c:if test="${favo > 0 }">
+									<td colspan="2">
+										<a class="glyphicon glyphicon-heart" 
+										aria-hidden="true"
+										href="deleteFv.do?MB_numG=${sessionScope.MB_num }&MB_numT=${member.MB_num}&MB_nickName=${member.MB_nickName}"></a>
+									</td>
+							</c:if>
+							<c:if test="${favo == 0 }">
+								<td colspan="2">
+									<a class="glyphicon glyphicon-heart-empty" aria-hidden="true"
+										href="addFv.do?MB_numG=${sessionScope.MB_num }&MB_numT=${member.MB_num}&MB_nickName=${member.MB_nickName}"></a> 
+									</td>									
+								</c:if>
+						</span> &nbsp;&nbsp;
+						<span >	
+							<a aria-hidden="true"
+							   onclick="window.open('msgWriteForm.do?MB_num=${member.MB_num }','쪽지 보내기',
+								'width=430,height=400,location=no,status=no,scrollbars=yes');">
+								<img alt="" src="${path }/resources/main/send.png"  id="send" >
+							</a>
+<%-- 							<a class="glyphicon glyphicon-envelope" aria-hidden="true"
+										onclick="window.open('msgWriteForm.do?MB_num=${member.MB_num }','쪽지 보내기',
+										'width=430,height=400,location=no,status=no,scrollbars=yes');"></a> --%>
+						</span>	 
+						</div> 
 					</div>
 					<div id="inform_box">
 						<table class="table">
-							<tr>
-								<td class="col-sm-3 text-center">이메일</td>
-								<td class="col-sm-9">${member.MB_id }&nbsp;
-									<a class="glyphicon glyphicon-envelope" aria-hidden="true"
+							<%-- <tr>
+								 <td class="col-sm-3 text-center">이메일</td> 
+								<td class="col-sm-9">${member.MB_id }&nbsp; 
+									 <a class="glyphicon glyphicon-envelope" aria-hidden="true"
 										onclick="window.open('msgWriteForm.do?MB_num=${member.MB_num }','쪽지 보내기',
-										'width=430,height=400,location=no,status=no,scrollbars=yes');"></a>
+										'width=430,height=400,location=no,status=no,scrollbars=yes');"></a> 
 								</td>
-							</tr>
-							<tr>
+							</tr> --%>
+							<%-- <tr>
 								<td class="col-sm-3 text-center">닉네임</td>
 								<td class="col-sm-9">${member.MB_nickName }</td>
-							</tr>
-
+							</tr> --%>
 							<c:if
 								test="${member.MB_gender == '1' || member.MB_gender == '3'}">
 								<tr>
@@ -121,12 +161,18 @@
 									<td class="col-sm-9">여자</td>
 								</tr>
 							</c:if>
-
-							<tr>
+<%-- <tr>
+							<td class="col-sm-3 text-center">연락처</td>
+								<td class="col-sm-9">${member.MB_tel }</td>  --%>
+							</tr> 
+							<%-- <tr>
 								<td class="col-sm-3 text-center">가입일</td>
 								<td class="col-sm-9">${member.MB_regDate }</td>
+							</tr> --%>
+							<tr>
+								<td colspan="2"></td>
 							</tr>
-						</table>
+						</table>   
 					</div>
 				</div>
 			</div>

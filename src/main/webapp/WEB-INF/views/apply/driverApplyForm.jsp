@@ -6,10 +6,6 @@
 <head>
 <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
 <style type="text/css">
-	 #labelUp{
-		text-align: left;	
-	} 
-	
 	.inputLine_s {  
 		border: none;
 		outline: 0;
@@ -27,7 +23,11 @@
 		width: 140px;; 
 		margin-top: 0; 
 		margin-bottom: 8px; 
-	}          
+	} 
+	.err {
+		color: #3243A8;
+		font-weight: bold;add
+	}         
 </style>	
 <script type="text/javascript">
 
@@ -195,12 +195,11 @@
 					<tr>
 						<td class="col-md-4 text-center">차량 앞면 사진</td>
 						<td class="col-md-8">
-							 <div class="filebox" > 
-								<label for="VH_carPicture" id="labelUp">차량번호판</label>&nbsp; 
+							 <div class="filebox"> 
+								<label for="ex_filename">차량 번호판 첨부</label> 
 								<input class="upload-name" disabled="disabled"> 
-								<input type="file" name="file" id="VH_carPicture" required="required"
-								       class="upload-hidden" > 
-							</div> 
+								<input type="file" id="ex_filename" name="file" class="upload-hidden"> 	
+							</div>
 						 </td>	 
 					 </tr>
 					 <tr >
@@ -211,7 +210,7 @@
 						     </div>
 					 	</td>
 					 </tr>
- 			 </table> 
+ 			 </table>     
 	 	</div>
 	 </div>	
 	</form>

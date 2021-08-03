@@ -16,32 +16,38 @@
 /* swiper 전체 크기 */
 .swiper-container {
   width: 100%;
-  height: 55vh;
+  height: 55vh; 
 }
 
 /* 메인 이미지 */
 .slide1{
-	background : url('/tiger/resources/main/1.png') center;
+	background : url('/tiger/resources/main/4.jpg') center;
 	background-size: cover;
 }
 
 .slied2{
-	background : url('/tiger/resources/main/main7.png') center;
+	background : url('/tiger/resources/main/3.jpg') center;    
 	background-size: cover;
 }
-
+ 
 .slied3{
-	background : url('/tiger/resources/main/main4.png') center;
+	background : url('/tiger/resources/main/2.jpg') center;   
 	background-size: cover; 
-}
-
-/* 좌우 버튼 */
-.swiper-button-prev{
-	color: #242526; 	
-}
+}      
+   
+.slied4{
+	background : url('/tiger/resources/main/5.jpg') center;   
+	background-size: cover;   
+}    
+      
+     
+/* 좌우 버튼 */     
+.swiper-button-prev{    
+	color: #242526; 	   
+}    
 
 .swiper-button-next{
-	color: #242526;
+	color: #242526;  
 }
 
 .swiper-button-next:after, .swiper-button-prev:after {

@@ -10,7 +10,9 @@
 <fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
 </head>
 <body>
-<h1 class="title">탑승자 이용내역</h1>
+<h1 class="title">타세요 나의 탑승 내역</h1>
+<!-- <h1 class="title">탑승자 이용내역</h1> -->
+<!-- <h1 class="title">${member.MB_nickName}님의 타세요 탑승 내역</h1> -->
 <div class="searchDIV">
 	<form action="PsgHistoryList.do">
 		<input type="hidden" name="pageNum" value="1">
@@ -35,7 +37,8 @@
 				<th class="col-md-2 text-center">출발일</th>
 				<th class="col-md-2 text-center">출발지</th>
 				<th class="col-md-2 text-center">도착지</th>
-				<th class="col-md-2 text-center">작성자</th>
+				<!-- <th class="col-md-2 text-center">드라이버</th> -->
+ 				<th class="col-md-2 text-center">작성자</th> 
 				<th class="col-md-1 text-center">매칭상태</th>
 				<th class="col-md-1 text-center">후기 작성</th>
 	</tr>

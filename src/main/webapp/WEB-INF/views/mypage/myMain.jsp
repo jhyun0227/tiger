@@ -130,8 +130,8 @@
 							<div class="progress-bar progress-bar-striped active" 
 									role="progressbar" aria-valuenow="40" aria-valuemin="0" 
 									aria-valuemax="100" style="width: 45%" >
-								 <span>심사중 | </span>
-							 </div>
+								 <span>심사중</span>
+							 </div>&nbsp;&nbsp;
 							 <span>
 							 <a href="driverApplyConfirm.do?MB_id=${member.MB_id }">신청서 상세내역</a>
 							 </span>

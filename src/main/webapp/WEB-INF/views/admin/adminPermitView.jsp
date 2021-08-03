@@ -23,27 +23,27 @@
 		width: 5px;
 	}  
 	#plate {
-		margin-top: 85px;
+		margin-top: 65px;
 	}
 	.thumbnail{
-		width: 130px;
-		height: 170px;
+		width: 200px;
+		height: 150px;
 		margin-top: -10px;
 	} 
 	.box {
 	   margin-top: 15px;  
 	}   
-</style>  
+</style>    
 </head>
 <body>
-<div class="container narrowWidth" align="center">
+<div class="container narrowWidth80" align="center">
 	<h2 class="title">드라이버 신청 정보</h2>
 	<div class="row">
 		<div class="col-md-1"  id="title_box">
 			<h4>운전면허증</h4>
 			<h4 id="plate">차량 번호판</h4>
 		</div>
-		<div class="col-md-2"  id="img_box">
+		<div class="col-md-3"  id="img_box">
 			<h5 class="text-center"></h5>
 			<img alt="" src="${path }/resources/applyImg/${apply.AP_picture}" class="thumbnail"
 					>
@@ -51,7 +51,7 @@
 			<img alt="" src="${path }/resources/vehicleImg/${vehicle.VH_carPicture}" 
 			 	class="thumbnail"	>
 		</div>	
-		<div class="col-md-9">
+		<div class="col-md-8">
 			<table class="table narrowWidth80 ">   
 				<tr>  
 					<th class="col-md-4 text-center">아이디</th>

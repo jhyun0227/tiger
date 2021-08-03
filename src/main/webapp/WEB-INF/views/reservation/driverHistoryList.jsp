@@ -11,7 +11,8 @@
 <fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
 </head>
 <body>
-<h1 class="title">드라이버 이용내역</h1>
+<h1 class="title">타세요 나의 운행 내역</h1>
+<!-- <h1 class="title">드라이버 이용내역</h1> -->
 <div class="searchDIV">
 	<form action="driverHistoryList.do">
 		<input type="hidden" name="pageNum" value="1">
@@ -29,7 +30,7 @@
 				<input type="submit" value="검색" class="btn_search">
 			</form>
 		</div>
-<table class="table">
+<table class="table">   
 	<tr>
 		<th class="col-md-1 text-center">번호</th>
 		<th class="col-md-1 text-center">상세페이지</th>
@@ -47,14 +48,13 @@
 		<c:forEach var="carpool" items="${myCarpoolList }">
 			<tr>
 				<c:if test="${carpool.CP_del != 'Y' }">
-					<td class="col-md-1 text-center">${num }
+					<td class="col-md-1 text-center">${num }   
 					<c:set var="num" value="${num -1 }"></c:set></td>
 					<td class="col-md-1 text-center">
 						<a href="cpView.do?CP_num=${carpool.CP_num }&pageNum=${pageNum}" class="">이동</a></td>
 					<td class="col-md-2 text-center">${carpool.CP_startDate }</td>
 					<td class="col-md-3 text-center">${carpool.CP_startPoint }</td>
 					<td class="col-md-3 text-center">${carpool.CP_endPoint }</td>
-					
 					<!-- 오늘날과  시작날짜를 비교해서 후기 작성 활성화 비활성화 -->
 					<c:if test="${today > carpool.CP_startDate }">					
 						<td class="col-md-2 text-center">																	
@@ -72,7 +72,7 @@
 			</tr>
 		</c:forEach>
 	</c:if>	
-	<tr>
+	<tr>  
 		<td colspan="6"></td>
 	</tr>
 </table>

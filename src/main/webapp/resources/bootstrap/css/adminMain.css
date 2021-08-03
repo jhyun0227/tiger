@@ -4,6 +4,11 @@
 	margin: 0 auto;
 }
 
+.contents {
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
 .content ul {
 	width: 90%;
 	margin: 90px auto !important;

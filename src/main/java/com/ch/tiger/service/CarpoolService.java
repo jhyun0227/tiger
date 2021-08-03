@@ -31,5 +31,7 @@ public interface CarpoolService {
 	
 	int updatePassNumNow(int CP_num); // 타세요 목록 매칭완료된 좌석수 +1 - 병우
 
+	List<Carpool> cpAllList(Carpool carpool); // 타세요 목록 - 관리자메인
+
 
 }

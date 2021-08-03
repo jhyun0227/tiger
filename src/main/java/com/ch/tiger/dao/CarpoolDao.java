@@ -32,9 +32,8 @@ public interface CarpoolDao{
 	List<Carpool> adminCpList(Carpool carpool);	// 관리자 카풀 목록 - 동윤
 
 	int updatePassNumNow(int CP_num);	// 현재 매칭완료된 좌석 수
-	
-	
-	
-	
+
+	List<Carpool> cpAllList(Carpool carpool); // 타세요 목록 - 관리자메인
+
 	
 }

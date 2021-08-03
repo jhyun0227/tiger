@@ -47,14 +47,17 @@ public class HomeController {
 	}
 	
 	@RequestMapping("adminMain")
-	public String adminMain(Apply apply, QnA qna, Report report, Reservation reservation, Model model) {
+	public String adminMain(Apply apply, Carpool carpool, QnA qna, Report report, Reservation reservation, Model model) {
 	
+		// 타세요 관리 리스트
+		List<Carpool> cpAllList = cps.cpAllList(carpool);
+		
 		// 예약내역 리스트
 		List<Reservation> rvAllList = rvs.rvAllList(reservation);
 		for (Reservation rv : rvAllList) {	
 	         int CP_num = rv.getCP_num();
-	         Carpool carpool = cps.select(CP_num); 
-	         int MB_numDv = carpool.getMB_num(); 
+	         Carpool carpool1 = cps.select(CP_num); 
+	         int MB_numDv = carpool1.getMB_num(); 
 	         Member member = mbs.selectNum(MB_numDv); 
 	         rv.setMB_nickNameDv(member.getMB_nickName()); 
 	         Member memberDB = mbs.selectNum(rv.getMB_num());
@@ -71,6 +74,7 @@ public class HomeController {
 		List<Report> rpAllList = rps.rpAllList(report);	// 신고 목록
 		
 		model.addAttribute("applyAllList", applyAllList);	
+		model.addAttribute("cpAllList", cpAllList);	
 		model.addAttribute("qnaAllList", qnaAllList);	
 		model.addAttribute("rpAllList", rpAllList);	
 		model.addAttribute("rvAllList", rvAllList);	

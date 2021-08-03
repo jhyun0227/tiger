@@ -98,4 +98,11 @@
 		update carpool set CP_passNumNow = nvl(CP_passNumNow, 0)+1 where CP_num=#{CP_num}
 	</update>
 	
+	<!-- 타세요 목록 - 관리자메인 -->
+	<select id="cpAllList" parameterType="carpool" resultType="carpool">
+		select * from (select a.*, rowNum rn from (select c.*, m.MB_nickName from carpool c, member m
+			where c.MB_num = m.MB_num order by c.CP_num desc) a)
+			where rn between 1 and 6
+	</select>	
+	
 </mapper>

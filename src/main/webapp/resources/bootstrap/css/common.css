@@ -47,6 +47,17 @@ body {
 	margin-top: 60px;
 }
 
+/* 텍스트 생략 */
+.ellip{
+	text-overflow:ellipsis; 
+	overflow:hidden; 
+	white-space:nowrap;
+}
+
+.ellip a{
+	color : #000000;
+}
+
 /* 타세요 신청현황 테이블 간격 임시 수정 --병우 */
 .narrowWidth40{
 	width: 40%;

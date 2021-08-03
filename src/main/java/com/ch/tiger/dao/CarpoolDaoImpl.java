@@ -77,6 +77,11 @@ public class CarpoolDaoImpl implements CarpoolDao {
 	public int updatePassNumNow(int CP_num) {
 		return sst.update("carpoolns.updatePassNumNow", CP_num);
 	}
+
+	// 타세요 목록 - 관리자메인
+	public List<Carpool> cpAllList(Carpool carpool) {
+		return sst.selectList("carpoolns.cpAllList", carpool);
+	}
 	
 }
 

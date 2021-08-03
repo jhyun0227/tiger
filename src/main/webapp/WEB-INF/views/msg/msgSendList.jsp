@@ -5,7 +5,6 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="/tiger/resources/bootstrap/css/common.css">
-<link rel="stylesheet" type="text/css" href="/tiger/resources/bootstrap/css/msgList.css">
 <script type="text/javascript">
 /* 체크박스 */
 $(function(){
@@ -110,6 +109,9 @@ function deleteValue(){
 					</td>
 					<td class="ellip">
 						<a href="msgView.do?MSG_num=${message.MSG_num }&pageNum=${pb.currentPage}">${message.MSG_content }</a>
+						<c:if test="${message.MSG_regDate >= nowday }">
+							<img alt="" src="/tiger/resources/icon/new-gif.gif" width="22px" height="14px">
+						</c:if>
 					</td>
 					<td class="text-center">${message.MSG_regDate }</td>
 				</c:if>

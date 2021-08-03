@@ -115,6 +115,9 @@ function deleteValue(){
 					</td>
 					<td class="ellip">
 						<a href="msgView.do?MSG_num=${message.MSG_num }&pageNum=${pb.currentPage}">${message.MSG_content }</a>
+						<c:if test="${message.MSG_regDate >= nowday }">
+							<img alt="" src="/tiger/resources/icon/new-gif.gif" width="22px" height="14px">
+						</c:if>
 					</td>
 					<td class="text-center">${message.MSG_regDate }</td>
 				</c:if>

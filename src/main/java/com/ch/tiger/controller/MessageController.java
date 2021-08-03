@@ -1,5 +1,7 @@
 package com.ch.tiger.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
@@ -79,6 +81,10 @@ public class MessageController {
 		Member member = mbs.select(MB_id);
 		int MB_num = member.getMB_num();
 		msg.setMB_numR(MB_num);
+		SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.DAY_OF_MONTH, -2); //2일간 보이기
+		String nowday = simpleDate.format(cal.getTime());
 		if(pageNum == null || pageNum.equals("")) pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
 		int rowPerPage = 10;
@@ -101,6 +107,7 @@ public class MessageController {
 		model.addAttribute("num", num);
 		model.addAttribute("pb", pb);
 		model.addAttribute("list", list);
+		model.addAttribute("nowday", nowday);
 		return "msg/msgRecieveList";
 	}
 	
@@ -111,6 +118,10 @@ public class MessageController {
 		Member member = mbs.select(MB_id);
 		int MB_num = member.getMB_num();
 		msg.setMB_numS(MB_num);
+		SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.DAY_OF_MONTH, -2); //2일간 보이기
+		String nowday = simpleDate.format(cal.getTime());
 		if(pageNum == null || pageNum.equals("")) pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
 		int rowPerPage = 10;
@@ -133,6 +144,7 @@ public class MessageController {
 		model.addAttribute("num", num);
 		model.addAttribute("pb", pb);
 		model.addAttribute("list", list);		
+		model.addAttribute("nowday", nowday);		
 		return "msg/msgSendList";
 	}
 	

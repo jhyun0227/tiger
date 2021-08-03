@@ -34,22 +34,20 @@
 			</li>
 			<li>
 				<h3>공지사항 관리</h3> 
-				<c:if test="${rvAllList.size() == 0}">
+				<c:if test="${noticeAllList.size() == 0}">
 					<p>내역이 존재하지 않습니다.</p>
 				</c:if> 
-				<c:if test="${rvAllList.size() != 0}">
-					<a href="adminRvList.do">+ 자세히</a>
+				<c:if test="${noticeAllList.size() != 0}">
+					<a href="adminNoticeList.do">+ 자세히</a>
 					<table>
 						<tr>
-							<th class="col-md-3">작성자</th>
-							<th class="col-md-3">신청자</th>
-							<th class="col-md-6">출발지</th>
+							<th class="col-md-9">제목</th>
+							<th class="col-md-3">작성일</th>
 						</tr>
-						<c:forEach items="${rvAllList }" var="reservation">
+						<c:forEach items="${noticeAllList }" var="notice">
 							<tr>
-								<td class="text-center">${reservation.MB_nickNameDv }</td>
-								<td class="text-center">${reservation.MB_nickName }</td>
-								<td>${reservation.CP_startPoint }</td>
+								<td class=" ellip">${notice.NT_title }</td>
+								<td class="text-center">${notice.NT_regDate }</td>
 							</tr>
 						</c:forEach>
 					</table>

@@ -99,7 +99,7 @@
 				</td>
 				<th>출발시간</th>
 				<td>
-					<input type="text" name="CP_startTime" id="CP_startTime" value="${carpool.CP_startTime }">
+					<input type="text" name="CP_startTime" required="required">
 				</td>
 				<th>카풀 인원</th>
 				<td>

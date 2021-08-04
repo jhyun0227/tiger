@@ -463,7 +463,7 @@ function drawLine(arrPoint, traffic) {
 							"endIndex" : traffic[z][1],
 							"trafficIndex" : traffic[z][2],
 						};
-						tInfo.push(trafficObject)
+						tInfo.push(trafficObject);
 					}
 
 					for (var x = 0; x < tInfo.length; x++) {

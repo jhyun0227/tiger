@@ -11,6 +11,8 @@
 <script
 	src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xxb7514833e4e14e1492e2da0675e6772f"></script>
 <script type="text/javascript" src="${path }/resources/bootstrap/js/tmap_cpView.js"></script>
+<!-- 타세요 only CSS-->
+<link href="${path }/resources/bootstrap/css/carpool.css" rel="stylesheet" />
 </head>
 <body onload="initTmap();">
 	<h1 class="title">타세요 상세</h1>
@@ -26,13 +28,13 @@
 			<tr>
 				<th class="width">출발지</th>
 				<td colspan="5">
-					<input type="text" id="CP_startPoint" readonly="readonly" value="${carpool.CP_startPoint }" width="100px">
+					<input type="text" id="CP_startPoint" readonly="readonly" value="${carpool.CP_startPoint }" size="35" class="inputLine2">
 				</td>
 			</tr>
 			<tr>
 				<th class="width">도착지</th>
 				<td colspan="5">
-					<input type="text" id="CP_endPoint" readonly="readonly" value="${carpool.CP_endPoint }">
+					<input type="text" id="CP_endPoint" readonly="readonly" value="${carpool.CP_endPoint }" size="35" class="inputLine2">
 				</td>
 			</tr>
 			<!-- 지도 공간 -->
@@ -67,7 +69,7 @@
 			<tr>
 				<th class="width">기타 요구사항</th>
 				<td colspan="5">
-					<textarea rows="5" cols="100">${carpool.CP_comment }</textarea>
+					<pre style="width:100%;" class="textBox">${carpool.CP_comment }</pre>
 				</td>
 			</tr>
 		</table>
@@ -78,7 +80,7 @@
 		<div align="center">
 			<c:if test="${member.MB_num != carpool.MB_num}">
 				<h1 class="title">신청 현황</h1>
-				<table class="table table-striped narrowWidth40">
+				<table class="table table-striped narrowWidth60">
 				<tr>
 					<th class="text-center">닉네임</th>
 					<th class="text-center">성별</th>
@@ -139,7 +141,7 @@
 		<div align="center">
 			<c:if test="${member.MB_num == carpool.MB_num}">
 				<h1 class="title">신청 현황</h1>
-				<table class="table table-striped narrowWidth40">
+				<table class="table table-striped narrowWidth60">
 					<tr>
 						<th class="text-center">닉네임</th>
 						<th class="text-center">성별</th>

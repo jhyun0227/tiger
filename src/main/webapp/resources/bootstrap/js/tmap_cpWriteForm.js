@@ -180,7 +180,14 @@ function initTmap() {
 			}
 		});
 	}
-
+	
+	$("#clear").click(function () {	// 경로, 마커 모두 초기화
+		resettingMap();
+		$("#CP_startPoint").val("");
+		$("#CP_endPoint").val("");
+		$("#CP_duration").val("");
+	});
+	
 	// 3. 경로탐색 API 사용요청
 	$("#btn_select").click(function() {
 		

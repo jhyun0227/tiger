@@ -2,6 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="noticens">
+
+	<!-- 공지사항 갯수 -->
 	<select id="getNtTotal" parameterType="notice" resultType="integer">
 		select count(*) from notice where NT_del='N'
 			<if test="keyword!=null and keyword!=''">
@@ -14,6 +16,8 @@
 				</if>
 			</if>
 	</select>
+	
+	<!-- 공지사항 목록 -->
 	<select id="noticeList" parameterType="notice" resultType="notice">
 		select * from (select a.*, rowNum rn from (select * from notice
 			<where>
@@ -30,20 +34,35 @@
 			order by NT_num desc) a)
 			where NT_del = 'N' and rn between #{startRow} and #{endRow}
 	</select>
+	
+	<!-- 최신글 번호 -->
 	<select id="getMaxNum" resultType="integer">
 		select nvl(max(NT_num), 0) + 1 from notice
 	</select>
+	
+	<!-- 공지사항 작성 -->
 	<insert id="noticeWrite" parameterType="notice">
 		insert into notice values(#{NT_num}, #{NT_title}, sysdate, #{NT_content}, 'N', #{MB_num})
 	</insert>
+	
+	<!-- 공지사항 선택 -->
 	<select id="select" parameterType="integer" resultType="notice">
 		select * from notice where NT_num=#{NT_num}
 	</select>
+	
+	<!-- 공지사항 수정 -->
 	<update id="noticeUpdate" parameterType="notice">
 		update notice set NT_title=#{NT_title}, NT_content=#{NT_content} where NT_num=#{NT_num}
 	</update>
+	
+	<!-- 공지사항 삭제 -->
 	<update id="noticeDelete" parameterType="integer">
 		update notice set NT_del='Y' where NT_num=#{NT_num}
 	</update>
 	
+	<!-- 관리자 메인 공지사항 목록 -->
+	<select id="noticeAllList" parameterType="notice" resultType="notice">
+		select * from (select a.*, rowNum rn from (select * from notice
+		order by NT_num desc) a) where NT_del = 'N' and rn between 1 and 6
+	</select>
 </mapper>

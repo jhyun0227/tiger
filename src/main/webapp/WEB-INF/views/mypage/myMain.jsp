@@ -34,14 +34,14 @@
 	}
 	      
 	.thumbnail {
-		height: 225px;
-		width: 170px;
+		height: 200px;
+		width: 200px;
 		margin-top: 0;
-		margin-left: 10px;
+		margin-left: 60px;
 	}
 	#line {
 		margin-top: 0px;
-		margin-left: 55px;
+		margin-left: 120px;
 	}
 	 
 </style>	  

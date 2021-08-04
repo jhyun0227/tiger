@@ -162,7 +162,7 @@
 						<input type="password" name="MB_pw" id="pw" maxlength="12" autocomplete="false"
 								class="inputLine"  placeholder="변경 비밀번호(영문자, 숫자, 4자 이상)" 
 								required="required">
-							<div id="keyShow">show</div>
+							<div id="keyShow">SHOW</div>
 						<div class="alert alert-danger" id="alert1" >
 						     "숫자와 영문자를 포함해서 4자리 이상 "</div>
 						<div class="alert alert-danger" id="alert2">"공백 없이 입력"</div>

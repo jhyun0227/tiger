@@ -64,8 +64,8 @@
 	
 	<!-- 회원가입 -->
 	<insert id="insert" parameterType="member">
-		insert into member(MB_num, MB_id, MB_pw, MB_name, MB_regNum, MB_gender, MB_nickName, MB_tel, MB_regDate)
-					values((select nvl(max(MB_num), 0)+1 from member), #{MB_id}, #{MB_pw}, #{MB_name}, #{MB_regNum}, #{MB_gender}, #{MB_nickName}, #{MB_tel}, sysdate)
+		insert into member(MB_num, MB_id, MB_pw, MB_name, MB_regNum, MB_gender, MB_nickName, MB_tel, MB_regDate, MB_img)
+					values((select nvl(max(MB_num), 0)+1 from member), #{MB_id}, #{MB_pw}, #{MB_name}, #{MB_regNum}, #{MB_gender}, #{MB_nickName}, #{MB_tel}, sysdate, 'profile.png')
 	</insert>
 	
 	<!-- 아이디 찾기 -->

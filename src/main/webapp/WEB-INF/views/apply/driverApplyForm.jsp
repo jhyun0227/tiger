@@ -14,20 +14,33 @@
 	#file_len {
 		width: 100%;
 		text-align: center;
+		margin-left: 50px
 	}
 	 #box{
 	 	margin-top: -20px;  
 	 } 
-	 .thumbnail {
-		height: 170px;  
-		width: 140px;; 
-		margin-top: 0; 
-		margin-bottom: 8px; 
-	} 
+	 .thumbnail{
+      width: 200px;
+      height: 150px;
+      margin-top: -10px;
+      margin-left: 100px;
+   } 
 	.err {
 		color: #3243A8;
 		font-weight: bold;add
-	}         
+	}
+	
+	.thumb {
+		height: 150px;
+		width: 200px; 
+		margin-top: 55px;
+		margin-bottom: 10px;
+		margin-left: 100px;
+	} 
+	
+	.btn_sm_full {
+		margin-left: 100px
+	}
 </style>	
 <script type="text/javascript">
 
@@ -118,9 +131,9 @@
 	<form action="driverApplyResult.do" method="post" name="frm" enctype="multipart/form-data"> 
 	 	<input type="hidden" name="MB_num" value="${member.MB_num }">
 	 <div class="row">
-	 	<div class="col-md-3" id="img_box"  > 
+	 	<div class="col-md-4" id="img_box"  > 
 	 		<c:if test="${empty AP_picture}">  
-			<img alt="" src="${path }/resources/main/none_dr.png" class="thumb" 
+			<img alt="" src="${path }/resources/main/none_dr.png" class="thumb" width="150px"
 					data-toggle="tooltip" data-placement="left" 
 					title="운전면허증 앞면 사진을 첨부해 주세요">
 			</c:if>  
@@ -135,7 +148,7 @@
 					       style="display:none;" onchange="preView(this);"  required="required">
 			</div>      
 	 	</div>
-	 	<div class="col-md-9 " id="inform_box">
+	 	<div class="col-md-8 " id="inform_box">
 	 			<h4 class="text-center">차량 정보 입력</h4>  
 			    <table class="table narrowWidth80 ">  
 					<tr>

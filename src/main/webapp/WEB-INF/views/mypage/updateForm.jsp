@@ -34,15 +34,17 @@
 	} 
 	   
 	.thumbnail {
-		height: 170px;  
-		width: 140px;; 
+		height: 190px;  
+		width: 190px;; 
 		margin-top: 0; 
-		margin-bottom: 8px; 
+		margin-bottom: 8px;
+		margin-left : 100px
 	}  
 		 
 	#fileA {
 		width: 100%;
 		text-align: center;
+		margin-left: 50px;
 	} 
 	#nameA {
 		width: 100%;  
@@ -56,6 +58,10 @@
 	input{
 		color: #637DBA;
 	}
+	
+	.filebox label {
+    margin-left: 53px;
+  } 
 </style>
 <script type="text/javascript">
 // 중복체크안해도 submit 버튼 활성화
@@ -140,7 +146,7 @@
 		</div>
 	<input type="hidden" name="MB_id" value="${member.MB_id }">			
 		<div class="row">  
-			<div class="col-md-4" id="img_box"  > 
+			<div class="col-md-5" id="img_box"  > 
 				<c:if test="${empty member.MB_img }">
 					<img alt="" src="${path }/resources/main/none_img3.jpg" class="thumbnail" >
 				</c:if> 
@@ -150,14 +156,14 @@
 			     <div class="filebox">   
 											<!-- 그림있는 곳에 커셔가 가면 메세지 나옴 -->
 					<label for="ex_filename"  data-toggle="tooltip" data-placement="left" 	
-					                          title="이미지를 선택하세요" id="nameA"> upload</label>
+					                          title="이미지를 선택하세요" id="nameA">upload</label>
 					     <input class="upload-name " disabled="disabled" id="fileA" ><br> 
 				         <input type="file" name="file" id="ex_filename" class="upload-hidden"
 					              style="display:none;"  onchange="preView(this);">  
 	  		     </div> 
 	  
 			</div>
-			<div class="col-md-8" id="inform_box">	
+			<div class="col-md-7" id="inform_box">	
 				<table class="table">  
 					   <tr>
 							<td class="col-md-4 text-center">이메일</td>

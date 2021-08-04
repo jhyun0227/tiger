@@ -61,12 +61,12 @@
 			<tr>
 				<th>출발지</th>
 				<td>
-					<input type="text" id="CP_startPoint" name="CP_startPoint" placeholder="출발지" required="required" class="inputLine">	
+					<input type="text" id="CP_startPoint" name="CP_startPoint" placeholder="출발지" readonly="readonly" class="inputLine">	
 					<input type="button" class="btn" id="selectSP" value="출발지 등록">
 				</td>
 				<th>도착지</th>
 				<td colspan="4">
-					<input type="text" id="CP_endPoint" name="CP_endPoint" placeholder="도착지" required="required" class="inputLine">
+					<input type="text" id="CP_endPoint" name="CP_endPoint" placeholder="도착지" readonly="readonly" class="inputLine">
 					<input type="button" class="btn" id="selectEP" value="도착지 등록">
 				</td>
 			</tr>
@@ -128,7 +128,7 @@
 				</td>
 				<th>소요시간</th>
 				<td colspan="3">
-					<input type="number" name="CP_duration" id="CP_duration" placeholder="소요시간 입력.." required="required" class="inputLine">분
+					<input type="number" name="CP_duration" id="CP_duration" readonly="readonly" required="required" class="inputLine">분
 				</td>
 			</tr>
 			<tr>

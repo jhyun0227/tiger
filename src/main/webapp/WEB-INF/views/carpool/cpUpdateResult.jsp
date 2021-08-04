@@ -11,7 +11,7 @@
 	<c:if test="${result > 0 }">
 		<script type="text/javascript">
 			alert("수정 성공");
-			location.href = "cpList.do?pageNum=${pageNum}";
+			location.href = "cpView.do?CP_num=${carpool.CP_num}&pageNum=${pageNum}";
 		</script>
 	</c:if>
 	<c:if test="${result == 0 }">

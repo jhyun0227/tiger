@@ -26,7 +26,7 @@
 		margin-top: 65px;
 	}
 	.thumbnail{
-		width: 200px;
+		width: 250px;
 		height: 150px;
 		margin-top: -10px;
 	} 

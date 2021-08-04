@@ -15,7 +15,6 @@
 	#file_len {
 		width: 100%;
 		text-align: center;
-		margin-left: 50px
 	}
 	
 	 #box{

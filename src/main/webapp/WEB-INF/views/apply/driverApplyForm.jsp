@@ -18,11 +18,11 @@
 	 #box{
 	 	margin-top: -20px;  
 	 } 
-	 .thumbnail {
-		height: 170px;  
-		width: 140px;; 
-		margin-top: 0; 
-		margin-bottom: 8px; 
+ 	 .thumb1 {
+		height: 200px;  
+		width: 150px;; 
+		margin-top: 10px; 
+		margin-bottom: -25px; 
 	} 
 	.err {
 		color: #3243A8;
@@ -125,7 +125,7 @@
 					title="운전면허증 앞면 사진을 첨부해 주세요">
 			</c:if>  
 			<c:if test="${not empty AP_picture}">
-				<img alt=""  class="thumbnail"   
+				<img alt=""  class="thumb"     
 				     src="${path }/resources/applyImg/${apply.AP_picture}">	
 			</c:if>	     		
 			<div class="filebox" id="box">   

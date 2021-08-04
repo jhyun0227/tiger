@@ -5,6 +5,15 @@
 <html>
 <head>
 <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
+<style type="text/css">
+	#line1 {
+		padding-right: 10px;
+	}
+	#line2 {
+		padding-left: 10px;
+		padding-right: 0;
+	}
+</style>
 </head>
 <body>  
 	<h1 class="title">타세요 관리 목록</h1>
@@ -25,8 +34,8 @@
 					<input type="submit" value="검색" class="btn_search">
 			</form>
 		</div>
-	<table class="table">
-		<tr>
+	<table class="table" style="table-layout: fixed;">
+		<tr> 
 			<th class="col-md-1 text-center">번호</th>
 			<th class="col-md-1 text-center">상세</th>
 			<th class="col-md-1 text-center">작성자</th>
@@ -59,9 +68,9 @@
 						<a onclick="window.open('profileView.do?MB_nickName=${carpool.MB_nickName }', '',
 							'width=500,height=560,location=no,status=no,scrollbars=yes');" class="inputLineA">${carpool.MB_nickName }</a>
 					</td>
-					<td class="col-md-2 text-center">${carpool.CP_startPoint }</td>
-					<td class="col-md-2 text-center">${carpool.CP_endPoint }</td>
-					<td class="col-md-2 text-center">${carpool.CP_startDate }</td>
+					<td class="col-md-2 text-center ellip" id="line1">${carpool.CP_startPoint }</td>
+					<td class="col-md-2 text-center ellip" id="line2" >${carpool.CP_endPoint }</td>
+					<td class="col-md-2 text-center " >${carpool.CP_startDate }</td>
 					<td class="col-md-1 text-center">${carpool.CP_startTime }</td>
 					<td class="col-md-1 text-center">
 						<c:if test="${carpool.CP_passNumNow < carpool.CP_passNum }">

@@ -73,7 +73,7 @@
 	                  			
 							
 								<label class="col-sm-2 control-label">성별제한</label>
-								<label class="radio-inline"><input type="radio" name="CP_gendertype" id="CP_gendertype1" value=" 무관"> 무관 </label>
+								<label class="radio-inline"><input type="radio" name="CP_gendertype" id="CP_gendertype1" value=" 무관" checked="checked"> 무관 </label>
 								<label class="radio-inline"><input type="radio" name="CP_gendertype" id="CP_gendertype2" value=" 남자"> 남자 </label>
 								<label class="radio-inline"><input type="radio" name="CP_gendertype" id="CP_gendertype2" value=" 여자"> 여자 </label>
 									

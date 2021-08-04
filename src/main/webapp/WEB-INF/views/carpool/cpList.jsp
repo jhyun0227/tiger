@@ -15,7 +15,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <title>Insert title here</title>
 <script type="text/javascript">
-	$("#myModal").on('show.'("/")
+	$("#myModal").on('show.'("/"))
 </script>
 <!-- 타세요 only CSS-->
 <link href="${path }/resources/bootstrap/css/carpool.css" rel="stylesheet" />
@@ -72,7 +72,7 @@
 			<c:if test="${carpool.CP_del != 'Y' }">
 			<div class="col-sm-4">
 				<div class="power">
-					<table>
+					<table style="table-layout:fixed">
 						<!-- 1.현재날짜와 비교해서 출발일이 이후 일때 목록 보여줌 -->
 						<c:if test="${today < carpool.CP_startDate}">
 							<input type="hidden" value="${CP_num}"><c:set var="CP_num" value="${CP_num - 1}"></c:set>
@@ -90,27 +90,27 @@
 								</td>
 							</tr>
 							<tr>
-								<td class="graphic"><span><img alt="" src="/tiger/resources/main/startpoint.png" width="20px" height="20px"></span></td>
-								<td class="right"><h5>${carpool.CP_startPoint }</h5></td>
+								<td colspan="2" class="ellip right">
+									<img alt="" src="/tiger/resources/main/startpoint.png" width="20px" height="20px" class="left">
+									${carpool.CP_startPoint }
+								</td>
 							</tr>
 							<tr>
-								<td><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"> </span></td>
+								<td colspan="2"><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"> </span></td>
 							</tr>
 							<tr class="bordered">
-								<td><span><img alt="" src="/tiger/resources/main/endpoint.png" width="20px" height="20px"></span></td>
-								<td class="right"><h5>${carpool.CP_endPoint }</h5></td>
+								<td colspan="2" class="ellip right">
+									<img alt="" src="/tiger/resources/main/endpoint.png" width="20px" height="20px" class="left">
+									${carpool.CP_endPoint }
+								</td>
 							</tr>
-							<tr >
+							<tr>
 								<td><h5>요금</h5></td>
 								<td class="right">
 									<!-- 요금 출력시 천단위마다 콤마(,) 찍기 -->
 									<fmt:formatNumber value="${carpool.CP_fee }" groupingUsed="true" /> 원
 								</td>
-							</tr>
-							<tr>
-								<td><h5>출발일</h5></td>
-								<td class="right">${carpool.CP_startDate }</td>
-							</tr>   
+							</tr> 
 							<tr>
 								<!-- 출발일에 맞는 요일 출력  -->
 								<td colspan="2" class="right"><fmt:formatDate pattern ="yyyy-MM-dd (E)" value="${carpool.CP_startDate }"/>ㅤ${carpool.CP_startTime }</td>
@@ -145,10 +145,8 @@
 						<!-- 2.현재날짜와 비교해서 지난 출발일들은 목록에서 보여주지 않음 -->
 						<c:if test="${today > carpool.CP_startDate}">
 							<tr>
-								<th class="text-center">출발시간이 지난 매칭입니다.</th>
-								<td>
-									<input type="hidden" value="${CP_num}"><c:set var="CP_num" value="${CP_num - 1}"></c:set>
-								</td>
+								<td colspan="2" class="text-center">출발시간이 지난 매칭입니다.</td>
+								<input type="hidden" value="${CP_num}"><c:set var="CP_num" value="${CP_num - 1}"></c:set>
 							</tr>
 						</c:if>
 						
@@ -171,17 +169,21 @@
 									</td>
 								</tr>
 								<tr>
-									<td class="graphic"><span><img alt="" src="/tiger/resources/main/startpoint.png" width="20px" height="20px"></span></td>
-									<td class="right"><h5>${carpool.CP_startPoint }</h5></td>
+									<td colspan="2" class="ellip right">
+										<img alt="" src="/tiger/resources/main/startpoint.png" width="20px" height="20px" class="left">
+										${carpool.CP_startPoint }
+									</td>
 								</tr>
 								<tr>
-									<td><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span></td>
+									<td colspan="2"><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"> </span></td>
 								</tr>
 								<tr class="bordered">
-									<td><span><img alt="" src="/tiger/resources/main/endpoint.png" width="20px" height="20px"></span></td>
-									<td class="right"><h5>${carpool.CP_endPoint }</h5></td>
+									<td colspan="2" class="ellip right">
+										<img alt="" src="/tiger/resources/main/endpoint.png" width="20px" height="20px" class="left">
+										${carpool.CP_endPoint }
+									</td>
 								</tr>
-								<tr >
+								<tr>
 									<td><h5>요금</h5></td>
 									<td class="right">
 										<!-- 요금 출력시 천단위마다 콤마(,) 찍기 -->
@@ -312,7 +314,7 @@
 		      	<p5>&nbsp;&nbsp;&nbsp; - 작성하신 타세요의 운행건에 대한 취소는 최소 출발시간의 30분전까지 가능합니다. </p5><br>
 		      	<p5>&nbsp;&nbsp;&nbsp; - 신청하신 타세요의 탑승건에 대한 취소는 최소 출발시간의 10분전까지 가능합니다. </p5>
 		        <br>
-		       	<p4>■ 여러분의 쾌적한 서비시 이용을 위한 운영정책을 적용하고 있습니다.  </p4> 
+		       	<p4>■ 여러분의 쾌적한 서비스 이용을 위한 운영정책을 적용하고 있습니다.  </p4> 
 		       	 <br>
 		      	<p5>&nbsp;&nbsp;&nbsp;서비스 이용 중 다른 이용자의 운영정책 위반 행위로 인한 피해를 입으신 경우,
 		      	여러분은 이를 회사에 제보하여 운영정책의 적용을 요청할 수 있으며, 회사는 신고내용을 확인하여

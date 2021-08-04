@@ -22,6 +22,15 @@
 </head>
 <body>
 <h1 class="title">타세요 목록</h1>
+<!-- 타세요 작성 버튼 -->
+	<div align="right" class="formtag">
+		<a href="cpWriteForm.do?CP_num=0&pageNum=1" class="btn_sm_full">타세요 작성</a>
+		
+	<!-- Button trigger modal -->
+		<button type="button" class="btn_sm_stroke" data-toggle="modal" data-target="#myModal">
+		서비스 이용약관
+		</button>
+	</div>
 <!-- 검색창 -->
 <div class="searchDIV">
 	<form action="cpList.do" class="searchtag">
@@ -33,16 +42,8 @@
 		<input type="text" name="keyword" value="${carpool.keyword }" class="inputUnderLine">
 		<input type="submit" value="검색" class="btn_search">
 	</form>
+</div>
 	
-	<!-- 타세요 작성 버튼 -->
-	<div align="right" class="formtag">
-		<a href="cpWriteForm.do?CP_num=0&pageNum=1" class="btn_sm_full">타세요 작성</a>
-		
-	<!-- Button trigger modal -->
-		<button type="button" class="btn_sm_stroke" data-toggle="modal" data-target="#myModal">
-		서비스 이용약관
-		</button>
-	</div>
 <!-- 타세요 목록  -->
 <div align="center">
 	<c:if test="${empty cpList }">
@@ -145,8 +146,8 @@
 						<!-- 2.현재날짜와 비교해서 지난 출발일들은 목록에서 보여주지 않음 -->
 						<c:if test="${today > carpool.CP_startDate}">
 							<tr>
-								<td colspan="2" class="text-center">출발시간이 지난 매칭입니다.</td>
-								<input type="hidden" value="${CP_num}"><c:set var="CP_num" value="${CP_num - 1}"></c:set>
+								<td class="text-center">출발시간이 지난 매칭입니다.</td>
+								<td><input type="hidden" value="${CP_num}"><c:set var="CP_num" value="${CP_num - 1}"></c:set></td>
 							</tr>
 						</c:if>
 						
@@ -331,6 +332,5 @@
 	  			</div>
 	   		</div>
 	 	</div>
-	</div>  
 </body>
 </html>

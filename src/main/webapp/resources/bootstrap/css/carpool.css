@@ -201,3 +201,12 @@ div.formtag {
 	margin-bottom: 0px;
     margin-top: 0px;
 }
+
+label {
+    margin-bottom: 0px;
+    font-weight: 400;
+}
+
+input[type=date], input[type=time] {
+    line-height: 20px;
+}

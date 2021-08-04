@@ -3,7 +3,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!-- 현재시간 불러와서 타세요 글 작성시 지난 날짜 입력 방지 -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
+<c:set var="opt" value="${carpool.CP_option }"></c:set>
 <jsp:useBean id="now" class="java.util.Date" />
 <fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
 <fmt:formatDate value="${now}" pattern="HH:mm" var="todayTime" />
@@ -121,23 +123,23 @@
 			<tr>
 				<th class="width">성별제한</th>
 				<td>
-					<label class="radio-inline">
-					<input type="radio" name="CP_gendertype" id="CP_gendertype1" value=" 무관" checked="<c:if test="${carpool.CP_gendertype eq ' 무관'}">checked</c:if>"/> 무관 </label>
-					<label class="radio-inline">
-					<input type="radio" name="CP_gendertype" id="CP_gendertype2" value=" 남자" checked="<c:if test="${carpool.CP_gendertype eq ' 남자'}">checked</c:if>"/> 남자 </label>
-					<label class="radio-inline">
-					<input type="radio" name="CP_gendertype" id="CP_gendertype2" value=" 여자" checked="<c:if test="${carpool.CP_gendertype eq ' 여자'}">checked</c:if>"/> 여자 </label>
+					<input type="radio" name="CP_gendertype" id="CP_gendertype1" value=" 무관" <c:if test="${carpool.CP_gendertype==' 무관'}">checked="checked"</c:if>> 
+					<label for="CP_gendertype1">무관　</label>
+					<input type="radio" name="CP_gendertype" id="CP_gendertype2" value=" 남자" <c:if test="${carpool.CP_gendertype==' 남자'}">checked="checked"</c:if>>
+					<label for="CP_gendertype2">남자　</label>
+					<input type="radio" name="CP_gendertype" id="CP_gendertype3" value=" 여자" <c:if test="${carpool.CP_gendertype==' 여자'}">checked="checked"</c:if>>
+					<label for="CP_gendertype3">여자　</label>
 				</td>
 				<th class="width">참고사항</th>
 				<td colspan="3">
-					<label class="radio-inline">
-					<input type="checkbox" name="CP_option" id="CP_option1" value=" 애완동물 허용" checked="<c:if test="${carpool.CP_comment eq ' 애완동물 허용'}">checked</c:if>"/> 애완동물 허용 </label>
-					<label class="radio-inline">
-					<input type="checkbox" name="CP_option" id="CP_option2" value=" 조용한 카풀" checked="<c:if test="${carpool.CP_comment eq ' 조용한 카풀'}">checked</c:if>"/> 조용한 카풀 </label>
-					<label class="radio-inline">
-					<input type="checkbox" name="CP_option" id="CP_option3" value=" 음식물 섭취" checked="<c:if test="${carpool.CP_comment eq ' 음식물 섭취'}">checked</c:if>"/> 음식물 섭취 </label>
-					<label class="radio-inline">
-					<input type="checkbox" name="CP_option" id="CP_option4" value=" 마스크 착용" checked="<c:if test="${carpool.CP_comment eq ' 마스크 착용'}">checked</c:if>"/> 마스크 착용 </label>
+					<input type="checkbox" name="CP_option" id="CP_option1" value=" 애완동물 허용" <c:if test="${fn:contains(opt,' 애완동물 허용')}">checked="checked"</c:if>>
+					<label for="CP_option1">애완동물 허용　</label>
+					<input type="checkbox" name="CP_option" id="CP_option2" value=" 조용한 카풀" <c:if test="${fn:contains(opt,' 조용한 카풀')}">checked="checked"</c:if>>
+					<label for="CP_option2">조용한 카풀　</label>
+					<input type="checkbox" name="CP_option" id="CP_option3" value=" 음식물 섭취" <c:if test="${fn:contains(opt,' 음식물 섭취')}">checked="checked"</c:if>>
+					<label for="CP_option3">음식물 섭취　</label>
+					<input type="checkbox" name="CP_option" id="CP_option4" value=" 마스크 착용" <c:if test="${fn:contains(opt,' 마스크 착용')}">checked="checked"</c:if>>
+					<label for="CP_option4">마스크 착용　</label>
 				</td>
 			</tr>
 			<tr>

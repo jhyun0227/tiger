@@ -118,7 +118,7 @@
 						<td class="col-md-4 text-center">드라이버</td>
 						<td class="col-md-8" id="confirm">승인 |
 							<span>
-							 <a href="driverApplyConfirm.do?MB_id=${member.MB_id }">신청서 상세내역</a>
+							 <a class="inputLineA" href="driverApplyConfirm.do?MB_id=${member.MB_id }">신청서 상세내역</a>
 							 </span>
 						</td>  
 					</tr>
@@ -133,7 +133,7 @@
 								 <span>심사중</span>
 							 </div>&nbsp;&nbsp;
 							 <span>
-							 <a href="driverApplyConfirm.do?MB_id=${member.MB_id }">신청서 상세내역</a>
+							 <a class="inputLineA" href="driverApplyConfirm.do?MB_id=${member.MB_id }">신청서 상세내역</a>
 							 </span>
 						</td>
 					</tr>

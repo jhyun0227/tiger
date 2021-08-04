@@ -261,7 +261,7 @@ body{
 }
 
 .btn_sm_full{
-    margin-bottom: -22px;
+/*     margin-bottom: -22px; */
     padding: 6px 13px;
     border: none;
     font-size: 14px;
@@ -272,10 +272,10 @@ body{
 
 
 
-.btn_sm_full:hover{
-    margin-bottom: -22px;
-    padding: 6px 13px;
-    border: none;
+.btn_sm_full:hover {
+    /* margin-bottom: -22px; */
+    /* padding: 6px 13px; */
+    /* border: none; */
     font-size: 14px;
     color: #aaffff;
     background: #3243A8;

@@ -11,23 +11,41 @@
 		outline: 0;
 		width: 35%;  
 	}    
+	
 	#file_len {
 		width: 100%;
 		text-align: center;
 	}
+	
 	 #box{
 	 	margin-top: -20px;  
 	 } 
+	 
+	 #img_box {
+	 	margin-top: 40px;
+	 }
+	 
 	 .thumbnail {
-		height: 170px;  
-		width: 140px;; 
+	 	border: none;
+		width: 100%;
+		padding: 0;
+	} 
+
+	.filebox label {
+		height: 38px;
+	}
+
+	 .thumb {
+	 	border: none;
+		width: 100%;; 
 		margin-top: 0; 
 		margin-bottom: 8px; 
 	} 
+	
 	.err {
 		color: #3243A8;
 		font-weight: bold;add
-	}         
+	}    
 </style>	
 <script type="text/javascript">
 
@@ -66,11 +84,11 @@
 // 파일 업로드 미리보기
 	 function preView(fis) {  
 		   var str = fis.value;
-	       $('.thumb').text(fis.value.substring(str.lastIndexOf("\\")+1));
+	       $('.thumbnail').text(fis.value.substring(str.lastIndexOf("\\")+1));
 	       // 이미지를 변경한다.
 	       var reader = new FileReader();
 		   reader.onload = function(e){  
-		   $('.thumb').attr('src',e.target.result);
+		   $('.thumbnail').attr('src',e.target.result);
 	      }
 	   	 reader.readAsDataURL(fis.files[0]);
 	}  
@@ -118,14 +136,13 @@
 	<form action="driverApplyResult.do" method="post" name="frm" enctype="multipart/form-data"> 
 	 	<input type="hidden" name="MB_num" value="${member.MB_num }">
 	 <div class="row">
-	 	<div class="col-md-3" id="img_box"  > 
+	 	<div class="col-md-4 col-lg-3" id="img_box"  > 
 	 		<c:if test="${empty AP_picture}">  
-			<img alt="" src="${path }/resources/main/none_dr.png" class="thumb" 
-					data-toggle="tooltip" data-placement="left" 
-					title="운전면허증 앞면 사진을 첨부해 주세요">
+				<img alt="" src="${path }/resources/main/none_dr.png" class="thumbnail" 
+					data-toggle="tooltip" data-placement="left" title="운전면허증 앞면 사진을 첨부해 주세요">
 			</c:if>  
 			<c:if test="${not empty AP_picture}">
-				<img alt=""  class="thumbnail"   
+				<img alt=""  class="thumb"   
 				     src="${path }/resources/applyImg/${apply.AP_picture}">	
 			</c:if>	     		
 			<div class="filebox" id="box">   
@@ -135,7 +152,7 @@
 					       style="display:none;" onchange="preView(this);"  required="required">
 			</div>      
 	 	</div>
-	 	<div class="col-md-9 " id="inform_box">
+	 	<div class="col-md-8 col-lg-9" id="inform_box">
 	 			<h4 class="text-center">차량 정보 입력</h4>  
 			    <table class="table narrowWidth80 ">  
 					<tr>

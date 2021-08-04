@@ -521,9 +521,9 @@ function initTmap() {
 
             var resultData = response.features;
 
-            var tDistance = "총 거리 : " + (resultData[0].properties.totalDistance / 1000).toFixed(1) + "km,";
-            var tTime = " 총 시간 : " + (resultData[0].properties.totalTime / 60).toFixed(0) + "분,";
-            var tFare = " 통행료 : " + resultData[0].properties.totalFare + "원,";
+            var tDistance = "총 거리 : " + (resultData[0].properties.totalDistance / 1000).toFixed(1) + "km,ㅤ";
+            var tTime = " 총 시간 : " + (resultData[0].properties.totalTime / 60).toFixed(0) + "분,ㅤ";
+            var tFare = " 통행료 : " + resultData[0].properties.totalFare + "원,ㅤ";
             var taxiFare = " 예상 택시 요금 : " + resultData[0].properties.taxiFare + "원";
 
             $("#resultInfo").text(tDistance + tTime + tFare + taxiFare);

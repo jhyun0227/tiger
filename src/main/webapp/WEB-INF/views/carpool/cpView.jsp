@@ -20,24 +20,24 @@
 				
 		<table class="table">
 			<tr>
-				<th>작성자</th>
-				<td>${memberDB.MB_nickName}</td>
+				<th class="width">작성자</th>
+				<td colspan="5">${memberDB.MB_nickName}</td>
 			</tr>
 			<tr>
-				<th>출발지</th>
-				<td>
-					<input type="text" id="CP_startPoint" readonly="readonly" value="${carpool.CP_startPoint }">
+				<th class="width">출발지</th>
+				<td colspan="5">
+					<input type="text" id="CP_startPoint" readonly="readonly" value="${carpool.CP_startPoint }" width="100px">
 				</td>
 			</tr>
 			<tr>
-				<th>도착지</th>
-				<td>
+				<th class="width">도착지</th>
+				<td colspan="5">
 					<input type="text" id="CP_endPoint" readonly="readonly" value="${carpool.CP_endPoint }">
 				</td>
 			</tr>
 			<!-- 지도 공간 -->
 			<tr>
-				<td colspan="2">
+				<td colspan="6">
 					<div id="map_div"></div>
 					<!-- <p id="result_s"></p>
 					<p id="result_e"></p> -->
@@ -45,30 +45,28 @@
 				</td>
 			</tr>
 			<tr>
-				<th>출발일</th>
+				<th class="width">출발일</th>
 				<td>${carpool.CP_startDate }</td>
-				<th>출발시간</th>
+				<th class="width">출발시간</th>
 				<td>${carpool.CP_startTime }</td>
+				<th class="width">카풀 인원</th>
+				<td>${carpool.CP_passNum } 명</td>
 			</tr>
 			<tr>
-				<th>카풀 인원</th>
-				<td colspan="3">${carpool.CP_passNum } 명</td>
-			</tr>
-			<tr>
-				<th>금액</th>
+				<th class="width">금액</th>
 				<td>${carpool.CP_fee } 원 / 1인</td>
-				<th>소요시간</th>
-				<td>${carpool.CP_duration } 분</td>
+				<th class="width">소요시간</th>
+				<td colspan="3">${carpool.CP_duration } 분</td>
 			</tr>
 			<tr>
-				<th>성별 제한</th>
+				<th class="width">성별 제한</th>
 				<td>${carpool.CP_gendertype }</td>
-				<th>참고사항</th>
-				<td>${carpool.CP_option }</td>
+				<th class="width">참고사항</th>
+				<td colspan="3">${carpool.CP_option }</td>
 			</tr>
 			<tr>
-				<th>기타 요구사항</th>
-				<td>
+				<th class="width">기타 요구사항</th>
+				<td colspan="5">
 					<textarea rows="5" cols="100">${carpool.CP_comment }</textarea>
 				</td>
 			</tr>
@@ -121,7 +119,7 @@
 					<!-- 로그인한 회원 정보 != 작성자 정보   -->
 					<c:if test="${sessionScope.MB_num != carpool.MB_num && sessionScope.MB_id != 'admin' }">
 						<a href="cpReportForm.do?CP_num=${carpool.CP_num }&MB_num=${carpool.MB_num }&MB_numR=${sessionScope.MB_num }
-							&pageNum=${pageNum }" class="btn btn-danger">신고</a>
+							&pageNum=${pageNum }" class="btn_sm_full2">신고</a>
 					</c:if>
 					<!-- 신청가능 인원수 다 채우면 신청 못하게 막음 -->
 					<c:if test="${carpool.CP_passNumNow < carpool.CP_passNum }">
@@ -166,8 +164,8 @@
 									</c:if>
 									<c:if test="${reservation.RSV_mConfirm == 'N' }">
 										<td class="text-center">
-											<a href="cpAcceptResult.do?MB_num=${reservation.MB_num}&CP_num=${carpool.CP_num}&pageNum=${pageNum }" class="btn btn_sm_stroke">수락</a>
-											<a href="cpDenialResult.do?MB_num=${reservation.MB_num}&CP_num=${carpool.CP_num}&pageNum=${pageNum }" class="btn btn_sm_stroke">거절</a>
+											<a href="cpAcceptResult.do?MB_num=${reservation.MB_num}&CP_num=${carpool.CP_num}&pageNum=${pageNum }" class="btn btn_sm_stroke2">수락</a>
+											<a href="cpDenialResult.do?MB_num=${reservation.MB_num}&CP_num=${carpool.CP_num}&pageNum=${pageNum }" class="btn btn_sm_stroke3">거절</a>
 										</td>
 									</c:if>
 								</c:if>

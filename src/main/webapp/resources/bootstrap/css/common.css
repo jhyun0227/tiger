@@ -63,6 +63,10 @@ body {
 	width: 40%;
 }
 
+th.width {
+	width: 10%;
+}
+
 .contents{
 	margin-top: 100px;
 	margin-bottom: 30px;
@@ -260,6 +264,24 @@ body{
     margin-top: 30px;
 }
 
+/* carpool 페이지 */
+/* 수락 버튼 */
+.btn_sm_stroke2 {
+    padding: 1px 12px;
+    border: 1px solid #9a9ca3;
+    font-size: 14px;
+    color: #ffffff;
+    background: #3243A8;
+}
+/* 거절 버튼 */
+.btn_sm_stroke3 {
+    padding: 1px 12px;
+    border: 1px solid #9a9ca3;
+    font-size: 14px;
+    color: #000000;
+    background: initial;
+}
+
 .btn_sm_full{
     margin-bottom: -22px;
     padding: 6px 13px;
@@ -270,6 +292,15 @@ body{
     margin-top: 15px;
 }
 
+.btn_sm_full2{
+    margin-bottom: -22px;
+    padding: 6px 13px;
+    border: none;
+    font-size: 14px;
+    color: #eee;
+    background: #dd0000;
+    margin-top: 15px;
+}
 
 
 .btn_sm_full:hover{

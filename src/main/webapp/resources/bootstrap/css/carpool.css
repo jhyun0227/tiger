@@ -2,6 +2,11 @@ button:focus {
      outline: none;
 }
 
+.left{
+	 float: left;
+	 margin-right: 10px;
+}
+
 a:hover {
     color: #fff;}
 
@@ -25,11 +30,15 @@ button.btn.btn-primary, button.btn.btn-primary:hover, button.btn.btn-primary:foc
 	float: center;
 }
 table {
-	width :100%
+	width :100%;
 }
 
 td.graphic {
-  width: 23%
+  width: 23%;
+}
+
+th.width {
+  width: 10%;
 }
 
 td.matching {

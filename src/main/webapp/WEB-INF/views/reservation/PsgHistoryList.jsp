@@ -7,9 +7,16 @@
 <head>
 <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
 <jsp:useBean id="now" class="java.util.Date" />
-
 <fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
-</head>
+<style type="text/css">
+	#line2 {
+	 	padding-left: 15px;
+	}
+	#line1 {
+	 	padding-right: 15px;
+	}  
+</style> 
+</head>  
 <body>
 <h1 class="title">나의 탑승내역</h1>
 <div class="searchDIV">
@@ -29,7 +36,7 @@
 				<input type="submit" value="검색" class="btn_search">
 			</form>
 		</div>
-<table class="table">
+<table class="table" style="table-layout: fixed;">
 	<tr>
 				<th class="col-md-1 text-center">번호</th>
 				<th class="col-md-1 text-center">상세페이지</th>
@@ -56,14 +63,14 @@
 					</a>
 				</td>
 				<td class="col-md-2 text-center">${reservation.CP_startDate }</td>
-				<td class="col-md-2 text-center">${reservation.CP_startPoint }</td>
-				<td class="col-md-2 text-center">${reservation.CP_endPoint }</td>
+				<td class="col-md-2 ellip" id="line1">${reservation.CP_startPoint }</td>
+				<td class="col-md-2 ellip" id="line2">${reservation.CP_endPoint }</td>
 				
 				<td class="col-md-1 text-center">
 					<a onclick="window.open('profileView.do?MB_nickName=${reservation.MB_nickNameDv }', '',
 						'width=500,height=560,location=no,status=no,scrollbars=yes');" class="inputLineA">${reservation.MB_nickNameDv }</a>
 				</td>
-				
+				  
 				<c:if test="${reservation.RSV_confirm == 'Y' && reservation.RSV_mConfirm == 'N' }">
 					<td class="col-md-1 text-center">매칭대기</td>
 				</c:if>

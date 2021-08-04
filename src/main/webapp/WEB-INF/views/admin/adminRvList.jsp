@@ -25,7 +25,7 @@
 				<input type="submit" value="검색" class="btn_search">
 		</form>
 	</div>
-	<table class="table">
+	<table class="table" style="table-layout: fixed;">
 		<tr>
 			<th class="col-md-1 text-center">번호</th>
 			<th class="col-md-1 text-center">상세</th>
@@ -61,8 +61,8 @@
 							'width=500,height=560,location=no,status=no,scrollbars=yes');"
 							class="inputLineA">${reservation.MB_nickName }</a>
 					</td>
-					<td class="col-md-2 text-center">${reservation.CP_startPoint }</td>
-					<td class="col-md-2 text-center">${reservation.CP_endPoint }</td>
+					<td class="col-md-2 text-center ellip">${reservation.CP_startPoint }</td>
+					<td class="col-md-2 text-center ellip">${reservation.CP_endPoint }</td>
 					<td class="col-md-2 text-center">
 						<c:if test="${reservation.RSV_confirm == 'Y' && reservation.RSV_mConfirm == 'Y' }">매칭완료</c:if>
 						<c:if test="${reservation.RSV_confirm == 'Y' && reservation.RSV_mConfirm == 'N' }">매칭대기</c:if>

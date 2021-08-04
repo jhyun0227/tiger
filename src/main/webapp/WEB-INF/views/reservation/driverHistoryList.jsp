@@ -7,8 +7,15 @@
 <head>
 <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
 <jsp:useBean id="now" class="java.util.Date" />
-
 <fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
+<style type="text/css">
+	#line2 {
+	 	padding-left: 15px;
+	}
+	#line1 {
+	 	padding-right: 15px;
+	}  
+</style>   
 </head>
 <body>
 <h1 class="title">나의 운행내역</h1>
@@ -29,7 +36,8 @@
 				<input type="submit" value="검색" class="btn_search">
 			</form>
 		</div>
-<table class="table">   
+<!-- ellip(주소가 길 경우 말줄임표로 대체) 적용하기 위해 style="table-layout: fixed;" -->
+<table class="table" style="table-layout: fixed;">   
 	<tr>
 		<th class="col-md-1 text-center">번호</th>
 		<th class="col-md-1 text-center">상세페이지</th>
@@ -38,7 +46,7 @@
 		<th class="col-md-3 text-center">도착지</th>
 		<th class="col-md-1 text-center">운행상태</th>
 		<th class="col-md-1 text-center">후기 작성</th>
-	</tr>
+	</tr>   
 	<c:if test="${empty myCarpoolList}">
 		<tr>
 			<th colspan="7" class="text-center">이용내역이 존재하지 않습니다</th>
@@ -55,10 +63,10 @@
 							<img alt="" src="${path }/resources/main/folder.png" width="17px" height="17px">
 						</a>
 					</td>
-					<td class="col-md-2 text-center">${carpool.CP_startDate }</td>
-					<td class="col-md-3 text-center">${carpool.CP_startPoint }</td>
-					<td class="col-md-3 text-center">${carpool.CP_endPoint }</td>
-					
+					<td class=" col-md-2 text-center">${carpool.CP_startDate }</td>
+					<td class="col-md-3  text-center ellip" id="line1" >${carpool.CP_startPoint }</td>
+					<td class="col-md-3 text-center ellip" id="line2" >${carpool.CP_endPoint }</td>
+					   
 					<c:if test="${today < carpool.CP_startDate }">
 						<td class="col-md-1 text-center">
 							운행전

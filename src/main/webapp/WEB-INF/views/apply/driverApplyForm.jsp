@@ -138,7 +138,7 @@
 					title="운전면허증 앞면 사진을 첨부해 주세요">
 			</c:if>  
 			<c:if test="${not empty AP_picture}">
-				<img alt=""  class="thumbnail"   
+				<img alt=""  class="thumb"     
 				     src="${path }/resources/applyImg/${apply.AP_picture}">	
 			</c:if>	     		
 			<div class="filebox" id="box">   

@@ -66,6 +66,7 @@
 				<td colspan="4">
 					<input type="text" id="CP_endPoint" name="CP_endPoint" placeholder="도착지" required="required" class="inputLine">
 					<input type="button" class="btn" id="selectEP" value="도착지 등록">
+				</td>
 			</tr>
 			<tr>
 				<td colspan="6">
@@ -88,7 +89,7 @@
 									<option value="N">N</option>
 								</select>
 								<button id="btn_select">경로탐색</button>
-								<button id="clear">초기화</button> <!-- 아직 작업x -->
+								<button id="clear">초기화</button>
 							</div>
 						</div>
 					</div>

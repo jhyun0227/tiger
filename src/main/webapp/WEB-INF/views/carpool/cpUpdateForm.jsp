@@ -1,11 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!-- 현재시간 불러와서 타세요 글 작성시 지난 날짜 입력 방지 -->
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<c:set var="path" value="${pageContext.request.contextPath }"></c:set>
+<jsp:useBean id="now" class="java.util.Date" />
+<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
+<fmt:formatDate value="${now}" pattern="HH:mm" var="todayTime" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initialscale=1">
-
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script
+	src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xxb7514833e4e14e1492e2da0675e6772f"></script>
 <script>
 	// 출발일이 현재날짜보다 이전으로 설정 못하게 막는 자바스크립트
 	function Chk() {
@@ -30,32 +38,88 @@
 <body>
 <!-- 컨텐츠 시작  -->
 <h1 class="title">타세요 글 수정</h1>
-	
-		<form action="cpUpdateResult.do" class="form-horizontal" method="post" name="cp" role="form" onsubmit="return Chk()">
+	<form action="cpUpdateResult.do" class="form-horizontal" method="post" name="cp" role="form" onsubmit="return Chk()">
 			<input type="hidden" name="CP_num" value="${carpool.CP_num}" />
 			<!-- 출발일 날짜 설정값-->
 			<input type="hidden" name="now_date" value="${now_date}" />
 			<input type="hidden" name="now_time" value="${now_time}" />
 				<!-- 메인 컨텐츠 부분 -->
-				
-								<label for="CP_startPoint" class="col-sm-2 control-label">출발지</label>
-								<input type="text" id="CP_startPoint" name="CP_startPoint" class="form-control" value="${carpool.CP_startPoint }" />
-								
-							
-								<label for="endPoint" class="col-sm-2 control-label">도착지</label>
-								<input type="text" id="CP_endPoint" name="CP_endPoint" class="form-control" value="${carpool.CP_endPoint }" />
-									
-							
-								<label for="CP_startDate" class="col-sm-2 control-label">출발일</label>
-								<input type="date" name="CP_startDate" class="form-control form_datetime" value="${carpool.CP_startDate }">
-									
-							
-								<label for="CP_startTime" class="col-sm-2 control-label">출발시간</label>
-								<input type="text" class="form-control" name="CP_startTime" id="CP_startTime" placeholder="18:00" required="required" value="${carpool.CP_startTime }">
-									
-							
+			<table class="table">
+				<tr>
+					<th>출발지</th>
+					<td>
+						<input type="text" id="CP_startPoint" name="CP_startPoint" value="${carpool.CP_startPoint }" required="required">	
+						<input type="button" class="btn" id="selectSP" value="출발지 등록">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="text" id="CP_endPoint" name="CP_endPoint" value="${carpool.CP_endPoint }" required="required">
+						<input type="button" class="btn" id="selectEP" value="도착지 등록">
+					</td>
+				</tr>
+				<tr>
+				<td colspan="6">
+					<div class="ft_area">
+						<div class="ft_select_wrap">
+							<div class="ft_select">
+								<select id="selectLevel">
+									<option value="0" selected="selected">교통최적+추천</option>
+									<option value="1">교통최적+무료우선</option>
+									<option value="2">교통최적+최소시간</option>
+									<option value="3">교통최적+초보</option>
+									<option value="4">교통최적+고속도로우선</option>
+									<option value="10">최단거리+유/무료</option>
+									<option value="12">이륜차도로우선</option>
+									<option value="19">교통최적+어린이보호구역 회피</option>
+								</select>
+								<select id="year">
+									<option value="N" selected="selected">교통정보 표출 옵션</option>
+									<option value="Y">Y</option>
+									<option value="N">N</option>
+								</select>
+								<button id="btn_select">경로탐색</button>
+								<button id="clear">초기화</button>
+							</div>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="6">
+					<div id="map_div"></div>
+					<p id="resultInfo"></p>
+				</td>
+			</tr>
+			<tr>
+				<th>출발일</th>
+				<td>
+					<input type="date" name="CP_startDate" value="${carpool.CP_startDate }">
+				</td>
+				<th>출발시간</th>
+				<td>
+					<input type="text" name="CP_startTime" id="CP_startTime" value="${carpool.CP_startTime }">
+				</td>
+				<th>카풀 인원</th>
+				<td>
+					<select name="CP_passNum" class="form-control">
+						<c:forEach var="val" begin="1" end="7">
+							<option value="${val}">${val} 명</option>
+						</c:forEach>	<!-- 수정 필요 -->
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>금액</th>
+				<td>
+					
+				</td>
+			</tr>
+			
+			</table>
+
 								<label for="CP_fee" class="col-sm-2 control-label">금액</label>
-								<input type="text" class="form-control" name="CP_fee" id="CP_fee" value="${carpool.CP_fee }">
+								<input type="text" name="CP_fee" id="CP_fee" value="${carpool.CP_fee }">
 								<span class="input-group-addon">원/인당</span>
 									
 							
@@ -64,12 +128,7 @@
 								<span class="input-group-addon">분</span>
 							
 							
-								<label for="CP_passNum" class="col-sm-2 control-label">카풀 인원</label>
-								<select name="CP_passNum" class="form-control">
-						                <c:forEach var="val" begin="1" end="7">
-						                	<option value="${val}">${val} 명</option>
-						                </c:forEach>
-					             </select>
+								
 	                  			
 							
 								<label class="col-sm-2 control-label">성별제한</label>

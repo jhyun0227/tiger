@@ -147,7 +147,6 @@
 						<c:if test="${today > carpool.CP_startDate}">
 							<tr>
 								<td class="text-center">출발시간이 지난 매칭입니다.</td>
-								<td><input type="hidden" value="${CP_num}"><c:set var="CP_num" value="${CP_num - 1}"></c:set></td>
 							</tr>
 						</c:if>
 						

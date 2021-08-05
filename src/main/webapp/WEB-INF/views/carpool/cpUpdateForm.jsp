@@ -15,7 +15,7 @@
 <meta name="viewport" content="width=device-width, initialscale=1">
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script
-	src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xxb7514833e4e14e1492e2da0675e6772f"></script>
+	src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=AppKey"></script>
 <script type="text/javascript" src="${path }/resources/bootstrap/js/tmap_cpUpdateForm.js"></script>
 <!-- 타세요 only CSS-->
 <link href="${path }/resources/bootstrap/css/carpool.css" rel="stylesheet" />

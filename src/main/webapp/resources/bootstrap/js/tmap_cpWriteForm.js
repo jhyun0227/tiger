@@ -95,7 +95,7 @@ function initTmap() {
 			//요url을 이용해 sk로 전송하면 그 주소에 대한 정보를 sk가 나한테 서버 전송해줌.
 			async : false,
 			data : {
-				"appKey" : "l7xxb7514833e4e14e1492e2da0675e6772f",
+				"appKey" : "AppKey",
 				"coordType" : "WGS84GEO",
 				"addressType" : "A10",
 				"lon" : lon,
@@ -204,7 +204,7 @@ function initTmap() {
 			url : "https://apis.openapi.sk.com/tmap/routes?version=1&format=json&callback=result",
 			async : false,
 			data : {
-				"appKey" : "l7xxb7514833e4e14e1492e2da0675e6772f",
+				"appKey" : "AppKey",
 				"startX" : marker_s.getPosition()._lng,
 				"startY" : marker_s.getPosition()._lat,
 				"endX" : marker_e.getPosition()._lng,

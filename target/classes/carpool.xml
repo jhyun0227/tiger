@@ -26,13 +26,12 @@
 	</select>
 	
 	<select id="getTotal" parameterType="carpool" resultType="integer">
-		select count(*) from carpool
-		<!-- 페이징  숫자 버튼 검색화면에 맞게 설정하기 -->
-		<where>
+		select count(*) from (select a.*, rowNum rn from (select c.*, m.MB_nickName from carpool c, member m
+			where c.MB_num = m.MB_num
 			<if test="keyword!=null and keyword!=''">
-				${search} like '%'||#{keyword}||'%'
+				and ${search} like '%'||#{keyword}||'%'
 			</if>
-		</where>
+			order by c.CP_num desc) a)
 	</select>
 	
 	<select id="getMaxNum" resultType="integer">

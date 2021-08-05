@@ -330,7 +330,7 @@ public class AdminController {
 		int num = total - startRow + 1;		// 번호 순서대로 정렬
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
 //		String[] title = {"아이디", "차량번호", "차량연식", "차종"};
-		String[] title = {"닉네임", "이름", "성별", "승인상태"};
+		String[] title = {"아이디", "이름", "성별", "승인상태"};
 		model.addAttribute("title", title);
 		model.addAttribute("pb", pb);	// paginbean pb
 		model.addAttribute("applyList", applyList);

@@ -6,7 +6,7 @@
 <head>
 <style type="text/css">
 .btn_large{
-	margin: 50px 0;
+	margin: 2px 0;
 }
 </style>
 </head>
@@ -19,6 +19,7 @@
 				<th class="text-center">${member.MB_id }로 임시비밀번호를 전송하였습니다. 로그인 후 비밀번호를 변경해주세요.</th>
 			</tr>
 		</table>
+		<br><br>
 		<button onclick="location.href='findIdForm.do'" class="btn_large">아이디 찾기</button>
 		<br>
 		<button onclick="location.href='loginForm.do'" class="btn_large">로그인</button>
